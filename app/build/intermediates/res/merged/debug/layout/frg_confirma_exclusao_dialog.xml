@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayoutConfirmaExclusao"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txtTextoConfirmaExclusao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_excluir_conta_com_receita_despesa"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black" />
+
+        <EditText
+            android:id="@+id/edtConfirmaExclusao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:elegantTextHeight="true"
+            android:ems="10"
+            android:hint="@string/lblSim"
+            android:imeOptions="actionDone"
+            android:inputType="textCapSentences"
+            android:maxLines="1"
+
+            />
+
+        <TextView
+            android:id="@+id/txtDescTextoConfirmaExclusao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/msg_excluir_digite_sim"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnConfimExcNao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:text="@string/lblNao" />
+
+            <Button
+                android:id="@+id/btnConfimExcSIM"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_weight="1"
+                android:text="@string/lblSim" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>
+

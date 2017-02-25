@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="array_opcoes_exclusao">
+        <item>Somente Esta</item>
+        <item>Todas Pendentes</item>
+        <item>Todas (inclusive efetivadas)</item>
+        <item>Cancelar</item>
+
+    </string-array>
+
+</resources>

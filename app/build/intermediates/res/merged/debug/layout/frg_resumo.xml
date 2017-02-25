@@ -1,0 +1,175 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/corFragResumoFundo"><![CDATA[
+    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgResumo">
+
+    ]]>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:text="@string/lblResumoMes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtResumoMes"
+            android:textSize="17sp"
+            android:layout_marginLeft="6dp"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:layout_marginTop="2dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragResumoAltura"
+            android:gravity="center"
+            android:id="@+id/lnlResumoConta"
+            android:layout_below="@+id/LinearLayout3"
+                  android:textAlignment="center"
+            android:paddingLeft="5dp"
+            android:paddingBottom="1dp"
+            android:paddingRight="5dp"
+            android:paddingTop="1dp"
+            android:background="@drawable/bg_tab_pressed"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+
+            >
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="match_parent"
+                android:background="@color/corTelaContas"
+                android:layout_width="@dimen/fragResumoLarguraFaixaCor"
+                android:id="@+id/lnlCorConta"
+                android:layout_margin="4dp"></LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lblContas"
+                android:id="@+id/txtNomeConta"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="14sp"
+                android:paddingLeft="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="R$ 0,00"
+                android:id="@+id/txtValorContaAcumulado"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:gravity="right"
+                android:paddingRight="4dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragResumoAltura"
+
+            android:gravity="center"
+            android:id="@+id/lnlResumoReceitas"
+            android:layout_below="@+id/lnlResumoConta"
+            android:textAlignment="center"
+            android:paddingLeft="5dp"
+            android:paddingBottom="1dp"
+            android:paddingRight="5dp"
+            android:paddingTop="1dp"
+            android:background="@drawable/bg_tab_pressed"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="match_parent"
+                android:background="@color/corTelaReceitas"
+                android:layout_width="@dimen/fragResumoLarguraFaixaCor"
+                android:layout_margin="4dp"
+                android:id="@+id/lnlCorReceita"></LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lblReceitas"
+                android:id="@+id/txtNomeReceita"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="14sp"
+                android:paddingLeft="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="R$ 0,00"
+                android:id="@+id/txtValorReceitaAcumulado"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:gravity="right"
+                android:paddingRight="4dp"
+                android:textColor="@color/corResolvido"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragResumoAltura"
+            android:gravity="center"
+            android:id="@+id/lnlResumoDespesas"
+            android:layout_below="@+id/lnlResumoReceitas"
+            android:textAlignment="center"
+            android:paddingLeft="5dp"
+            android:paddingBottom="1dp"
+            android:paddingRight="5dp"
+            android:paddingTop="1dp"
+            android:background="@drawable/bg_tab_pressed"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_height="match_parent"
+                android:background="@color/corTelaDespesas"
+                android:layout_width="@dimen/fragResumoLarguraFaixaCor"
+                android:layout_margin="4dp"
+                android:id="@+id/lnlCorDespesas"></LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/lblDespesas"
+                android:id="@+id/txtNomeDespesas"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="14sp"
+                android:paddingLeft="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="R$ 0,00"
+                android:id="@+id/txtValorDespesasAcumulado"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:gravity="right"
+                android:paddingRight="4dp"
+                android:textColor="@color/corPendencia"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

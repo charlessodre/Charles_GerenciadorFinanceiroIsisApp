@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_categoria_despesa"
+            android:icon="@drawable/ic_tag_preco_24dp"
+            android:title="@string/lblCategoriaDespesas" />
+        <item
+            android:id="@+id/nav_categoria_receita"
+            android:icon="@drawable/ic_tag_preco_24dp"
+            android:title="@string/lblCategoriaReceitas" />
+        <item
+            android:id="@+id/nav_conta"
+            android:icon="@drawable/ic_account_balance_black_24dp"
+            android:title="@string/lblContas" />
+        <item
+            android:id="@+id/nav_receita"
+            android:icon="@drawable/ic_file_download_black_24dp"
+            android:title="Receitas" />
+
+        <item
+            android:id="@+id/nav_despesa"
+            android:icon="@drawable/ic_file_upload_black_24dp"
+            android:title="Despesas" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_import_export_black_24dp"
+            android:title="Transferências    " />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>

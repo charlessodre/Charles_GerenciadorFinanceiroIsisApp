@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.charlessodre.apps.gerenciadorfinanceiroisis">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".actPrincipal"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".actCadastros.actCadConta" />
+        <activity
+            android:name=".actCadastros.actCadCategoriaDespesa"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".actCadastros.actCadCategoriaReceita" />
+        <activity android:name=".actCadastros.actCadSubCategoria" />
+        <activity
+            android:name=".actConsultas.actConta"
+            android:label="@string/title_contas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".actConsultas.actCategoriaDespesa"
+            android:label="@string/title_categorias_despesas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".actConsultas.actCategoriaReceita"
+            android:label="@string/title_categorias_receitas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".actConsultas.actReceita"
+            android:label="@string/title_receitas"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".actCadastros.actCadReceita" />
+        <!-- <activity android:name=".actCadastros.actBaseCadastros" />-->
+        <activity android:name=".actCadastros.actCadTransferencia" />
+        <activity
+            android:name=".actConsultas.actTransferencia"
+            android:label="@string/title_transferencias"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".actLogin"
+            android:label="@string/title_activity_act_login" />
+        <activity android:name=".actLoginNumerico" />
+        <activity
+            android:name=".actConsultas.actDespesa"
+            android:label="@string/title_despesas"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".actCadastros.actCadDespesa" />
+
+
+    </application>
+
+</manifest>

@@ -1,0 +1,378 @@
+[
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_screen_simple.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_receita.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_receita.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\notification_template_part_chronometer.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_categoria_receita.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_categoria_receita.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_receita.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_receita.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_act_categoria_despesa.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\content_act_categoria_despesa.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_cad_despesa.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_cad_despesa.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\nav_header_act_principal.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\nav_header_act_principal.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_activity_chooser_view.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_separator.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_navigation_item_separator.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_item_layout.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_action_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_navigation_menu.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_image_text_view.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_image_text_view.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_icon.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_layout_tab_icon.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_alerta.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_alerta.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_login.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_login.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_dialog_title_material.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_dialog_title_material.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_cad_transferencia.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_cad_transferencia.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_header_item_layout.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_popup_menu_header_item_layout.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_item_material.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\select_dialog_item_material.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_layout.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\frag_ordem_exibicao.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\frag_ordem_exibicao.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar_include.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_layout_snackbar_include.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_categoria_despesa.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_categoria_despesa.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_act_conta.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\content_act_conta.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_act_principal.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\content_act_principal.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_act_sub_categoria.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\content_act_sub_categoria.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_action.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\notification_media_action.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_activity_chooser_view_list_item.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_activity_chooser_view_list_item.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_despesa.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_despesa.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\frg_resumo.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\frg_resumo.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_radio.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_list_menu_item_radio.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\notification_template_big_media.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_subheader.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_navigation_item_subheader.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_sub_categoria.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_sub_categoria.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\frg_resumo_conta.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\frg_resumo_conta.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_conta.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_conta.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\notification_template_lines.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_content_include.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_screen_content_include.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_multichoice_material.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\frg_confirma_exclusao_dialog.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\frg_confirma_exclusao_dialog.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_transferencia.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_transferencia.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_popup_menu_item_layout.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_popup_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_principal.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_principal.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_search_view.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_list_menu_item_checkbox.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_up_container.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_button_bar_material.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_categoria.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_categoria.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_close_item_material.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_act_receita.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\content_act_receita.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_conta.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_conta.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_toolbar.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_screen_toolbar.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_expanded_menu_layout.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_expanded_menu_layout.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_despesa.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_despesa.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_cad_receita.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_cad_receita.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_text_input_password_icon.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_text_input_password_icon.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_sub_categoria.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_sub_categoria.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_resumo.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_resumo.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_navigation_item_header.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\notification_template_media.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_circulo.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_circulo.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_login_numerico.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_login_numerico.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_search_dropdown_item_icons_2line.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_cad_categoria_despesa.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_cad_categoria_despesa.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\support_simple_spinner_dropdown_item.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\support_simple_spinner_dropdown_item.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\app_bar_act_principal.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\app_bar_act_principal.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_cad_categoria_receita.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_cad_categoria_receita.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_alert_dialog_material.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_bottom_sheet_dialog.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_bottom_sheet_dialog.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_list_menu_item_icon.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_act_transferencia.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\content_act_transferencia.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_cad_sub_categoria.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_cad_sub_categoria.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_menu_item_action_area.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_menu_item_action_area.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_view_list_nav_layout.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_action_bar_view_list_nav_layout.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_snackbar.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_layout_snackbar.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_act_despesa.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\content_act_despesa.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\frag_barra_navegacao_top.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\frag_barra_navegacao_top.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_transferencia.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_transferencia.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_navigation_item.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_time.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\notification_template_part_time.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_act_categoria_receita.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\content_act_categoria_receita.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_action_bar_title_item.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_cad_conta.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_cad_conta.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_media_cancel_action.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\notification_template_big_media_narrow.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_image_view.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_image_view.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_layout_tab_text.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_layout_tab_text.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.1\\res\\layout\\abc_action_mode_bar.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu_item.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\exploded-aar\\com.android.support\\design\\24.2.1\\res\\layout\\design_navigation_menu_item.xml"
+    }
+]

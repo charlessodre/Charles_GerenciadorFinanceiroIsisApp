@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="msg_salvar_sucesso">Salvo com sucesso!</string>
+    <string name="msg_salvar_erro">Falha ao salvar!</string>
+    <string name="msg_excluir_sucesso">Excuído com sucesso!</string>
+    <string name="msg_excluir_erro">Falha ao excluir!</string>
+    <string name="msg_consultar_erro">Falha ao consultar!</string>
+    <string name="msg_estornar_pagamento_erro">Falha ao estornar o pagamento!</string>
+    <string name="msg_preenchimento_obrigatorio">Preenchimento Obrigatório!</string>
+
+    <string name="msg_valor_maior_zero">O valor deve ser maior que 0 (zero)!</string>
+
+    <string name="msg_consultar_erro_subcateogira_receita">Falha ao consultar a SubCategoria da Receita!</string>
+    <string name="msg_consultar_erro_conta">Falha ao consultar a Conta!</string>
+
+    <string name="msg_salvar_transferencia">As contas devem ser diferentes.</string>
+
+    <string name="msg_consultar_erro_receita">Falha ao consultar a Receita!</string>
+    <string name="msg_salvar_erro_receita">Falha ao salvar a Receita!</string>
+    <string name="msg_excluir_erro_receita">Falha ao excluir a Receita!</string>
+    <string name="msg_excluir_conta_com_receita_despesa">Esta conta possui Receitas, Despesas e Transferências associadas que também serão excluídas. Confirma a Exclusão? </string>
+
+    <string name="msg_consultar_erro_despesa">Falha ao consultar a Despesa!</string>
+    <string name="msg_salvar_erro_despesa">Falha ao salvar a Despesa!</string>
+    <string name="msg_excluir_erro_despesa">Falha ao excluir a Despesa!</string>
+
+    <string name="msg_excluir_digite_sim">Digite "Sim" para confirmar a exclusão.</string>
+    <string name="msg_excluir_digite_text">Digite "Sim" para concluir a ação.</string>
+
+    <string name="msg_excluir_atual">Excluir somente esta.</string>
+    <string name="msg_excluir_atual_proximas">Excluir esta e as próximas.</string>
+    <string name="msg_excluir_todas">Excluir todas(inclusive efetivas).</string>
+
+    <string name="msg_alterar_atual">Alterar somente esta.</string>
+    <string name="msg_alterar_atual_proximas">Alterar esta e as próximas.</string>
+    <string name="msg_alterar_todas">Alterar todas(inclusive efetivas).</string>
+
+
+    <string name="msg_excluir">Deseja realmente excluir?</string>
+
+
+</resources>

@@ -1,0 +1,66 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.frgResumoConta">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:id="@+id/lnlfragBarraNavegacaoResumo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/corFragResumo"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnEsquerdaResumo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_weight="2"
+                android:background="@null"
+                app:srcCompat="@drawable/ic_keyboard_arrow_left_white_24dp" />
+
+            <TextView
+                android:id="@+id/txtNomeMesResumo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="janeiro"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white" />
+
+            <ImageButton
+                android:id="@+id/btnDireitaResumo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="30dp"
+                android:layout_weight="2"
+                android:background="@null"
+                app:srcCompat="@drawable/ic_keyboard_arrow_right_white_24dp" />
+
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lstResumo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/lnlfragBarraNavegacaoResumo"
+            android:layout_marginBottom="@dimen/listview_bottom" />
+
+
+    </RelativeLayout>
+
+</FrameLayout>

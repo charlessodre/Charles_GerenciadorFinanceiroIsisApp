@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="x86"
+    api-level="24"
+    density="xhdpi"
+    format="8"
+    plugin-version="2.2.3"
+    timestamp="1875641311694345"
+    token="3012946830325438358"
+    verifier="COLD_SWAP_REQUESTED" >
+
+    <task
+        name="javac"
+        duration="1945" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="0" />
+    <task
+        name="verifier"
+        duration="0" />
+
+    <artifact
+        location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+        type="RESOURCES" />
+
+    <build
+        timestamp="1866324472397223"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\outputs\apk\app-debug.apk"
+            type="MAIN" />
+    </build>
+    <build
+        timestamp="1869740053447527"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_77aaecd2fd668aa8c3f765b1fb0da685fd2fcacc\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_eb7625134b72d6a8b9db90aca027008e7c7a14bb\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_aede86eae9806878f290eeb47df8b5f8ff556fc3\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_7c6b0b42c616435cd61f8bc4c2ad0bfea886ca1a\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_2c7fe507ce54586ecb8d2355e76d7f3073f9e93b\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_e4c7a6d22edee56372325b012f9ea1fcbbb89689\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_9aa912b04a55a62bd3c0b8a946b1951b98fd3078\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_3a29b7d1987bff889877cc47ba7846723dc8cd7b\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_bb7f455de62f8a8cc3314695523e54a0a3ef21cd\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_3b0dd98f714abb77c77dbaf1bcd6efc99b3adb7d\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_82b51899cc3f665323dfa2bca72c392e6b6e3f28\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.1_79b494279f7100ae2617da6828b65a57d270b9c8\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_3b36bf12976368cae00e11964fc82b071a611d5a\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_0\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_1811a137e36468350e2a302ec57c80aa34a8b68b\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_5e99be372342b59af476d970be87f44f5ae8172b\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.1_b69ebb51927891fa1df7e6d09cd918220b7292fb\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_fb65cdb362b4490ce9067096a012352fa6abb012\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_3\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_2\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_25c7b1eb07fe50af8a4f368ebba78fdd776a2e31\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_4\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_9\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_8\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_4ba0b22c0fb169db318525cdc4ca9d56fd5b911e\classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="1873274630344940"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_1\classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="1873690743781034"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_6\classes.dex"
+            type="DEX" />
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_5\classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="1874812298122389"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\5\slice_7\classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="1875641311694345"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\instant-run-resources\resources-debug.ir.ap_"
+            type="RESOURCES" />
+    </build>
+
+</instant-run>

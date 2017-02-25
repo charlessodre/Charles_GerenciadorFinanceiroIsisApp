@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.actCategoriaDespesa"
+    tools:showIn="@layout/act_categoria_despesa"
+    android:id="@+id/content_act_categoria_despesa">
+
+
+    <LinearLayout
+        android:id="@+id/frag_container_categoria_despesa"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="false" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lstCategoriasDespesa"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/frag_container_categoria_despesa"/>
+
+</RelativeLayout>

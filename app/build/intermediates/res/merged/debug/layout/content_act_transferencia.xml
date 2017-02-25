@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_act_transferencia"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.actTransferencia"
+    tools:showIn="@layout/act_transferencia">
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/corTelaTransferencias"
+        android:id="@+id/lnlfragBarraNavegacaoTransferencias"
+        >
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_keyboard_arrow_left_white_24dp"
+            android:id="@+id/btnEsquerdaTransferencias"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:layout_marginLeft="30dp"
+            android:background="@null" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="janeiro"
+            android:id="@+id/txtNomeMesTransferencias"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            />
+
+        <ImageButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_white_24dp"
+            android:id="@+id/btnDireitaTransferencias"
+            android:layout_weight="2"
+            android:layout_gravity="center"
+            android:layout_marginRight="30dp"
+            android:background="@null" />
+
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lstTransferencias"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lnlfragBarraNavegacaoTransferencias"/>
+
+
+</RelativeLayout>

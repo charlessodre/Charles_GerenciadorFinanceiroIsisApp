@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\menu\\menu_cadastro.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\menu\\menu_cadastro.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\menu\\act_principal_drawer.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\menu\\act_principal_drawer.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\menu\\act_principal.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\menu\\act_principal.xml"
+    }
+]
