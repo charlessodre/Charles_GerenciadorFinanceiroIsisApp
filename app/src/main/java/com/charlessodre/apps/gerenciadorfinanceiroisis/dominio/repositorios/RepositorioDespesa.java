@@ -415,7 +415,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
 //Totalizadores
 
-    public double getValorTotalDespesas(int anoMes) {
+    public double getValorTotalDespesas(int anoMes, boolean somentePagas) {
         String[] parametros = {String.valueOf(anoMes)};
 
         StringBuilder sql = new StringBuilder();
@@ -426,10 +426,11 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         sql.append(Despesa.TABELA_NOME);
         sql.append(" WHERE ");
         sql.append(Despesa.NO_AM_DESPESA);
-        //sql.append(" <= ? AND ");
-        sql.append(" = ? AND ");
-        sql.append(Despesa.FL_DESPESA_PAGA  + " = 1");
-
+        sql.append(" = ? ");
+         if(somentePagas) {
+            sql.append(" AND ");
+            sql.append(Despesa.FL_DESPESA_PAGA + " = 1");
+        }
         double valorTotal = 0;
 
         try {

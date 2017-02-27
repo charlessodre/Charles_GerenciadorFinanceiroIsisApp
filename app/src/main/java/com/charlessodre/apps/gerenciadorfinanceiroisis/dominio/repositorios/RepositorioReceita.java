@@ -402,7 +402,7 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
 
     //Totalizadores
-    public double getValorTotalRecebido(int anoMes) {
+    public double getValorTotalRecebido(int anoMes, boolean somentePagas) {
         String[] parametros = {String.valueOf(anoMes)};
 
         StringBuilder sql = new StringBuilder();
@@ -413,9 +413,12 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
         sql.append(Receita.TABELA_NOME);
         sql.append(" WHERE ");
         sql.append(Receita.NO_AM_RECEITA);
-        //sql.append(" <= ? AND ");
-        sql.append(" = ? AND ");
-        sql.append(Receita.FL_RECEITA_PAGA  + " = 1");
+        sql.append(" = ? ");
+
+        if (somentePagas) {
+            sql.append(" AND ");
+            sql.append(Receita.FL_RECEITA_PAGA + " = 1");
+        }
 
         double valorTotal = 0;
 

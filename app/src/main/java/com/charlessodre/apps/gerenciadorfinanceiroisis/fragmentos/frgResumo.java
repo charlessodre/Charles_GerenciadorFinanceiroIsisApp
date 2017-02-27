@@ -131,8 +131,8 @@ public class frgResumo extends Fragment {
         if(this.getContext() != null) {
 
             double valorAcumuladoContas = this.repositorioConta.getValorTotal();
-            double valorAcumuladoReceitas = this.repositorioReceita.getValorTotalRecebido(this.anoMes);
-            double valorAcumuladoDespesas = this.repositorioDespesa.getValorTotalDespesas(this.anoMes);
+            double valorAcumuladoReceitas = this.repositorioReceita.getValorTotalRecebido(this.anoMes,true);
+            double valorAcumuladoDespesas = this.repositorioDespesa.getValorTotalDespesas(this.anoMes,true);
 
             if (valorAcumuladoContas < 0)
                 this.txtValorContaAcumulado.setTextColor(ColorHelper.getColor(this.getContext(), R.color.corPendencia));

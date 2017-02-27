@@ -197,7 +197,9 @@ public class actDespesa extends actBaseListas implements AdapterView.OnItemClick
 
         this.lstDespesas.setAdapter(this.adpDespesa);
 
-        this.txtValorTotalDespesaRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + DecimalHelper.getFormartCurrency(this.repositorioDespesa.getValorTotalDespesas(anoMes)));
+        double valorTotal = this.repositorioDespesa.getValorTotalDespesas(anoMes,false);
+
+        this.txtValorTotalDespesaRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + DecimalHelper.getFormartCurrency(valorTotal));
 
     }
 

@@ -199,7 +199,9 @@ public class actReceita extends actBaseListas implements AdapterView.OnItemClick
 
         this.lstReceitas.setAdapter(this.adpReceita);
 
-        this.txtValorTotalReceitaRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + DecimalHelper.getFormartCurrency(this.repositorioReceita.getValorTotalRecebido(anoMes)));
+        double valorTotal = this.repositorioReceita.getValorTotalRecebido(anoMes,false);
+
+        this.txtValorTotalReceitaRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + DecimalHelper.getFormartCurrency(valorTotal));
 
     }
 
