@@ -47,7 +47,8 @@
     <string name="lblPago">Pago</string>
     <string name="lblNome">Nome</string>
     <string name="lblValor">Valor</string>
-    <string name="lblSubCategoria">Sub Categorias</string>
+    <string name="lblSubCategorias">Sub Categorias</string>
+    <string name="lblSubCategoria">Sub Categoria</string>
     <string name="lblNovaSubCategoria">Criar Nova Sub Categoria</string>
     <string name="lblIconeCategoria">Ícone da Categoria</string>
     <string name="lblSaldoInicial">Saldo Inicial</string>

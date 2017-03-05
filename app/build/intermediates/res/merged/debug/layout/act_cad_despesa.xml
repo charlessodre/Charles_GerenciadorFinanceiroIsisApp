@@ -110,7 +110,7 @@
             android:layout_height="@dimen/standard_20" />
 
         <TextView
-            android:id="@+id/lblCategoriaDespesa1"
+            android:id="@+id/lblCategoriaDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lblCategoriaDespesa" />
@@ -127,8 +127,30 @@
         <Space
             android:layout_width="@dimen/standard_20"
             android:layout_height="@dimen/standard_20" />
+
+
         <TextView
-            android:id="@+id/lblCategoriaDespesa2"
+            android:id="@+id/lblSubCategoriaDespesa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lblSubCategoria" />
+
+        <Spinner
+            android:id="@+id/spnSubCategoriaDespesa"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:dropDownWidth="match_parent" />
+
+        <Space
+            android:layout_width="@dimen/standard_20"
+            android:layout_height="@dimen/standard_20" />
+
+
+
+
+        <TextView
+            android:id="@+id/lblContaDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lblConta" />

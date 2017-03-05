@@ -11,7 +11,8 @@ import java.util.ArrayList;
 public class ScriptSQL {
 
     //Constantes
-    public static String NOME_BANCO = "GER_FIN_ISIS";
+    public static final String DATABASE_NAME  = "GER_FIN_ISIS";
+    public static final int DATABASE_VERSION = 2;
 
     public static String getCreateTBConta()
     {
@@ -115,7 +116,6 @@ public class ScriptSQL {
     }
 
 
-
     public static String getCreateTBCategoriaReceita()
     {
 
@@ -164,6 +164,7 @@ public class ScriptSQL {
         sqlBuilder.append("   ID_CATEGORIA_DESPESA INTEGER  NOT NULL, " );
         sqlBuilder.append("   ID_SUB_CATEGORIA_DESPESA INTEGER  NOT NULL, " );
         sqlBuilder.append("   ID_DESPESA_PAI INTEGER  NULL, " );
+        sqlBuilder.append("   ID_TIPO_REPETICAO INTEGER  NULL, " );
         sqlBuilder.append("   FOREIGN KEY (ID_DESPESA_PAI)REFERENCES TB_GF_DESPESA (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_CONTA) REFERENCES TB_GF_CONTA (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_CATEGORIA_DESPESA) REFERENCES TB_GF_CATEGORIA_DESPESA (_id), " );

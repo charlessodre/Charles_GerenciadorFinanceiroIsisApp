@@ -12,11 +12,13 @@
     <ScrollView
         android:id="@+id/createdrill_scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <LinearLayout
@@ -94,10 +96,6 @@
 
             </LinearLayout>
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="30dp" />
-
             <LinearLayout
                 android:id="@+id/frag_container_cad_categoria_despesa"
                 android:layout_width="match_parent"
@@ -113,7 +111,7 @@
             <LinearLayout
                 android:id="@+id/lnlSubcategorias"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_below="@+id/frag_container_cad_categoria_despesa"
                 android:layout_marginTop="15dp"
                 android:orientation="vertical">

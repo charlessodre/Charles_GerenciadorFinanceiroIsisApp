@@ -27,8 +27,6 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
     }
 
     //Métodos
-
-
     private ContentValues preencheContentValues(SubCategoriaDespesa subCategoriaDespesa) {
 
         ContentValues values = new ContentValues();
@@ -80,24 +78,6 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
 
     }
 
-    public ArrayList<SubCategoriaDespesa> buscaTodos() {
-        try {
-
-            super.openConnectionWrite();
-
-            Cursor cursor = super.selectAll(SubCategoriaDespesa.NO_ORDEM_EXIBICAO + " , " + SubCategoriaDespesa.NM_SUB_CATEGORIA);
-
-            return this.preencheObjeto(super.getTransaction(),cursor);
-
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.closeConnection();
-        }
-    }
-
-
     @Override
     public int altera(SubCategoriaDespesa item) {
         try {
@@ -140,16 +120,12 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
         return null;
     }
 
-
-    public ArrayList<SubCategoriaDespesa> buscarPorCategoria(long idCategoria) {
-
-        String where = SubCategoriaDespesa.ID_CATEGORIA_DESPESA + "=" + idCategoria;
-
+    public ArrayList<SubCategoriaDespesa> buscaTodos() {
         try {
 
             super.openConnectionWrite();
-            Cursor cursor = super.select(where);
-            ;
+
+            Cursor cursor = super.selectAll(SubCategoriaDespesa.NO_ORDEM_EXIBICAO + " , " + SubCategoriaDespesa.NM_SUB_CATEGORIA);
 
             return this.preencheObjeto(super.getTransaction(),cursor);
 
@@ -161,6 +137,24 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
         }
     }
 
+    public ArrayList<SubCategoriaDespesa> buscaPorIdCategoriaDespesa(Long idCategoriaDespesa) {
+        try {
+
+            super.openConnectionRead();
+
+            String where = SubCategoriaDespesa.ID_CATEGORIA_DESPESA + "=" + idCategoriaDespesa;
+
+            Cursor cursor = super.select(super.getTransaction(), where,SubCategoriaDespesa.NO_ORDEM_EXIBICAO + " , " + SubCategoriaDespesa.NM_SUB_CATEGORIA);
+
+            return this.preencheObjeto(super.getTransaction(),cursor);
+
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
 
     public int getQtdSubCategoria(long idCategoriaDespesa) {
 
@@ -222,7 +216,6 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
         }
     }
 
-
     public int excluiComDependentes(SubCategoriaDespesa item) {
         try {
             super.openConnectionWrite();
@@ -244,7 +237,6 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
             super.closeConnection();
         }
     }
-
 
     public SubCategoriaDespesa get(SQLiteDatabase transaction, Long id) {
         String where = SubCategoriaDespesa.ID + "=" + id;

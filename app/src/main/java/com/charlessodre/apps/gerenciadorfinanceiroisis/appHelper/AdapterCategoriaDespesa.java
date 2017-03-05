@@ -29,16 +29,13 @@ public class AdapterCategoriaDespesa extends ArrayAdapter<CategoriaDespesa> {
     private int resource = 0;
     private String symbol;
 
-    private ArrayList<Integer> arrayList;
-
-    public AdapterCategoriaDespesa(Context applicationContext, int resource, ArrayList<Integer> arrayList) {
+    public AdapterCategoriaDespesa(Context applicationContext, int resource) {
 
         super(applicationContext, resource);
 
         this.context = applicationContext;
         this.resource = resource;
         this.symbol = NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol();
-        this.arrayList = arrayList;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -69,7 +66,6 @@ public class AdapterCategoriaDespesa extends ArrayAdapter<CategoriaDespesa> {
             viewHolder.imgCirculo = (ImageView) view.findViewById(R.id.imgCategoriaCir);
 
             view.setTag(viewHolder);
-
             convertView = view;
 
         } else {

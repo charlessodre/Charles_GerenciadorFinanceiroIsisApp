@@ -27,7 +27,6 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
 
     //Métodos
 
-
     @Override
     public int altera(CategoriaDespesa item) {
         try {
@@ -121,8 +120,6 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
     public ArrayList<CategoriaDespesa> buscaTodos() {
         try {
 
-
-
             super.openConnectionWrite();
 
             Cursor cursor = super.selectAll(CategoriaDespesa.NO_ORDEM_EXIBICAO + " , " + CategoriaDespesa.NM_CATEGORIA);
@@ -160,7 +157,6 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
             super.closeConnection();
         }
     }
-
 
     public CategoriaDespesa get(SQLiteDatabase transaction, Long id) {
         String where = CategoriaDespesa.ID + "=" + id;

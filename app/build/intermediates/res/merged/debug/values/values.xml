@@ -913,7 +913,8 @@
     <string name="lblSim">Sim</string>
     <string name="lblSimboloReal">R$</string>
     <string name="lblSimboloRealComZero">R$ 0,00</string>
-    <string name="lblSubCategoria">Sub Categorias</string>
+    <string name="lblSubCategoria">Sub Categoria</string>
+    <string name="lblSubCategorias">Sub Categorias</string>
     <string name="lblTipoConta">Tipo de Conta</string>
     <string name="lblTransferencia">Transferência</string>
     <string name="lblTransferencias">Transferências</string>

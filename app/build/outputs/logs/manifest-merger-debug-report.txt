@@ -27,16 +27,16 @@ ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\And
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:8:22-69
 application
 ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:10:5-67:19
-MERGED from [com.android.support:design:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-v4:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-fragment:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-media-compat:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-utils:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:support-core-ui:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-compat:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:design:24.2.1] C:\Users\charl\.android\build-cache\16d16012cb61734398daaa44366c100fcd5052f4\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charl\.android\build-cache\5d43efd19130b4d56ed9702e886a9ade41c940e1\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:24.2.1] C:\Users\charl\.android\build-cache\dc3f5a9c84c78ba8ca5ed0265c9e873632865a28\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:24.2.1] C:\Users\charl\.android\build-cache\bce5b94d0f4520ebb9eef988c3e69428a105cfd2\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:24.2.1] C:\Users\charl\.android\build-cache\8d890193251f273e8582421c7924e7bad14923f0\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:24.2.1] C:\Users\charl\.android\build-cache\9275c26f564f8ee05749d50dc3f69d69050ce3e6\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\charl\.android\build-cache\582cc700d1872ea87c4ab90f934df7ab6058eb69\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\charl\.android\build-cache\e7350fa5f66f71cbe991181b1ce70c66e3347b67\output\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-core-ui:24.2.1] C:\Users\charl\.android\build-cache\af68bdf1fac4024c599f7bc2a2139fd5c9e09afb\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:24.2.1] C:\Users\charl\.android\build-cache\dd34a97c0f792d23f64374fd161cc391a51a2aa1\output\AndroidManifest.xml:25:5-20
 	android:label
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:13:9-41
 	android:supportsRtl
@@ -155,19 +155,19 @@ ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\And
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:64:19-61
 uses-sdk
 INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:design:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:support-v4:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-utils:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\AndroidManifest.xml:21:5-43
-MERGED from [com.android.support:recyclerview-v7:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-core-ui:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:design:24.2.1] C:\Users\charl\.android\build-cache\16d16012cb61734398daaa44366c100fcd5052f4\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charl\.android\build-cache\5d43efd19130b4d56ed9702e886a9ade41c940e1\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:24.2.1] C:\Users\charl\.android\build-cache\dc3f5a9c84c78ba8ca5ed0265c9e873632865a28\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:24.2.1] C:\Users\charl\.android\build-cache\bce5b94d0f4520ebb9eef988c3e69428a105cfd2\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:24.2.1] C:\Users\charl\.android\build-cache\8d890193251f273e8582421c7924e7bad14923f0\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:24.2.1] C:\Users\charl\.android\build-cache\9275c26f564f8ee05749d50dc3f69d69050ce3e6\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\charl\.android\build-cache\582cc700d1872ea87c4ab90f934df7ab6058eb69\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\charl\.android\build-cache\e7350fa5f66f71cbe991181b1ce70c66e3347b67\output\AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:recyclerview-v7:24.2.1] C:\Users\charl\.android\build-cache\5cb23f8c30914eb925b94dcffb02349571b4d4c2\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-core-ui:24.2.1] C:\Users\charl\.android\build-cache\af68bdf1fac4024c599f7bc2a2139fd5c9e09afb\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:24.2.1] C:\Users\charl\.android\build-cache\dd34a97c0f792d23f64374fd161cc391a51a2aa1\output\AndroidManifest.xml:21:5-23:58
 	tools:overrideLibrary
-		ADDED from [com.android.support:appcompat-v7:24.2.1] C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\AndroidManifest.xml:23:9-75
+		ADDED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charl\.android\build-cache\5d43efd19130b4d56ed9702e886a9ade41c940e1\output\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml

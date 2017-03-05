@@ -170,10 +170,8 @@ public class actCadCategoriaDespesa extends actBaseCadastros implements AdapterV
 
             RepositorioSubCategoriaDespesa repositorioSubCategoriaDespesa = new RepositorioSubCategoriaDespesa(this);
 
-            this.adpSubCategoriaDespesa.addAll(repositorioSubCategoriaDespesa.buscarPorCategoria(this.categoriaDespesa.getId()));
-
+            this.adpSubCategoriaDespesa.addAll(repositorioSubCategoriaDespesa.buscaPorIdCategoriaDespesa(this.categoriaDespesa.getId()));
         }
-
         this.adpSubCategoriaDespesa.insert(null, this.adpSubCategoriaDespesa.getCount());
 
         this.lstSubCategorias.setAdapter(this.adpSubCategoriaDespesa);

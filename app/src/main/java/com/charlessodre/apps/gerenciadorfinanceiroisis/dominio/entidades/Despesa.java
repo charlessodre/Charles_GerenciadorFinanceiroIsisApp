@@ -14,22 +14,23 @@ public class Despesa extends EntidadeBase  {
     public static String  TABELA_NOME 			  = "TB_GF_DESPESA";
 
 
-    public static String NM_DESPESA               = "NM_DESPESA";
-    public static String DT_DESPESA               = "DT_DESPESA";
-    public static String VL_DESPESA               = "VL_DESPESA";
-    public static String DT_PAGAMENTO             = "DT_PAGAMENTO";
-    public static String VL_PAGAMENTO             = "VL_PAGAMENTO";
-    public static String NO_TOTAL_REPETICAO       = "NO_TOTAL_REPETICAO";
-    public static String NO_REPETICAO_ATUAL       = "NO_REPETICAO_ATUAL";
-    public static String FL_DESPESA_PAGA          = "FL_DESPESA_PAGA";
-    public static String FL_DEPESA_FIXA           = "FL_DEPESA_FIXA";
-    public static String FL_ALERTA_DESPESA        = "FL_ALERTA_DESPESA";
-    public static String NO_AM_DESPESA            = "NO_AM_DESPESA";
-    public static String ID_CONTA                 = "ID_CONTA";
-    public static String ID_CATEGORIA_DESPESA     = "ID_CATEGORIA_DESPESA";
-    public static String ID_SUB_CATEGORIA_DESPESA = "ID_SUB_CATEGORIA_DESPESA";
+    public static final String NM_DESPESA               = "NM_DESPESA";
+    public static final String DT_DESPESA               = "DT_DESPESA";
+    public static final String VL_DESPESA               = "VL_DESPESA";
+    public static final String DT_PAGAMENTO             = "DT_PAGAMENTO";
+    public static final String VL_PAGAMENTO             = "VL_PAGAMENTO";
+    public static final String NO_TOTAL_REPETICAO       = "NO_TOTAL_REPETICAO";
+    public static final String NO_REPETICAO_ATUAL       = "NO_REPETICAO_ATUAL";
+    public static final String FL_DESPESA_PAGA          = "FL_DESPESA_PAGA";
+    public static final String FL_DEPESA_FIXA           = "FL_DEPESA_FIXA";
+    public static final String FL_ALERTA_DESPESA        = "FL_ALERTA_DESPESA";
+    public static final String NO_AM_DESPESA            = "NO_AM_DESPESA";
+    public static final String ID_CONTA                 = "ID_CONTA";
+    public static final String ID_CATEGORIA_DESPESA     = "ID_CATEGORIA_DESPESA";
+    public static final String ID_SUB_CATEGORIA_DESPESA = "ID_SUB_CATEGORIA_DESPESA";
+    public static final String ID_TIPO_REPETICAO        = "ID_TIPO_REPETICAO";
 
-    public  static String ID_DESPESA_PAI = "ID_DESPESA_PAI";
+    public static final String ID_DESPESA_PAI = "ID_DESPESA_PAI";
 
     //Atributos
 
