@@ -113,7 +113,7 @@ public class actCategoriaReceita extends actBaseListas  implements AdapterView.O
 
         RepositorioCategoriaReceita repositorioCategoriaReceita = new RepositorioCategoriaReceita(this);
 
-        this.adpCategoriaReceita = new AdapterCategoriaReceita(this, R.layout.item_categoria, ImageHelper.getImagensCategorias());
+        this.adpCategoriaReceita = new AdapterCategoriaReceita(this, R.layout.item_categoria);
 
         adpCategoriaReceita.addAll(repositorioCategoriaReceita.buscaTodos());
 

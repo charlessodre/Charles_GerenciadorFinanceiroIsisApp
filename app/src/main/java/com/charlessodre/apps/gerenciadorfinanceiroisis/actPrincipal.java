@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadConta;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadTransferencia;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actBaseListas;
@@ -236,7 +237,7 @@ public class actPrincipal extends actBaseListas
             @Override
             public void onClick(View view) {
                 closeFABMenu();
-                Intent it = new Intent(getBaseContext(), actDespesa.class);
+                Intent it = new Intent(getBaseContext(), actCadDespesa.class);
                 startActivityForResult(it, 0);
             }
         });

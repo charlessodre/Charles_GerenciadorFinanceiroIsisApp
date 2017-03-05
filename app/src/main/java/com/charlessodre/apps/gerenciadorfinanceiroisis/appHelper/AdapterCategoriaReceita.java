@@ -29,16 +29,12 @@ public class AdapterCategoriaReceita extends ArrayAdapter<CategoriaReceita> {
     private int resource = 0;
     private String symbol;
 
-    private ArrayList<Integer> arrayList;
-
-    public AdapterCategoriaReceita(Context applicationContext, int resource, ArrayList<Integer> arrayList) {
+    public AdapterCategoriaReceita(Context applicationContext, int resource) {
         super(applicationContext, resource);
 
         this.context = applicationContext;
         this.resource = resource;
         this.symbol = NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol();
-
-        this.arrayList = arrayList;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
@@ -62,16 +58,14 @@ public class AdapterCategoriaReceita extends ArrayAdapter<CategoriaReceita> {
 
             view = inflater.inflate(this.resource, parent, false);
 
-             viewHolder = new ViewHolder();
+            viewHolder = new ViewHolder();
 
             viewHolder.imgCategoria = (ImageView) view.findViewById(R.id.imgCategoria);
             viewHolder.txtNomeCategoria = (TextView) view.findViewById(R.id.txtNomeCategoria);
             viewHolder.imgCirculo = (ImageView) view.findViewById(R.id.imgCategoriaCir);
 
             view.setTag(viewHolder);
-
             convertView = view;
-
 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

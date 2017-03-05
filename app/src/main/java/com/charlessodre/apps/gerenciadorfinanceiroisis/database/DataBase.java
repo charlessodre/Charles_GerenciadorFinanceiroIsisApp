@@ -12,7 +12,7 @@ public class DataBase extends SQLiteOpenHelper{
 
     public DataBase(Context context)
     {
-        super(context, ScriptSQL.NOME_BANCO, null, 1);
+        super(context, ScriptSQL.DATABASE_NAME , null, ScriptSQL.DATABASE_VERSION);
     }
 
     @Override
@@ -55,12 +55,16 @@ public class DataBase extends SQLiteOpenHelper{
         }
 
         //Conta
-
         db.execSQL(ScriptSQL.getInsertContaDefault().get(0));
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
+        if(newVersion > oldVersion) {
+           // String sql = "ALTER TABLE TB_GF_DESPESA ADD COLUMN ID_TIPO_REPETICAO INTEGER  NULL;";
+          //  db.execSQL(sql);
+        }
     }
+
 }

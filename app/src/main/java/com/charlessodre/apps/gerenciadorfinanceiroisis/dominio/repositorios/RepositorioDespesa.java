@@ -49,7 +49,9 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         values.put(Despesa.NO_AM_DESPESA, despesa.getAnoMes());
         values.put(Despesa.ID_CONTA, despesa.getConta().getId());
         values.put(Despesa.ID_CATEGORIA_DESPESA, despesa.getCategoriaDespesa().getId());
-        values.put(Despesa.ID_SUB_CATEGORIA_DESPESA, despesa.getSubCategoriaDespesa().getId());
+
+        if(despesa.getSubCategoriaDespesa().getId() != 0)
+            values.put(Despesa.ID_SUB_CATEGORIA_DESPESA, despesa.getSubCategoriaDespesa().getId());
 
         values.put(Despesa.NO_ORDEM_EXIBICAO, despesa.getOrdemExibicao());
         values.put(Despesa.FL_ATIVO, BooleanUtils.parseBooleanToint(despesa.isAtivo()));
@@ -80,15 +82,12 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         RepositorioSubCategoriaDespesa repSubCategoriaDespesa = new RepositorioSubCategoriaDespesa(super.getContext());
         RepositorioConta repConta = new RepositorioConta(super.getContext());
 
-
-
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
 
             do {
 
                 Despesa despesa = new Despesa();
-
 
                 despesa.setId(cursor.getLong(cursor.getColumnIndex(Despesa.ID)));
                 despesa.setNome(cursor.getString(cursor.getColumnIndex(Despesa.NM_DESPESA)));
@@ -104,6 +103,10 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
                 despesa.setPaga(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Despesa.FL_DESPESA_PAGA))));
                 despesa.setFixa(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Despesa.FL_DEPESA_FIXA))));
                 despesa.setAlertar(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Despesa.FL_ALERTA_DESPESA))));
+
+                despesa.setIdTipoRepeticao(cursor.getInt(cursor.getColumnIndex(Despesa.ID_TIPO_REPETICAO)));
+                despesa.setTotalRepeticao(cursor.getInt(cursor.getColumnIndex(Despesa.NO_TOTAL_REPETICAO)));
+                despesa.setRepeticaoAtual(cursor.getInt(cursor.getColumnIndex(Despesa.NO_REPETICAO_ATUAL)));
 
                 despesa.setAnoMes(cursor.getInt(cursor.getColumnIndex(Despesa.NO_AM_DESPESA)));
 

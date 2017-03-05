@@ -14,6 +14,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.SubCategoriaDespesa;
 
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Locale;
 
 /**
@@ -26,7 +27,6 @@ public class AdapterSubCategoriaDespesa extends ArrayAdapter<SubCategoriaDespesa
     private Context context;
     private int resource = 0;
     private String symbol;
-
 
     public AdapterSubCategoriaDespesa(Context applicationContext, int resource) {
 
@@ -51,7 +51,6 @@ public class AdapterSubCategoriaDespesa extends ArrayAdapter<SubCategoriaDespesa
 
     public View getCustomView(int position, View convertView, ViewGroup parent) {
 
-
         ViewHolder viewHolder = null;
         View view = null;
 
@@ -67,7 +66,6 @@ public class AdapterSubCategoriaDespesa extends ArrayAdapter<SubCategoriaDespesa
 
             view.setTag(viewHolder);
             convertView = view;
-
 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
@@ -91,18 +89,17 @@ public class AdapterSubCategoriaDespesa extends ArrayAdapter<SubCategoriaDespesa
         }
 
         Drawable circle = viewHolder.imgCirculo.getDrawable();
-
         circle.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
 
         viewHolder.txtNomeSubCategoria.setText(nome);
-        viewHolder.txtNomeSubCategoria.setTextColor(color);
+        //viewHolder.txtNomeSubCategoria.setTextColor(color);
 
         return view;
     }
 
     public int getIndexFromElement(long id) {
-        for(int i = 0; i < this.getCount(); i++) {
-            if(this.getItem(i).getId() == id) {
+        for (int i = 0; i < this.getCount(); i++) {
+            if (this.getItem(i).getId() == id) {
                 return i;
             }
         }

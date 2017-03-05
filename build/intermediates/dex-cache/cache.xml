@@ -2,175 +2,175 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\bce5b94d0f4520ebb9eef988c3e69428a105cfd2\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="24.0.1"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_2c7fe507ce54586ecb8d2355e76d7f3073f9e93b\classes.dex" />
+        revision="25.0.0"
+        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_f36baf6c50392ad7b009650398ac9c8eaabbab46.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\dd34a97c0f792d23f64374fd161cc391a51a2aa1\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
         optimize="true"
-        revision="24.0.1"
+        revision="25.0.0"
         sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_82b51899cc3f665323dfa2bca72c392e6b6e3f28\classes.dex" />
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_dd41190b82b1b06ec35e2f2feab3ee7403f5adfc.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\24.2.1\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\9275c26f564f8ee05749d50dc3f69d69050ce3e6\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
         optimize="true"
-        revision="24.0.1"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-appcompat-v7-24.2.1_fb65cdb362b4490ce9067096a012352fa6abb012\classes.dex" />
+        revision="25.0.0"
+        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_096a1b909c76ba6c3bff55442a434f03a780cc75.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\classes.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\dc3f5a9c84c78ba8ca5ed0265c9e873632865a28\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="24.0.1"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_dc925efbcf7d91e1d7925ff317b29a97b4f69589.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\16d16012cb61734398daaa44366c100fcd5052f4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_61060995ac2802f132b3086926e5f97d95e29639.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\bce5b94d0f4520ebb9eef988c3e69428a105cfd2\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_0bb0e2dc583d027e238632289cfdae87a6009341.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\9275c26f564f8ee05749d50dc3f69d69050ce3e6\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
         sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-utils-24.2.1_3b0dd98f714abb77c77dbaf1bcd6efc99b3adb7d\classes.dex" />
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_1e86389349940674fe383032ddf68fd932c6ea24.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\5cb23f8c30914eb925b94dcffb02349571b4d4c2\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="24.0.1"
-        sha1="e3d4e9f24e5974481a5886c489f49ab2f388bf1e">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_aede86eae9806878f290eeb47df8b5f8ff556fc3\classes.dex" />
+        revision="25.0.0"
+        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_a54ca9723558081d15e373470ab5dece32e5684c.jar" />
     </item>
     <item
         is-multidex="true"
         jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.1"
-        sha1="ebcc1bda5794205f3c2843d663af901c757fa552">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_7c6b0b42c616435cd61f8bc4c2ad0bfea886ca1a\classes.dex" />
+        revision="25.0.0"
+        sha1="03eba9d7196516e6c6dfa2a61f462989a494fd6d">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7c6b0b42c616435cd61f8bc4c2ad0bfea886ca1a\classes.dex" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\582cc700d1872ea87c4ab90f934df7ab6058eb69\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
-        revision="24.0.1"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_25c7b1eb07fe50af8a4f368ebba78fdd776a2e31\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-media-compat-24.2.1_3a29b7d1987bff889877cc47ba7846723dc8cd7b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\charl\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-24.2.1_e4c7a6d22edee56372325b012f9ea1fcbbb89689\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-recyclerview-v7-24.2.1_79b494279f7100ae2617da6828b65a57d270b9c8\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_bb7f455de62f8a8cc3314695523e54a0a3ef21cd\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-fragment-24.2.1_4ba0b22c0fb169db318525cdc4ca9d56fd5b911e\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-core-ui-24.2.1_eb7625134b72d6a8b9db90aca027008e7c7a14bb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_77aaecd2fd668aa8c3f765b1fb0da685fd2fcacc\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\design\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-design-24.2.1_b69ebb51927891fa1df7e6d09cd918220b7292fb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.1\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.2.1_1811a137e36468350e2a302ec57c80aa34a8b68b\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-v4-24.2.1_9aa912b04a55a62bd3c0b8a946b1951b98fd3078\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.1"
+        revision="25.0.0"
         sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-animated-vector-drawable-24.2.1_5e99be372342b59af476d970be87f44f5ae8172b\classes.dex" />
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_3ba224eb3f242aa3f6a1f6a4c537f36f68f5c6d6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\8d890193251f273e8582421c7924e7bad14923f0\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_567e11e8fe6c1a6837af5009db487731d621fb16.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\dd34a97c0f792d23f64374fd161cc391a51a2aa1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_0ac3ae4187a174a4ccdd3b20b1bd8f4802b483d0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\8d890193251f273e8582421c7924e7bad14923f0\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_e07286702ebf165a519b06d0b9a7b773e5f7f4f9.jar" />
     </item>
     <item
         is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\24.2.1\jars\classes.jar"
+        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
-        revision="24.0.1"
+        revision="25.0.0"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_aede86eae9806878f290eeb47df8b5f8ff556fc3\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\e7350fa5f66f71cbe991181b1ce70c66e3347b67\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
         sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-vector-drawable-24.2.1_3b36bf12976368cae00e11964fc82b071a611d5a\classes.dex" />
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_e35a4ddd5bbaeed5e79cb1b0007504bc72331fef.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\5d43efd19130b4d56ed9702e886a9ade41c940e1\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_be0167ccac789e2cc5f838e3bd316814f620366c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\af68bdf1fac4024c599f7bc2a2139fd5c9e09afb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_508a9c0328792cd5b904ce9d7b4b3c5b5353b71e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\charl\.android\build-cache\af68bdf1fac4024c599f7bc2a2139fd5c9e09afb\output\jars\libs\internal_impl-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="867dad63c33388ff8c7644b236579355036d075f">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_a9cd923da86185ad32a9943993f7403035dd3fbb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\charl\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_e4c7a6d22edee56372325b012f9ea1fcbbb89689.jar" />
     </item>
 
 </items>

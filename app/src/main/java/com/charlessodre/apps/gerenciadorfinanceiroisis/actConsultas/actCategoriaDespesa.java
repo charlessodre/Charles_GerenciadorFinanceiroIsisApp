@@ -114,7 +114,7 @@ public class actCategoriaDespesa extends actBaseListas implements AdapterView.On
 
         RepositorioCategoriaDespesa repositorioCategoriaDespesa = new RepositorioCategoriaDespesa(this);
 
-        this.adpCategoriaDespesa = new AdapterCategoriaDespesa(this, R.layout.item_categoria, ImageHelper.getImagensCategorias());
+        this.adpCategoriaDespesa = new AdapterCategoriaDespesa(this, R.layout.item_categoria);
 
         adpCategoriaDespesa.addAll(repositorioCategoriaDespesa.buscaTodos());
 

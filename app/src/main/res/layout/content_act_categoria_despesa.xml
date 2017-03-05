@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.actCategoriaDespesa"
+    tools:context=".actCadastros.actCadCategoriaDespesa"
     tools:showIn="@layout/act_categoria_despesa"
     android:id="@+id/content_act_categoria_despesa">
 

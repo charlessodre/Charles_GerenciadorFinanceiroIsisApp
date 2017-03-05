@@ -129,6 +129,8 @@ public class actCadSubCategoria extends actBaseCadastros implements frgConfirmaE
         this.subCategoriaDespesa.setOrdemExibicao(super.getNumOrdemExibicao());
         this.subCategoriaDespesa.setNoCor(super.getNumCor());
 
+        //this.subCategoriaDespesa.setIdCategoriaDespesa();
+
         this.repositoriosubCategoriaDespesa = new RepositorioSubCategoriaDespesa(this);
 
         if (this.subCategoriaDespesa.getId() == 0)
@@ -174,13 +176,10 @@ public class actCadSubCategoria extends actBaseCadastros implements frgConfirmaE
 
             if (this.subCategoriaDespesa.getId() != 0) {
                 this.edtNomeSubCategoria.setText(this.subCategoriaDespesa.getNome());
-
             }
 
-        } else {
-            this.subCategoriaDespesa = new SubCategoriaDespesa();
         }
-
+        //else {this.subCategoriaDespesa = new SubCategoriaDespesa();   }
     }
 
     private void verificaDependentesExclusao() {
@@ -222,6 +221,5 @@ public class actCadSubCategoria extends actBaseCadastros implements frgConfirmaE
             MessageBoxHelper.showAlert(this, this.getResources().getString(R.string.lblErro), ex.getMessage());
         }
     }
-
 
 }
