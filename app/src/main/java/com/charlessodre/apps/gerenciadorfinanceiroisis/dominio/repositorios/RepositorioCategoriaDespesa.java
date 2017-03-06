@@ -81,6 +81,7 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
         values.put(CategoriaDespesa.NO_ORDEM_EXIBICAO, categoriaDespesa.getOrdemExibicao());
         values.put(CategoriaDespesa.NO_COR, categoriaDespesa.getNoCor());
         values.put(CategoriaDespesa.NO_ICONE, categoriaDespesa.getNoIcone());
+        values.put(CategoriaDespesa.NO_COR_ICONE, categoriaDespesa.getNoCorIcone());
 
         if (categoriaDespesa.getDataAlteracao() != null)
             values.put(CategoriaDespesa.DT_ALTERACAO, categoriaDespesa.getDataAlteracao().getTime());
@@ -104,6 +105,7 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
 
                 categoriaDespesa.setNoCor(cursor.getInt(cursor.getColumnIndex(CategoriaDespesa.NO_COR)));
                 categoriaDespesa.setNoIcone(cursor.getInt(cursor.getColumnIndex(CategoriaDespesa.NO_ICONE)));
+                categoriaDespesa.setNoCorIcone(cursor.getInt(cursor.getColumnIndex(CategoriaDespesa.NO_COR_ICONE)));
 
                 categoriaDespesa.setExibir(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(CategoriaDespesa.FL_EXIBIR))));
                 categoriaDespesa.setAtivo(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(CategoriaDespesa.FL_ATIVO))));

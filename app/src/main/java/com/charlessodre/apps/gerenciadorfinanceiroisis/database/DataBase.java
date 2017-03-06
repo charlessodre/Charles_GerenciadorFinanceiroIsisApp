@@ -62,8 +62,15 @@ public class DataBase extends SQLiteOpenHelper{
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         if(newVersion > oldVersion) {
-           // String sql = "ALTER TABLE TB_GF_DESPESA ADD COLUMN ID_TIPO_REPETICAO INTEGER  NULL;";
-          //  db.execSQL(sql);
+            String sql = "ALTER TABLE TB_GF_CATEGORIA_RECEITA ADD COLUMN NO_COR_ICONE INTEGER  NULL;";
+            db.execSQL(sql);
+
+            sql = "";
+
+            sql = "ALTER TABLE TB_GF_CATEGORIA_DESPESA ADD COLUMN NO_COR_ICONE INTEGER  NULL;";
+            db.execSQL(sql);
+
+
         }
     }
 

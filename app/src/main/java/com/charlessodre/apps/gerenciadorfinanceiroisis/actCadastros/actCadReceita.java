@@ -224,7 +224,7 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
     private void carregaSpinnerConta() {
         RepositorioConta repositorioConta = new RepositorioConta(this);
 
-        this.adapterConta = new AdapterConta(this, R.layout.item_image_text_view);
+        this.adapterConta = new AdapterConta(this, R.layout.item_conta_simples);
 
         this.adapterConta.addAll(repositorioConta.buscaTodos());
 

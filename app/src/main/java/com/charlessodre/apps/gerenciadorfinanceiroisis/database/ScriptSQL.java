@@ -12,7 +12,7 @@ public class ScriptSQL {
 
     //Constantes
     public static final String DATABASE_NAME  = "GER_FIN_ISIS";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
 
     public static String getCreateTBConta()
     {
@@ -86,6 +86,7 @@ public class ScriptSQL {
         sqlBuilder.append("   FL_EXIBIR CHAR(1) NOT NULL DEFAULT 1, ");
         sqlBuilder.append(" NO_COR INTEGER NULL, ");
         sqlBuilder.append(" NO_ICONE INTEGER NULL, ");
+        sqlBuilder.append(" NO_COR_ICONE INTEGER NULL, ");
         sqlBuilder.append(" NO_ORDEM_EXIBICAO INTEGER NULL ");
 
         sqlBuilder.append(");");
@@ -129,6 +130,7 @@ public class ScriptSQL {
         sqlBuilder.append("   FL_EXIBIR CHAR(1) NOT NULL DEFAULT 1, ");
         sqlBuilder.append(" NO_ICONE INTEGER NULL, ");
         sqlBuilder.append(" NO_COR INTEGER NULL, ");
+        sqlBuilder.append(" NO_COR_ICONE INTEGER NULL, ");
         sqlBuilder.append(" NO_ORDEM_EXIBICAO INTEGER NULL ");
 
         sqlBuilder.append(");");

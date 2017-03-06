@@ -32,8 +32,6 @@ public class actCadCategoriaReceita extends actBaseCadastros implements frgConfi
     //Atributos
     private EditText edtNomeReceita;
     private CategoriaReceita categoriaReceita;
-    private Spinner spnImagemCategoriaReceita;
-    private AdapterImagem adpImagemReceita;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +41,7 @@ public class actCadCategoriaReceita extends actBaseCadastros implements frgConfi
         this.inicializaObjetos();
         this.preencheDados();
         super.adicionaFragOrdemExibicaoCor(this.categoriaReceita.getOrdemExibicao(), this.categoriaReceita.getNoCor(), R.id.frag_container_cad_categoria_receita);
+        super.adicionaFragIconeCor(this.categoriaReceita.getNoCorIcone(), this.categoriaReceita.getNoCor(), R.id.frag_container_cad_categoria_receita_icone_cor);
     }
 
     @Override
@@ -100,7 +99,6 @@ public class actCadCategoriaReceita extends actBaseCadastros implements frgConfi
     @Override
     protected  void inicializaObjetos() {
 
-        this.spnImagemCategoriaReceita = (Spinner) findViewById(R.id.spnImagemCategoriaReceita);
         this.edtNomeReceita = (EditText) findViewById(R.id.edtNomeCategoriaReceita);
 
         ActionBarHelper.menuCancel(getSupportActionBar(), this.getString(R.string.lblCategoriaReceita));
@@ -111,14 +109,6 @@ public class actCadCategoriaReceita extends actBaseCadastros implements frgConfi
 
         ActionBarHelper.setStatusBarColor(this.getWindow(), corTela);
 
-        this.carregaSpinnerIcones(ImageHelper.getImagensCategorias());
-
-    }
-
-    private void carregaSpinnerIcones(ArrayList<Integer> listIcones) {
-        this.adpImagemReceita = new AdapterImagem(this, R.layout.item_image_view);
-        this.adpImagemReceita.addAll(listIcones);
-        this.spnImagemCategoriaReceita.setAdapter(this.adpImagemReceita);
 
     }
 
@@ -144,11 +134,6 @@ public class actCadCategoriaReceita extends actBaseCadastros implements frgConfi
             this.categoriaReceita = (CategoriaReceita) bundle.getSerializable(actCategoriaReceita.PARAM_CATEGORIA_RECEITA);
 
             this.edtNomeReceita.setText(this.categoriaReceita.getNome());
-
-            int position = this.adpImagemReceita.getPosition(this.categoriaReceita.getNoIcone());
-
-            this.spnImagemCategoriaReceita.setSelection(position);
-
 
         } else {
             this.categoriaReceita = new CategoriaReceita();
@@ -195,9 +180,9 @@ public class actCadCategoriaReceita extends actBaseCadastros implements frgConfi
         this.categoriaReceita.setAtivo(true);
         this.categoriaReceita.setDataInclusao(DateUtils.getCurrentDatetime());
 
-        int icone = this.adpImagemReceita.getItem(this.spnImagemCategoriaReceita.getSelectedItemPosition());
+        this.categoriaReceita.setNoIcone(super.getNumIcone());
 
-        this.categoriaReceita.setNoIcone(icone);
+        this.categoriaReceita.setNoCorIcone(super.getNumCorIcone());
 
         this.categoriaReceita.setOrdemExibicao(super.getNumOrdemExibicao());
 

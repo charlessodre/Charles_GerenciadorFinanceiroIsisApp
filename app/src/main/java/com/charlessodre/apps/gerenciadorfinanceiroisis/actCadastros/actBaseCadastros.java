@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgIconeCor;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgOrdemExibicaoCor;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgConfirmaExclusaoDialog;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgConfirmacaoDialog;
@@ -33,6 +34,14 @@ public abstract class actBaseCadastros extends AppCompatActivity {
         return FragmentHelper.getSpinnerSelectedItemID(getSupportFragmentManager(), frgOrdemExibicaoCor.NOME_FRAGMENTO, R.id.spnCor);
     }
 
+    protected int getNumCorIcone() {
+        return FragmentHelper.getSpinnerSelectedItemID(getSupportFragmentManager(), frgIconeCor.NOME_FRAGMENTO, R.id.spnCor);
+    }
+
+    protected int getNumIcone() {
+        return FragmentHelper.getSpinnerSelectedItemID(getSupportFragmentManager(), frgIconeCor.NOME_FRAGMENTO, R.id.spnIcone);
+    }
+
     protected void exibePopUpLancamento(int tipoLancamento, int tipoMensagem) {
 
         Bundle argument = new Bundle();
@@ -55,6 +64,16 @@ public abstract class actBaseCadastros extends AppCompatActivity {
         argument.putInt(frgOrdemExibicaoCor.PARAM_COR, numeroCor);
 
         FragmentHelper.addFragment(getSupportFragmentManager(), new frgOrdemExibicaoCor(), argument, frgOrdemExibicaoCor.NOME_FRAGMENTO, containerView);
+
+    }
+
+    protected void adicionaFragIconeCor(int numeroIcone, int numeroCor, int containerView) {
+        Bundle argument = new Bundle();
+
+        argument.putInt(frgIconeCor.PARAM_ICONE, numeroIcone);
+        argument.putInt(frgIconeCor.PARAM_COR, numeroCor);
+
+        FragmentHelper.addFragment(getSupportFragmentManager(), new frgIconeCor(), argument, frgIconeCor.NOME_FRAGMENTO, containerView);
 
     }
 

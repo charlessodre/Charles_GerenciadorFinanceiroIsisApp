@@ -54,6 +54,10 @@
 
     </LinearLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
+
     <LinearLayout
         android:id="@+id/frag_container_cad_sub_categoria"
         android:orientation="vertical"

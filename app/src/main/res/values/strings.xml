@@ -62,6 +62,7 @@
 
 
     <string name="lblCor">Cor</string>
+    <string name="lblIcone">Icone</string>
     <string name="lblExibirSomaResumo">Exibir a Soma no Resumo?</string>
     <string name="lblExibir">Exibir</string>
     <string name="lblPrevisto">Previsto</string>

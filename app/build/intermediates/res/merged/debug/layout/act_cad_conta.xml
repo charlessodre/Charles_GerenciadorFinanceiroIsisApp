@@ -94,7 +94,7 @@
 
             <Space
                 android:layout_width="@dimen/standard_20"
-                android:layout_height="@dimen/standard_20" />
+                android:layout_height="@dimen/standard_10" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -135,11 +135,14 @@
 
     </LinearLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
     <LinearLayout
         android:id="@+id/frag_container_cad_conta"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         android:layout_below="@+id/linearLayout31"
         android:layout_alignParentStart="true">
 

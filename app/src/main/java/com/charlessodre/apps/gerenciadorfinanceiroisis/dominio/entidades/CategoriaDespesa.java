@@ -14,11 +14,13 @@ public class CategoriaDespesa extends EntidadeBase implements Serializable {
     public static String NM_CATEGORIA = "NM_CATEGORIA";
     public static String NO_COR = "NO_COR";
     public static String NO_ICONE = "NO_ICONE";
+    public static String NO_COR_ICONE = "NO_COR_ICONE";
 
 
     //Atributos
     private int noCor;
     private int noIcone;
+    private int noCorIcone;
 
 
     //Propriedades
@@ -37,6 +39,15 @@ public class CategoriaDespesa extends EntidadeBase implements Serializable {
     public void setNoIcone(int noIcone) {
         this.noIcone = noIcone;
     }
+
+    public int getNoCorIcone() {
+        return noCorIcone;
+    }
+
+    public void setNoCorIcone(int noCorIcone) {
+        this.noCorIcone = noCorIcone;
+    }
+
 
 //Métodos
 

@@ -3,6 +3,7 @@ package com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,7 +60,7 @@ public class AdapterConta extends ArrayAdapter<Conta> {
 
         View row;
 
-        if (this.resource == R.layout.item_image_text_view) {
+        if (this.resource == R.layout.item_conta_simples) {
             row = getCustomDropDownView(pos, currentView, viewGroup);
         } else {
             row = getCustomView(pos, currentView, viewGroup);
@@ -79,8 +80,12 @@ public class AdapterConta extends ArrayAdapter<Conta> {
 
             viewHolderSimple = new ViewHolderSimple();
 
-            viewHolderSimple.imgConta = (ImageView) view.findViewById(R.id.imageViewItem);
-            viewHolderSimple.txtNomeConta = (TextView) view.findViewById(R.id.textViewItem);
+            viewHolderSimple.imgConta = (ImageView) view.findViewById(R.id.imgConta);
+            viewHolderSimple.imgCirculo = (ImageView) view.findViewById(R.id.imgCategoriaCir);
+            viewHolderSimple.txtNomeConta = (TextView) view.findViewById(R.id.txtNomeConta);
+
+
+
 
             view.setTag(viewHolderSimple);
 
@@ -94,9 +99,16 @@ public class AdapterConta extends ArrayAdapter<Conta> {
 
         Conta conta = getItem(position);
 
+
+        int color = ColorHelper.getColor(this.context, conta.getNoCor());
+        Drawable circle = viewHolderSimple.imgCirculo.getDrawable();
+        circle.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+
         viewHolderSimple.imgConta.setImageResource(getImagemTipoConta(conta.getCdTipoConta()));
-        viewHolderSimple.txtNomeConta.setTextColor(ColorHelper.getColor(this.context, conta.getNoCor()));
+        //viewHolderSimple.txtNomeConta.setTextColor(ColorHelper.getColor(this.context, conta.getNoCor()));
         viewHolderSimple.txtNomeConta.setText(conta.getNome());
+
+       // viewHolderSimple.imgConta.setColorFilter(ContextCompat.getColor(context,R.color.white));
 
         return view;
 
@@ -180,6 +192,7 @@ public class AdapterConta extends ArrayAdapter<Conta> {
 
     public static class ViewHolderSimple {
         ImageView imgConta;
+        ImageView imgCirculo;
         TextView txtNomeConta;
     }
 

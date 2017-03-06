@@ -100,6 +100,7 @@ public class RepositorioCategoriaReceita extends RepositorioBase implements IRep
 
         values.put(CategoriaReceita.NO_COR, categoriacategoriaReceitapesa.getNoCor());
         values.put(CategoriaReceita.NO_ICONE, categoriacategoriaReceitapesa.getNoIcone());
+        values.put(CategoriaReceita.NO_COR_ICONE, categoriacategoriaReceitapesa.getNoCorIcone());
 
 
         if (categoriacategoriaReceitapesa.getDataAlteracao() != null)
@@ -117,13 +118,13 @@ public class RepositorioCategoriaReceita extends RepositorioBase implements IRep
             do {
                 CategoriaReceita categoriaReceita = new CategoriaReceita();
 
-
                 categoriaReceita.setId(cursor.getLong(cursor.getColumnIndex(CategoriaReceita.ID)));
                 categoriaReceita.setNome(cursor.getString(cursor.getColumnIndex(CategoriaReceita.NM_CATEGORIA)));
                 categoriaReceita.setOrdemExibicao(cursor.getInt(cursor.getColumnIndex(CategoriaReceita.NO_ORDEM_EXIBICAO)));
 
                 categoriaReceita.setNoCor(cursor.getInt(cursor.getColumnIndex(CategoriaReceita.NO_COR)));
                 categoriaReceita.setNoIcone(cursor.getInt(cursor.getColumnIndex(CategoriaReceita.NO_ICONE)));
+                categoriaReceita.setNoCorIcone(cursor.getInt(cursor.getColumnIndex(CategoriaReceita.NO_COR_ICONE)));
 
                 categoriaReceita.setExibir(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(CategoriaReceita.FL_EXIBIR))));
                 categoriaReceita.setAtivo(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(CategoriaReceita.FL_ATIVO))));

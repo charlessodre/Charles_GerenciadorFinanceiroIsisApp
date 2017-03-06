@@ -68,38 +68,30 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout31"
+
+            <Space
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp" />
+
+            <LinearLayout
+                android:id="@+id/frag_container_cad_categoria_despesa_icone_cor"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/linearLayout2"
+                android:layout_below="@+id/linearLayout3"
                 android:orientation="vertical">
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp" />
-
-                <TextView
-                    android:id="@+id/lblImagemCategoriaDespesa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lblIconeCategoria" />
-
-                <Spinner
-                    android:id="@+id/spnImagemCategoriaDespesa"
-                    android:layout_width="100dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="10dp"
-                    android:gravity="center" />
 
 
             </LinearLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="30dp" />
+
             <LinearLayout
                 android:id="@+id/frag_container_cad_categoria_despesa"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="80dp"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/linearLayout31"
                 android:orientation="vertical">

@@ -140,8 +140,8 @@ public class actCadTransferencia extends actBaseCadastros implements frgConfirma
     private void carregaSpinnerContas() {
         RepositorioConta repositorioConta = new RepositorioConta(this);
 
-        this.adapterContaOrigem = new AdapterConta(this, R.layout.item_image_text_view);
-        this.adapterContaDestino = new AdapterConta(this, R.layout.item_image_text_view);
+        this.adapterContaOrigem = new AdapterConta(this, R.layout.item_conta_simples);
+        this.adapterContaDestino = new AdapterConta(this, R.layout.item_conta_simples);
 
         this.adapterContaOrigem.addAll(repositorioConta.buscaTodos());
         this.adapterContaDestino.addAll(repositorioConta.buscaTodos());
