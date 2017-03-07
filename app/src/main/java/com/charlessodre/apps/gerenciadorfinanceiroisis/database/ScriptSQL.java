@@ -12,7 +12,7 @@ public class ScriptSQL {
 
     //Constantes
     public static final String DATABASE_NAME  = "GER_FIN_ISIS";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
 
     public static String getCreateTBConta()
     {
@@ -30,6 +30,7 @@ public class ScriptSQL {
         sqlBuilder.append(" NO_ORDEM_EXIBICAO INTEGER NULL, ");
         sqlBuilder.append(" NO_AM_CONTA INTEGER NULL, ");
         sqlBuilder.append(" NO_COR INTEGER NULL, ");
+        sqlBuilder.append(" NO_COR_ICONE INTEGER NULL, ");
         sqlBuilder.append(" VL_SALDO DECIMAL(18,2) NOT NULL ");
         sqlBuilder.append(");");
 

@@ -31,6 +31,7 @@ public class AdapterConta extends ArrayAdapter<Conta> {
     private String symbol;
     private Date data;
     private int corSaldoNegativo = 0;
+    private int corSaldoPositivo = 0;
     private String textoPreviso;
 
     public void setData(Date data) {
@@ -46,6 +47,7 @@ public class AdapterConta extends ArrayAdapter<Conta> {
         this.resource = layoutResource;
         this.symbol = NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol();
         this.corSaldoNegativo = ColorHelper.getColor(this.context, R.color.corPendencia);
+        this.corSaldoPositivo = ColorHelper.getColor(this.context, R.color.corResolvido);
         this.textoPreviso = this.context.getResources().getString(R.string.lblPrevisto);
     }
 
@@ -84,9 +86,6 @@ public class AdapterConta extends ArrayAdapter<Conta> {
             viewHolderSimple.imgCirculo = (ImageView) view.findViewById(R.id.imgCategoriaCir);
             viewHolderSimple.txtNomeConta = (TextView) view.findViewById(R.id.txtNomeConta);
 
-
-
-
             view.setTag(viewHolderSimple);
 
             convertView = view;
@@ -99,16 +98,15 @@ public class AdapterConta extends ArrayAdapter<Conta> {
 
         Conta conta = getItem(position);
 
-
-        int color = ColorHelper.getColor(this.context, conta.getNoCor());
         Drawable circle = viewHolderSimple.imgCirculo.getDrawable();
-        circle.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        circle.setColorFilter(ColorHelper.getColor(this.context, conta.getNoCor()), PorterDuff.Mode.MULTIPLY);
 
         viewHolderSimple.imgConta.setImageResource(getImagemTipoConta(conta.getCdTipoConta()));
-        //viewHolderSimple.txtNomeConta.setTextColor(ColorHelper.getColor(this.context, conta.getNoCor()));
+
         viewHolderSimple.txtNomeConta.setText(conta.getNome());
 
-       // viewHolderSimple.imgConta.setColorFilter(ContextCompat.getColor(context,R.color.white));
+        if (conta.getNoCorIcone() != 0)
+            viewHolderSimple.imgConta.setColorFilter(ColorHelper.getColor(this.context, conta.getNoCorIcone()));
 
         return view;
 
@@ -143,28 +141,33 @@ public class AdapterConta extends ArrayAdapter<Conta> {
 
         Conta conta = getItem(position);
 
-        int color = ColorHelper.getColor(this.context, conta.getNoCor());
         Drawable circle = viewHolder.imgCirculo.getDrawable();
-        circle.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        circle.setColorFilter(ColorHelper.getColor(this.context, conta.getNoCor()), PorterDuff.Mode.MULTIPLY);
 
 
         String texto = String.valueOf(DateUtils.getLastDayOfMonth(this.data)) + "/" + String.valueOf(DateUtils.getMonthNameShort(this.data));
         texto = texto + " (" + this.textoPreviso + ")";
 
         viewHolder.imgConta.setImageResource(getImagemTipoConta(conta.getCdTipoConta()));
-        //viewHolder.txtNomeConta.setTextColor(color);
         viewHolder.txtNomeConta.setText(conta.getNome());
         viewHolder.txtSaldoAtual.setText(this.symbol + " " + DecimalHelper.getFormartCurrency(conta.getValorSaldo()));
         viewHolder.txtSaldoPrevistoData.setText(texto);
         viewHolder.txtSaldoPrevistoValor.setText(this.symbol + " " + DecimalHelper.getFormartCurrency(conta.getSaldoPrevisto()));
 
+        if (conta.getNoCorIcone() != 0)
+            viewHolder.imgConta.setColorFilter(ColorHelper.getColor(this.context, conta.getNoCorIcone()));
+
 
         if (conta.getValorSaldo() < 0) {
             viewHolder.txtSaldoAtual.setTextColor(this.corSaldoNegativo);
+        } else {
+            viewHolder.txtSaldoAtual.setTextColor(this.corSaldoPositivo);
         }
 
         if (conta.getSaldoPrevisto() < 0) {
             viewHolder.txtSaldoPrevistoValor.setTextColor(this.corSaldoNegativo);
+        } else {
+            viewHolder.txtSaldoPrevistoValor.setTextColor(this.corSaldoPositivo);
         }
 
         return view;
@@ -182,8 +185,8 @@ public class AdapterConta extends ArrayAdapter<Conta> {
     }
 
     public int getIndexFromElement(long id) {
-        for(int i = 0; i < this.getCount(); i++) {
-            if(this.getItem(i).getId() == id) {
+        for (int i = 0; i < this.getCount(); i++) {
+            if (this.getItem(i).getId() == id) {
                 return i;
             }
         }

@@ -313,7 +313,7 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectAll(Receita.DT_RECEITA + "," + Receita.NO_ORDEM_EXIBICAO);
+            Cursor cursor = super.selectAll(Receita.DT_RECEITA + "," + Receita.ID);
 
             return this.preencheObjeto(super.getTransaction(), cursor);
 
@@ -332,7 +332,7 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
             super.openConnectionRead();
 
-            Cursor cursor = super.select(where, Receita.DT_RECEITA + "," + Receita.NO_ORDEM_EXIBICAO);
+            Cursor cursor = super.select(where, Receita.DT_RECEITA + "," + Receita.ID);
 
             return this.preencheObjeto(super.getTransaction(), cursor);
 
@@ -373,7 +373,7 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
         where.append(Receita.ID_CATEGORIA_RECEITA + " = " + idCategoriaReceita);
 
-        Cursor cursor = super.select(transaction, where.toString(), Receita.DT_RECEITA + "," + Receita.NO_ORDEM_EXIBICAO);
+        Cursor cursor = super.select(transaction, where.toString(), Receita.DT_RECEITA + "," + Receita.ID);
 
         return this.preencheObjeto(transaction, cursor);
     }

@@ -65,11 +65,11 @@ public class DataBase extends SQLiteOpenHelper{
             String sql = "ALTER TABLE TB_GF_CATEGORIA_RECEITA ADD COLUMN NO_COR_ICONE INTEGER  NULL;";
             db.execSQL(sql);
 
-            sql = "";
-
             sql = "ALTER TABLE TB_GF_CATEGORIA_DESPESA ADD COLUMN NO_COR_ICONE INTEGER  NULL;";
             db.execSQL(sql);
 
+            sql = "ALTER TABLE TB_GF_CONTA ADD COLUMN NO_COR_ICONE INTEGER  NULL;";
+            db.execSQL(sql);
 
         }
     }

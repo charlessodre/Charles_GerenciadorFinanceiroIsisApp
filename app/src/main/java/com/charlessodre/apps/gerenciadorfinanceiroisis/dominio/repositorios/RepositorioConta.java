@@ -36,6 +36,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         values.put(Conta.NO_ORDEM_EXIBICAO, conta.getOrdemExibicao());
         values.put(Conta.CD_TIPO_CONTA, conta.getCdTipoConta());
         values.put(Conta.NO_COR, conta.getNoCor());
+        values.put(Conta.NO_COR_ICONE, conta.getNoCorIcone());
         values.put(Conta.VL_SALDO, conta.getValorSaldo());
 
         if (conta.getId() == 0)
@@ -60,6 +61,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
                 conta.setOrdemExibicao(cursor.getInt(cursor.getColumnIndex(Conta.NO_ORDEM_EXIBICAO)));
                 conta.setCdTipoConta(cursor.getInt(cursor.getColumnIndex(Conta.CD_TIPO_CONTA)));
                 conta.setNoCor(cursor.getInt(cursor.getColumnIndex(Conta.NO_COR)));
+                conta.setNoCorIcone(cursor.getInt(cursor.getColumnIndex(Conta.NO_COR_ICONE)));
                 conta.setAnoMes(cursor.getInt(cursor.getColumnIndex(Conta.NO_AM_CONTA)));
                 conta.setExibir(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Conta.FL_EXIBIR))));
                 conta.setAtivo(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Conta.FL_ATIVO))));
@@ -238,6 +240,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
                 " C.NO_AM_CONTA, " +
                 " C.NO_ORDEM_EXIBICAO," +
                 " C.NO_COR," +
+                " C.NO_COR_ICONE," +
                 " C.VL_SALDO, " +
                 "  (SELECT SUM(R.VL_RECEITA) AS VL_RECEITA FROM TB_GF_RECEITA as R where R.NO_AM_RECEITA <= ? AND R.FL_RECEITA_PAGA=0 AND C._id=R.ID_CONTA ) AS RECEITAS_PREVISTAS, " +
                 "  (SELECT SUM(D.VL_DESPESA) AS VL_DESPESA FROM TB_GF_DESPESA as D where D.NO_AM_DESPESA <= ? AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS DESPESAS_PREVISTAS " +

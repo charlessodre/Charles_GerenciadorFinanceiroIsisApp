@@ -73,6 +73,15 @@ public class AdapterImagem extends ArrayAdapter<Integer> {
     }
 
 
+    public int getIndexFromElement(long id) {
+        for (int i = 0; i < this.getCount(); i++) {
+            /*if (this.getItem(i).getId() == id) {
+                return i;
+            }*/
+        }
+        return -1;
+    }
+
     public static class ViewHolder {
         ImageView imgCategoria;
 

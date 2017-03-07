@@ -26,7 +26,7 @@ public class Conta extends EntidadeBase implements Serializable {
     public static String DESPESAS_PREVISTAS = "DESPESAS_PREVISTAS";
     public static String SALDO_PREVISTO = "SALDO_PREVISTO";
     public static String FL_EXIBIR_SOMA = "FL_EXIBIR_SOMA";
-
+    public static String NO_COR_ICONE = "NO_COR_ICONE";
 
     //Atributos
     private int noCor;
@@ -36,9 +36,19 @@ public class Conta extends EntidadeBase implements Serializable {
     private double saldoPrevisto;
     private double receitasPrevistas;
     private double despesasPrevistas;
+    private int noCorIcone;
 
 
     //Propriedades
+
+
+    public int getNoCorIcone() {
+        return noCorIcone;
+    }
+
+    public void setNoCorIcone(int noCorIcone) {
+        this.noCorIcone = noCorIcone;
+    }
 
     public double getReceitasPrevistas() {
         return receitasPrevistas;

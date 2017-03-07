@@ -30,6 +30,7 @@ public class frgIconeCor extends Fragment {
     private Spinner spnCor;
     private Spinner spnIcone;
     private ArrayList<Integer> colors;
+    private ArrayList<Integer> icones;
 
 
     public frgIconeCor() {
@@ -62,7 +63,7 @@ public class frgIconeCor extends Fragment {
     private void carregaSpinnerIcones() {
 
         AdapterImagem adpIcones = new AdapterImagem(this.getContext(), R.layout.item_image_view);
-         adpIcones.addAll(ImageHelper.getImagensCategorias());
+         adpIcones.addAll(this.icones);
         this.spnIcone.setAdapter(adpIcones);
 
     }
@@ -73,13 +74,14 @@ public class frgIconeCor extends Fragment {
         this.spnCor = (Spinner) view.findViewById(R.id.spnCor);
 
         this.colors = ColorHelper.getDefaultListColorByID();
+        this.icones = ImageHelper.getImagensCategorias();
     }
 
     protected void preencherCampos() {
         Bundle argument = getArguments();
 
         if ((argument != null) && (argument.containsKey(PARAM_ICONE))) {
-            this.spnIcone.setSelection(this.colors.indexOf(argument.getInt(PARAM_ICONE)));
+            this.spnIcone.setSelection(this.icones.indexOf(argument.getInt(PARAM_ICONE)));
         }
 
         if ((argument != null) && (argument.containsKey(PARAM_COR))) {

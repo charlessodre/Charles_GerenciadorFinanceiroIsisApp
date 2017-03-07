@@ -53,7 +53,7 @@ public class actCadCategoriaDespesa extends actBaseCadastros implements AdapterV
         this.preencheDados();
         this.carregaSpinnerSubCategoria();
         super.adicionaFragOrdemExibicaoCor(this.categoriaDespesa.getOrdemExibicao(), this.categoriaDespesa.getNoCor(), R.id.frag_container_cad_categoria_despesa);
-        super.adicionaFragIconeCor(this.categoriaDespesa.getNoCorIcone(), this.categoriaDespesa.getNoCor(), R.id.frag_container_cad_categoria_despesa_icone_cor);
+        super.adicionaFragIconeCor(this.categoriaDespesa.getNoIcone(), this.categoriaDespesa.getNoCorIcone(), R.id.frag_container_cad_categoria_despesa_icone_cor);
     }
 
     @Override

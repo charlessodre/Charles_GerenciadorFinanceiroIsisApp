@@ -41,7 +41,7 @@ public class actCadCategoriaReceita extends actBaseCadastros implements frgConfi
         this.inicializaObjetos();
         this.preencheDados();
         super.adicionaFragOrdemExibicaoCor(this.categoriaReceita.getOrdemExibicao(), this.categoriaReceita.getNoCor(), R.id.frag_container_cad_categoria_receita);
-        super.adicionaFragIconeCor(this.categoriaReceita.getNoCorIcone(), this.categoriaReceita.getNoCor(), R.id.frag_container_cad_categoria_receita_icone_cor);
+        super.adicionaFragIconeCor(this.categoriaReceita.getNoIcone(), this.categoriaReceita.getNoCorIcone(), R.id.frag_container_cad_categoria_receita_icone_cor);
     }
 
     @Override

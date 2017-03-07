@@ -571,6 +571,7 @@ public class ColorHelper {
 
         ArrayList<Integer> colors = new ArrayList<Integer>();
 
+        colors.add( R.color.white);
         colors.add( R.color.red_A200);
         colors.add( R.color.red_A400);
         colors.add( R.color.red_A700);
@@ -628,6 +629,7 @@ public class ColorHelper {
         colors.add( R.color.grey_700);
         colors.add( R.color.grey_800);
         colors.add( R.color.grey_900);
+        colors.add( R.color.black);
 
 
 

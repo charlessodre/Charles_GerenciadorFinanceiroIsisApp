@@ -92,7 +92,6 @@ public class AdapterDespesa extends ArrayAdapter<Despesa>  {
 
         viewHolder.imgDespesa.setImageResource(despesa.getCategoriaDespesa().getNoIcone());
 
-        //  viewHolder.txtNomeDespesa.setTextColor(color);
         viewHolder.txtNomeDespesa.setText(despesa.getNome());
 
         viewHolder.txtContaDespesaItem.setText(despesa.getConta().getNome());
@@ -104,6 +103,7 @@ public class AdapterDespesa extends ArrayAdapter<Despesa>  {
         } else {
             viewHolder.txtStatusDespesa.setText(this.textoPendente);
             viewHolder.txtStatusDespesa.setTextColor(this.corPendente);
+            viewHolder.txtValorDespesa.setTextColor(this.corPendente);
         }
 
 

@@ -3,6 +3,7 @@ package com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,12 +75,14 @@ public class AdapterCategoriaReceita extends ArrayAdapter<CategoriaReceita> {
 
         CategoriaReceita categoriaReceita = getItem(position);
 
-        int color = ColorHelper.getColor(this.context, categoriaReceita.getNoCor());
         Drawable circle = viewHolder.imgCirculo.getDrawable();
-        circle.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+        circle.setColorFilter(ColorHelper.getColor(this.context, categoriaReceita.getNoCor()), PorterDuff.Mode.MULTIPLY);
 
         viewHolder.imgCategoria.setImageResource(categoriaReceita.getNoIcone());
-        //  viewHolder.txtNomeCategoria.setTextColor(ColorHelper.getColor(this.context,categoriaReceita.getNoCor()));
+
+        if(categoriaReceita.getNoCorIcone() !=0)
+            viewHolder.imgCategoria.setColorFilter(ColorHelper.getColor(this.context,categoriaReceita.getNoCorIcone()));
+
         viewHolder.txtNomeCategoria.setText(categoriaReceita.getNome());
 
         return view;

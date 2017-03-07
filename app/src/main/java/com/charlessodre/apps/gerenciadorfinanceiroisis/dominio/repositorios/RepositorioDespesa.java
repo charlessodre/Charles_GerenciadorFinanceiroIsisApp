@@ -328,7 +328,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
             super.openConnectionWrite();
 
-            Cursor cursor = super.selectAll(Despesa.DT_DESPESA + "," + Despesa.NO_ORDEM_EXIBICAO);
+            Cursor cursor = super.selectAll(Despesa.DT_DESPESA + "," + Despesa.ID);
 
             return this.preencheObjeto(super.getTransaction(),cursor);
 
@@ -347,7 +347,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
             super.openConnectionRead();
 
-            Cursor cursor = super.select(where, Despesa.DT_DESPESA + "," + Despesa.NO_ORDEM_EXIBICAO);
+            Cursor cursor = super.select(where, Despesa.DT_DESPESA + "," + Despesa.ID);
 
             return this.preencheObjeto(super.getTransaction(), cursor);
 
@@ -388,7 +388,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
         where.append(Despesa.ID_CATEGORIA_DESPESA + " = " + idCategoriaDespesa);
 
-        Cursor cursor = super.select(transaction, where.toString(), Despesa.DT_DESPESA + "," + Despesa.NO_ORDEM_EXIBICAO);
+        Cursor cursor = super.select(transaction, where.toString(), Despesa.DT_DESPESA + "," + Despesa.ID);
 
         return this.preencheObjeto(transaction, cursor);
     }

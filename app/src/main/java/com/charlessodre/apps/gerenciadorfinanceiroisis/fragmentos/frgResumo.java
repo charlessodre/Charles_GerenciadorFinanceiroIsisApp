@@ -101,8 +101,6 @@ public class frgResumo extends Fragment {
                 Intent it = new Intent(getContext(), actReceita.class);
                 it.putExtra(actReceita.PARAM_RECEITA_ANO_MES, anoMes);
                 startActivityForResult(it, 0);
-
-
             }
         });
 
@@ -112,8 +110,6 @@ public class frgResumo extends Fragment {
                  Intent it = new Intent(getContext(), actDespesa.class);
                 it.putExtra(actDespesa.PARAM_DESPESA_ANO_MES, anoMes);
                  startActivityForResult(it, 0);
-
-
             }
         });
 
@@ -134,10 +130,10 @@ public class frgResumo extends Fragment {
             double valorAcumuladoReceitas = this.repositorioReceita.getValorTotalRecebido(this.anoMes,true);
             double valorAcumuladoDespesas = this.repositorioDespesa.getValorTotalDespesas(this.anoMes,true);
 
-            if (valorAcumuladoContas < 0)
-                this.txtValorContaAcumulado.setTextColor(ColorHelper.getColor(this.getContext(), R.color.corPendencia));
-            else if (valorAcumuladoContas > 0)
-                this.txtValorContaAcumulado.setTextColor(ColorHelper.getColor(this.getContext(), R.color.corResolvido));
+            if (valorAcumuladoContas < 0){
+                this.txtValorContaAcumulado.setTextColor(ColorHelper.getColor(this.getContext(), R.color.corPendencia));}
+            else {
+                this.txtValorContaAcumulado.setTextColor(ColorHelper.getColor(this.getContext(), R.color.corResolvido));}
 
             String symbol = NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol();
 
