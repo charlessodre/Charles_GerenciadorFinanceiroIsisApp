@@ -74,12 +74,12 @@ public class AdapterRegraImpSMS extends ArrayAdapter<RegraImportacaoSMS> {
 
         viewHolder.txtNomeRegra.setText(regraImportacaoSMS.getNome());
         viewHolder.txtNumTelefone.setText(regraImportacaoSMS.getNoTelefone());
-        viewHolder.txtTipoTransacao.setText(regraImportacaoSMS.getIdTipoTransacao());
+        viewHolder.txtTipoTransacao.setText(RegraImportacaoSMS.getNomeTipoTransacao(regraImportacaoSMS.getIdTipoTransacao()));
 
         if (regraImportacaoSMS.isAtivo())
-            viewHolder.txtStatusRegra.setText("Ativa");
+            viewHolder.txtStatusRegra.setText(this.context.getResources().getString(R.string.lblHabilitada));
         else
-            viewHolder.txtStatusRegra.setText("Inativa");
+            viewHolder.txtStatusRegra.setText(this.context.getResources().getString(R.string.lblDesabilitada));
         return view;
     }
 
@@ -97,7 +97,7 @@ public class AdapterRegraImpSMS extends ArrayAdapter<RegraImportacaoSMS> {
         TextView txtNomeRegra;
         TextView txtTipoTransacao;
         TextView txtStatusRegra;
-}
+    }
 
 
 }

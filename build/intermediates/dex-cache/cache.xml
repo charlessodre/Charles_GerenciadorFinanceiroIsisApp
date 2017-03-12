@@ -3,21 +3,12 @@
 
     <item
         is-multidex="true"
-        jar="C:\Users\charl\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_4e53fd999c195e91ff521d006258b2cc1047db6d\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\Users\charl\.android\build-cache\36d7f50d21235e726227df90ac3b8d6a123fb581\output\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7e5507f3a2ddb959cbf1a9c1bf7768eb251e9606\classes.dex" />
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_aede86eae9806878f290eeb47df8b5f8ff556fc3\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -25,17 +16,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="1c9ab0c8da1d05d109ffd7e6ea74f4b3e531f45c">
+        sha1="ac05e78b145cb09899593ef0cb9658bc643df22a">
         <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7c6b0b42c616435cd61f8bc4c2ad0bfea886ca1a\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
-        jar="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="25.0.0"
-        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_aede86eae9806878f290eeb47df8b5f8ff556fc3\classes.dex" />
     </item>
 
 </items>

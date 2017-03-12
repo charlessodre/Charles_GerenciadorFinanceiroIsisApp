@@ -37,8 +37,14 @@ public class Constantes {
     {
         public static final int SIM = 0;
         public static final int NAO = 1;
-
     }
 
+    //Tipo Transacao
+    public  class TipoTransacao
+    {
+        public static final int RECEITA = 0;
+        public static final int DESPESA = 1;
+        public static final int TRANSFERENCIA = 2;
+    }
 
 }

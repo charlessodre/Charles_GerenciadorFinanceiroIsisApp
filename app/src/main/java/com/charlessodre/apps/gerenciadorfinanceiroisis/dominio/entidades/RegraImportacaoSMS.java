@@ -1,5 +1,9 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades;
 
+import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
+
+import java.util.ArrayList;
+
 /**
  * Created by charl on 27/09/2016.
  */
@@ -104,6 +108,31 @@ public class RegraImportacaoSMS extends EntidadeBase {
     @Override
     public String toString() {
         return super.getNome();
+    }
+
+    public static ArrayList<String> getTipoTransacao()
+    {
+        ArrayList<String> tipoTransacao = new ArrayList<String>();
+
+        tipoTransacao.add("Receita");
+        tipoTransacao.add("Despesa");
+        tipoTransacao.add("Transferência");
+
+        return  tipoTransacao;
+    }
+
+    public static String getNomeTipoTransacao(int idTipoTransacao)
+    {
+       switch (idTipoTransacao) {
+
+           case Constantes.TipoTransacao.RECEITA:
+               return "Receita";
+           case Constantes.TipoTransacao.DESPESA:
+               return "Despesa";
+           default:
+               return "Transferência";
+
+       }
     }
 
 }

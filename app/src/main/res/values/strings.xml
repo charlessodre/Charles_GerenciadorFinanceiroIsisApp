@@ -41,10 +41,13 @@
 
     <string name="lblTransferencia">Transferência</string>
 
-
+    <string name="lblRegraImpSMS">Regra Importação SMS</string>
     <string name="lblPaga">Paga</string>
     <string name="lblPago">Pago</string>
     <string name="lblNome">Nome</string>
+    <string name="lblNomeRegra">Nome da Regra</string>
+    <string name="lblNumeroSMS">SMS Recebidos do Nº</string>
+    <string name="lblTextoNoSMS">Contendo o Texto</string>
     <string name="lblValor">Valor</string>
     <string name="lblSubCategorias">Sub Categorias</string>
     <string name="lblSubCategoria">Sub Categoria</string>
@@ -60,14 +63,17 @@
     <string name="lblOrdemExibição">Ordem de Exibição:</string>
 
 
+    <string name="lblHabilitadaPergunta">Habilitada?</string>
+    <string name="lblHabilitada">Habilitada</string>
+    <string name="lblDesabilitada">Desabilitada?</string>
     <string name="lblCor">Cor</string>
     <string name="lblIcone">Icone</string>
     <string name="lblExibirSomaResumo">Exibir a Soma no Resumo?</string>
     <string name="lblExibir">Exibir</string>
     <string name="lblPrevisto">Previsto</string>
     <string name="lblSaldoAtual">Saldo Atual</string>
-
-
+    <string name="lblStatus">Status</string>
+    <string name="lblTipoTransacao">Tipo Transação</string>
     <string name="lblContaCorrente">Conta Corrente</string>
     <string name="lblContaPoupanca">Conta Poupança</string>
     <string name="lblDinheiro">Dinheiro</string>
@@ -91,7 +97,6 @@
     <string name="lblSenha">Senha</string>
     <string name="lblCodigoSeguranca">Digite seu código de segurança.</string>
     <string name="lblResumoMes">Resumo do Mês</string>
-    <string name="title_activity_act_regra_importacao_sms">actRegraImportacaoSMS</string>
 
 
 </resources>

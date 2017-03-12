@@ -115,8 +115,6 @@
             android:layout_height="wrap_content"
             android:text="@string/lblCategoriaDespesa" />
 
-
-
         <Spinner
             android:id="@+id/spnCategoriaDespesa"
             android:layout_width="match_parent"
@@ -146,15 +144,11 @@
             android:layout_width="@dimen/standard_20"
             android:layout_height="@dimen/standard_20" />
 
-
-
-
         <TextView
             android:id="@+id/lblContaDespesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/lblConta" />
-
 
         <Spinner
             android:id="@+id/spnContaDespesa"
@@ -203,9 +197,6 @@
                 android:nestedScrollingEnabled="false"
                 android:text="@string/lblRepetir"
                 android:layout_weight="3"/>
-
-
-
 
             <EditText
                 android:id="@+id/edtTotalRepeticao"

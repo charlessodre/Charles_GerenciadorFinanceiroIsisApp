@@ -55,8 +55,8 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
     private CheckBox cbxReceitaRecebida;
     private CheckBox cbxRepetir;
     private CheckBox cbxFixa;
-      private TextWatcherPay textWatcher;
-      private TextView txtParcelas;
+    private TextWatcherPay textWatcher;
+    private TextView txtParcelas;
 
     //Atributos
     private Receita receita;

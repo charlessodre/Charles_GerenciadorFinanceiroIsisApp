@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadRegraImportacaoSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterRegraImpSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.RegraImportacaoSMS;
@@ -83,7 +84,7 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
                 break;
             case R.id.btnAdicionarRegraImpSMS:
 
-                Intent it = new Intent(this, actCadConta.class);
+                Intent it = new Intent(this, actCadRegraImportacaoSMS.class);
                 startActivityForResult(it, 0);
                 break;
         }
@@ -94,7 +95,7 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
 
         this.regraImpSMS = this.adpRegraImpSMS.getItem(position);
 
-        Intent it = new Intent(this, actCadConta.class);
+        Intent it = new Intent(this, actCadRegraImportacaoSMS.class);
         it.putExtra(PARAM_REGRA_IMP_SMS, this.regraImpSMS);
 
         startActivityForResult(it, 0);

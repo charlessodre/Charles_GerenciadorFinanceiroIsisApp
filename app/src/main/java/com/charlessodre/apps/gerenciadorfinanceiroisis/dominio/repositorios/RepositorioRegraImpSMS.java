@@ -75,8 +75,8 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
 
 
         values.put(RegraImportacaoSMS.NM_REGRA_IMPORTACAO, regraImportacaoSMS.getNome());
-        values.put(RegraImportacaoSMS.DS_TEXTO_PESQUISA, regraImportacaoSMS.getNome());
-        values.put(RegraImportacaoSMS.NO_TELEFONE, regraImportacaoSMS.getNome());
+        values.put(RegraImportacaoSMS.DS_TEXTO_PESQUISA, regraImportacaoSMS.getTextoPesquisa());
+        values.put(RegraImportacaoSMS.NO_TELEFONE, regraImportacaoSMS.getNoTelefone());
         values.put(RegraImportacaoSMS.FL_ATIVO, BooleanUtils.parseBooleanToint(regraImportacaoSMS.isAtivo()));
         values.put(RegraImportacaoSMS.DT_INCLUSAO, regraImportacaoSMS.getDataInclusao().getTime());
         values.put(RegraImportacaoSMS.ID_CATEGORIA_DESPESA, regraImportacaoSMS.getCategoriaDespesa().getId());

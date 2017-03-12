@@ -22,16 +22,6 @@ public class TipoTransacao extends EntidadeBase {
     //Atributos
 
     //Métodos
-    public static ArrayList<String> getTipoTransacao()
-    {
-        ArrayList<String> tipoTransacao = new ArrayList<String>();
-
-        tipoTransacao.add("Receita");
-        tipoTransacao.add("Despesa");
-        tipoTransacao.add("Transferência");
-
-        return  tipoTransacao;
-    }
 
 
 }
