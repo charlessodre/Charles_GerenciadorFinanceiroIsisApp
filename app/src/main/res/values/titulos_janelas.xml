@@ -15,7 +15,10 @@
     <string name="title_conta">Conta</string>
     <string name="title_transferencia">Transferência</string>
 
+    <string name="title_regra_imp_sms">Regra Importação SMS</string>
+
     <string name="title_principal">Visão Geral</string>
+    <string name="title_permissao_obrigatoria">Permissões Obrigatórias</string>
 
     <string name="title_exclusao_receitas">Excluir Receitas</string>
     <string name="title_exclusao_lancamentos">Excluir Lançamentos</string>

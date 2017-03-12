@@ -2,76 +2,22 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\bce5b94d0f4520ebb9eef988c3e69428a105cfd2\output\jars\classes.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\charl\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="b9a1ac78ad7ef3abedc4a4b30cd92bcacb939d1f">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_f36baf6c50392ad7b009650398ac9c8eaabbab46.jar" />
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_4e53fd999c195e91ff521d006258b2cc1047db6d\classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\dd34a97c0f792d23f64374fd161cc391a51a2aa1\output\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
+        is-multidex="true"
+        jar="C:\Users\charl\.android\build-cache\36d7f50d21235e726227df90ac3b8d6a123fb581\output\jars\classes.jar"
+        jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="7e4389bd133359a2ff88623ff1e4ff93d6e6f780">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_dd41190b82b1b06ec35e2f2feab3ee7403f5adfc.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\9275c26f564f8ee05749d50dc3f69d69050ce3e6\output\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="935a969265b2a166b2d20415423f5f6e90fe16e0">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_096a1b909c76ba6c3bff55442a434f03a780cc75.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\dc3f5a9c84c78ba8ca5ed0265c9e873632865a28\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_dc925efbcf7d91e1d7925ff317b29a97b4f69589.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\16d16012cb61734398daaa44366c100fcd5052f4\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e03f47f3d1017a093bb3239d4ec47c3447f40744">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_61060995ac2802f132b3086926e5f97d95e29639.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\bce5b94d0f4520ebb9eef988c3e69428a105cfd2\output\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="5f64d657e838e8375135c0f6057a7ff8fab6a50e">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_0bb0e2dc583d027e238632289cfdae87a6009341.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\9275c26f564f8ee05749d50dc3f69d69050ce3e6\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="9c4c3bc902450c39ed54de170db4fb12aea20a35">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_1e86389349940674fe383032ddf68fd932c6ea24.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\5cb23f8c30914eb925b94dcffb02349571b4d4c2\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="7521486d9bfd2cd9e756e0cf75ed7d97f2ce2d3b">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_a54ca9723558081d15e373470ab5dece32e5684c.jar" />
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7e5507f3a2ddb959cbf1a9c1bf7768eb251e9606\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -79,44 +25,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="03eba9d7196516e6c6dfa2a61f462989a494fd6d">
+        sha1="1c9ab0c8da1d05d109ffd7e6ea74f4b3e531f45c">
         <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7c6b0b42c616435cd61f8bc4c2ad0bfea886ca1a\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\582cc700d1872ea87c4ab90f934df7ab6058eb69\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="94bc1dfb84dcc8b6f6f8f7cc726d7b2dd39c1574">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_3ba224eb3f242aa3f6a1f6a4c537f36f68f5c6d6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\8d890193251f273e8582421c7924e7bad14923f0\output\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="fbf8da429efd5ad21e02e3e5ecaa1efc4167878d">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_567e11e8fe6c1a6837af5009db487731d621fb16.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\dd34a97c0f792d23f64374fd161cc391a51a2aa1\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_0ac3ae4187a174a4ccdd3b20b1bd8f4802b483d0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\8d890193251f273e8582421c7924e7bad14923f0\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="09b462bbcb77650284bd6614f1a32f360ef369f8">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_e07286702ebf165a519b06d0b9a7b773e5f7f4f9.jar" />
     </item>
     <item
         is-multidex="true"
@@ -126,51 +36,6 @@
         revision="25.0.0"
         sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
         <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_aede86eae9806878f290eeb47df8b5f8ff556fc3\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\e7350fa5f66f71cbe991181b1ce70c66e3347b67\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="d5c731fc64c03dfe04d51134955b483551c35849">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_e35a4ddd5bbaeed5e79cb1b0007504bc72331fef.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\5d43efd19130b4d56ed9702e886a9ade41c940e1\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="43b2dba6b5a0b14527961b75329d0b90025f15ea">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_be0167ccac789e2cc5f838e3bd316814f620366c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\af68bdf1fac4024c599f7bc2a2139fd5c9e09afb\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="e7f3132168957eefc46229fc32c3bd464642b71e">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\classes_508a9c0328792cd5b904ce9d7b4b3c5b5353b71e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\.android\build-cache\af68bdf1fac4024c599f7bc2a2139fd5c9e09afb\output\jars\libs\internal_impl-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="867dad63c33388ff8c7644b236579355036d075f">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\internal_impl-24.2.1_a9cd923da86185ad32a9943993f7403035dd3fbb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\charl\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\24.2.1\support-annotations-24.2.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.0"
-        sha1="8de3aafecbdf98a61db6427f008f2d515bcd2544">
-        <dex dex="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\pre-dexed\debug\support-annotations-24.2.1_e4c7a6d22edee56372325b012f9ea1fcbbb89689.jar" />
     </item>
 
 </items>

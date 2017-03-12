@@ -132,6 +132,10 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_resumo.xml"
     },
     {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\item_regra_imp_sms.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_regra_imp_sms.xml"
+    },
+    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item_header.xml",
         "source": "C:\\Users\\charl\\.android\\build-cache\\16d16012cb61734398daaa44366c100fcd5052f4\\output\\res\\layout\\design_navigation_item_header.xml"
     },
@@ -200,6 +204,10 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_cad_conta.xml"
     },
     {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_act_regra_importacao_sms.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\content_act_regra_importacao_sms.xml"
+    },
+    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_big_media_narrow.xml",
         "source": "C:\\Users\\charl\\.android\\build-cache\\5d43efd19130b4d56ed9702e886a9ade41c940e1\\output\\res\\layout\\notification_template_big_media_narrow.xml"
     },
@@ -208,12 +216,12 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\item_image_view.xml"
     },
     {
-        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
-        "source": "C:\\Users\\charl\\.android\\build-cache\\5d43efd19130b4d56ed9702e886a9ade41c940e1\\output\\res\\layout\\abc_action_mode_bar.xml"
-    },
-    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu_item.xml",
         "source": "C:\\Users\\charl\\.android\\build-cache\\16d16012cb61734398daaa44366c100fcd5052f4\\output\\res\\layout\\design_navigation_menu_item.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_mode_bar.xml",
+        "source": "C:\\Users\\charl\\.android\\build-cache\\5d43efd19130b4d56ed9702e886a9ade41c940e1\\output\\res\\layout\\abc_action_mode_bar.xml"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\frag_icone_cor.xml",
@@ -296,12 +304,12 @@
         "source": "C:\\Users\\charl\\.android\\build-cache\\16d16012cb61734398daaa44366c100fcd5052f4\\output\\res\\layout\\design_navigation_item_subheader.xml"
     },
     {
-        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
-        "source": "C:\\Users\\charl\\.android\\build-cache\\5d43efd19130b4d56ed9702e886a9ade41c940e1\\output\\res\\layout\\abc_select_dialog_material.xml"
-    },
-    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_lines.xml",
         "source": "C:\\Users\\charl\\.android\\build-cache\\5d43efd19130b4d56ed9702e886a9ade41c940e1\\output\\res\\layout\\notification_template_lines.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_select_dialog_material.xml",
+        "source": "C:\\Users\\charl\\.android\\build-cache\\5d43efd19130b4d56ed9702e886a9ade41c940e1\\output\\res\\layout\\abc_select_dialog_material.xml"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\frg_confirma_exclusao_dialog.xml",
@@ -350,6 +358,10 @@
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\app_bar_act_principal.xml",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\app_bar_act_principal.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\act_regra_importacao_sms.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\act_regra_importacao_sms.xml"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",

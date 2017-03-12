@@ -27,7 +27,6 @@
     <string name="lblCategoriaReceita">Categoria de Receita</string>
 
 
-
     <string name="lblData">Data</string>
     <string name="lblPendennte">Pendente</string>
     <string name="lblNaoRecebido">Não Recebido</string>
@@ -92,6 +91,7 @@
     <string name="lblSenha">Senha</string>
     <string name="lblCodigoSeguranca">Digite seu código de segurança.</string>
     <string name="lblResumoMes">Resumo do Mês</string>
+    <string name="title_activity_act_regra_importacao_sms">actRegraImportacaoSMS</string>
 
 
 </resources>

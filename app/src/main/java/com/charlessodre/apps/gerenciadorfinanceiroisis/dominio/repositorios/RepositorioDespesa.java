@@ -117,6 +117,8 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
                 despesa.setSubCategoriaDespesa(repSubCategoriaDespesa.get(transaction, cursor.getLong(cursor.getColumnIndex(Despesa.ID_SUB_CATEGORIA_DESPESA))));
 
 
+                despesa.setDataAlteracao(DateUtils.longToDate(cursor.getLong(cursor.getColumnIndex(Despesa.DT_ALTERACAO))));
+                despesa.setDataInclusao(DateUtils.longToDate(cursor.getLong(cursor.getColumnIndex(Despesa.DT_INCLUSAO))));
 
                 arrayList.add(despesa);
 

@@ -28,6 +28,11 @@
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_import_export_black_24dp"
             android:title="Transferências    " />
+
+        <item
+            android:id="@+id/nav_import_sms"
+            android:icon="@drawable/ic_compare_arrows_black_24dp"
+            android:title="Importar SMS" />
     </group>
 
     <item android:title="Communicate">

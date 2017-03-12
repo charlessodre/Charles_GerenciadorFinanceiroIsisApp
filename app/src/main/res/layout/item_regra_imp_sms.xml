@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal" android:layout_width="fill_parent"
+    android:paddingTop="10dp"
+    android:paddingBottom="5dp"
+    android:layout_height="50dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="txtNumTelefone"
+            android:id="@+id/txtNumTelefone"
+            android:layout_weight="1"
+            android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="txtStatusRegra"
+            android:id="@+id/txtStatusRegra"
+            android:layout_weight="1"
+            android:gravity="center_vertical" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="txtNomeRegra"
+        android:id="@+id/txtNomeRegra"
+        android:textStyle="normal|bold"
+        android:layout_weight="1"
+        android:gravity="center_vertical" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="txtTipoTransacao"
+            android:id="@+id/txtTipoTransacao"
+            android:layout_weight="1"
+            android:gravity="center_vertical" />
+
+    </LinearLayout>
+
+</LinearLayout>

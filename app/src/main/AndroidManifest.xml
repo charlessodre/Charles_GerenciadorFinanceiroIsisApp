@@ -2,10 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.charlessodre.apps.gerenciadorfinanceiroisis">
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.READ_SMS" />
 
     <application
         android:allowBackup="true"
@@ -46,7 +45,7 @@
             android:label="@string/title_receitas"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".actCadastros.actCadReceita" />
-        <!-- <activity android:name=".actCadastros.actBaseCadastros" />-->
+        <!-- <activity android:name=".actCadastros.actBaseCadastros" /> -->
         <activity android:name=".actCadastros.actCadTransferencia" />
         <activity
             android:name=".actConsultas.actTransferencia"
@@ -60,10 +59,18 @@
             android:name=".actConsultas.actDespesa"
             android:label="@string/title_despesas"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".actCadastros.actCadDespesa" />
 
+        <receiver android:name=".util.ReceberSMS">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
 
+        <activity
+            android:name=".actConsultas.actRegraImportacaoSMS"
+            android:label="@string/title_activity_act_regra_importacao_sms"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -1,11 +1,15 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis;
 
+import android.Manifest;
 import android.animation.Animator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,11 +34,19 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actCategoria
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actReceita;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actRegraImportacaoSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actTransferencia;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgResumo;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.EnviarSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.FragmentHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.LerHistoricoSMS;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.MessageBoxHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.PermissionsUtil;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ToastHelper;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class actPrincipal extends actBaseListas
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -60,11 +72,55 @@ public class actPrincipal extends actBaseListas
 
         //Carregmento inicial
         this.inicializaObjetos();
-       super.setAddMesCalendar(0);
+        super.setAddMesCalendar(0);
         this.setNomeMes();
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+
+        switch (requestCode) {
+            case PermissionsUtil.PERMISSION_ALL: {
+
+                if (grantResults.length > 0) {
+
+                    List<Integer> indexesOfPermissionsNeededToShow = new ArrayList<>();
+
+                    for (int i = 0; i < permissions.length; ++i) {
+                        if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[i])) {
+                            indexesOfPermissionsNeededToShow.add(i);
+                        }
+                    }
+
+                    int size = indexesOfPermissionsNeededToShow.size();
+                    if (size != 0) {
+                        int i = 0;
+                        boolean isPermissionGranted = true;
+
+                        while (i < size && isPermissionGranted) {
+                            isPermissionGranted = grantResults[indexesOfPermissionsNeededToShow.get(i)]
+                                    == PackageManager.PERMISSION_GRANTED;
+                            i++;
+                        }
+
+                        if (!isPermissionGranted) {
+
+                            DialogInterface.OnClickListener okListener = new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    verificaPermissoes();
+                                }
+                            };
+
+                            MessageBoxHelper.show(this, this.getString(R.string.title_permissao_obrigatoria), this.getString(R.string.msg_permissoes_obrigatorias), 0, okListener);
+
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     public void onBackPressed() {
@@ -160,10 +216,24 @@ public class actPrincipal extends actBaseListas
             Intent it = new Intent(this, actTransferencia.class);
             startActivityForResult(it, 0);
 
+        } else if (id == R.id.nav_import_sms) {
 
+            Intent it = new Intent(this, actRegraImportacaoSMS.class);
+            startActivityForResult(it, 0);
+
+            //verificaPermissoes();
+           // LerHistoricoSMS.getSMSDetails(this);
         } else if (id == R.id.nav_send) {
 
-            exemplo_lista_single();
+            //exemplo_lista_single();
+            verificaPermissoes();
+            EnviarSMS sms = new EnviarSMS();
+
+            sms.Enviar("+5521988548894", "Teste envio de mensagem pelo android. Feito por Charles" + DateUtils.getCurrentDatetime().toString());
+            sms.Enviar("+5521964339672", "Teste envio de mensagem pelo android. Feito por Charles" + DateUtils.getCurrentDatetime().toString());
+            ToastHelper.showToastLong(this, "SMS Enviado com sucesso!");
+
+
 
         }
 
@@ -174,6 +244,12 @@ public class actPrincipal extends actBaseListas
 
 
     //Métodos
+
+    private void verificaPermissoes() {
+        PermissionsUtil.askPermissions(this);
+    }
+
+
     @Override
     protected void inicializaObjetos() {
 

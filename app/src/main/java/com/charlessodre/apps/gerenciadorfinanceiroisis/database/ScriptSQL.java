@@ -12,7 +12,7 @@ public class ScriptSQL {
 
     //Constantes
     public static final String DATABASE_NAME  = "GER_FIN_ISIS";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 6;
 
     public static String getCreateTBConta()
     {
@@ -233,6 +233,37 @@ public class ScriptSQL {
         sqlBuilder.append("   FOREIGN KEY (ID_CONTA_DESTINO)REFERENCES TB_GF_CONTA (_id) " );
         sqlBuilder.append("  ); " );
 
+
+        return sqlBuilder.toString();
+    }
+
+
+
+    public static String getCreateTBRegraImportacaoSMS()
+    {
+
+        StringBuilder sqlBuilder = new StringBuilder();
+
+        sqlBuilder.append(" CREATE TABLE IF NOT EXISTS TB_GF_SUB_REGRA_IMPORT_SMS ( " );
+        sqlBuilder.append("   _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, " );
+        sqlBuilder.append("   NM_REGRA_IMPORTACAO VARCHAR(30) NOT NULL, " );
+        sqlBuilder.append("   DS_TEXTO_PESQUISA VARCHAR(30) NOT NULL, " );
+        sqlBuilder.append("   NO_TELEFONE VARCHAR(30) NOT NULL, " );
+        sqlBuilder.append("   FL_ATIVO CHAR(1) NOT NULL DEFAULT 1, " );
+        sqlBuilder.append("   DT_INCLUSAO DATETIME NOT NULL, " );
+        sqlBuilder.append("   DT_ALTERACAO DATETIME NULL, " );
+        sqlBuilder.append("   ID_TIPO_TRANSACAO INT NOT NULL, " );
+        sqlBuilder.append("   ID_CATEGORIA_RECEITA INTEGER  NULL, " );
+        sqlBuilder.append("   ID_CATEGORIA_DESPESA INT NULL, " );
+        sqlBuilder.append("   ID_CONTA_ORIGEM INT NOT NULL, " );
+        sqlBuilder.append("   ID_CONTA_DESTINO INT NOT NULL, " );
+        sqlBuilder.append("   ID_SUB_CATEGORIA_DESPESA INTEGER  NOT NULL, " );
+        sqlBuilder.append("   FOREIGN KEY (ID_CATEGORIA_RECEITA) REFERENCES TB_GF_CATEGORIA_RECEITA (_id), " );
+        sqlBuilder.append("   FOREIGN KEY (ID_CATEGORIA_DESPESA) REFERENCES TB_GF_CATEGORIA_DESPESA (_id), " );
+        sqlBuilder.append("   FOREIGN KEY (ID_CONTA_ORIGEM)REFERENCES TB_GF_CONTA (_id), " );
+        sqlBuilder.append("   FOREIGN KEY (ID_CONTA_DESTINO)REFERENCES TB_GF_CONTA (_id), " );
+        sqlBuilder.append("   FOREIGN KEY (ID_SUB_CATEGORIA_DESPESA) REFERENCES TB_GF_SUB_CATEGORIA_DESPESA (_id) " );
+        sqlBuilder.append("   ); " );
 
 
         return sqlBuilder.toString();

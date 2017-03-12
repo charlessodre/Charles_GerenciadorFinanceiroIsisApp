@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="msg_permissoes_obrigatorias">Todas as permissões são necessárias para esta aplicação</string>
+
+    <string name="msg_sms_ler_negada">Permisão de leitura de SMS foi negada!</string>
+    <string name="msg_sms_ler_concedida">Permisão de leitura de SMS foi condida!</string>
+
     <string name="msg_salvar_sucesso">Salvo com sucesso!</string>
     <string name="msg_salvar_erro">Falha ao salvar!</string>
     <string name="msg_excluir_sucesso">Excuído com sucesso!</string>

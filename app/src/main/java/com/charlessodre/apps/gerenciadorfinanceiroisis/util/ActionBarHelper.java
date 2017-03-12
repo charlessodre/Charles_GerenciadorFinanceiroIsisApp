@@ -31,7 +31,7 @@ public class ActionBarHelper extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         //actionBar.setDisplayShowCustomEnabled(true);
       //  actionBar.setDisplayShowTitleEnabled(true);
-       // actionBar.setTitle(titulo);
+       actionBar.setTitle(titulo);
         actionBar.setDisplayUseLogoEnabled(false);
     }
 
