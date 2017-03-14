@@ -143,8 +143,6 @@ public class actReceita extends actBaseListas implements AdapterView.OnItemClick
     @Override
     protected void inicializaObjetos() {
 
-
-
         super.setMenuHome(this.getString(R.string.title_receitas));
         super.setColorStatusBar(R.color.corTelaReceitas);
 

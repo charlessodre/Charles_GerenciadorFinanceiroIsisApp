@@ -85,11 +85,13 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_cad_regra_importacao_sms);
 
-        inicializaObjetos();
-        carregaSpinnerConta();
-        carregaSpinnerTipoTransacao();
+        this.inicializaObjetos();
+        this.carregaSpinnerConta();
+        this.carregaSpinnerTipoTransacao();
+        this.carregaSpinnerCategoriaReceita();
+this.carregaSpinnerCategoriaDespesa();
 
-        preencheDados();
+        this.preencheDados();
 
     }
 
@@ -169,23 +171,16 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
                 this.lnlDespesa.setVisibility(View.GONE);
                 this.lnlTransferencia.setVisibility(View.GONE);
 
-                carregaSpinnerCategoriaReceita();
-
             } else if (position == Constantes.TipoTransacao.DESPESA) {
 
                 this.lnlReceita.setVisibility(View.GONE);
                 this.lnlDespesa.setVisibility(View.VISIBLE);
                 this.lnlTransferencia.setVisibility(View.GONE);
 
-                this.carregaSpinnerCategoriaDespesa();
-
-
             } else {
                 this.lnlReceita.setVisibility(View.GONE);
                 this.lnlDespesa.setVisibility(View.GONE);
                 this.lnlTransferencia.setVisibility(View.VISIBLE);
-
-
             }
 
         }
@@ -215,6 +210,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
         this.lnlReceita = (LinearLayout) findViewById(R.id.lnlReceita);
         this.lnlTransferencia = (LinearLayout) findViewById(R.id.lnlTransferencia);
         this.lnlDespesa = (LinearLayout) findViewById(R.id.lnlDespesa);
+
 
         this.spnCategoriaDespesa.setOnItemSelectedListener(this);
         this.spnTipoTransacao.setOnItemSelectedListener(this);
@@ -247,6 +243,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
         this.spnCategoriaDespesa.setAdapter(this.adapterCategoriaDespesa);
     }
+
     private void carregaSpinnerSubCategoriaDespesa(Long idCategoriaDespesa) {
 
         RepositorioSubCategoriaDespesa repositorioSubCategoriaDespesa = new RepositorioSubCategoriaDespesa(this);
@@ -260,7 +257,6 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
 
     //Campos de Receita
-
     private void carregaSpinnerCategoriaReceita() {
         RepositorioCategoriaReceita repositorioCategoriaReceita = new RepositorioCategoriaReceita(this);
 
@@ -270,8 +266,6 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
         this.spnCategoriaReceita.setAdapter(this.adapterCategoriaReceita);
     }
-
-
 
     private void carregaSpinnerConta() {
 
@@ -289,12 +283,10 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
             this.spnContaOrigem.setSelection(1);
     }
 
-
-    //
     private void preencheDados() {
         Bundle bundle = getIntent().getExtras();
 
-        if ((bundle != null) && (bundle.containsKey(actCadDespesa.PARAM_DESPESA))) {
+        if ((bundle != null) && (bundle.containsKey(actCadRegraImportacaoSMS.PARAM_REGRA_IMP_SMS))) {
 
             this.regraImportacaoSMS = (RegraImportacaoSMS) bundle.getSerializable(actCadRegraImportacaoSMS.PARAM_REGRA_IMP_SMS);
 
@@ -311,24 +303,33 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
             //Receita
             if (idTipoTransacao == Constantes.TipoTransacao.RECEITA) {
 
-                this.spnCategoriaReceita.setSelection(this.adapterCategoriaReceita.getIndexFromElement(this.regraImportacaoSMS.getCategoriaReceita().getId()));
+                int index = this.adapterCategoriaReceita.getIndexFromElement(this.regraImportacaoSMS.getCategoriaReceita().getId());
+
+                this.spnCategoriaReceita.setSelection( index);
 
             } else if (idTipoTransacao == Constantes.TipoTransacao.DESPESA) //Despesa
             {
-                this.spnCategoriaDespesa.setSelection(this.adapterCategoriaDespesa.getIndexFromElement(this.regraImportacaoSMS.getCategoriaDespesa().getId()));
-                this.spnSubCategoriaDespesa.setSelection(this.adapterSubCategoriaDespesa.getIndexFromElement(this.regraImportacaoSMS.getSubCategoriaDespesa().getId()));
+                long idCategoria = this.regraImportacaoSMS.getCategoriaDespesa().getId();
+
+                int indexCategoria = this.adapterCategoriaDespesa.getIndexFromElement(this.regraImportacaoSMS.getCategoriaDespesa().getId());
+
+                this.spnCategoriaDespesa.setSelection(indexCategoria);
+
+                /*this.carregaSpinnerSubCategoriaDespesa(idCategoria);
+
+                int indexSubCateg = this.adapterSubCategoriaDespesa.getIndexFromElement(this.regraImportacaoSMS.getSubCategoriaDespesa().getId());
+                this.spnSubCategoriaDespesa.setSelection(indexSubCateg);*/
 
             } else //Transferência
             {
-                this.spnContaDestino.setSelection(this.adapterConta.getIndexFromElement(this.regraImportacaoSMS.getContaDestino().getId()));
+                int index = this.adapterConta.getIndexFromElement(this.regraImportacaoSMS.getContaDestino().getId());
+                this.spnContaDestino.setSelection(index);
             }
 
 
         } else {
             this.regraImportacaoSMS = new RegraImportacaoSMS();
         }
-
-
     }
 
     private boolean validaCamposTela() {
@@ -345,7 +346,6 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
             retorno = false;
         }
-
 
         return retorno;
 
@@ -387,8 +387,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
         } else //Transferência
         {
-            Conta contaDestino = this.adapterConta.getItem(this.spnContaDestino.getSelectedItemPosition());
-            this.regraImportacaoSMS.setContaOrigem(contaDestino);
+            this.regraImportacaoSMS.setContaDestino( this.adapterConta.getItem(this.spnContaDestino.getSelectedItemPosition()));
         }
 
     }

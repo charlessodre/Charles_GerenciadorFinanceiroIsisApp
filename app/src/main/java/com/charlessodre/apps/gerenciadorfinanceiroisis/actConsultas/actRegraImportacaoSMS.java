@@ -32,10 +32,6 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
 
     //Objetos Tela
     private ListView lstRegraImpSMS;
-    private ImageButton btnEsquerda;
-    private ImageButton btnDireita;
-    private TextView txtNomeMes;
-    private TextView txtValorTotalRegraImpSMSRod;
     private FloatingActionButton fabAdd;
 
 
@@ -63,7 +59,6 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
 
         super.setAnoMesCalendar(this.addMes);
         this.atualizaListView();
-        this.setNomeMes();
 
     }
 
@@ -71,17 +66,6 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.btnEsquerdaRegraImpSMS:
-                super.setAddMesCalendar(-1);
-                this.setNomeMes();
-                this.atualizaListView();
-
-                break;
-            case R.id.btnDireitaRegraImpSMS:
-                super.setAddMesCalendar(1);
-                this.setNomeMes();
-                this.atualizaListView();
-                break;
             case R.id.btnAdicionarRegraImpSMS:
 
                 Intent it = new Intent(this, actCadRegraImportacaoSMS.class);
@@ -134,15 +118,6 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
         this.fabAdd = (FloatingActionButton) findViewById(R.id.btnAdicionarRegraImpSMS);
         this.fabAdd.setOnClickListener(this);
 
-        this.btnDireita = (ImageButton) this.findViewById(R.id.btnDireitaRegraImpSMS);
-        this.btnEsquerda = (ImageButton) this.findViewById(R.id.btnEsquerdaRegraImpSMS);
-        this.btnDireita.setOnClickListener(this);
-        this.btnEsquerda.setOnClickListener(this);
-
-        this.txtNomeMes = (TextView) findViewById(R.id.txtNomeMesRegraImpSMS);
-
-        this.txtValorTotalRegraImpSMSRod = (TextView) findViewById(R.id.txtValorTotalRegraImpSMSRod);
-
         this.repositorioRegraImpSMS = new RepositorioRegraImpSMS(this);
 
         this.adpRegraImpSMS = new AdapterRegraImpSMS(this, R.layout.item_regra_imp_sms);
@@ -174,12 +149,6 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
         this.adpRegraImpSMS.addAll(this.repositorioRegraImpSMS.buscaTodos());
 
         this.lstRegraImpSMS.setAdapter(this.adpRegraImpSMS);
-
-       this.txtValorTotalRegraImpSMSRod.setText("1");
-    }
-
-    private void setNomeMes() {
-        this.txtNomeMes.setText(super.getNomeMesFormatado());
 
     }
 

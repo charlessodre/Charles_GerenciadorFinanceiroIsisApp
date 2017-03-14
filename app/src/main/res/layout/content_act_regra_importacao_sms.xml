@@ -9,69 +9,12 @@
     tools:showIn="@layout/act_regra_importacao_sms">
 
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/corTelaRegaImportacaoSMS"
-        android:id="@+id/lnlfragBarraNavegacaoRegraImpSMS"
-        >
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_keyboard_arrow_left_white_24dp"
-            android:id="@+id/btnEsquerdaRegraImpSMS"
-            android:layout_weight="2"
-            android:layout_gravity="center"
-            android:layout_marginLeft="30dp"
-            android:background="@null" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="janeiro"
-            android:id="@+id/txtNomeMesRegraImpSMS"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            />
-
-        <ImageButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_keyboard_arrow_right_white_24dp"
-            android:id="@+id/btnDireitaRegraImpSMS"
-            android:layout_weight="2"
-            android:layout_gravity="center"
-            android:layout_marginRight="30dp"
-            android:background="@null" />
-
-
-    </LinearLayout>
-
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/lstRegrasImpSMS"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/lnlfragBarraNavegacaoRegraImpSMS"
-        android:layout_marginBottom="@dimen/listview_bottom" />
+        />
 
-    --<LinearLayout android:layout_width="match_parent" android:orientation="horizontal"
-        android:layout_alignParentBottom="true" android:gravity="center_vertical"
-        android:background="@color/corTelaRegaImportacaoSMS" android:layout_height="wrap_content"
-        android:id="@+id/rodapeRegraImpSMS" android:padding="10dip">
-
-        <TextView android:textColor="#FFFFFF" android:layout_height="wrap_content"
-            android:layout_width="wrap_content" android:gravity="left"
-            android:id="@+id/txtTotal" android:text="Quantidade de Regras: " android:layout_weight="0.2" />
-
-        <TextView android:textColor="#FFFFFF" android:layout_height="wrap_content"
-            android:layout_width="wrap_content" android:gravity="right"
-            android:id="@+id/txtValorTotalRegraImpSMSRod" android:text="R$ 0,00" android:layout_weight="0.8" />
-    </LinearLayout>
 
 </RelativeLayout>
