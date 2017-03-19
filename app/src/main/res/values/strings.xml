@@ -97,6 +97,7 @@
     <string name="lblSenha">Senha</string>
     <string name="lblCodigoSeguranca">Digite seu código de segurança.</string>
     <string name="lblResumoMes">Resumo do Mês</string>
+    <string name="title_activity_act_importa_sms">actImportaSMS</string>
 
 
 </resources>

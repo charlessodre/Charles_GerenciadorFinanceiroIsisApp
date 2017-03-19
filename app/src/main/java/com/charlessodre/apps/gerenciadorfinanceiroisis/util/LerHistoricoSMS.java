@@ -3,7 +3,12 @@ package com.charlessodre.apps.gerenciadorfinanceiroisis.util;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
+import android.widget.ArrayAdapter;
 
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.RegraImportacaoSMS;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.SMS;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -12,9 +17,7 @@ import java.util.Date;
 
 public class LerHistoricoSMS {
 
-    public static void getSMSDetails(Context context)
-
-    {
+    public void getSMSDetailsTeste(Context context) {
 
         StringBuffer stringBuffer = new StringBuffer();
 
@@ -90,6 +93,51 @@ public class LerHistoricoSMS {
 
         cursor.close();
 
+    }
+
+    public static ArrayList<SMS> getSMSDetails(Context context) {
+
+        return getSMSDetails(context,0);
+
+    }
+
+    public static ArrayList<SMS> getSMSDetails(Context context, int tipoSMSSelection)
+    {
+
+        ArrayList<SMS> listaSMS = new ArrayList<SMS>();
+
+        Uri uri = Uri.parse(SMS.URI);
+        Cursor cursor = context.getContentResolver().query(uri, null, null, null, SMS.DATE);
+
+        int tipoSMS = 0;
+
+        if (cursor.moveToFirst()) {
+
+            for (int i = 0; i < cursor.getCount(); i++) {
+
+
+                tipoSMS = cursor.getInt(cursor.getColumnIndexOrThrow(SMS.TYPE));
+
+                if(tipoSMSSelection==0 || tipoSMS == tipoSMSSelection) {
+
+                    SMS sms = new SMS();
+
+                    sms.setMensagem(cursor.getString(cursor.getColumnIndexOrThrow(SMS.BODY)).toString());
+                    sms.setNumero(cursor.getString(cursor.getColumnIndexOrThrow(SMS.ADDRESS)).toString());
+                    sms.setData(DateUtils.longToDate(cursor.getLong(cursor.getColumnIndexOrThrow(SMS.DATE))));
+                    sms.setTipoSMS(SMS.getTipoSMS(tipoSMS));
+                    sms.setId(i);
+
+                    listaSMS.add(sms);
+                }
+
+                cursor.moveToNext();
+            }
+        }
+
+        cursor.close();
+
+        return listaSMS;
     }
 
 

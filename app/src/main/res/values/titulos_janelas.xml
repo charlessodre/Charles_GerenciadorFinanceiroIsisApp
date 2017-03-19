@@ -17,6 +17,8 @@
 
     <string name="title_regra_imp_sms">Regra Importação SMS</string>
 
+    <string name="title_lista_sms">Lista de SMS para Importação</string>
+
     <string name="title_principal">Visão Geral</string>
     <string name="title_permissao_obrigatoria">Permissões Obrigatórias</string>
 

@@ -95,5 +95,4 @@ public abstract class EntidadeBase implements Serializable, Cloneable {
 
     //Métodos
 
-
 }

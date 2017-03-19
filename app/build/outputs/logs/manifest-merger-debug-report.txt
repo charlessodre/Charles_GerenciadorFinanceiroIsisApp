@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-77:12
+ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-81:12
 	package
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:3:5-62
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
@@ -26,7 +26,7 @@ ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\And
 	android:name
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:7:22-64
 application
-ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:9:5-75:19
+ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:9:5-79:19
 MERGED from [com.android.support:design:24.2.1] C:\Users\charl\.android\build-cache\16d16012cb61734398daaa44366c100fcd5052f4\output\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charl\.android\build-cache\5d43efd19130b4d56ed9702e886a9ade41c940e1\output\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:24.2.1] C:\Users\charl\.android\build-cache\dc3f5a9c84c78ba8ca5ed0265c9e873632865a28\output\AndroidManifest.xml:25:5-20
@@ -173,9 +173,17 @@ ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\And
 	android:name
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:71:13-63
 activity#com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadRegraImportacaoSMS
-ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:74:9-84
+ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:74:9-75
 	android:name
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:74:19-72
+activity#com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actListaSMS
+ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:75:9-78:68
+	android:label
+		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:77:13-67
+	android:theme
+		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:78:13-56
+	android:name
+		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:76:13-53
 uses-sdk
 INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:24.2.1] C:\Users\charl\.android\build-cache\16d16012cb61734398daaa44366c100fcd5052f4\output\AndroidManifest.xml:20:5-43

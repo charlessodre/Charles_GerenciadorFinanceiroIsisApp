@@ -33,6 +33,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actCategoria
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actCategoriaReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actDespesa;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actListaSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actRegraImportacaoSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actTransferencia;
@@ -218,12 +219,15 @@ public class actPrincipal extends actBaseListas
 
         } else if (id == R.id.nav_import_sms) {
 
-            Intent it = new Intent(this, actRegraImportacaoSMS.class);
+            Intent it = new Intent(this, actListaSMS.class);
             startActivityForResult(it, 0);
 
-            //verificaPermissoes();
-           // LerHistoricoSMS.getSMSDetails(this);
-        } else if (id == R.id.nav_send) {
+        }  else if (id == R.id.nav_cad_regra_sms) {
+
+            Intent it = new Intent(this, actRegraImportacaoSMS.class);
+            startActivityForResult(it, 0);
+        }
+        else if (id == R.id.nav_send) {
 
             //exemplo_lista_single();
             verificaPermissoes();
@@ -232,8 +236,6 @@ public class actPrincipal extends actBaseListas
             sms.Enviar("+5521988548894", "Teste envio de mensagem pelo android. Feito por Charles" + DateUtils.getCurrentDatetime().toString());
             sms.Enviar("+5521964339672", "Teste envio de mensagem pelo android. Feito por Charles" + DateUtils.getCurrentDatetime().toString());
             ToastHelper.showToastLong(this, "SMS Enviado com sucesso!");
-
-
 
         }
 

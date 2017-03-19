@@ -1,15 +1,17 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades;
 
+import android.support.annotation.NonNull;
+
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by charl on 27/09/2016.
  */
 
 public class RegraImportacaoSMS extends EntidadeBase {
-
 
     //Constantes
     public static String TABELA_NOME = "TB_GF_SUB_REGRA_IMPORT_SMS";
@@ -134,5 +136,23 @@ public class RegraImportacaoSMS extends EntidadeBase {
 
        }
     }
+
+   @Override
+    public boolean equals(Object objeto) {
+
+        boolean iguais = false;
+
+        if (objeto!=null && objeto instanceof SMS){
+            SMS sms = (SMS) objeto;
+
+            if(sms.getNumero().indexOf(this.getNoTelefone())>=0 && sms.getMensagem().indexOf(this.getTextoPesquisa())>=0)
+            {
+                iguais = true;
+            }
+        }
+
+        return iguais;
+    }
+
 
 }

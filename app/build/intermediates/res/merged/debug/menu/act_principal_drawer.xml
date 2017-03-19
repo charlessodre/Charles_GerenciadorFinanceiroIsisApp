@@ -32,7 +32,12 @@
         <item
             android:id="@+id/nav_import_sms"
             android:icon="@drawable/ic_compare_arrows_black_24dp"
-            android:title="Importar SMS" />
+            android:title="Lista SMS" />
+
+        <item
+            android:id="@+id/nav_cad_regra_sms"
+            android:icon="@drawable/ic_compare_arrows_black_24dp"
+            android:title="Regra SMS" />
     </group>
 
     <item android:title="Communicate">

@@ -41,9 +41,6 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
     private RegraImportacaoSMS regraImpSMS;
     private int addMes = 0;
 
-    //Constantes
-    public static final String PARAM_REGRA_IMP_SMS = "REGRA_IMP_SMS";
-    public static final String PARAM_REGRA_IMP_SMS_ANO_MES = "ANO_MES";
 
     //Eventos
     @Override
@@ -80,7 +77,7 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
         this.regraImpSMS = this.adpRegraImpSMS.getItem(position);
 
         Intent it = new Intent(this, actCadRegraImportacaoSMS.class);
-        it.putExtra(PARAM_REGRA_IMP_SMS, this.regraImpSMS);
+        it.putExtra(actCadRegraImportacaoSMS.PARAM_REGRA_IMP_SMS, this.regraImpSMS);
 
         startActivityForResult(it, 0);
 
@@ -156,9 +153,9 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
     {
         Bundle bundle = getIntent().getExtras();
 
-        if ((bundle != null) && (bundle.containsKey(actRegraImportacaoSMS.PARAM_REGRA_IMP_SMS_ANO_MES))) {
+        if ((bundle != null) && (bundle.containsKey(actCadRegraImportacaoSMS.PARAM_REGRA_IMP_SMS_ANO_MES))) {
 
-            this.addMes = bundle.getInt(actRegraImportacaoSMS.PARAM_REGRA_IMP_SMS_ANO_MES);
+            this.addMes = bundle.getInt(actCadRegraImportacaoSMS.PARAM_REGRA_IMP_SMS_ANO_MES);
 
         }else
         {

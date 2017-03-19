@@ -17,7 +17,6 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterCategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterCategoriaReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterConta;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterRegraImpSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterSubCategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.ColorHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
@@ -26,14 +25,11 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Categor
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.RegraImportacaoSMS;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.SMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.SubCategoriaDespesa;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.TipoRepeticao;
-
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.TipoTransacao;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCategoriaReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioConta;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioRegraImpSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioSubCategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgConfirmacaoDialog;
@@ -76,8 +72,11 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
     private AdapterSubCategoriaDespesa adapterSubCategoriaDespesa;
     private AdapterCategoriaReceita adapterCategoriaReceita;
 
-    //Contantes
+    //Constantes
     public static final String PARAM_REGRA_IMP_SMS = "REGRA_IMP_SMS";
+    public static final String PARAM_REGRA_IMP_SMS_ANO_MES = "ANO_MES";
+    public static final String PARAM_IMP_SMS = "IMP_SMS";
+
 
     //Eventos
     @Override
@@ -89,8 +88,9 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
         this.carregaSpinnerConta();
         this.carregaSpinnerTipoTransacao();
         this.carregaSpinnerCategoriaReceita();
-this.carregaSpinnerCategoriaDespesa();
+        this.carregaSpinnerCategoriaDespesa();
 
+        this.getParametrosRecebidos();
         this.preencheDados();
 
     }
@@ -283,53 +283,73 @@ this.carregaSpinnerCategoriaDespesa();
             this.spnContaOrigem.setSelection(1);
     }
 
-    private void preencheDados() {
+    private void getParametrosRecebidos() {
+
         Bundle bundle = getIntent().getExtras();
 
         if ((bundle != null) && (bundle.containsKey(actCadRegraImportacaoSMS.PARAM_REGRA_IMP_SMS))) {
 
             this.regraImportacaoSMS = (RegraImportacaoSMS) bundle.getSerializable(actCadRegraImportacaoSMS.PARAM_REGRA_IMP_SMS);
 
-            this.edtNomeRegraImpSMS.setText(this.regraImportacaoSMS.getNome());
-            this.edtNumeroSMS.setText(this.regraImportacaoSMS.getNoTelefone());
-            this.edtTextoNoSMS.setText(this.regraImportacaoSMS.getTextoPesquisa());
-            this.spnContaOrigem.setSelection(this.adapterConta.getIndexFromElement(this.regraImportacaoSMS.getContaOrigem().getId()));
-            this.cbxStatus.setChecked(this.regraImportacaoSMS.isAtivo());
+        } else if ((bundle != null) && (bundle.containsKey(actCadRegraImportacaoSMS.PARAM_IMP_SMS)))
+        {
+           SMS sms =  (SMS) bundle.getSerializable(actCadRegraImportacaoSMS.PARAM_IMP_SMS);
+            this.regraImportacaoSMS = new RegraImportacaoSMS();
 
-            int idTipoTransacao = this.regraImportacaoSMS.getIdTipoTransacao();
+            this.regraImportacaoSMS.setNoTelefone(sms.getNumero());
+            this.regraImportacaoSMS.setTextoPesquisa(sms.getMensagem());
+        }
+        else {
+            this.regraImportacaoSMS = new RegraImportacaoSMS();
+        }
+    }
 
-            this.spnTipoTransacao.setSelection(idTipoTransacao);
+    private void preencheDados() {
+        //   Bundle bundle = getIntent().getExtras();
 
-            //Receita
-            if (idTipoTransacao == Constantes.TipoTransacao.RECEITA) {
+        //  if ((bundle != null) && (bundle.containsKey(actCadRegraImportacaoSMS.PARAM_REGRA_IMP_SMS))) {
 
-                int index = this.adapterCategoriaReceita.getIndexFromElement(this.regraImportacaoSMS.getCategoriaReceita().getId());
+        //this.regraImportacaoSMS = (RegraImportacaoSMS) bundle.getSerializable(actCadRegraImportacaoSMS.PARAM_REGRA_IMP_SMS);
 
-                this.spnCategoriaReceita.setSelection( index);
+        this.edtNomeRegraImpSMS.setText(this.regraImportacaoSMS.getNome());
+        this.edtNumeroSMS.setText(this.regraImportacaoSMS.getNoTelefone());
+        this.edtTextoNoSMS.setText(this.regraImportacaoSMS.getTextoPesquisa());
+        this.spnContaOrigem.setSelection(this.adapterConta.getIndexFromElement(this.regraImportacaoSMS.getContaOrigem().getId()));
+        this.cbxStatus.setChecked(this.regraImportacaoSMS.isAtivo());
 
-            } else if (idTipoTransacao == Constantes.TipoTransacao.DESPESA) //Despesa
-            {
-                long idCategoria = this.regraImportacaoSMS.getCategoriaDespesa().getId();
+        int idTipoTransacao = this.regraImportacaoSMS.getIdTipoTransacao();
 
-                int indexCategoria = this.adapterCategoriaDespesa.getIndexFromElement(this.regraImportacaoSMS.getCategoriaDespesa().getId());
+        this.spnTipoTransacao.setSelection(idTipoTransacao);
 
-                this.spnCategoriaDespesa.setSelection(indexCategoria);
+        //Receita
+        if (idTipoTransacao == Constantes.TipoTransacao.RECEITA) {
+
+            int index = this.adapterCategoriaReceita.getIndexFromElement(this.regraImportacaoSMS.getCategoriaReceita().getId());
+
+            this.spnCategoriaReceita.setSelection(index);
+
+        } else if (idTipoTransacao == Constantes.TipoTransacao.DESPESA) //Despesa
+        {
+
+            int indexCategoria = this.adapterCategoriaDespesa.getIndexFromElement(this.regraImportacaoSMS.getCategoriaDespesa().getId());
+
+            this.spnCategoriaDespesa.setSelection(indexCategoria);
 
                 /*this.carregaSpinnerSubCategoriaDespesa(idCategoria);
 
                 int indexSubCateg = this.adapterSubCategoriaDespesa.getIndexFromElement(this.regraImportacaoSMS.getSubCategoriaDespesa().getId());
                 this.spnSubCategoriaDespesa.setSelection(indexSubCateg);*/
 
-            } else //Transferência
-            {
-                int index = this.adapterConta.getIndexFromElement(this.regraImportacaoSMS.getContaDestino().getId());
-                this.spnContaDestino.setSelection(index);
-            }
-
-
-        } else {
-            this.regraImportacaoSMS = new RegraImportacaoSMS();
+        } else //Transferência
+        {
+            int index = this.adapterConta.getIndexFromElement(this.regraImportacaoSMS.getContaDestino().getId());
+            this.spnContaDestino.setSelection(index);
         }
+
+
+        //} else {
+        //   this.regraImportacaoSMS = new RegraImportacaoSMS();
+        //}
     }
 
     private boolean validaCamposTela() {
@@ -366,14 +386,14 @@ this.carregaSpinnerCategoriaDespesa();
         this.regraImportacaoSMS.setIdTipoTransacao(idTipoTransacao);
 
         //Receita
-        if (idTipoTransacao ==  Constantes.TipoTransacao.RECEITA) {
+        if (idTipoTransacao == Constantes.TipoTransacao.RECEITA) {
 
             CategoriaReceita categoriaReceita = this.adapterCategoriaReceita.getItem(this.spnCategoriaReceita.getSelectedItemPosition());
 
             this.regraImportacaoSMS.setCategoriaReceita(categoriaReceita);
 
 
-        } else if (idTipoTransacao  == Constantes.TipoTransacao.DESPESA) //Despesa
+        } else if (idTipoTransacao == Constantes.TipoTransacao.DESPESA) //Despesa
         {
             CategoriaDespesa categoriaDespesa = this.adapterCategoriaDespesa.getItem(this.spnCategoriaDespesa.getSelectedItemPosition());
 
@@ -387,7 +407,7 @@ this.carregaSpinnerCategoriaDespesa();
 
         } else //Transferência
         {
-            this.regraImportacaoSMS.setContaDestino( this.adapterConta.getItem(this.spnContaDestino.getSelectedItemPosition()));
+            this.regraImportacaoSMS.setContaDestino(this.adapterConta.getItem(this.spnContaDestino.getSelectedItemPosition()));
         }
 
     }
@@ -418,7 +438,6 @@ this.carregaSpinnerCategoriaDespesa();
         }
 
     }
-
 
     private void excluiAtual() {
 
