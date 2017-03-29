@@ -3,8 +3,11 @@ package com.charlessodre.apps.gerenciadorfinanceiroisis.util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by charl on 10/09/2016.
@@ -196,7 +199,7 @@ public class DateUtils {
         return date;
     }
 
-    public static Date stringToDate(String stringDate) {
+    public static Date stringToDateLong(String stringDate) {
         Date date = null;
 
         if (stringDate != null || stringDate.length() != 0) {
@@ -204,6 +207,23 @@ public class DateUtils {
             try {
                 date = new Date();
                 date = dateFormat.parse(stringDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+                date = null;
+            }
+        }
+
+        return date;
+    }
+
+    public static Date stringToDateShort(String stringDateDDmmYY) {
+        Date date = null;
+
+        if (stringDateDDmmYY != null || stringDateDDmmYY.length() != 0) {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+            try {
+                date = new Date();
+                date = dateFormat.parse(stringDateDDmmYY);
             } catch (ParseException e) {
                 e.printStackTrace();
                 date = null;
@@ -227,4 +247,31 @@ public class DateUtils {
         return month_date.format(date);
     }
 
+
+    //Com RegEx
+    public static ArrayList<Date> getDatesInStringWithRegEx(String strigWithDates) {
+
+        String regexDateLong = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d";
+        String regexShort = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.]\\d\\d";
+        Matcher matcher;
+        ArrayList<Date> allMatches = new  ArrayList<Date>();
+
+        matcher = Pattern.compile(regexDateLong).matcher(strigWithDates);
+
+        while (matcher.find()) {
+            allMatches.add(DateUtils.stringToDateShort(matcher.group()));
+        }
+
+        if(allMatches.size()==0)
+        {
+            matcher = Pattern.compile(regexShort).matcher(strigWithDates);
+
+            while (matcher.find()) {
+                allMatches.add(DateUtils.stringToDateShort(matcher.group()));
+            }
+
+        }
+
+        return allMatches;
+    }
 }

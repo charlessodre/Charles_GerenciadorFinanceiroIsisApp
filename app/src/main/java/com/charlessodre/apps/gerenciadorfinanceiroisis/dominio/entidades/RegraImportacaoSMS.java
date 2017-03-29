@@ -25,6 +25,7 @@ public class RegraImportacaoSMS extends EntidadeBase {
     public static String ID_CONTA_ORIGEM = "ID_CONTA_ORIGEM";
     public static String ID_CONTA_DESTINO = "ID_CONTA_DESTINO";
     public static String ID_SUB_CATEGORIA_DESPESA = "ID_SUB_CATEGORIA_DESPESA";
+    public static String DS_RECEITA_DESPESA = "DS_RECEITA_DESPESA";
 
 
     //Atributos
@@ -36,9 +37,20 @@ public class RegraImportacaoSMS extends EntidadeBase {
     private SubCategoriaDespesa subCategoriaDespesa;
     private CategoriaReceita categoriaReceita;
     private int idTipoTransacao;
+    private String descricaoReceitaDespesa;
 
 
     //Propriedades
+
+
+    public String getDescricaoReceitaDespesa() {
+        return descricaoReceitaDespesa;
+    }
+
+    public void setDescricaoReceitaDespesa(String descricaoReceitaDespesa) {
+        this.descricaoReceitaDespesa = descricaoReceitaDespesa;
+    }
+
     public int getIdTipoTransacao() {
         return idTipoTransacao;
     }
@@ -137,7 +149,7 @@ public class RegraImportacaoSMS extends EntidadeBase {
        }
     }
 
-   @Override
+   /*@Override
     public boolean equals(Object objeto) {
 
         boolean iguais = false;
@@ -153,6 +165,7 @@ public class RegraImportacaoSMS extends EntidadeBase {
 
         return iguais;
     }
+    */
 
 
 }

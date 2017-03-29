@@ -8,16 +8,26 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadRegraImportacaoSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Despesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Receita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.RegraImportacaoSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.SMS;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Transferencia;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioDespesa;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioRegraImpSMS;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioTransferencia;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+
 
 /**
  * Created by charl on 11/03/2017.
@@ -53,14 +63,12 @@ public class ReceberSMS extends BroadcastReceiver {
                 sms.setNumero(smsMessage[i].getDisplayOriginatingAddress());
                 sms.setMensagem(smsMessage[i].getDisplayMessageBody());
 
-                getValorSMS(sms.getMensagem());
-
                 boolean existeRegra = false;
                 RegraImportacaoSMS regraImportacaoEncontrada = null;
 
                 for (RegraImportacaoSMS regra : regraLista) {
 
-                    if (regra.equals(sms)) {
+                    if (sms.getMensagem().contains(regra.getTextoPesquisa().trim())) {
                         existeRegra = true;
                         regraImportacaoEncontrada = regra;
                         break;
@@ -71,18 +79,21 @@ public class ReceberSMS extends BroadcastReceiver {
                 if (existeRegra) {
                     Toast.makeText(context, "ACHEI A REGRA", Toast.LENGTH_LONG).show();
 
-                    processaRegraImportacao(regraImportacaoEncontrada, sms);
+                    processaRegraImportacao(context,regraImportacaoEncontrada, sms);
 
+                    Toast.makeText(context, "Regra Processada com sucesso!", Toast.LENGTH_LONG).show();
 
                 } else {
 
+                    Toast.makeText(context, "Não existe Regra", Toast.LENGTH_LONG).show();
+
                     //Abre Cadastro Nova Regra
-                    Intent it = new Intent(context, actCadRegraImportacaoSMS.class);
-                    it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                   // Intent it = new Intent(context, actCadRegraImportacaoSMS.class);
+                   // it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                    it.putExtra(actCadRegraImportacaoSMS.PARAM_IMP_SMS, sms);
+                   // it.putExtra(actCadRegraImportacaoSMS.PARAM_IMP_SMS, sms);
 
-                    context.startActivity(it);
+                   // context.startActivity(it);
                 }
 
             }
@@ -90,48 +101,75 @@ public class ReceberSMS extends BroadcastReceiver {
     }
 
 
-    public void processaRegraImportacao(RegraImportacaoSMS regraImportacaoSMS, SMS sms) {
+    public void processaRegraImportacao(Context context,RegraImportacaoSMS regraImportacaoSMS, SMS sms) {
+
+
+        Double valor = TextWatcherPay.getCurrencyInStringWithRegEx(sms.getMensagem(),"$").get(0);
+        Date data = DateUtils.getDatesInStringWithRegEx(sms.getMensagem()).get(0);
+        Date dataInclusao = DateUtils.getCurrentDatetime();
+        int noAnoMEs = DateUtils.getYearAndMonth(data);
+        Conta contaOrigem = regraImportacaoSMS.getContaOrigem();
+
+        String descReceitaDespesa = regraImportacaoSMS.getDescricaoReceitaDespesa();
+
+
+
         if (regraImportacaoSMS.getIdTipoTransacao() == Constantes.TipoTransacao.RECEITA) {
+
             Receita receita = new Receita();
 
             receita.setCategoriaReceita(regraImportacaoSMS.getCategoriaReceita());
-            receita.setConta(regraImportacaoSMS.getContaOrigem());
+            receita.setConta(contaOrigem);
+            receita.setNome(descReceitaDespesa);
+            receita.setValor(valor);
+            receita.setDataReceita(data);
+            receita.setAnoMes(noAnoMEs);
+            receita.setDataInclusao(dataInclusao);
 
-            receita.setNome(sms.getMensagem());
-            receita.setValor(10.0);
-            receita.setDataReceita(sms.getData());
-            receita.setAnoMes(DateUtils.getYearAndMonth(sms.getData()));
+            RepositorioReceita repositorioReceita = new RepositorioReceita(context);
+
+            repositorioReceita.insere(receita);
+
+            Toast.makeText(context, "Receita Cadastrada com Sucesso!", Toast.LENGTH_LONG).show();
 
 
         } else if (regraImportacaoSMS.getIdTipoTransacao() == Constantes.TipoTransacao.DESPESA) {
 
+            Despesa despesa = new Despesa();
+
+            despesa.setNome(descReceitaDespesa);
+            despesa.setValor(valor);
+            despesa.setDataDespesa(data);
+            despesa.setAnoMes(noAnoMEs);
+            despesa.setConta(contaOrigem);
+            despesa.setCategoriaDespesa(regraImportacaoSMS.getCategoriaDespesa());
+            despesa.setSubCategoriaDespesa(regraImportacaoSMS.getSubCategoriaDespesa());
+            despesa.setDataInclusao(dataInclusao);
+
+            RepositorioDespesa repositorioDespesa = new RepositorioDespesa(context);
+
+            repositorioDespesa.insere(despesa);
+
+            Toast.makeText(context, "Despesa Cadastrada com Sucesso!", Toast.LENGTH_LONG).show();
+
         } else if (regraImportacaoSMS.getIdTipoTransacao() == Constantes.TipoTransacao.TRANSFERENCIA) {
 
-        }
+            Transferencia transferencia = new Transferencia();
 
-    }
+            transferencia.setValor(valor);
+            transferencia.setDataTransferencia(data);
+            transferencia.setAnoMes(noAnoMEs);
+            transferencia.setContaOrigem(regraImportacaoSMS.getContaOrigem());
+            transferencia.setContaDestino(regraImportacaoSMS.getContaDestino());
+            transferencia.setDataInclusao(dataInclusao);
 
-    public Double getValorSMS(String mensagem) {
+            RepositorioTransferencia repositorioTransferencia = new RepositorioTransferencia(context);
 
-        String simboloMonerario = NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol();
-        Double valor = 0.0;
-        String separadorDecimal = ",";
-        int indiceSimbolo = mensagem.indexOf(simboloMonerario) + simboloMonerario.length();
+            repositorioTransferencia.insere(transferencia);
 
-        String valores = "";
-
-        for (int i=indiceSimbolo; i <= mensagem.length(); i++)
-        {
-            String caractere = mensagem.substring(indiceSimbolo,i);
-
+            Toast.makeText(context, "Transferencia Cadastrada com Sucesso!", Toast.LENGTH_LONG).show();
 
         }
-
-
-
-
-
-        return valor;
 
     }
 

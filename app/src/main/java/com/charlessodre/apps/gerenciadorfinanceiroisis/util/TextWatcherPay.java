@@ -2,7 +2,10 @@ package com.charlessodre.apps.gerenciadorfinanceiroisis.util;
 
 import java.lang.ref.WeakReference;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -176,4 +179,20 @@ public class TextWatcherPay implements TextWatcher {
 
     }
 
+
+    public static ArrayList<Double> getCurrencyInStringWithRegEx(String strigWithCurrency, String currencySymbol)  {
+        ArrayList<Double> allMatches = new  ArrayList<Double>();
+        String clearString = strigWithCurrency.replace(" ", "");
+        Pattern pattern = Pattern.compile("[" +currencySymbol + "][\\d.,]+");
+        Matcher matcher = pattern.matcher(clearString);
+
+        while (matcher.find()) {
+
+            String value = matcher.group();
+            String valueClear =  value.replace(currencySymbol,"").replace(".","").replace(",",".");
+            allMatches.add(Double.parseDouble(valueClear));
+        }
+
+        return allMatches;
+    }
 }

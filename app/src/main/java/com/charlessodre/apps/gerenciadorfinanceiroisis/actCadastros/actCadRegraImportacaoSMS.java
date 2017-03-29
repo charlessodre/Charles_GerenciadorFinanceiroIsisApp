@@ -58,7 +58,12 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
     private EditText edtNomeRegraImpSMS;
     private EditText edtNumeroSMS;
     private EditText edtTextoNoSMS;
+    private EditText edtTextoDescReceita;
+    private EditText edtTextoDescDespesa;
+
+
     private CheckBox cbxStatus;
+
 
     private LinearLayout lnlDespesa;
     private LinearLayout lnlReceita;
@@ -198,6 +203,8 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
         this.edtNomeRegraImpSMS = (EditText) findViewById(R.id.edtNomeRegraImpSMS);
         this.edtNumeroSMS = (EditText) findViewById(R.id.edtNumeroSMS);
         this.edtTextoNoSMS = (EditText) findViewById(R.id.edtTextoNoSMS);
+        this.edtTextoDescDespesa = (EditText) findViewById(R.id.edtTextoDescDespesa);
+        this.edtTextoDescReceita = (EditText) findViewById(R.id.edtTextoDescReceita);
         this.spnContaOrigem = (Spinner) findViewById(R.id.spnContaOrigem);
         this.spnContaDestino = (Spinner) findViewById(R.id.spnContaDestino);
         this.spnCategoriaDespesa = (Spinner) findViewById(R.id.spnCategoriaDespesa);
@@ -328,6 +335,8 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
             this.spnCategoriaReceita.setSelection(index);
 
+            this.edtTextoDescReceita.setText(this.regraImportacaoSMS.getDescricaoReceitaDespesa());
+
         } else if (idTipoTransacao == Constantes.TipoTransacao.DESPESA) //Despesa
         {
 
@@ -335,10 +344,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
             this.spnCategoriaDespesa.setSelection(indexCategoria);
 
-                /*this.carregaSpinnerSubCategoriaDespesa(idCategoria);
-
-                int indexSubCateg = this.adapterSubCategoriaDespesa.getIndexFromElement(this.regraImportacaoSMS.getSubCategoriaDespesa().getId());
-                this.spnSubCategoriaDespesa.setSelection(indexSubCateg);*/
+            this.edtTextoDescDespesa.setText(this.regraImportacaoSMS.getDescricaoReceitaDespesa());
 
         } else //Transferência
         {
@@ -392,6 +398,8 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
             this.regraImportacaoSMS.setCategoriaReceita(categoriaReceita);
 
+            this.regraImportacaoSMS.setDescricaoReceitaDespesa(this.edtTextoDescReceita.getText().toString());
+
 
         } else if (idTipoTransacao == Constantes.TipoTransacao.DESPESA) //Despesa
         {
@@ -403,6 +411,8 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
             }
 
             this.regraImportacaoSMS.setCategoriaDespesa(categoriaDespesa);
+
+            this.regraImportacaoSMS.setDescricaoReceitaDespesa(this.edtTextoDescDespesa.getText().toString());
 
 
         } else //Transferência

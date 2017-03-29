@@ -71,6 +71,7 @@ public class actPrincipal extends actBaseListas
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_principal);
 
+        PermissionsUtil.askPermissions(this);
         //Carregmento inicial
         this.inicializaObjetos();
         super.setAddMesCalendar(0);

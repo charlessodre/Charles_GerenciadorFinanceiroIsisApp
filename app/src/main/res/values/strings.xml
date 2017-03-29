@@ -25,7 +25,8 @@
     <string name="lblDestino">Destino:</string>
     <string name="lblCategoriaReceitas">Categorias de Receitas</string>
     <string name="lblCategoriaReceita">Categoria de Receita</string>
-
+    <string name="lblDescricaoDespesa">Descrição da Despesa</string>
+    <string name="lblDescricaoReceita">Descrição da Receita</string>
 
     <string name="lblData">Data</string>
     <string name="lblPendennte">Pendente</string>

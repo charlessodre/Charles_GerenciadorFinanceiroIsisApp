@@ -85,6 +85,7 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
         values.put(RegraImportacaoSMS.ID_CONTA_ORIGEM, regraImportacaoSMS.getContaOrigem().getId());
         values.put(RegraImportacaoSMS.ID_CONTA_DESTINO, regraImportacaoSMS.getContaDestino().getId());
         values.put(RegraImportacaoSMS.ID_TIPO_TRANSACAO, regraImportacaoSMS.getIdTipoTransacao());
+        values.put(RegraImportacaoSMS.DS_RECEITA_DESPESA, regraImportacaoSMS.getDescricaoReceitaDespesa());
 
         if (regraImportacaoSMS.getDataAlteracao() != null)
             values.put(RegraImportacaoSMS.DT_ALTERACAO, regraImportacaoSMS.getDataAlteracao().getTime());
@@ -124,6 +125,7 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
 
                 regraImportacaoSMS.setDataAlteracao(DateUtils.longToDate(cursor.getLong(cursor.getColumnIndex(RegraImportacaoSMS.DT_ALTERACAO))));
                 regraImportacaoSMS.setDataInclusao(DateUtils.longToDate(cursor.getLong(cursor.getColumnIndex(RegraImportacaoSMS.DT_INCLUSAO))));
+                regraImportacaoSMS.setDescricaoReceitaDespesa(cursor.getString(cursor.getColumnIndex(RegraImportacaoSMS.DS_RECEITA_DESPESA)));
 
                 arrayList.add(regraImportacaoSMS);
 

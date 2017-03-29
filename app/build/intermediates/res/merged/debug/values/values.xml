@@ -972,6 +972,8 @@
     <string name="lblData">Data</string>
     <string name="lblDe">de</string>
     <string name="lblDesabilitada">Desabilitada?</string>
+    <string name="lblDescricaoDespesa">Descrição da Despesa</string>
+    <string name="lblDescricaoReceita">Descrição da Receita</string>
     <string name="lblDespesa">Despesa</string>
     <string name="lblDespesas">Despesas</string>
     <string name="lblDestino">Destino:</string>

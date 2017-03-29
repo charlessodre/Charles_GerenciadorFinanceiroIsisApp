@@ -162,6 +162,25 @@
                 android:visibility="gone">
 
                 <TextView
+                    android:id="@+id/lblDescDespesa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lblDescricaoDespesa" />
+
+                <EditText
+                    android:id="@+id/edtTextoDescDespesa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elegantTextHeight="true"
+                    android:ems="10"
+                    android:hint="@string/lblDescricaoDespesa"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapSentences"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                <TextView
                     android:id="@+id/lblCategoriaDespesa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -202,6 +221,25 @@
                 android:layout_below="@+id/linearLayout"
                 android:orientation="vertical"
                 android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/lblDescReceita"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lblDescricaoReceita" />
+
+                <EditText
+                    android:id="@+id/edtTextoDescReceita"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elegantTextHeight="true"
+                    android:ems="10"
+                    android:hint="@string/lblDescricaoReceita"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapSentences"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
                     android:id="@+id/lblCategoriaReceital1"
