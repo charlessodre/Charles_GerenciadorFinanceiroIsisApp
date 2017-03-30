@@ -21,8 +21,8 @@
     <color name="corTelaPrincipal">#3F51B5</color>
     <color name="corTelaPrincipalFundo">#E0E0E0</color>
 
-    <color name="corTelaRegaImportacaoSMS">#39F</color>
-
+    <color name="corTelaRegraImportacaoSMS">#39F</color>
+    <color name="corTelaListaSMS">#39A</color>
 
 
 

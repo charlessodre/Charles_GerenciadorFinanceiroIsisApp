@@ -1,7 +1,6 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,13 +19,10 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.Repo
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ToastHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 
 import java.text.NumberFormat;
 import java.util.Locale;
-
-import static com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actReceita.PARAM_RECEITA_ANO_MES;
 
 
 /**
@@ -137,9 +133,9 @@ public class frgResumo extends Fragment {
 
             String symbol = NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol();
 
-            this.txtValorContaAcumulado.setText(symbol+ " " + DecimalHelper.getFormartCurrency(valorAcumuladoContas));
-            this.txtValorReceitaAcumulado.setText(symbol + " " + DecimalHelper.getFormartCurrency(valorAcumuladoReceitas));
-            this.txtValorDespesasAcumulado.setText(symbol + " " + DecimalHelper.getFormartCurrency(valorAcumuladoDespesas));
+            this.txtValorContaAcumulado.setText(symbol+ " " + NumberUtis.getFormartCurrency(valorAcumuladoContas));
+            this.txtValorReceitaAcumulado.setText(symbol + " " + NumberUtis.getFormartCurrency(valorAcumuladoReceitas));
+            this.txtValorDespesasAcumulado.setText(symbol + " " + NumberUtis.getFormartCurrency(valorAcumuladoDespesas));
 
         }
     }

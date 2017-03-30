@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,7 +21,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Despesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -200,7 +199,7 @@ public class actDespesa extends actBaseListas implements AdapterView.OnItemClick
 
         double valorTotal = this.repositorioDespesa.getValorTotalDespesas(anoMes,false);
 
-        this.txtValorTotalDespesaRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + DecimalHelper.getFormartCurrency(valorTotal));
+        this.txtValorTotalDespesaRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + NumberUtis.getFormartCurrency(valorTotal));
 
     }
 

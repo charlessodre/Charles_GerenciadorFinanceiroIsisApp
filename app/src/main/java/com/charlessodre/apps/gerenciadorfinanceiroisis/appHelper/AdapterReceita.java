@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Receita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -120,7 +120,7 @@ public class AdapterReceita extends ArrayAdapter<Receita>  {
 
         viewHolder.txtTipoReceita.setText(tipoReceita);
 
-        viewHolder.txtValorReceita.setText(this.symbol + " " + DecimalHelper.getFormartCurrency(receita.getValor()));
+        viewHolder.txtValorReceita.setText(this.symbol + " " + NumberUtis.getFormartCurrency(receita.getValor()));
 
         viewHolder.txtDataReceita.setText(String.valueOf(DateUtils.getWeekNameAndDay(receita.getDataReceita())));
 

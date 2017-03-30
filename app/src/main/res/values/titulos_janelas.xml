@@ -19,6 +19,8 @@
 
     <string name="title_lista_sms">Lista de SMS para Importação</string>
 
+    <string name="title_importar_sms">Importar SMS como:</string>
+
     <string name="title_principal">Visão Geral</string>
     <string name="title_permissao_obrigatoria">Permissões Obrigatórias</string>
 
@@ -26,5 +28,7 @@
     <string name="title_exclusao_lancamentos">Excluir Lançamentos</string>
     <string name="title_alteracao_lancamentos">Alteração Lançamentos</string>
     <string name="title_confirma_exclusao">Confirmar Exclusão?</string>
+
+
 
 </resources>

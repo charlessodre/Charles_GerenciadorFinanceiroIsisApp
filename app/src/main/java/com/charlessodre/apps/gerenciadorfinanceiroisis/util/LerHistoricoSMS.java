@@ -111,7 +111,7 @@ public class LerHistoricoSMS {
 
         int tipoSMS = 0;
 
-        if (cursor.moveToFirst()) {
+        if (cursor.moveToLast()) {
 
             for (int i = 0; i < cursor.getCount(); i++) {
 
@@ -131,7 +131,7 @@ public class LerHistoricoSMS {
                     listaSMS.add(sms);
                 }
 
-                cursor.moveToNext();
+                cursor.moveToPrevious();
             }
         }
 

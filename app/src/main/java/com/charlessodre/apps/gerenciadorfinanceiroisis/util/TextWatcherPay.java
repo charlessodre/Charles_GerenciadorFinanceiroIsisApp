@@ -180,19 +180,4 @@ public class TextWatcherPay implements TextWatcher {
     }
 
 
-    public static ArrayList<Double> getCurrencyInStringWithRegEx(String strigWithCurrency, String currencySymbol)  {
-        ArrayList<Double> allMatches = new  ArrayList<Double>();
-        String clearString = strigWithCurrency.replace(" ", "");
-        Pattern pattern = Pattern.compile("[" +currencySymbol + "][\\d.,]+");
-        Matcher matcher = pattern.matcher(clearString);
-
-        while (matcher.find()) {
-
-            String value = matcher.group();
-            String valueClear =  value.replace(currencySymbol,"").replace(".","").replace(",",".");
-            allMatches.add(Double.parseDouble(valueClear));
-        }
-
-        return allMatches;
-    }
 }

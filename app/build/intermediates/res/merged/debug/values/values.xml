@@ -181,10 +181,11 @@
     <color name="corResolvido">#00C853</color>
     <color name="corTelaContas">#303F9F</color>
     <color name="corTelaDespesas">#e92727</color>
+    <color name="corTelaListaSMS">#39A</color>
     <color name="corTelaPrincipal">#3F51B5</color>
     <color name="corTelaPrincipalFundo">#E0E0E0</color>
     <color name="corTelaReceitas">#4CAF50</color>
-    <color name="corTelaRegaImportacaoSMS">#39F</color>
+    <color name="corTelaRegraImportacaoSMS">#39F</color>
     <color name="corTelaTransferencias">#0288D1</color>
     <color name="cyan_100">#B2EBF2</color>
     <color name="cyan_200">#80DEEA</color>
@@ -1077,6 +1078,7 @@
     <string name="title_despesas">Despesas</string>
     <string name="title_exclusao_lancamentos">Excluir Lançamentos</string>
     <string name="title_exclusao_receitas">Excluir Receitas</string>
+    <string name="title_importar_sms">Importar SMS como:</string>
     <string name="title_lista_sms">Lista de SMS para Importação</string>
     <string name="title_permissao_obrigatoria">Permissões Obrigatórias</string>
     <string name="title_principal">Visão Geral</string>

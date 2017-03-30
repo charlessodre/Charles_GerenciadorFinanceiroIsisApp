@@ -22,7 +22,6 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ArrayAdapterHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.ColorHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateListenerShow;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.ImageHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.MessageBoxHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.TextWatcherPay;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ToastHelper;
@@ -34,7 +33,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.Repo
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.StringUtils;
 
 import java.util.Date;
@@ -254,7 +253,7 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
 
             this.edtNome.setText(this.receita.getNome());
 
-            this.edtValorReceita.setText(DecimalHelper.getFormartCurrency(this.receita.getValor()));
+            this.edtValorReceita.setText(NumberUtis.getFormartCurrency(this.receita.getValor()));
 
             this.spnCategoriaReceita.setSelection(this.adapterCategoriaReceita.getIndexFromElement(this.receita.getCategoriaReceita().getId()));
             this.spnContaReceita.setSelection(this.adapterConta.getIndexFromElement(this.receita.getConta().getId()));

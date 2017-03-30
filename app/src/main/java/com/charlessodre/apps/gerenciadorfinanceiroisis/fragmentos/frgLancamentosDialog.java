@@ -31,7 +31,7 @@ public class frgLancamentosDialog extends DialogFragment {
 
     //Constantes
     public static final String NOME_FRAGMENTO = "FRAG_LANCAMENTOS_DIALOG";
-    public static final String PARAM_TIPO_LANCAMENTO = "PARAM_TIPO_LANCAMENTO";
+    public static final String PARAM_TIPO_LANCAMENTO = "PARAM_TIPO_TRANSACAO";
     public static final String PARAM_TIPO_MSG = "PARAM_TIPO_MSG";
 
      // Override the Fragment.onAttach() method to instantiate the frgLancamentosDialog

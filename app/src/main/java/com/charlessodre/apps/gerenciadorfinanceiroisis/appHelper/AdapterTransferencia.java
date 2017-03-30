@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Transferencia;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -84,7 +84,7 @@ public class AdapterTransferencia extends ArrayAdapter<Transferencia> {
         viewHolder.txtContaOrigemItem.setText(transferencia.getContaOrigem().getNome());
         viewHolder.txtContaDestinoItem.setText(transferencia.getContaDestino().getNome());
 
-        viewHolder.txtValorTransferenciaItem.setText(this.symbol + " " + DecimalHelper.getFormartCurrency(transferencia.getValor()));
+        viewHolder.txtValorTransferenciaItem.setText(this.symbol + " " + NumberUtis.getFormartCurrency(transferencia.getValor()));
 
         viewHolder.txtDataTransferenciaIItem.setText(String.valueOf(DateUtils.getWeekNameAndDay(transferencia.getDataTransferencia())));
 

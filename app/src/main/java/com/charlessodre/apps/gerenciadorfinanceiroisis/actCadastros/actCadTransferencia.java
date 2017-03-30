@@ -21,7 +21,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Transfe
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioTransferencia;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.StringUtils;
 
 import java.util.Date;
@@ -160,7 +160,7 @@ public class actCadTransferencia extends actBaseCadastros implements frgConfirma
         if ((bundle != null) && (bundle.containsKey(actCadTransferencia.PARAM_TRANSFERENCIA))) {
             this.transferencia = (Transferencia) bundle.getSerializable(actCadTransferencia.PARAM_TRANSFERENCIA);
 
-            this.edtValorTransferencia.setText(DecimalHelper.getFormartCurrency(this.transferencia.getValor()));
+            this.edtValorTransferencia.setText(NumberUtis.getFormartCurrency(this.transferencia.getValor()));
 
             this.spnContaOrigem.setSelection(this.adapterContaOrigem.getIndexFromElement(this.transferencia.getContaOrigem().getId()));
             this.spnContaDestino.setSelection(this.adapterContaDestino.getIndexFromElement(this.transferencia.getContaDestino().getId()));

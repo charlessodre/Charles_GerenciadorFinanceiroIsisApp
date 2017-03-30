@@ -3,7 +3,6 @@ package com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper;
 import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,7 @@ import android.widget.TextView;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 
 import java.text.NumberFormat;
 import java.util.Date;
@@ -150,9 +149,9 @@ public class AdapterConta extends ArrayAdapter<Conta> {
 
         viewHolder.imgConta.setImageResource(getImagemTipoConta(conta.getCdTipoConta()));
         viewHolder.txtNomeConta.setText(conta.getNome());
-        viewHolder.txtSaldoAtual.setText(this.symbol + " " + DecimalHelper.getFormartCurrency(conta.getValorSaldo()));
+        viewHolder.txtSaldoAtual.setText(this.symbol + " " + NumberUtis.getFormartCurrency(conta.getValorSaldo()));
         viewHolder.txtSaldoPrevistoData.setText(texto);
-        viewHolder.txtSaldoPrevistoValor.setText(this.symbol + " " + DecimalHelper.getFormartCurrency(conta.getSaldoPrevisto()));
+        viewHolder.txtSaldoPrevistoValor.setText(this.symbol + " " + NumberUtis.getFormartCurrency(conta.getSaldoPrevisto()));
 
         if (conta.getNoCorIcone() != 0)
             viewHolder.imgConta.setColorFilter(ColorHelper.getColor(this.context, conta.getNoCorIcone()));

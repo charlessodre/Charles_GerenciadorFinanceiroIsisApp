@@ -10,23 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.TextView;
 
-import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadRegraImportacaoSMS;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterRegraImpSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.RegraImportacaoSMS;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioRegraImpSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
-
-import java.text.NumberFormat;
-import java.util.Locale;
 
 public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.OnItemClickListener, View.OnClickListener {
 
@@ -107,7 +98,7 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
     protected void inicializaObjetos() {
 
         super.setMenuHome(this.getString(R.string.title_regra_imp_sms));
-        super.setColorStatusBar(R.color.corTelaRegaImportacaoSMS);
+        super.setColorStatusBar(R.color.corTelaRegraImportacaoSMS);
 
         this.lstRegraImpSMS = (ListView) findViewById(R.id.lstRegrasImpSMS);
         this.lstRegraImpSMS.setOnItemClickListener(this);
@@ -119,7 +110,7 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
 
         this.adpRegraImpSMS = new AdapterRegraImpSMS(this, R.layout.item_regra_imp_sms);
 
-        this.fabAdd.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.corTelaRegaImportacaoSMS)));
+        this.fabAdd.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.corTelaRegraImportacaoSMS)));
 
         this.lstRegraImpSMS.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override

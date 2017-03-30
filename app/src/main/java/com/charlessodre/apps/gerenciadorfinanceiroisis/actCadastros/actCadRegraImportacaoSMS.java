@@ -25,7 +25,6 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Categor
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.RegraImportacaoSMS;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.SMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.SubCategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCategoriaReceita;
@@ -33,7 +32,6 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.Repo
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioRegraImpSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioSubCategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgConfirmacaoDialog;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgLancamentosDialog;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ActionBarHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ArrayAdapterHelper;
 
@@ -45,7 +43,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.util.StringUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ToastHelper;
 
 
-public class actCadRegraImportacaoSMS extends actBaseCadastros implements CompoundButton.OnCheckedChangeListener, frgLancamentosDialog.onDialogClick, frgConfirmacaoDialog.onDialogClick, Spinner.OnItemSelectedListener {
+public class actCadRegraImportacaoSMS extends actBaseCadastros implements CompoundButton.OnCheckedChangeListener,  frgConfirmacaoDialog.onDialogClick, Spinner.OnItemSelectedListener {
 
     //Objetos Tela
     private Spinner spnCategoriaDespesa;
@@ -133,7 +131,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
             case R.id.menu_excluir:
 
-                this.excluiAtual();
+                super.exibePopUpConfirmacaoDialog(this.getString(R.string.msg_excluir));
                 break;
 
             default:
@@ -148,13 +146,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
     }
 
-    @Override
-    public void onDialogClick(frgLancamentosDialog dialog, int opcaoSelecionada, int tipoMensagem) {
-
-
-    }
-
-    @Override
+        @Override
     public void onDialogClick(frgConfirmacaoDialog dialog) {
         this.excluiAtual();
 
@@ -225,7 +217,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
         ActionBarHelper.menuCancel(getSupportActionBar(), this.getString(R.string.lblRegraImpSMS));
 
-        int corTela = ColorHelper.getColor(this, R.color.corTelaRegaImportacaoSMS);
+        int corTela = ColorHelper.getColor(this, R.color.corTelaRegraImportacaoSMS);
 
         ActionBarHelper.setBackgroundColor(getSupportActionBar(), corTela);
 
@@ -298,14 +290,16 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
             this.regraImportacaoSMS = (RegraImportacaoSMS) bundle.getSerializable(actCadRegraImportacaoSMS.PARAM_REGRA_IMP_SMS);
 
-        } else if ((bundle != null) && (bundle.containsKey(actCadRegraImportacaoSMS.PARAM_IMP_SMS)))
+        }
+
+        /*else if ((bundle != null) && (bundle.containsKey(actCadRegraImportacaoSMS.PARAM_IMP_SMS)))
         {
            SMS sms =  (SMS) bundle.getSerializable(actCadRegraImportacaoSMS.PARAM_IMP_SMS);
             this.regraImportacaoSMS = new RegraImportacaoSMS();
 
             this.regraImportacaoSMS.setNoTelefone(sms.getNumero());
             this.regraImportacaoSMS.setTextoPesquisa(sms.getMensagem());
-        }
+        }*/
         else {
             this.regraImportacaoSMS = new RegraImportacaoSMS();
         }
@@ -336,15 +330,16 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
             this.spnCategoriaReceita.setSelection(index);
 
             this.edtTextoDescReceita.setText(this.regraImportacaoSMS.getDescricaoReceitaDespesa());
+            this.edtTextoDescDespesa.setText(this.regraImportacaoSMS.getDescricaoReceitaDespesa());
 
         } else if (idTipoTransacao == Constantes.TipoTransacao.DESPESA) //Despesa
         {
-
             int indexCategoria = this.adapterCategoriaDespesa.getIndexFromElement(this.regraImportacaoSMS.getCategoriaDespesa().getId());
 
             this.spnCategoriaDespesa.setSelection(indexCategoria);
 
             this.edtTextoDescDespesa.setText(this.regraImportacaoSMS.getDescricaoReceitaDespesa());
+            this.edtTextoDescReceita.setText(this.regraImportacaoSMS.getDescricaoReceitaDespesa());
 
         } else //Transferência
         {
@@ -372,6 +367,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
             retorno = false;
         }
+
 
         return retorno;
 

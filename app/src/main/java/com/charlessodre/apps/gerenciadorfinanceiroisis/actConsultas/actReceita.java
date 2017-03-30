@@ -20,7 +20,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Receita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -199,7 +199,7 @@ public class actReceita extends actBaseListas implements AdapterView.OnItemClick
 
         double valorTotal = this.repositorioReceita.getValorTotalRecebido(anoMes,false);
 
-        this.txtValorTotalReceitaRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + DecimalHelper.getFormartCurrency(valorTotal));
+        this.txtValorTotalReceitaRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + NumberUtis.getFormartCurrency(valorTotal));
 
     }
 

@@ -20,7 +20,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -174,7 +174,7 @@ public class actConta extends actBaseListas implements AdapterView.OnItemClickLi
 
         this.lstContas.setAdapter(this.adpConta);
 
-        this.txtValorTotalContasRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + DecimalHelper.getFormartCurrency(this.repositorioConta.getValorTotal(anoMes)));
+        this.txtValorTotalContasRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + NumberUtis.getFormartCurrency(this.repositorioConta.getValorTotal(anoMes)));
     }
 
     private void setNomeMes() {

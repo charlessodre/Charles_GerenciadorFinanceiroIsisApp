@@ -20,13 +20,8 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.Repo
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioRegraImpSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioTransferencia;
 
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Locale;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 
 
 /**
@@ -62,6 +57,7 @@ public class ReceberSMS extends BroadcastReceiver {
 
                 sms.setNumero(smsMessage[i].getDisplayOriginatingAddress());
                 sms.setMensagem(smsMessage[i].getDisplayMessageBody());
+                sms.setData(DateUtils.getCurrentDatetime());
 
                 boolean existeRegra = false;
                 RegraImportacaoSMS regraImportacaoEncontrada = null;
@@ -104,15 +100,20 @@ public class ReceberSMS extends BroadcastReceiver {
     public void processaRegraImportacao(Context context,RegraImportacaoSMS regraImportacaoSMS, SMS sms) {
 
 
-        Double valor = TextWatcherPay.getCurrencyInStringWithRegEx(sms.getMensagem(),"$").get(0);
-        Date data = DateUtils.getDatesInStringWithRegEx(sms.getMensagem()).get(0);
+        Double valor = 0.0;
+        Date data = sms.getData();
+        ArrayList<Double> valores = NumberUtis.getCurrencyInStringWithRegEx(sms.getMensagem(),"$");
+        ArrayList<Date> datas = DateUtils.getDatesInStringWithRegEx(sms.getMensagem());
         Date dataInclusao = DateUtils.getCurrentDatetime();
         int noAnoMEs = DateUtils.getYearAndMonth(data);
         Conta contaOrigem = regraImportacaoSMS.getContaOrigem();
-
         String descReceitaDespesa = regraImportacaoSMS.getDescricaoReceitaDespesa();
 
+        if(valores.size()>0)
+            valor = valores.get(0);
 
+        if(datas.size()>0)
+            data = datas.get(0);
 
         if (regraImportacaoSMS.getIdTipoTransacao() == Constantes.TipoTransacao.RECEITA) {
 

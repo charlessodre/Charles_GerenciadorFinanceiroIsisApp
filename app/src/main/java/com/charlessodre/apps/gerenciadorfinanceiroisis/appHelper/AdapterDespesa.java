@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Despesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -120,7 +120,7 @@ public class AdapterDespesa extends ArrayAdapter<Despesa>  {
 
         viewHolder.txtTipoDespesa.setText(tipoDespesa);
 
-        viewHolder.txtValorDespesa.setText(this.symbol + " " + DecimalHelper.getFormartCurrency(despesa.getValor()));
+        viewHolder.txtValorDespesa.setText(this.symbol + " " + NumberUtis.getFormartCurrency(despesa.getValor()));
 
         viewHolder.txtDataDespesa.setText(String.valueOf(DateUtils.getWeekNameAndDay(despesa.getDataDespesa())));
 

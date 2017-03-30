@@ -26,7 +26,6 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ArrayAdapterHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.ColorHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateListenerShow;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.ImageHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.MessageBoxHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.TextWatcherPay;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ToastHelper;
@@ -38,7 +37,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.Repo
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.StringUtils;
 
 import java.util.Date;
@@ -287,7 +286,7 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
 
             this.edtNome.setText(this.despesa.getNome());
 
-            this.edtValorDespesa.setText(DecimalHelper.getFormartCurrency(this.despesa.getValor()));
+            this.edtValorDespesa.setText(NumberUtis.getFormartCurrency(this.despesa.getValor()));
 
             this.spnCategoriaDespesa.setSelection(this.adapterCategoriaDespesa.getIndexFromElement(this.despesa.getCategoriaDespesa().getId()));
             this.spnContaDespesa.setSelection(this.adapterConta.getIndexFromElement(this.despesa.getConta().getId()));

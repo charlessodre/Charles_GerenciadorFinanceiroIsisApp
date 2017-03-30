@@ -25,7 +25,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.ColorHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioTransferencia;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DecimalHelper;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.StringUtils;
 
 public class actCadConta extends actBaseCadastros implements frgConfirmaExclusaoDialog.onDialogClick, frgConfirmacaoDialog.onDialogClick {
@@ -278,7 +278,7 @@ public class actCadConta extends actBaseCadastros implements frgConfirmaExclusao
 
             this.edtNome.setText(this.conta.getNome());
 
-            this.edtSaldo.setText(DecimalHelper.getFormartCurrency(this.conta.getValorSaldo()));
+            this.edtSaldo.setText(NumberUtis.getFormartCurrency(this.conta.getValorSaldo()));
 
             this.spnTipoConta.setSelection(this.conta.getCdTipoConta());
             this.cbxExibirSomaResumo.setChecked(this.conta.isExibir());

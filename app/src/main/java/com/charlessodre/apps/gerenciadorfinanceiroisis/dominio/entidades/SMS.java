@@ -16,7 +16,7 @@ public class SMS implements Serializable{
     public final static String DATE = "date";
     public final static String TYPE = "type";
 
-    public final static  int INBOX = 1;
+    public final static int INBOX = 1;
     public final static int SENT = 2;
     public final static int DRAFT = 3;
 
