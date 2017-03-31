@@ -115,7 +115,6 @@ public class LerHistoricoSMS {
 
             for (int i = 0; i < cursor.getCount(); i++) {
 
-
                 tipoSMS = cursor.getInt(cursor.getColumnIndexOrThrow(SMS.TYPE));
 
                 if(tipoSMSSelection==0 || tipoSMS == tipoSMSSelection) {

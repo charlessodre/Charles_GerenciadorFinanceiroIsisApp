@@ -18,7 +18,8 @@ public class RegraImportacaoSMS extends EntidadeBase {
 
     public static String NM_REGRA_IMPORTACAO = "NM_REGRA_IMPORTACAO";
     public static String NO_TELEFONE = "NO_TELEFONE";
-    public static String DS_TEXTO_PESQUISA = "DS_TEXTO_PESQUISA";
+    public static String DS_TEXTO_PESQUISA_1 = "DS_TEXTO_PESQUISA_1";
+    public static String DS_TEXTO_PESQUISA_2 = "DS_TEXTO_PESQUISA_2";
     public static String ID_TIPO_TRANSACAO = "ID_TIPO_TRANSACAO";
     public static String ID_CATEGORIA_RECEITA = "ID_CATEGORIA_RECEITA";
     public static String ID_CATEGORIA_DESPESA = "ID_CATEGORIA_DESPESA";
@@ -32,7 +33,8 @@ public class RegraImportacaoSMS extends EntidadeBase {
     private Conta contaOrigem;
     private Conta contaDestino;
     private String noTelefone;
-    private String textoPesquisa;
+    private String textoPesquisa1;
+    private String textoPesquisa2;
     private CategoriaDespesa categoriaDespesa;
     private SubCategoriaDespesa subCategoriaDespesa;
     private CategoriaReceita categoriaReceita;
@@ -59,13 +61,22 @@ public class RegraImportacaoSMS extends EntidadeBase {
         this.idTipoTransacao = idTipoTransacao;
     }
 
-    public String getTextoPesquisa() {
-        return textoPesquisa;
+    public String getTextoPesquisa1() {
+        return textoPesquisa1;
     }
 
-    public void setTextoPesquisa(String textoPesquisa) {
-        this.textoPesquisa = textoPesquisa;
+    public void setTextoPesquisa1(String textoPesquisa1) {
+        this.textoPesquisa1 = textoPesquisa1;
     }
+
+    public String getTextoPesquisa2() {
+        return textoPesquisa2;
+    }
+
+    public void setTextoPesquisa2(String textoPesquisa2) {
+        this.textoPesquisa2 = textoPesquisa2;
+    }
+
 
 
     public String getNoTelefone() {
@@ -157,7 +168,7 @@ public class RegraImportacaoSMS extends EntidadeBase {
         if (objeto!=null && objeto instanceof SMS){
             SMS sms = (SMS) objeto;
 
-            if(sms.getNumero().indexOf(this.getNoTelefone())>=0 && sms.getMensagem().indexOf(this.getTextoPesquisa())>=0)
+            if(sms.getNumero().indexOf(this.getNoTelefone())>=0 && sms.getMensagem().indexOf(this.getTextoPesquisa1())>=0)
             {
                 iguais = true;
             }

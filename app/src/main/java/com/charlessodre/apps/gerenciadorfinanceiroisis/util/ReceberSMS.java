@@ -61,10 +61,23 @@ public class ReceberSMS extends BroadcastReceiver {
 
                 boolean existeRegra = false;
                 RegraImportacaoSMS regraImportacaoEncontrada = null;
+                String textoPesquisa1 = "";
+                String textoPesquisa2 = "";
 
                 for (RegraImportacaoSMS regra : regraLista) {
 
-                    if (sms.getMensagem().contains(regra.getTextoPesquisa().trim())) {
+                    textoPesquisa1 = regra.getTextoPesquisa1().trim();
+                    textoPesquisa2 = regra.getTextoPesquisa2().trim();
+
+                    if (textoPesquisa2.length() > 1) {
+
+                        if (sms.getMensagem().contains(textoPesquisa1) && sms.getMensagem().contains(textoPesquisa2)) {
+                            existeRegra = true;
+                            regraImportacaoEncontrada = regra;
+                            break;
+                        }
+
+                    } else if (sms.getMensagem().contains(textoPesquisa1)) {
                         existeRegra = true;
                         regraImportacaoEncontrada = regra;
                         break;
@@ -75,7 +88,7 @@ public class ReceberSMS extends BroadcastReceiver {
                 if (existeRegra) {
                     Toast.makeText(context, "ACHEI A REGRA", Toast.LENGTH_LONG).show();
 
-                    processaRegraImportacao(context,regraImportacaoEncontrada, sms);
+                    processaRegraImportacao(context, regraImportacaoEncontrada, sms);
 
                     Toast.makeText(context, "Regra Processada com sucesso!", Toast.LENGTH_LONG).show();
 
@@ -84,12 +97,12 @@ public class ReceberSMS extends BroadcastReceiver {
                     Toast.makeText(context, "Não existe Regra", Toast.LENGTH_LONG).show();
 
                     //Abre Cadastro Nova Regra
-                   // Intent it = new Intent(context, actCadRegraImportacaoSMS.class);
-                   // it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    // Intent it = new Intent(context, actCadRegraImportacaoSMS.class);
+                    // it.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                   // it.putExtra(actCadRegraImportacaoSMS.PARAM_IMP_SMS, sms);
+                    // it.putExtra(actCadRegraImportacaoSMS.PARAM_IMP_SMS, sms);
 
-                   // context.startActivity(it);
+                    // context.startActivity(it);
                 }
 
             }
@@ -97,22 +110,22 @@ public class ReceberSMS extends BroadcastReceiver {
     }
 
 
-    public void processaRegraImportacao(Context context,RegraImportacaoSMS regraImportacaoSMS, SMS sms) {
+    public void processaRegraImportacao(Context context, RegraImportacaoSMS regraImportacaoSMS, SMS sms) {
 
 
         Double valor = 0.0;
         Date data = sms.getData();
-        ArrayList<Double> valores = NumberUtis.getCurrencyInStringWithRegEx(sms.getMensagem(),"$");
+        ArrayList<Double> valores = NumberUtis.getCurrencyInStringWithRegEx(sms.getMensagem(), "$");
         ArrayList<Date> datas = DateUtils.getDatesInStringWithRegEx(sms.getMensagem());
         Date dataInclusao = DateUtils.getCurrentDatetime();
         int noAnoMEs = DateUtils.getYearAndMonth(data);
         Conta contaOrigem = regraImportacaoSMS.getContaOrigem();
         String descReceitaDespesa = regraImportacaoSMS.getDescricaoReceitaDespesa();
 
-        if(valores.size()>0)
+        if (valores.size() > 0)
             valor = valores.get(0);
 
-        if(datas.size()>0)
+        if (datas.size() > 0)
             data = datas.get(0);
 
         if (regraImportacaoSMS.getIdTipoTransacao() == Constantes.TipoTransacao.RECEITA) {

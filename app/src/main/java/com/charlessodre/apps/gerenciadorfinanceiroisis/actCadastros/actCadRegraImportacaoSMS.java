@@ -55,7 +55,8 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
     private EditText edtNomeRegraImpSMS;
     private EditText edtNumeroSMS;
-    private EditText edtTextoNoSMS;
+    private EditText edtTexto1NoSMS;
+    private EditText edtTexto2NoSMS;
     private EditText edtTextoDescReceita;
     private EditText edtTextoDescDespesa;
 
@@ -194,7 +195,8 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
         this.edtNomeRegraImpSMS = (EditText) findViewById(R.id.edtNomeRegraImpSMS);
         this.edtNumeroSMS = (EditText) findViewById(R.id.edtNumeroSMS);
-        this.edtTextoNoSMS = (EditText) findViewById(R.id.edtTextoNoSMS);
+        this.edtTexto1NoSMS = (EditText) findViewById(R.id.edtTexto1NoSMS);
+        this.edtTexto2NoSMS = (EditText) findViewById(R.id.edtTexto2NoSMS);
         this.edtTextoDescDespesa = (EditText) findViewById(R.id.edtTextoDescDespesa);
         this.edtTextoDescReceita = (EditText) findViewById(R.id.edtTextoDescReceita);
         this.spnContaOrigem = (Spinner) findViewById(R.id.spnContaOrigem);
@@ -298,7 +300,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
             this.regraImportacaoSMS = new RegraImportacaoSMS();
 
             this.regraImportacaoSMS.setNoTelefone(sms.getNumero());
-            this.regraImportacaoSMS.setTextoPesquisa(sms.getMensagem());
+            this.regraImportacaoSMS.setTextoPesquisa1(sms.getMensagem());
         }*/
         else {
             this.regraImportacaoSMS = new RegraImportacaoSMS();
@@ -314,7 +316,8 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
         this.edtNomeRegraImpSMS.setText(this.regraImportacaoSMS.getNome());
         this.edtNumeroSMS.setText(this.regraImportacaoSMS.getNoTelefone());
-        this.edtTextoNoSMS.setText(this.regraImportacaoSMS.getTextoPesquisa());
+        this.edtTexto1NoSMS.setText(this.regraImportacaoSMS.getTextoPesquisa1());
+        this.edtTexto2NoSMS.setText(this.regraImportacaoSMS.getTextoPesquisa2());
         this.spnContaOrigem.setSelection(this.adapterConta.getIndexFromElement(this.regraImportacaoSMS.getContaOrigem().getId()));
         this.cbxStatus.setChecked(this.regraImportacaoSMS.isAtivo());
 
@@ -368,6 +371,12 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
             retorno = false;
         }
 
+        if (StringUtils.isNullOrEmpty(this.edtTexto1NoSMS.getText().toString())) {
+            this.edtTexto1NoSMS.setError(this.getString(R.string.msg_preenchimento_obrigatorio));
+
+            retorno = false;
+        }
+
 
         return retorno;
 
@@ -377,7 +386,8 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
         this.regraImportacaoSMS.setNome(this.edtNomeRegraImpSMS.getText().toString());
         this.regraImportacaoSMS.setNoTelefone(this.edtNumeroSMS.getText().toString());
-        this.regraImportacaoSMS.setTextoPesquisa(this.edtTextoNoSMS.getText().toString());
+        this.regraImportacaoSMS.setTextoPesquisa1(this.edtTexto1NoSMS.getText().toString());
+        this.regraImportacaoSMS.setTextoPesquisa2(this.edtTexto2NoSMS.getText().toString());
         this.regraImportacaoSMS.setAtivo(this.cbxStatus.isChecked());
 
         Conta contaOrigem = this.adapterConta.getItem(this.spnContaOrigem.getSelectedItemPosition());

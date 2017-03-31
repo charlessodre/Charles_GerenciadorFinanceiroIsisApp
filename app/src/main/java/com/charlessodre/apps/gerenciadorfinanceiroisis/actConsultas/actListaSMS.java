@@ -204,7 +204,7 @@ public class actListaSMS extends actBaseListas implements AdapterView.OnItemClic
             RegraImportacaoSMS regraImportacaoSMS = new RegraImportacaoSMS();
 
             regraImportacaoSMS.setDescricaoReceitaDespesa(descricao);
-            regraImportacaoSMS.setTextoPesquisa(descricao);
+            regraImportacaoSMS.setTextoPesquisa1(descricao);
             regraImportacaoSMS.setNoTelefone(sms.getNumero());
             regraImportacaoSMS.setAtivo(true);
             regraImportacaoSMS.setDataInclusao(dataInclusao);

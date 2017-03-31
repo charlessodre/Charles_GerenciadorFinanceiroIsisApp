@@ -253,6 +253,8 @@ public class DateUtils {
 
         String regexDateLong = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d";
         String regexShort = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.]\\d\\d";
+        Date convertedDate;
+        String stringDate;
         Matcher matcher;
         ArrayList<Date> allMatches = new  ArrayList<Date>();
 
@@ -267,7 +269,16 @@ public class DateUtils {
             matcher = Pattern.compile(regexShort).matcher(strigWithDates);
 
             while (matcher.find()) {
-                allMatches.add(DateUtils.stringToDateShort(matcher.group()));
+
+                stringDate = matcher.group();
+
+                if(stringDate.split("/").length<3)
+                    stringDate = stringDate.substring(0,5) + "/" + getCurrentYear();
+
+                convertedDate = DateUtils.stringToDateShort(stringDate);
+
+                if(convertedDate != null)
+                    allMatches.add(convertedDate);
             }
 
         }

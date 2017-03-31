@@ -247,7 +247,8 @@ public class ScriptSQL {
         sqlBuilder.append(" CREATE TABLE IF NOT EXISTS TB_GF_SUB_REGRA_IMPORT_SMS ( " );
         sqlBuilder.append("   _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, " );
         sqlBuilder.append("   NM_REGRA_IMPORTACAO VARCHAR(30) NOT NULL, " );
-        sqlBuilder.append("   DS_TEXTO_PESQUISA VARCHAR(30) NOT NULL, " );
+        sqlBuilder.append("   DS_TEXTO_PESQUISA_1 VARCHAR(30) NOT NULL, " );
+        sqlBuilder.append("   DS_TEXTO_PESQUISA_2 VARCHAR(30) NULL, " );
         sqlBuilder.append("   DS_RECEITA_DESPESA VARCHAR(40) NULL, " );
         sqlBuilder.append("   NO_TELEFONE VARCHAR(30) NOT NULL, " );
         sqlBuilder.append("   FL_ATIVO CHAR(1) NOT NULL DEFAULT 1, " );

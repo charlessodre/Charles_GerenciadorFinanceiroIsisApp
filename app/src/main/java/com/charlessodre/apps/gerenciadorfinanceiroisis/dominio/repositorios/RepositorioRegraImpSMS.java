@@ -75,7 +75,8 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
 
 
         values.put(RegraImportacaoSMS.NM_REGRA_IMPORTACAO, regraImportacaoSMS.getNome());
-        values.put(RegraImportacaoSMS.DS_TEXTO_PESQUISA, regraImportacaoSMS.getTextoPesquisa());
+        values.put(RegraImportacaoSMS.DS_TEXTO_PESQUISA_1, regraImportacaoSMS.getTextoPesquisa1());
+        values.put(RegraImportacaoSMS.DS_TEXTO_PESQUISA_2, regraImportacaoSMS.getTextoPesquisa2());
         values.put(RegraImportacaoSMS.NO_TELEFONE, regraImportacaoSMS.getNoTelefone());
         values.put(RegraImportacaoSMS.FL_ATIVO, BooleanUtils.parseBooleanToint(regraImportacaoSMS.isAtivo()));
         values.put(RegraImportacaoSMS.DT_INCLUSAO, regraImportacaoSMS.getDataInclusao().getTime());
@@ -111,7 +112,8 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
                 regraImportacaoSMS.setId(cursor.getLong(cursor.getColumnIndex(RegraImportacaoSMS.ID)));
                 regraImportacaoSMS.setNome(cursor.getString(cursor.getColumnIndex(RegraImportacaoSMS.NM_REGRA_IMPORTACAO)));
                 regraImportacaoSMS.setNoTelefone(cursor.getString(cursor.getColumnIndex(RegraImportacaoSMS.NO_TELEFONE)));
-                regraImportacaoSMS.setTextoPesquisa(cursor.getString(cursor.getColumnIndex(RegraImportacaoSMS.DS_TEXTO_PESQUISA)));
+                regraImportacaoSMS.setTextoPesquisa1(cursor.getString(cursor.getColumnIndex(RegraImportacaoSMS.DS_TEXTO_PESQUISA_1)));
+                regraImportacaoSMS.setTextoPesquisa2(cursor.getString(cursor.getColumnIndex(RegraImportacaoSMS.DS_TEXTO_PESQUISA_2)));
                 regraImportacaoSMS.setIdTipoTransacao(cursor.getInt(cursor.getColumnIndex(RegraImportacaoSMS.ID_TIPO_TRANSACAO)));
 
                 regraImportacaoSMS.setCategoriaReceita(repCategoriaReceita.getCatergoriaReceita(transaction, cursor.getLong(cursor.getColumnIndex(RegraImportacaoSMS.ID_CATEGORIA_RECEITA))));

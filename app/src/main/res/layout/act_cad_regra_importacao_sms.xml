@@ -67,13 +67,33 @@
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <TextView
-                    android:id="@+id/lblTextoNoSMS"
+                    android:id="@+id/lblTexto1NoSMS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/lblTextoNoSMS" />
 
                 <EditText
-                    android:id="@+id/edtTextoNoSMS"
+                    android:id="@+id/edtTexto1NoSMS"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:elegantTextHeight="true"
+                    android:ems="10"
+                    android:hint="@string/lblTextoNoSMS"
+                    android:imeOptions="actionDone"
+                    android:inputType="textCapSentences"
+                    android:maxLength="30"
+                    android:maxLines="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+
+                <TextView
+                    android:id="@+id/lblTexto2NoSMS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lblTextoNoSMS" />
+
+                <EditText
+                    android:id="@+id/edtTexto2NoSMS"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:elegantTextHeight="true"
