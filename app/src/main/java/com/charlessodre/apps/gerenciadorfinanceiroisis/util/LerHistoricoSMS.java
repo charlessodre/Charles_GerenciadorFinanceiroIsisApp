@@ -122,7 +122,7 @@ public class LerHistoricoSMS {
                     SMS sms = new SMS();
 
                     sms.setMensagem(cursor.getString(cursor.getColumnIndexOrThrow(SMS.BODY)).toString());
-                    sms.setNumero(cursor.getString(cursor.getColumnIndexOrThrow(SMS.ADDRESS)).toString());
+                    sms.setNumero(cursor.getString(cursor.getColumnIndexOrThrow(SMS.ADDRESS)).toString().replace("+",""));
                     sms.setData(DateUtils.longToDate(cursor.getLong(cursor.getColumnIndexOrThrow(SMS.DATE))));
                     sms.setTipoSMS(SMS.getTipoSMS(tipoSMS));
                     sms.setId(i);

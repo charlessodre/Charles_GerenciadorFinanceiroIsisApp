@@ -103,7 +103,6 @@ public class actListaSMS extends actBaseListas implements AdapterView.OnItemClic
 
         this.adapterSMS = new AdapterSMS(this, R.layout.item_sms);
 
-
     }
 
     private void atualizaListView() {

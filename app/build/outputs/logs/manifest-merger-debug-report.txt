@@ -179,7 +179,7 @@ ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\And
 activity#com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actListaSMS
 ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:75:9-78:68
 	android:label
-		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:77:13-67
+		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:77:13-52
 	android:theme
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:78:13-56
 	android:name

@@ -55,7 +55,7 @@ public class ReceberSMS extends BroadcastReceiver {
 
                 smsMessage[i] = SmsMessage.createFromPdu((byte[]) pdus[i]);
 
-                sms.setNumero(smsMessage[i].getDisplayOriginatingAddress());
+                sms.setNumero(smsMessage[i].getDisplayOriginatingAddress().replace("+",""));
                 sms.setMensagem(smsMessage[i].getDisplayMessageBody());
                 sms.setData(DateUtils.getCurrentDatetime());
 

@@ -38,6 +38,9 @@ public class NumberUtis {
             stringValue = matcher.group();
             stringValueClear = stringValue.replace(currencySymbol, "").replace(".", "").replace(",", ".");
 
+            if(stringValueClear.endsWith(".") || stringValueClear.endsWith(","))
+                stringValueClear = stringValueClear.substring(0, stringValueClear.length()-1);
+
             try {
                 value = Double.parseDouble(stringValueClear);
             } catch (NumberFormatException e) {
@@ -45,7 +48,8 @@ public class NumberUtis {
                 value = null;
             }
 
-            allMatches.add(value);
+            if( value != null)
+                allMatches.add(value);
         }
 
         return allMatches;

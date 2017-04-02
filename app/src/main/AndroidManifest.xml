@@ -74,7 +74,7 @@
         <activity android:name=".actCadastros.actCadRegraImportacaoSMS" />
         <activity
             android:name=".actConsultas.actListaSMS"
-            android:label="@string/title_activity_act_importa_sms"
+            android:label="@string/title_lista_sms"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
