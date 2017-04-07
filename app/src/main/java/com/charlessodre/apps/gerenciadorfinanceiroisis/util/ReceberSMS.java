@@ -71,13 +71,13 @@ public class ReceberSMS extends BroadcastReceiver {
 
                     if (textoPesquisa2.length() > 1) {
 
-                        if (sms.getMensagem().contains(textoPesquisa1) && sms.getMensagem().contains(textoPesquisa2)) {
+                        if (sms.getMensagem().toLowerCase().contains(textoPesquisa1.toLowerCase()) && sms.getMensagem().toLowerCase().contains(textoPesquisa2.toLowerCase())) {
                             existeRegra = true;
                             regraImportacaoEncontrada = regra;
                             break;
                         }
 
-                    } else if (sms.getMensagem().contains(textoPesquisa1)) {
+                    } else if (sms.getMensagem().toLowerCase().contains(textoPesquisa1.toLowerCase())) {
                         existeRegra = true;
                         regraImportacaoEncontrada = regra;
                         break;

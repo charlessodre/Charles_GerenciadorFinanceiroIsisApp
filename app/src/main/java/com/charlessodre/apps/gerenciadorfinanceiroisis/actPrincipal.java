@@ -1,6 +1,5 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis;
 
-import android.Manifest;
 import android.animation.Animator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -24,6 +22,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.charlessodre.apps.gerenciadorfinanceiroisis.Charts.DataElementChart;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.Charts.ListDataElements;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadReceita;
@@ -41,13 +41,14 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgResumo;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.EnviarSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.FragmentHelper;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.LerHistoricoSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.MessageBoxHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.PermissionsUtil;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ToastHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgGraficoBarras;
 
 public class actPrincipal extends actBaseListas
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -61,6 +62,7 @@ public class actPrincipal extends actBaseListas
 
     //Fragmentos
     private frgResumo fragmentoResumo;
+    private frgGraficoBarras fragmentoGraficoBarra;
 
     //Atributos
     private boolean isFABOpen = false;
@@ -345,6 +347,11 @@ public class actPrincipal extends actBaseListas
         if (this.fragmentoResumo == null)
             this.adicionaFragResumo();
 
+        this.fragmentoGraficoBarra = (frgGraficoBarras) FragmentHelper.findFragmentByTag(getSupportFragmentManager(), frgGraficoBarras.NOME_FRAGMENTO);
+
+        if(this.fragmentoGraficoBarra == null)
+            this.adicionaFragGrafBarras();
+
     }
 
     private void adicionaFragResumo() {
@@ -355,6 +362,21 @@ public class actPrincipal extends actBaseListas
         Bundle argument = new Bundle();
 
         FragmentHelper.addFragment(getSupportFragmentManager(), this.fragmentoResumo, argument, frgResumo.NOME_FRAGMENTO, R.id.frag_container_1);
+
+    }
+
+    private void adicionaFragGrafBarras()
+    {
+        this.fragmentoGraficoBarra = new frgGraficoBarras();
+
+        ListDataElements listDataElements = new ListDataElements();
+
+        Bundle argument = new Bundle();
+
+        argument.putSerializable(fragmentoGraficoBarra.LISTA_ELEMENTOS_GRAFICO, listDataElements );
+
+        FragmentHelper.addFragment(getSupportFragmentManager(), this.fragmentoGraficoBarra, argument, frgGraficoBarras.NOME_FRAGMENTO, R.id.frag_container_2);
+
 
     }
 

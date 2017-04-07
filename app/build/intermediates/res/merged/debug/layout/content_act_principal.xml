@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
+    android:background="@color/corTelaPrincipalFundo"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.actPrincipal"
-    tools:showIn="@layout/app_bar_act_principal"
-    android:background="@color/corTelaPrincipalFundo">
+    tools:showIn="@layout/app_bar_act_principal">
 
     <LinearLayout
         android:id="@+id/lnlfragBarraNavegacaoResumo"
@@ -70,12 +70,14 @@
             android:layout_below="@+id/frag_all_containers"
             android:orientation="vertical"></LinearLayout>
 
+
         <LinearLayout
             android:id="@+id/frag_container_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/frag_container_1"
+            android:layout_marginTop="@dimen/standard_08"
             android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
@@ -84,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/frag_container_2"
+            android:layout_marginTop="@dimen/standard_08"
             android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
@@ -92,6 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/frag_container_3"
+            android:layout_marginTop="@dimen/standard_08"
             android:orientation="vertical"></LinearLayout>
 
     </LinearLayout>

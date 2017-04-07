@@ -2,10 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/corFragResumoFundo"><![CDATA[
+    android:background="@color/corFragResumoFundo"
     tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgResumo">
-
-    ]]>
 
     <LinearLayout
         android:id="@+id/LinearLayout3"
