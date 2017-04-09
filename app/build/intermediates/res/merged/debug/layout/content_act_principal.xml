@@ -3,8 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-
+    android:layout_height="wrap_content"
     android:background="@color/corTelaPrincipalFundo"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.actPrincipal"
@@ -52,6 +51,21 @@
 
     </LinearLayout>
 
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".mainScreen">
+
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|bottom"
+            android:layout_marginTop="?android:attr/actionBarSize">
+
     <LinearLayout
         android:id="@+id/frag_all_containers"
         android:layout_width="match_parent"
@@ -59,8 +73,8 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/lnlfragBarraNavegacaoResumo"
         android:orientation="vertical"
-
         android:padding="8dp">
+
 
         <LinearLayout
             android:id="@+id/frag_container_1"
@@ -69,7 +83,6 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/frag_all_containers"
             android:orientation="vertical"></LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/frag_container_2"
@@ -99,4 +112,10 @@
             android:orientation="vertical"></LinearLayout>
 
     </LinearLayout>
+        </ScrollView>
+
+    </FrameLayout>
+
+
 </RelativeLayout>
+

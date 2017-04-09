@@ -7,6 +7,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_settings">Settings</string>
 
+    <string name="lblConfiguracoes">Configurações</string>
+
     <string name="lblSim">Sim</string>
     <string name="lblNao">Não</string>
 
@@ -43,6 +45,7 @@
     <string name="lblTransferencia">Transferência</string>
 
     <string name="lblRegraImpSMS">Regra Importação SMS</string>
+    <string name="lblImportacaoSMS">Lista de SMS para Importação</string>
     <string name="lblPaga">Paga</string>
     <string name="lblPago">Pago</string>
     <string name="lblNome">Nome</string>

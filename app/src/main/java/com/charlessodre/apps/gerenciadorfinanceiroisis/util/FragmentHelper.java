@@ -47,12 +47,79 @@ public class FragmentHelper {
         fragmentTransaction.commit();
     }
 
+    public static void removeFragmentWithStateLoss(FragmentManager fragmentManager, Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.remove(fragment);
+
+        fragmentTransaction.commitAllowingStateLoss();
+    }
+
+    public static void detachFragment(FragmentManager fragmentManager, Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.detach(fragment);
+
+        fragmentTransaction.commit();
+    }
+
+    public static void atachFragment(FragmentManager fragmentManager, Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.attach(fragment);
+
+        fragmentTransaction.commit();
+    }
+
+    public static void detachFragmentWithStateLoss(FragmentManager fragmentManager, Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.detach(fragment);
+
+        fragmentTransaction.commitAllowingStateLoss();
+    }
+
+    public static void atachFragmentWithStateLoss(FragmentManager fragmentManager, Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.attach(fragment);
+
+        fragmentTransaction.commitAllowingStateLoss();
+    }
+
+
+    public static void detachAndAtachFragment(FragmentManager fragmentManager, Fragment detachFragment,  Fragment atachFragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.detach(detachFragment);
+        fragmentTransaction.attach(atachFragment);
+
+        fragmentTransaction.commit();
+    }
+
+
+    public static void detachAndAtachFragmentWithStateLoss(FragmentManager fragmentManager, Fragment detachFragment,  Fragment atachFragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.detach(detachFragment);
+        fragmentTransaction.attach(atachFragment);
+        fragmentTransaction.commitAllowingStateLoss();
+    }
+
     public static void replaceFragment(FragmentManager fragmentManager, Fragment fragment, int containerView) {
 
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         fragmentTransaction.replace(containerView, fragment);
-        fragmentTransaction.commit();
+        fragmentTransaction.commitAllowingStateLoss();
+    }
+
+    public static void replaceFragmentWithStateLoss(FragmentManager fragmentManager, Fragment fragment, int containerView) {
+
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        fragmentTransaction.replace(containerView, fragment);
+        fragmentTransaction.commitAllowingStateLoss();
     }
 
     public static String getTextEditTextFragment(FragmentManager fragmentManager, String tagFragment, int idEditText) {

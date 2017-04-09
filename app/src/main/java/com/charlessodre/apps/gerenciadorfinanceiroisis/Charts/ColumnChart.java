@@ -22,7 +22,7 @@ import lecho.lib.hellocharts.view.ColumnChartView;
 public class ColumnChart extends BaseChart {
 
     //Constructor
-    public ColumnChart(Activity activity, ColumnChartView chart, ListDataElements listDataElements) {
+    public ColumnChart(Activity activity, ColumnChartView chart) {
 
         this.chart = chart;
         this.data = new ColumnChartData();
@@ -40,6 +40,15 @@ public class ColumnChart extends BaseChart {
     private String axisXName;
     private String axisYName;
     private ListDataElements listDataElements;
+
+    public ListDataElements getListDataElements() {
+        return listDataElements;
+    }
+
+    public void setListDataElements(ListDataElements listDataElements) {
+        this.listDataElements = listDataElements;
+    }
+
 
     public String getAxisXName() {
         return axisXName;
@@ -86,12 +95,19 @@ public class ColumnChart extends BaseChart {
             values = new ArrayList<SubcolumnValue>();
 
             for (int j = 0; j < numSubcolumns; ++j) {
-                values.add(new SubcolumnValue(dataElement.getValue(), dataElement.getColor()));
+
+                SubcolumnValue subcolumnValue = new SubcolumnValue();
+                subcolumnValue.setValue(dataElement.getValue());
+                subcolumnValue.setColor(dataElement.getColor());
+                subcolumnValue.setLabel(dataElement.getLabel());
+
+                values.add(subcolumnValue);
             }
 
             Column column = new Column(values);
             column.setHasLabels(super.isHasLabels());
             column.setHasLabelsOnlyForSelected(super.isHasLabelForSelected());
+
             columns.add(column);
         }
 

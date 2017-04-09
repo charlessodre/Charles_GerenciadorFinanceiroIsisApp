@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/corFragResumoFundo"
+    android:padding="@dimen/fab_padding"
     tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgResumo">
 
     <LinearLayout
@@ -12,159 +13,152 @@
         android:orientation="vertical">
 
         <TextView
-            android:text="@string/lblResumoMes"
+            android:id="@+id/txtResumoMes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/txtResumoMes"
-            android:textSize="17sp"
-            android:layout_marginLeft="6dp"
-            android:textColor="@color/black"
+
+            android:text="@string/lblResumoMes"
             android:textAlignment="center"
-            android:layout_marginTop="2dp" />
+            android:textColor="@color/black"
+            android:textSize="17sp" />
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/fab_margin_top"
+            android:id="@+id/lnlResumoConta"
             android:layout_width="match_parent"
             android:layout_height="@dimen/fragResumoAltura"
-            android:gravity="center"
-            android:id="@+id/lnlResumoConta"
             android:layout_below="@+id/LinearLayout3"
-                  android:textAlignment="center"
-            android:paddingLeft="5dp"
-            android:paddingBottom="1dp"
-            android:paddingRight="5dp"
-            android:paddingTop="1dp"
             android:background="@drawable/bg_tab_pressed"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="1dp"
+            android:textAlignment="center"
 
             >
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="match_parent"
-                android:background="@color/corTelaContas"
-                android:layout_width="@dimen/fragResumoLarguraFaixaCor"
                 android:id="@+id/lnlCorConta"
-                android:layout_margin="4dp"></LinearLayout>
+                android:layout_width="@dimen/fragResumoLarguraFaixaCor"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/corTelaContas"
+                android:orientation="horizontal"></LinearLayout>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lblContas"
                 android:id="@+id/txtNomeConta"
-                android:layout_weight="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="14sp"
-                android:paddingLeft="4dp" />
-
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="R$ 0,00"
+                android:layout_weight="1"
+                android:paddingLeft="4dp"
+                android:text="@string/lblContas"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="14sp" />
+
+            <TextView
                 android:id="@+id/txtValorContaAcumulado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:gravity="right"
-                android:paddingRight="4dp" />
+                android:text="R$ 0,00"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/fragResumoAltura"
-
-            android:gravity="center"
             android:id="@+id/lnlResumoReceitas"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragResumoAltura"
+
             android:layout_below="@+id/lnlResumoConta"
-            android:textAlignment="center"
-            android:paddingLeft="5dp"
-            android:paddingBottom="1dp"
-            android:paddingRight="5dp"
-            android:paddingTop="1dp"
             android:background="@drawable/bg_tab_pressed"
             android:clickable="true"
             android:focusable="true"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="1dp"
+            android:paddingTop="1dp"
+            android:textAlignment="center">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="match_parent"
-                android:background="@color/corTelaReceitas"
+                android:id="@+id/lnlCorReceita"
                 android:layout_width="@dimen/fragResumoLarguraFaixaCor"
-                android:layout_margin="4dp"
-                android:id="@+id/lnlCorReceita"></LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/corTelaReceitas"
+                android:orientation="horizontal"></LinearLayout>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lblReceitas"
                 android:id="@+id/txtNomeReceita"
-                android:layout_weight="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="14sp"
-                android:paddingLeft="4dp" />
-
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="R$ 0,00"
-                android:id="@+id/txtValorReceitaAcumulado"
                 android:layout_weight="1"
+                android:paddingLeft="4dp"
+                android:text="@string/lblReceitas"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtValorReceitaAcumulado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
-                android:paddingRight="4dp"
-                android:textColor="@color/corResolvido"/>
+                android:text="R$ 0,00"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/corResolvido" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
+            android:id="@+id/lnlResumoDespesas"
             android:layout_width="match_parent"
             android:layout_height="@dimen/fragResumoAltura"
-            android:gravity="center"
-            android:id="@+id/lnlResumoDespesas"
             android:layout_below="@+id/lnlResumoReceitas"
-            android:textAlignment="center"
-            android:paddingLeft="5dp"
-            android:paddingBottom="1dp"
-            android:paddingRight="5dp"
-            android:paddingTop="1dp"
             android:background="@drawable/bg_tab_pressed"
             android:clickable="true"
             android:focusable="true"
-            android:focusableInTouchMode="true">
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="1dp"
+            android:paddingTop="1dp"
+            android:textAlignment="center">
 
             <LinearLayout
-                android:orientation="horizontal"
-                android:layout_height="match_parent"
-                android:background="@color/corTelaDespesas"
+                android:id="@+id/lnlCorDespesas"
                 android:layout_width="@dimen/fragResumoLarguraFaixaCor"
-                android:layout_margin="4dp"
-                android:id="@+id/lnlCorDespesas"></LinearLayout>
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/corTelaDespesas"
+                android:orientation="horizontal"></LinearLayout>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/lblDespesas"
                 android:id="@+id/txtNomeDespesas"
-                android:layout_weight="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="14sp"
-                android:paddingLeft="4dp" />
-
-            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="R$ 0,00"
-                android:id="@+id/txtValorDespesasAcumulado"
                 android:layout_weight="1"
+                android:paddingLeft="4dp"
+                android:text="@string/lblDespesas"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtValorDespesasAcumulado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="right"
-                android:paddingRight="4dp"
-                android:textColor="@color/corPendencia"/>
+                android:text="R$ 0,00"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textColor="@color/corPendencia" />
 
         </LinearLayout>
 

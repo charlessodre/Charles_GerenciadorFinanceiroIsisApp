@@ -13,7 +13,7 @@
     <ScrollView
         android:id="@+id/createdrill_scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"

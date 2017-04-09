@@ -13,6 +13,13 @@
     <dimen name="lista_app_bar_layout_layout_height">56dp</dimen>
     <dimen name="lista_toobar_layout_layout_height">56dp</dimen>
 
+    <dimen name="fab_padding">16dp</dimen>
+    <dimen name="fab_margin_top">5dp</dimen>
+    <dimen name="fab_paddingTop">5dp</dimen>
+    <dimen name="fab_paddingBottom">8dp</dimen>
+    <dimen name="fab_paddingLeft">10dp</dimen>
+
+
 
     <dimen name="standard_08">8dp</dimen>
     <dimen name="standard_10">10dp</dimen>

@@ -116,6 +116,10 @@
         "source": "C:\\Users\\charl\\.android\\build-cache\\8539ae108f168d412db27ecb2651ae5b7bcbc416\\output\\res\\layout\\abc_action_mode_close_item_material.xml"
     },
     {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\frg_graf_resumo_receita_despesa.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\frg_graf_resumo_receita_despesa.xml"
+    },
+    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\content_act_receita.xml",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\content_act_receita.xml"
     },
@@ -354,10 +358,6 @@
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_text_input_password_icon.xml",
         "source": "C:\\Users\\charl\\.android\\build-cache\\faa278becd56839cd4966f8bf768682ed81c26f6\\output\\res\\layout\\design_text_input_password_icon.xml"
-    },
-    {
-        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\frg_grafico_barra.xml",
-        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\layout\\frg_grafico_barra.xml"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\layout\\frag_cor_ordem_exibicao.xml",

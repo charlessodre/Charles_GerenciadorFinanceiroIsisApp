@@ -24,7 +24,7 @@
     <color name="corTelaRegraImportacaoSMS">#39F</color>
     <color name="corTelaListaSMS">#39A</color>
 
-
+    <color name="corLinha">#c0c0c0</color>
 
     <color name="corPendencia">#D50000</color>
     <color name="corResolvido">#00C853</color>

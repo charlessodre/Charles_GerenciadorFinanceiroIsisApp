@@ -420,7 +420,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
 //Totalizadores
 
-    public double getValorTotalDespesas(int anoMes, boolean somentePagas) {
+    public Double getValorTotalDespesas(int anoMes, boolean somentePagas) {
         String[] parametros = {String.valueOf(anoMes)};
 
         StringBuilder sql = new StringBuilder();

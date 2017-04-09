@@ -402,7 +402,7 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
 
     //Totalizadores
-    public double getValorTotalRecebido(int anoMes, boolean somentePagas) {
+    public Double getValorTotalRecebido(int anoMes, boolean somentePagas) {
         String[] parametros = {String.valueOf(anoMes)};
 
         StringBuilder sql = new StringBuilder();

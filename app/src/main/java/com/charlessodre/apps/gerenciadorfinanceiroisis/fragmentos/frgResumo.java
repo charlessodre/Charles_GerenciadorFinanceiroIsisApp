@@ -50,7 +50,8 @@ public class frgResumo extends Fragment {
 
     //Constantes
     public static final String NOME_FRAGMENTO = "FRAG_RESUMO";
-    public static final int PARAM_ANO_MES = 0;
+    public static final String PARAM_ANO_MES = "PARAM_ANO_MES";
+
 
     //Construtores
     public frgResumo() {
@@ -58,6 +59,22 @@ public class frgResumo extends Fragment {
     }
 
 
+    public static frgResumo newInstance(int anoMes) {
+
+        frgResumo novoFragmento = new frgResumo();
+
+        Bundle args = new Bundle();
+
+        args.putInt(PARAM_ANO_MES, anoMes);
+
+        novoFragmento.anoMes = anoMes;
+
+
+        novoFragmento.setArguments(args);
+
+        return novoFragmento;
+
+    }
 
     //Eventos
     @Override
@@ -113,14 +130,12 @@ public class frgResumo extends Fragment {
         this.repositorioReceita = new RepositorioReceita(this.getContext());
         this.repositorioDespesa = new RepositorioDespesa(this.getContext());
 
-        this.atualizaResumo(this.anoMes);
+        this.atualizaResumo();
 
     }
 
-    public void atualizaResumo(int anoMes) {
-       this.anoMes = anoMes;
+    private void atualizaResumo() {
 
-        if(this.getContext() != null) {
 
             double valorAcumuladoContas = this.repositorioConta.getValorTotal();
             double valorAcumuladoReceitas = this.repositorioReceita.getValorTotalRecebido(this.anoMes,true);
@@ -137,7 +152,7 @@ public class frgResumo extends Fragment {
             this.txtValorReceitaAcumulado.setText(symbol + " " + NumberUtis.getFormartCurrency(valorAcumuladoReceitas));
             this.txtValorDespesasAcumulado.setText(symbol + " " + NumberUtis.getFormartCurrency(valorAcumuladoDespesas));
 
-        }
+
     }
 
 }

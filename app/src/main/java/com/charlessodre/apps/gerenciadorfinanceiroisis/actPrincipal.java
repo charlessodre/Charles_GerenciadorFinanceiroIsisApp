@@ -22,8 +22,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.charlessodre.apps.gerenciadorfinanceiroisis.Charts.DataElementChart;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.Charts.ListDataElements;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadReceita;
@@ -48,7 +46,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ToastHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgGraficoBarras;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgGrafResumoReceitaDespesa;
 
 public class actPrincipal extends actBaseListas
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -62,7 +60,8 @@ public class actPrincipal extends actBaseListas
 
     //Fragmentos
     private frgResumo fragmentoResumo;
-    private frgGraficoBarras fragmentoGraficoBarra;
+    private frgGrafResumoReceitaDespesa frgGrafResumoReceitaDespesaTotal;
+    private frgGrafResumoReceitaDespesa frgGrafResumoReceitaDespesaConfirmadas;
 
     //Atributos
     private boolean isFABOpen = false;
@@ -80,6 +79,7 @@ public class actPrincipal extends actBaseListas
         this.setNomeMes();
 
     }
+
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
@@ -225,12 +225,11 @@ public class actPrincipal extends actBaseListas
             Intent it = new Intent(this, actListaSMS.class);
             startActivityForResult(it, 0);
 
-        }  else if (id == R.id.nav_cad_regra_sms) {
+        } else if (id == R.id.nav_cad_regra_sms) {
 
             Intent it = new Intent(this, actRegraImportacaoSMS.class);
             startActivityForResult(it, 0);
-        }
-        else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_send) {
 
             //exemplo_lista_single();
             verificaPermissoes();
@@ -341,43 +340,60 @@ public class actPrincipal extends actBaseListas
             }
         });
 
-        //Verifica se o fragmento já foi adicionado.
-        this.fragmentoResumo = (frgResumo) FragmentHelper.findFragmentByTag(getSupportFragmentManager(), frgResumo.NOME_FRAGMENTO);
-
-        if (this.fragmentoResumo == null)
+       //Adiciona o Fragmento de Resumo
             this.adicionaFragResumo();
 
-        this.fragmentoGraficoBarra = (frgGraficoBarras) FragmentHelper.findFragmentByTag(getSupportFragmentManager(), frgGraficoBarras.NOME_FRAGMENTO);
+        //Adiciona o Fragmento Grafico Total
+        this.adicionaFragGrafReceitasDespesaTotal();
 
-        if(this.fragmentoGraficoBarra == null)
-            this.adicionaFragGrafBarras();
+        //Adiciona o Fragmento Grafico Confirmadas
+        this.adicionaFragGrafReceitasDespesaConfirmadas();
+
+
 
     }
 
     private void adicionaFragResumo() {
 
 
-        this.fragmentoResumo = new frgResumo();
+        this.fragmentoResumo = (frgResumo) FragmentHelper.findFragmentByTag(getSupportFragmentManager(), frgResumo.NOME_FRAGMENTO);
 
-        Bundle argument = new Bundle();
+        //Verifica se o fragmento já foi adicionado.
+        if (this.fragmentoResumo == null) {
+            this.fragmentoResumo = frgResumo.newInstance(super.getAnoMes());
 
-        FragmentHelper.addFragment(getSupportFragmentManager(), this.fragmentoResumo, argument, frgResumo.NOME_FRAGMENTO, R.id.frag_container_1);
+            Bundle argument = new Bundle();
 
+            FragmentHelper.addFragment(getSupportFragmentManager(), this.fragmentoResumo, frgResumo.NOME_FRAGMENTO, R.id.frag_container_1);
+        }
     }
 
-    private void adicionaFragGrafBarras()
-    {
-        this.fragmentoGraficoBarra = new frgGraficoBarras();
+    private void adicionaFragGrafReceitasDespesaTotal() {
 
-        ListDataElements listDataElements = new ListDataElements();
+        this.frgGrafResumoReceitaDespesaTotal = (frgGrafResumoReceitaDespesa) FragmentHelper.findFragmentByTag(getSupportFragmentManager(), frgGrafResumoReceitaDespesa.NOME_FRAGMENTO);
 
-        Bundle argument = new Bundle();
+        //Verifica se o fragmento já foi adicionado.
+        if (this.frgGrafResumoReceitaDespesaTotal == null)
+        {
+            this.frgGrafResumoReceitaDespesaTotal = frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), false);
 
-        argument.putSerializable(fragmentoGraficoBarra.LISTA_ELEMENTOS_GRAFICO, listDataElements );
+            FragmentHelper.addFragment(getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaTotal, frgGrafResumoReceitaDespesa.NOME_FRAGMENTO, R.id.frag_container_2);
 
-        FragmentHelper.addFragment(getSupportFragmentManager(), this.fragmentoGraficoBarra, argument, frgGraficoBarras.NOME_FRAGMENTO, R.id.frag_container_2);
+        }
+    }
 
+    private void adicionaFragGrafReceitasDespesaConfirmadas() {
 
+        this.frgGrafResumoReceitaDespesaConfirmadas = (frgGrafResumoReceitaDespesa) FragmentHelper.findFragmentByTag(getSupportFragmentManager(), frgGrafResumoReceitaDespesa.NOME_FRAGMENTO);
+
+        //Verifica se o fragmento já foi adicionado.
+        if (this.frgGrafResumoReceitaDespesaConfirmadas == null)
+        {
+            this.frgGrafResumoReceitaDespesaConfirmadas = frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), false);
+
+            FragmentHelper.addFragment(getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaConfirmadas, frgGrafResumoReceitaDespesa.NOME_FRAGMENTO, R.id.frag_container_2);
+
+        }
     }
 
     private void showFABMenu() {
@@ -443,7 +459,14 @@ public class actPrincipal extends actBaseListas
     }
 
     private void atualizaFragmentos() {
-        this.fragmentoResumo.atualizaResumo(super.getAnoMes());
+
+        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(),frgResumo.newInstance(super.getAnoMes()),R.id.frag_container_1);
+        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(),frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), false),R.id.frag_container_2);
+        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(),frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), true),R.id.frag_container_3);
+
+        FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(),this.fragmentoResumo);
+        FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(),this.frgGrafResumoReceitaDespesaTotal);
+        FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(),this.frgGrafResumoReceitaDespesaConfirmadas);
 
     }
 
