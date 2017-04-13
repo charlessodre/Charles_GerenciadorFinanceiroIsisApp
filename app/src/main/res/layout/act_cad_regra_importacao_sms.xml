@@ -167,7 +167,7 @@
                         android:layout_marginLeft="10dp"
                         android:checked="true"
                         android:nestedScrollingEnabled="false"
-                        android:text="@string/lblHabilitadaPergunta" />
+                        android:text="@string/lblHabilitada" />
                 </LinearLayout>
 
             </LinearLayout>

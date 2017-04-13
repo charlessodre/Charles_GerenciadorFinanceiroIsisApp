@@ -245,6 +245,178 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
 
     }
 
+    public int getQtdTransferenciaEntradaContaMes(long idConta,int anoMes) {
+        int qtdTransferencias = 0;
+
+        String[] parametros = {String.valueOf(idConta), String.valueOf(anoMes)};
+
+        StringBuilder sql = new StringBuilder();
+
+
+        sql.append("SELECT COUNT (_id) AS QTDE FROM ");
+        sql.append(Transferencia.TABELA_NOME);
+        sql.append(" WHERE " + Transferencia.ID_CONTA_DESTINO);
+        sql.append(" = ?");
+        sql.append(" AND  ");
+        sql.append(Transferencia.NO_AM_TRANSFERENCIA);
+        sql.append(" = ?");
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                do {
+                    qtdTransferencias = cursor.getInt(cursor.getColumnIndex("QTDE"));
+
+                } while (cursor.moveToNext());
+            }
+
+
+            return qtdTransferencias;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+
+    }
+
+    public int getQtdTransferenciaSaidaContaMes(long idConta,int anoMes) {
+        int qtdTransferencias = 0;
+
+        String[] parametros = {String.valueOf(idConta), String.valueOf(anoMes)};
+
+        StringBuilder sql = new StringBuilder();
+
+
+        sql.append("SELECT COUNT (_id) AS QTDE FROM ");
+        sql.append(Transferencia.TABELA_NOME);
+        sql.append(" WHERE " + Transferencia.ID_CONTA_ORIGEM);
+        sql.append(" = ?");
+        sql.append(" AND  ");
+        sql.append(Transferencia.NO_AM_TRANSFERENCIA);
+        sql.append(" = ?");
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                do {
+                    qtdTransferencias = cursor.getInt(cursor.getColumnIndex("QTDE"));
+
+                } while (cursor.moveToNext());
+            }
+
+
+            return qtdTransferencias;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+
+    }
+
+    public Double getValorTransferenciaEntradaContaMes(long idConta,int anoMes) {
+        Double valorTotal = 0.0;
+
+        String[] parametros = {String.valueOf(idConta), String.valueOf(anoMes)};
+
+        StringBuilder sql = new StringBuilder();
+
+
+        sql.append("SELECT SUM (");
+        sql.append(Transferencia.VL_TRANSFERENCIA);
+        sql.append(") as VL_TOTAL FROM ");
+        sql.append(Transferencia.TABELA_NOME);
+        sql.append(" WHERE " + Transferencia.ID_CONTA_DESTINO);
+        sql.append(" = ?");
+        sql.append(" AND  ");
+        sql.append(Transferencia.NO_AM_TRANSFERENCIA);
+        sql.append(" = ?");
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                do {
+                    valorTotal = cursor.getDouble(cursor.getColumnIndex("VL_TOTAL"));
+
+                } while (cursor.moveToNext());
+            }
+
+
+            return valorTotal;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+
+    }
+
+    public Double getValorTransferenciaSaidaContaMes(long idConta,int anoMes) {
+        Double valorTotal = 0.0;
+
+        String[] parametros = {String.valueOf(idConta), String.valueOf(anoMes)};
+
+        StringBuilder sql = new StringBuilder();
+
+
+        sql.append("SELECT SUM (");
+        sql.append(Transferencia.VL_TRANSFERENCIA);
+        sql.append(") as VL_TOTAL FROM ");
+        sql.append(Transferencia.TABELA_NOME);
+        sql.append(" WHERE " + Transferencia.ID_CONTA_ORIGEM);
+        sql.append(" = ?");
+        sql.append(" AND  ");
+        sql.append(Transferencia.NO_AM_TRANSFERENCIA);
+        sql.append(" = ?");
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                do {
+                    valorTotal = cursor.getDouble(cursor.getColumnIndex("VL_TOTAL"));
+
+                } while (cursor.moveToNext());
+            }
+
+
+            return valorTotal;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+
+    }
+
     //Exclusões
     public int excluiTransferenciasContaOrigem(SQLiteDatabase transaction, RepositorioConta repositorioConta, long idContaOrigem) {
 

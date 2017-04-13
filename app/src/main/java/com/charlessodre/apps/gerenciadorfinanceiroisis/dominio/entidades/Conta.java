@@ -127,6 +127,31 @@ public class Conta extends EntidadeBase implements Serializable {
         return tipoConta;
     }
 
+    public static int getImagemTipoConta(int idTipoConta) {
+
+        switch (idTipoConta) {
+
+            case 0:
+
+                return R.drawable.ic_conta_corrente_24dp;
+
+            case 1:
+                return R.drawable.ic_poupanca_24dp;
+
+            case 2:
+                return R.drawable.ic_dinheiro_24dp;
+
+            case 3:
+
+                return R.drawable.ic_investimento_24dp;
+
+            default:
+                return R.drawable.ic_conta_outros_24dp;
+        }
+
+    }
+
+
     //Overrides
     @Override
     public String toString()

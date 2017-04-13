@@ -281,7 +281,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
         this.spnContaDestino.setAdapter(this.adapterConta);
 
         if (this.adapterConta.getCount() > 1)
-            this.spnContaOrigem.setSelection(1);
+            this.spnContaDestino.setSelection(1);
     }
 
     private void getParametrosRecebidos() {

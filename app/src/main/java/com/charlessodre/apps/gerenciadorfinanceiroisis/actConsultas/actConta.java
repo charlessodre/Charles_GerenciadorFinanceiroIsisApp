@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actOutros.actResumoConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioConta;
@@ -92,8 +93,9 @@ public class actConta extends actBaseListas implements AdapterView.OnItemClickLi
 
         this.conta = this.adpConta.getItem(position);
 
-        Intent it = new Intent(this, actCadConta.class);
-        it.putExtra(PARAM_CONTA, this.conta);
+        Intent it = new Intent(this, actResumoConta.class);
+        it.putExtra(actResumoConta.PARAM_CONTA, this.conta);
+        it.putExtra(actResumoConta.PARAM_CONTA_ANO_MES, super.getAnoMes());
 
         startActivityForResult(it, 0);
 

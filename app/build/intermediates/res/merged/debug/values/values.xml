@@ -970,6 +970,7 @@
     <string name="lblCategoriaReceitas">Categorias de Receitas</string>
     <string name="lblCodigoSeguranca">Digite seu código de segurança.</string>
     <string name="lblConfiguracoes">Configurações</string>
+    <string name="lblConfirmadas">Confirmadas</string>
     <string name="lblConta">Conta</string>
     <string name="lblContaCorrente">Conta Corrente</string>
     <string name="lblContaDestino">Conta Destino</string>
@@ -986,6 +987,7 @@
     <string name="lblDespesas">Despesas</string>
     <string name="lblDestino">Destino:</string>
     <string name="lblDinheiro">Dinheiro</string>
+    <string name="lblEntrada">Entrada</string>
     <string name="lblErro">Erro</string>
     <string name="lblExcluir"> Excluir </string>
     <string name="lblExibir">Exibir</string>
@@ -1011,12 +1013,14 @@
     <string name="lblPendennte">Pendente</string>
     <string name="lblPendente">Pendente</string>
     <string name="lblPrevisto">Previsto</string>
+    <string name="lblQuantidade">Quantidade</string>
     <string name="lblRecebido">Recebido</string>
     <string name="lblReceita">Receita</string>
     <string name="lblReceitas">Receitas</string>
     <string name="lblRegraImpSMS">Regra Importação SMS</string>
     <string name="lblRepetir">Repetir</string>
     <string name="lblResumoMes">Resumo do Mês</string>
+    <string name="lblSaida">Saída</string>
     <string name="lblSaldo">Saldo</string>
     <string name="lblSaldoAtual">Saldo Atual</string>
     <string name="lblSaldoInicial">Saldo Inicial</string>
@@ -1031,6 +1035,7 @@
     <string name="lblTextoNoSMS">Contendo o Texto</string>
     <string name="lblTipoConta">Tipo de Conta</string>
     <string name="lblTipoTransacao">Tipo Transação</string>
+    <string name="lblTotal">Total</string>
     <string name="lblTransferencia">Transferência</string>
     <string name="lblTransferencias">Transferências</string>
     <string name="lblValor">Valor</string>
@@ -1074,6 +1079,7 @@
     <string name="search_menu_title">Search</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="title_activity_act_login">Sign in</string>
+    <string name="title_activity_act_resumo_conta">actResumoConta</string>
     <string name="title_alteracao_lancamentos">Alteração Lançamentos</string>
     <string name="title_categoria_despesa">Categoria Despesa</string>
     <string name="title_categoria_receita">Categoria Receita</string>

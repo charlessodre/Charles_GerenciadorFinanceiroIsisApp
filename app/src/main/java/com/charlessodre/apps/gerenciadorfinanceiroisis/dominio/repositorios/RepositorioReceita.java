@@ -445,6 +445,51 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
         }
     }
 
+    public Double getValorTotalRecebidoContaMes(long idConta, int anoMes, boolean somentePagas) {
+        String[] parametros = {String.valueOf(idConta), String.valueOf(anoMes)};
+
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT SUM( ");
+        sql.append(Receita.VL_RECEITA);
+        sql.append(" ) AS VL_TOTAL_RECEITA FROM ");
+        sql.append(Receita.TABELA_NOME);
+        sql.append(" WHERE ");
+        sql.append(Receita.NO_AM_RECEITA);
+        sql.append(" = ? ");
+        sql.append(" AND " + Receita.ID_CONTA);
+        sql.append(" = ?");
+
+        if (somentePagas) {
+            sql.append(" AND ");
+            sql.append(Receita.FL_RECEITA_PAGA + " = 1");
+        }
+
+        double valorTotal = 0;
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
+
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                do {
+                    valorTotal = cursor.getDouble(cursor.getColumnIndex("VL_TOTAL_RECEITA"));
+
+                } while (cursor.moveToNext());
+            }
+            return valorTotal;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
+
     public int getQtdReceitaConta(long idConta) {
         int qtdReceitas = 0;
 
@@ -457,6 +502,54 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
         sql.append(Receita.TABELA_NOME);
         sql.append(" WHERE " + Receita.ID_CONTA);
         sql.append(" = ?");
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                do {
+                    qtdReceitas = cursor.getInt(cursor.getColumnIndex("QTDE"));
+
+                } while (cursor.moveToNext());
+            }
+
+
+            return qtdReceitas;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+
+    }
+
+    public int getQtdReceitaContaMes(long idConta,int anoMes, boolean somentePagas) {
+        int qtdReceitas = 0;
+
+        String[] parametros = {String.valueOf(idConta),String.valueOf(anoMes)};
+
+        StringBuilder sql = new StringBuilder();
+
+
+        sql.append("SELECT COUNT (_id) AS QTDE FROM ");
+        sql.append(Receita.TABELA_NOME);
+        sql.append(" WHERE " + Receita.ID_CONTA);
+        sql.append(" = ?");
+        sql.append(" AND ");
+        sql.append(Receita.NO_AM_RECEITA);
+        sql.append(" = ? ");
+
+        if (somentePagas) {
+            sql.append(" AND ");
+            sql.append(Receita.FL_RECEITA_PAGA + " = 1");
+        }
+
 
         try {
 

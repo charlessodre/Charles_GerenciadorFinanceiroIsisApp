@@ -100,7 +100,7 @@ public class AdapterConta extends ArrayAdapter<Conta> {
         Drawable circle = viewHolderSimple.imgCirculo.getDrawable();
         circle.setColorFilter(ColorHelper.getColor(this.context, conta.getNoCor()), PorterDuff.Mode.MULTIPLY);
 
-        viewHolderSimple.imgConta.setImageResource(getImagemTipoConta(conta.getCdTipoConta()));
+        viewHolderSimple.imgConta.setImageResource(Conta.getImagemTipoConta(conta.getCdTipoConta()));
 
         viewHolderSimple.txtNomeConta.setText(conta.getNome());
 
@@ -147,7 +147,7 @@ public class AdapterConta extends ArrayAdapter<Conta> {
         String texto = String.valueOf(DateUtils.getLastDayOfMonth(this.data)) + "/" + String.valueOf(DateUtils.getMonthNameShort(this.data));
         texto = texto + " (" + this.textoPreviso + ")";
 
-        viewHolder.imgConta.setImageResource(getImagemTipoConta(conta.getCdTipoConta()));
+        viewHolder.imgConta.setImageResource(Conta.getImagemTipoConta(conta.getCdTipoConta()));
         viewHolder.txtNomeConta.setText(conta.getNome());
         viewHolder.txtSaldoAtual.setText(this.symbol + " " + NumberUtis.getFormartCurrency(conta.getValorSaldo()));
         viewHolder.txtSaldoPrevistoData.setText(texto);
@@ -198,27 +198,5 @@ public class AdapterConta extends ArrayAdapter<Conta> {
         TextView txtNomeConta;
     }
 
-    public static int getImagemTipoConta(int idTipoConta) {
 
-        switch (idTipoConta) {
-
-            case 0:
-
-                return R.drawable.ic_conta_corrente_24dp;
-
-            case 1:
-                return R.drawable.ic_poupanca_24dp;
-
-            case 2:
-                return R.drawable.ic_dinheiro_24dp;
-
-            case 3:
-
-                return R.drawable.ic_investimento_24dp;
-
-            default:
-                return R.drawable.ic_conta_outros_24dp;
-        }
-
-    }
 }

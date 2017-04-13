@@ -27,7 +27,6 @@ public class ColumnChart extends BaseChart {
         this.chart = chart;
         this.data = new ColumnChartData();
         this.activity = activity;
-        this.listDataElements = listDataElements;
 
         this.chart.setOnValueTouchListener(new ValueTouchListener());
 
@@ -90,7 +89,7 @@ public class ColumnChart extends BaseChart {
         List<Column> columns = new ArrayList<Column>();
         List<SubcolumnValue> values;
 
-        for (DataElementChart dataElement: this.listDataElements.getDataElementsChart() ) {
+        for (DataElementChart dataElement : this.listDataElements.getDataElementsChart()) {
 
             values = new ArrayList<SubcolumnValue>();
 

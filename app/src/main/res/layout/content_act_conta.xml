@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.actConta"
+    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actConta"
     tools:showIn="@layout/act_conta">
 
 

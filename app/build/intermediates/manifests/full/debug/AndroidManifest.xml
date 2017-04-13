@@ -82,6 +82,11 @@
             android:name="com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actListaSMS"
             android:label="@string/title_lista_sms"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.charlessodre.apps.gerenciadorfinanceiroisis.actOutros.actResumoConta1" />
+        <activity
+            android:name="com.charlessodre.apps.gerenciadorfinanceiroisis.actOutros.actResumoConta"
+            android:label="@string/title_activity_act_resumo_conta"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

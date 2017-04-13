@@ -35,13 +35,11 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actListaSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actRegraImportacaoSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actTransferencia;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actOutros.actResumoConta1;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgResumo;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.EnviarSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.FragmentHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.MessageBoxHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.PermissionsUtil;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ToastHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -231,13 +229,17 @@ public class actPrincipal extends actBaseListas
             startActivityForResult(it, 0);
         } else if (id == R.id.nav_send) {
 
-            //exemplo_lista_single();
+
+            Intent it = new Intent(this, actResumoConta1.class);
+            startActivityForResult(it, 0);
+            /*//exemplo_lista_single();
             verificaPermissoes();
             EnviarSMS sms = new EnviarSMS();
 
             sms.Enviar("+5521988548894", "Teste envio de mensagem pelo android. Feito por Charles" + DateUtils.getCurrentDatetime().toString());
             sms.Enviar("+5521964339672", "Teste envio de mensagem pelo android. Feito por Charles" + DateUtils.getCurrentDatetime().toString());
             ToastHelper.showToastLong(this, "SMS Enviado com sucesso!");
+            */
 
         }
 
@@ -391,7 +393,7 @@ public class actPrincipal extends actBaseListas
         {
             this.frgGrafResumoReceitaDespesaConfirmadas = frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), false);
 
-            FragmentHelper.addFragment(getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaConfirmadas, frgGrafResumoReceitaDespesa.NOME_FRAGMENTO, R.id.frag_container_2);
+            FragmentHelper.addFragment(getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaConfirmadas, frgGrafResumoReceitaDespesa.NOME_FRAGMENTO, R.id.frag_container_3);
 
         }
     }
@@ -467,6 +469,7 @@ public class actPrincipal extends actBaseListas
         FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(),this.fragmentoResumo);
         FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(),this.frgGrafResumoReceitaDespesaTotal);
         FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(),this.frgGrafResumoReceitaDespesaConfirmadas);
+
 
     }
 

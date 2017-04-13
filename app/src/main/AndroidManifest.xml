@@ -75,6 +75,11 @@
         <activity
             android:name=".actConsultas.actListaSMS"
             android:label="@string/title_lista_sms"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".actOutros.actResumoConta1" />
+        <activity
+            android:name=".actOutros.actResumoConta"
+            android:label="@string/title_activity_act_resumo_conta"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

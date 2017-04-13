@@ -135,7 +135,9 @@ public class frgGrafResumoReceitaDespesa extends Fragment {
 
         this.columnChart.setListDataElements(this.listDataElements);
         this.columnChart.setHasAxes(false);
-        //  this.columnChart.set(false);
+        this.columnChart.setHasLabelForSelected(false);
+        this.columnChart.setHasLabels(false);
+
 
         this.columnChart.generateData();
 

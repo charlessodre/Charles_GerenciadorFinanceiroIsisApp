@@ -461,6 +461,50 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         }
     }
 
+    public Double getValorTotalDespesasContaMes(long idConta,int anoMes, boolean somentePagas) {
+        String[] parametros = {String.valueOf(idConta), String.valueOf(anoMes)};
+
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT SUM( ");
+        sql.append(Despesa.VL_DESPESA);
+        sql.append(" ) AS VL_TOTAL_DESPESA FROM ");
+        sql.append(Despesa.TABELA_NOME);
+        sql.append(" WHERE ");
+        sql.append(Despesa.ID_CONTA);
+        sql.append(" = ? ");
+        sql.append(" AND " + Despesa.NO_AM_DESPESA);
+        sql.append(" = ?");
+
+        if(somentePagas) {
+            sql.append(" AND ");
+            sql.append(Despesa.FL_DESPESA_PAGA + " = 1");
+        }
+        double valorTotal = 0;
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
+
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                do {
+                    valorTotal = cursor.getDouble(cursor.getColumnIndex("VL_TOTAL_DESPESA"));
+
+                } while (cursor.moveToNext());
+            }
+            return valorTotal;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
+
     public int getQtdDespesaConta(long idConta) {
         int qtdDespesas = 0;
 
@@ -473,6 +517,54 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         sql.append(Despesa.TABELA_NOME);
         sql.append(" WHERE " + Despesa.ID_CONTA);
         sql.append(" = ?");
+
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                do {
+                    qtdDespesas = cursor.getInt(cursor.getColumnIndex("QTDE"));
+
+                } while (cursor.moveToNext());
+            }
+
+
+            return qtdDespesas;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+
+    }
+
+    public int getQtdDespesaContaMes(long idConta,int anoMes, boolean somentePagas) {
+
+        int qtdDespesas = 0;
+
+        String[] parametros = {String.valueOf(idConta), String.valueOf(anoMes)};
+
+        StringBuilder sql = new StringBuilder();
+
+
+        sql.append("SELECT COUNT (_id) AS QTDE FROM ");
+        sql.append(Despesa.TABELA_NOME);
+        sql.append(" WHERE " + Despesa.ID_CONTA);
+        sql.append(" = ? AND ");
+        sql.append(Despesa.NO_AM_DESPESA);
+        sql.append(" = ? ");
+
+        if(somentePagas) {
+            sql.append(" AND ");
+            sql.append(Despesa.FL_DESPESA_PAGA + " = 1");
+        }
 
         try {
 

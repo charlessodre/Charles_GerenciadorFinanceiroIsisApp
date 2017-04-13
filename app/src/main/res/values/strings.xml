@@ -14,7 +14,7 @@
 
     <string name="lblConta">Conta</string>
     <string name="lblContas">Contas</string>
-    <string name="lblTransferencias">Transferências</string>
+
     <string name="lblContaOrigem">Conta Origem</string>
     <string name="lblContaDestino">Conta Destino</string>
     <string name="lblCategoriaDespesas">Categorias de Despesas</string>
@@ -52,7 +52,6 @@
     <string name="lblNomeRegra">Nome da Regra</string>
     <string name="lblNumeroSMS">SMS Recebidos do Nº</string>
     <string name="lblTextoNoSMS">Contendo o Texto</string>
-    <string name="lblValor">Valor</string>
     <string name="lblSubCategorias">Sub Categorias</string>
     <string name="lblSubCategoria">Sub Categoria</string>
     <string name="lblNovaSubCategoria">Criar Nova Sub Categoria</string>
@@ -66,6 +65,11 @@
     <string name="lblExcluir"> Excluir </string>
     <string name="lblOrdemExibição">Ordem de Exibição:</string>
 
+    <string name="lblTotal">Total</string>
+    <string name="lblConfirmadas">Confirmadas</string>
+
+    <string name="lblQuantidade">Quantidade</string>
+    <string name="lblValor">Valor</string>
 
     <string name="lblHabilitadaPergunta">Habilitada?</string>
     <string name="lblHabilitada">Habilitada</string>
@@ -78,6 +82,9 @@
     <string name="lblSaldoAtual">Saldo Atual</string>
     <string name="lblStatus">Status</string>
     <string name="lblTipoTransacao">Tipo Transação</string>
+    <string name="lblTransferencias">Transferências</string>
+    <string name="lblEntrada">Entrada</string>
+    <string name="lblSaida">Saída</string>
     <string name="lblContaCorrente">Conta Corrente</string>
     <string name="lblContaPoupanca">Conta Poupança</string>
     <string name="lblDinheiro">Dinheiro</string>
@@ -101,6 +108,7 @@
     <string name="lblSenha">Senha</string>
     <string name="lblCodigoSeguranca">Digite seu código de segurança.</string>
     <string name="lblResumoMes">Resumo do Mês</string>
+    <string name="title_activity_act_resumo_conta">actResumoConta</string>
 
 
 </resources>
