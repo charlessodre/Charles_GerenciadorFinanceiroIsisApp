@@ -360,6 +360,32 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         }
     }
 
+    public ArrayList<Despesa> buscaPorContaAnoMes(long idConta, int anoMes) {
+
+        StringBuilder where = new StringBuilder();
+
+        where.append(Despesa.ID_CONTA);
+        where.append(" = " + idConta);
+        where.append(" AND ");
+        where.append(Despesa.NO_AM_DESPESA);
+        where.append(" =  " + anoMes);
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.select(where.toString(), Despesa.DT_DESPESA + "," + Despesa.ID);
+
+            return this.preencheObjeto(super.getTransaction(), cursor);
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
+
+
     public ArrayList<Despesa> buscaDespesasDependentes(SQLiteDatabase transaction, long idPai, long id, boolean proximas, boolean somentePendentes) {
 
         StringBuilder where = new StringBuilder();

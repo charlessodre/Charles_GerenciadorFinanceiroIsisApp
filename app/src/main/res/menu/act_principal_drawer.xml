@@ -25,9 +25,15 @@
             android:title="@string/lblDespesas" />
 
         <item
-            android:id="@+id/nav_share"
+            android:id="@+id/nav_transferencia"
             android:icon="@drawable/ic_import_export_black_24dp"
             android:title="@string/lblTransferencias" />
+
+        <item
+            android:id="@+id/nav_movimento"
+            android:icon="@drawable/ic_view_headline_black_24dp"
+            android:title="@string/lblMovimentos" />
+
 
         <item
             android:id="@+id/nav_import_sms"

@@ -14,22 +14,19 @@
     <string name="title_receita">Receita</string>
     <string name="title_conta">Conta</string>
     <string name="title_transferencia">Transferência</string>
-
     <string name="title_regra_imp_sms">Regra Importação SMS</string>
-
     <string name="title_lista_sms">Lista de SMS para Importação</string>
-
     <string name="title_importar_sms">Importar SMS como:</string>
-
     <string name="title_principal">Visão Geral</string>
     <string name="title_permissao_obrigatoria">Permissões Obrigatórias</string>
-
     <string name="title_exclusao_receitas">Excluir Receitas</string>
     <string name="title_exclusao_lancamentos">Excluir Lançamentos</string>
     <string name="title_alteracao_lancamentos">Alteração Lançamentos</string>
     <string name="title_confirma_exclusao">Confirmar Exclusão?</string>
     <string name="title_receitas_x_despesas_total">Receitas x Despesas (Total)</string>
     <string name="title_receitas_x_despesas_confirmadas">Receitas x Despesas (Confirmadas)</string>
+    <string name="title_resumo_conta">Resumo da Conta</string>
+    <string name="title_movimentos">Movimentos</string>
 
 
 </resources>

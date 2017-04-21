@@ -343,6 +343,31 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
         }
     }
 
+    public ArrayList<Receita> buscaPorContaAnoMes(long idConta, int anoMes) {
+
+        StringBuilder where = new StringBuilder();
+
+        where.append(Receita.ID_CONTA);
+        where.append(" = " + idConta);
+        where.append(" AND ");
+        where.append(Receita.NO_AM_RECEITA);
+        where.append(" =  " + anoMes);
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.select(where.toString(), Receita.DT_RECEITA + "," + Receita.ID);
+
+            return this.preencheObjeto(super.getTransaction(), cursor);
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
+
     public ArrayList<Receita> buscaReceitasDependentes(SQLiteDatabase transaction, long idPai, long id, boolean proximas, boolean somentePendentes) {
 
         StringBuilder where = new StringBuilder();
@@ -455,9 +480,10 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
         sql.append(" ) AS VL_TOTAL_RECEITA FROM ");
         sql.append(Receita.TABELA_NOME);
         sql.append(" WHERE ");
-        sql.append(Receita.NO_AM_RECEITA);
+        sql.append(Receita.ID_CONTA);
         sql.append(" = ? ");
-        sql.append(" AND " + Receita.ID_CONTA);
+        sql.append(" AND ");
+        sql.append(Receita.NO_AM_RECEITA);
         sql.append(" = ?");
 
         if (somentePagas) {

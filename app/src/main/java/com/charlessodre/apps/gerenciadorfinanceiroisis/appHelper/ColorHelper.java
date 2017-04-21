@@ -631,8 +631,6 @@ public class ColorHelper {
         colors.add( R.color.grey_900);
         colors.add( R.color.black);
 
-
-
         return  colors;
 
     }

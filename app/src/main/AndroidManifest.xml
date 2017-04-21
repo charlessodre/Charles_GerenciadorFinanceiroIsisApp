@@ -61,11 +61,13 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".actCadastros.actCadDespesa" />
 
+
         <receiver android:name=".util.ReceberSMS">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+
 
         <activity
             android:name=".actConsultas.actRegraImportacaoSMS"
@@ -76,10 +78,13 @@
             android:name=".actConsultas.actListaSMS"
             android:label="@string/title_lista_sms"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".actOutros.actResumoConta1" />
         <activity
             android:name=".actOutros.actResumoConta"
-            android:label="@string/title_activity_act_resumo_conta"
+            android:label="@string/title_resumo_conta"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".actConsultas.actMovimentos"
+            android:label="@string/title_movimentos"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

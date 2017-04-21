@@ -203,6 +203,37 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
         }
     }
 
+    public ArrayList<Transferencia> buscaPorContaAnoMes(long idContaOrigemDestino, int anoMes) {
+
+        StringBuilder where = new StringBuilder();
+
+        where.append(Transferencia.ID_CONTA_ORIGEM);
+        where.append(" = " + idContaOrigemDestino);
+        where.append(" OR ");
+        where.append(Transferencia.ID_CONTA_DESTINO);
+        where.append(" = " + idContaOrigemDestino);
+
+
+        where.append(" AND ");
+        where.append(Transferencia.NO_AM_TRANSFERENCIA);
+        where.append(" =  " + anoMes);
+
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.select(where.toString(), Transferencia.DT_TRANSFERENCIA);
+
+            return this.preencheObjeto(super.getTransaction(), cursor);
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
+
     //Totalizadores
     public int getQtdTransferenciaConta(long idConta) {
         int qtdTransferencias = 0;

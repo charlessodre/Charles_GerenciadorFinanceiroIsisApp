@@ -64,9 +64,10 @@
     <string name="lblSalvar"> Salvar </string>
     <string name="lblExcluir"> Excluir </string>
     <string name="lblOrdemExibição">Ordem de Exibição:</string>
+    <string name="lblMovimentos"> Movimentos </string>
 
     <string name="lblTotal">Total</string>
-    <string name="lblConfirmadas">Confirmadas</string>
+    <string name="lblConfirmada">Confirmada</string>
 
     <string name="lblQuantidade">Quantidade</string>
     <string name="lblValor">Valor</string>
@@ -108,7 +109,7 @@
     <string name="lblSenha">Senha</string>
     <string name="lblCodigoSeguranca">Digite seu código de segurança.</string>
     <string name="lblResumoMes">Resumo do Mês</string>
-    <string name="title_activity_act_resumo_conta">actResumoConta</string>
+
 
 
 </resources>

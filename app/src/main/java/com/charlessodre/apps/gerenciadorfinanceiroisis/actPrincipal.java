@@ -32,10 +32,10 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actCategoria
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actListaSMS;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actMovimentos;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actRegraImportacaoSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actTransferencia;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.actOutros.actResumoConta1;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgResumo;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.FragmentHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.MessageBoxHelper;
@@ -213,9 +213,14 @@ public class actPrincipal extends actBaseListas
             Intent it = new Intent(this, actDespesa.class);
             startActivityForResult(it, 0);
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_transferencia) {
 
             Intent it = new Intent(this, actTransferencia.class);
+            startActivityForResult(it, 0);
+
+        } else if (id == R.id.nav_movimento) {
+
+            Intent it = new Intent(this, actMovimentos.class);
             startActivityForResult(it, 0);
 
         } else if (id == R.id.nav_import_sms) {
@@ -230,8 +235,8 @@ public class actPrincipal extends actBaseListas
         } else if (id == R.id.nav_send) {
 
 
-            Intent it = new Intent(this, actResumoConta1.class);
-            startActivityForResult(it, 0);
+            //Intent it = new Intent(this, actResumoConta1.class);
+           // startActivityForResult(it, 0);
             /*//exemplo_lista_single();
             verificaPermissoes();
             EnviarSMS sms = new EnviarSMS();

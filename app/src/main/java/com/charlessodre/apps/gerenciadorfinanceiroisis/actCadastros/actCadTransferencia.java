@@ -103,7 +103,7 @@ public class actCadTransferencia extends actBaseCadastros implements frgConfirma
         return true;
     }
 
-      @Override
+    @Override
     public void onDialogClick(frgConfirmacaoDialog dialog) {
         this.exclui();
     }
@@ -111,7 +111,7 @@ public class actCadTransferencia extends actBaseCadastros implements frgConfirma
 
     //Métodos
     @Override
-    protected  void inicializaObjetos() {
+    protected void inicializaObjetos() {
 
         this.edtDataTransferencia = (EditText) findViewById(R.id.edtDataTransferencia);
         this.spnContaOrigem = (Spinner) findViewById(R.id.spnContaOrigem);
@@ -149,7 +149,7 @@ public class actCadTransferencia extends actBaseCadastros implements frgConfirma
         this.spnContaOrigem.setAdapter(this.adapterContaOrigem);
         this.spnContaDestino.setAdapter(this.adapterContaDestino);
 
-        if (this.adapterContaDestino.getCount()>1)
+        if (this.adapterContaDestino.getCount() > 1)
             this.spnContaDestino.setSelection(1);
     }
 
@@ -160,15 +160,18 @@ public class actCadTransferencia extends actBaseCadastros implements frgConfirma
         if ((bundle != null) && (bundle.containsKey(actCadTransferencia.PARAM_TRANSFERENCIA))) {
             this.transferencia = (Transferencia) bundle.getSerializable(actCadTransferencia.PARAM_TRANSFERENCIA);
 
+            if (transferencia.getId() > 1) {
+
+                this.spnContaOrigem.setSelection(this.adapterContaOrigem.getIndexFromElement(this.transferencia.getContaOrigem().getId()));
+                this.spnContaDestino.setSelection(this.adapterContaDestino.getIndexFromElement(this.transferencia.getContaDestino().getId()));
+
+                this.spnContaOrigem.setEnabled(false);
+                this.spnContaDestino.setEnabled(false);
+            }
+
             this.edtValorTransferencia.setText(NumberUtis.getFormartCurrency(this.transferencia.getValor()));
-
-            this.spnContaOrigem.setSelection(this.adapterContaOrigem.getIndexFromElement(this.transferencia.getContaOrigem().getId()));
-            this.spnContaDestino.setSelection(this.adapterContaDestino.getIndexFromElement(this.transferencia.getContaDestino().getId()));
-
-            this.spnContaOrigem.setEnabled(false);
-            this.spnContaDestino.setEnabled(false);
-
             this.edtDataTransferencia.setText(DateUtils.dateToString(this.transferencia.getDataTransferencia()));
+
 
         } else {
             this.transferencia = new Transferencia();

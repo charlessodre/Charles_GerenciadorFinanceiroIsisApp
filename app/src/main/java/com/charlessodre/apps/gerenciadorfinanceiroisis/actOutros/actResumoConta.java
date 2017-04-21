@@ -3,16 +3,21 @@ package com.charlessodre.apps.gerenciadorfinanceiroisis.actOutros;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actBaseListas;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actMovimentos;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.ColorHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Despesa;
@@ -25,6 +30,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.Repo
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ActionBarHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ToastHelper;
 
 import java.text.NumberFormat;
 import java.util.Locale;
@@ -50,11 +56,17 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
     private TextView lblTransferenciasValorEntrada;
     private TextView lblTransferenciasValorSaida;
 
+    private LinearLayout linearLayoutConta;
+    private LinearLayout lnlfragBarraNavegacaoConta;
+    private TextView lblSaldoValor;
+
     private ImageView imgTipoConta;
     private TextView txtNomeMes;
 
     private ImageButton btnEsquerda;
     private ImageButton btnDireita;
+
+    private FloatingActionButton btnEditarConta;
 
     //Atributos
     private Receita receita;
@@ -66,13 +78,11 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
 
     private RepositorioTransferencia repositorioTransferencia;
     private RepositorioReceita repositorioReceita;
-    private RepositorioConta repositorioConta;
     private RepositorioDespesa repositorioDespesa;
 
     //Constantes
     public static final String PARAM_CONTA = "CONTA";
     public static final String PARAM_CONTA_ANO_MES = "ANO_MES";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,12 +100,29 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_pesquisa, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
 
         if (id == android.R.id.home) {
             this.finish();
+        }else if (id == R.id.menu_movimentos) {
+            ToastHelper.showToastLong(this,"Movimento");
+
+            Intent it = new Intent(this, actMovimentos.class);
+            it.putExtra(actMovimentos.PARAM_CONTA, this.conta);
+
+            startActivity(it);
+
+
         }
 
         return true;
@@ -116,14 +143,27 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
                 this.setNomeMes();
                 this.preencheCampos();
                 break;
-            case R.id.btnAdicionarConta:
+            case R.id.btnEditarConta:
 
                 Intent it = new Intent(this, actCadConta.class);
+                it.putExtra(actCadConta.PARAM_CONTA, this.conta);
+
                 startActivityForResult(it, 0);
+
                 break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+
+        RepositorioConta repositorioConta = new RepositorioConta(this);
+        this.conta = repositorioConta.get(this.conta.getId());
+        this.preencheCampos();
+
+
+    }
 
     //Métodos
     protected void inicializaObjetos() {
@@ -132,13 +172,13 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
         this.lblTipoConta = (TextView) findViewById(R.id.lblTipoConta);
         this.lblReceitasQtdTotal = (TextView) findViewById(R.id.lblReceitasQtdTotal);
         this.lblReceitasValorTotal = (TextView) findViewById(R.id.lblReceitasValorTotal);
-        this.lblReceitasQtdConfirmadas = (TextView) findViewById(R.id.lblReceitasQtdTotal);
-        this.lblReceitaValorConfirmadas = (TextView) findViewById(R.id.lblReceitasValorTotal);
+        this.lblReceitasQtdConfirmadas = (TextView) findViewById(R.id.lblReceitasQtdConfirmadas);
+        this.lblReceitaValorConfirmadas = (TextView) findViewById(R.id.lblReceitasValorConfirmadas);
 
         this.lblDespesasQtdTotal = (TextView) findViewById(R.id.lblDespesasQtdTotal);
         this.lblDespesasValorTotal = (TextView) findViewById(R.id.lblDespesasValorTotal);
-        this.lblDespesasQtdConfirmadas = (TextView) findViewById(R.id.lblDespesasQtdTotal);
-        this.lblDespesasValorConfirmadas = (TextView) findViewById(R.id.lblDespesasValorTotal);
+        this.lblDespesasQtdConfirmadas = (TextView) findViewById(R.id.lblDespesasQtdConfirmadas);
+        this.lblDespesasValorConfirmadas = (TextView) findViewById(R.id.lblDespesasValorConfirmadas);
 
 
         this.lblTransferenciasEntradaQtd = (TextView) findViewById(R.id.lblTransferenciasEntradaQtd);
@@ -155,12 +195,19 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
         this.btnDireita.setOnClickListener(this);
         this.btnEsquerda.setOnClickListener(this);
 
+        this.linearLayoutConta = (LinearLayout)findViewById(R.id.LinearLayoutConta);
+        this.lnlfragBarraNavegacaoConta = (LinearLayout)findViewById(R.id.lnlfragBarraNavegacaoConta);
+        this.lblSaldoValor = (TextView) findViewById(R.id.lblSaldoValor);
+
+        this.btnEditarConta = (FloatingActionButton) findViewById(R.id.btnEditarConta);
+        this.btnEditarConta.setOnClickListener(this);
+
+
         this.repositorioDespesa = new RepositorioDespesa(this);
         this.repositorioReceita = new RepositorioReceita(this);
         this.repositorioTransferencia = new RepositorioTransferencia(this);
 
-        super.setMenuHome(this.getString(R.string.title_contas));
-        super.setColorStatusBar(R.color.corTelaContas);
+
 
     }
 
@@ -171,6 +218,13 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
 
 
     private void preencheCampos() {
+
+        super.setMenuHome(this.conta.getNome());
+        super.setColorStatusBar( this.conta.getNoCor());
+        super.setColorActionBar( this.conta.getNoCor());
+        this.linearLayoutConta.setBackgroundColor( ColorHelper.getColor(this, this.conta.getNoCor()));
+        this.lnlfragBarraNavegacaoConta.setBackgroundColor( ColorHelper.getColor(this, this.conta.getNoCor()));
+
 
         int receitasQtdTotal = 0;
         int receitasQtdConfirmadas = 0;
@@ -217,6 +271,8 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
 
         //  transferenciaValorTotal = transferenciaEntradaValor + transferenciaSaidaValor;
 
+        this.lblSaldoValor.setText(symbol + " " + NumberUtis.getFormartCurrency(this.conta.getValorSaldo()));
+
         this.imgTipoConta.setImageResource(Conta.getImagemTipoConta(conta.getCdTipoConta()));
         this.lblTipoConta.setText(Conta.getTipoContas(this).get(this.conta.getCdTipoConta()));
 
@@ -236,6 +292,8 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
 
         this.lblTransferenciasValorEntrada.setText(symbol + " " + NumberUtis.getFormartCurrency(transferenciaEntradaValor));
         this.lblTransferenciasValorSaida.setText(symbol + " " + NumberUtis.getFormartCurrency(transferenciaSaidaValor));
+
+
 
     }
 

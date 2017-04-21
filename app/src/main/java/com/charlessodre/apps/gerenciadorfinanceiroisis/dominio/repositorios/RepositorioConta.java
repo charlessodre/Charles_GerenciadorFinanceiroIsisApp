@@ -163,6 +163,88 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         }
     }
 
+    public double getSaldoAtual(long idConta, int anoMes) {
+        String[] parametros = {String.valueOf(idConta),String.valueOf(anoMes),String.valueOf(1) };
+
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT SUM( ");
+        sql.append(Conta.VL_SALDO);
+        sql.append(" ) AS VL_TOTAL_CONTA FROM ");
+        sql.append(Conta.TABELA_NOME);
+        sql.append(" WHERE ");
+        sql.append(Conta.ID);
+        sql.append(" = ? AND ");
+        sql.append(Conta.NO_AM_CONTA);
+        sql.append(" = ? ");
+        sql.append(" AND " + Conta.FL_ATIVO + " = 1");
+        sql.append(" AND " + Conta.FL_EXIBIR_SOMA + " = ?");
+
+        double valorTotal = 0;
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
+
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                do {
+                    valorTotal = cursor.getDouble(cursor.getColumnIndex("VL_TOTAL_CONTA"));
+
+                } while (cursor.moveToNext());
+            }
+            return valorTotal;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
+
+    public double getSaldoAtual(int anoMes) {
+        String[] parametros = {String.valueOf(anoMes),String.valueOf(1) };
+
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT SUM( ");
+        sql.append(Conta.VL_SALDO);
+        sql.append(" ) AS VL_TOTAL_CONTA FROM ");
+        sql.append(Conta.TABELA_NOME);
+        sql.append(" WHERE ");
+        sql.append(Conta.NO_AM_CONTA);
+        sql.append(" = ? ");
+        sql.append(" AND " + Conta.FL_ATIVO + " = 1");
+        sql.append(" AND " + Conta.FL_EXIBIR_SOMA + " = ?");
+
+        double valorTotal = 0;
+
+        try {
+
+            super.openConnectionRead();
+
+            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
+
+            if (cursor.getCount() > 0) {
+                cursor.moveToFirst();
+
+                do {
+                    valorTotal = cursor.getDouble(cursor.getColumnIndex("VL_TOTAL_CONTA"));
+
+                } while (cursor.moveToNext());
+            }
+            return valorTotal;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
+
     public ArrayList<Conta> buscaTodos() {
         try {
 
