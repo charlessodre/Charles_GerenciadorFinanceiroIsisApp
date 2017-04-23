@@ -176,7 +176,7 @@ public class actConta extends actBaseListas implements AdapterView.OnItemClickLi
 
         this.lstContas.setAdapter(this.adpConta);
 
-        this.txtValorTotalContasRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + NumberUtis.getFormartCurrency(this.repositorioConta.getValorTotal(anoMes)));
+        this.txtValorTotalContasRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + NumberUtis.getFormartCurrency(this.repositorioConta.getValorTotal(anoMes,true)));
     }
 
     private void setNomeMes() {

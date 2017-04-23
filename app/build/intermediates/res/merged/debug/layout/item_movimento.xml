@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingTop="10dp"
+    android:paddingRight="1dp"
+    android:paddingLeft="8dp"
+    android:paddingBottom="5dp"
+    android:layout_height="100dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp">
+
+        <TextView
+            android:id="@+id/txtDataMovimentoItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="01/01/2000"
+            android:textStyle="normal|bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp"
+            android:gravity="center"
+            android:paddingRight="2dp">
+
+            <ImageView
+                android:id="@+id/imgMovimentoItemCir"
+                android:layout_width="38dp"
+                android:layout_height="38dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/circle" />
+
+            <ImageView
+                android:id="@+id/imgMovimentoItem"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="false"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="6dp"
+                android:baselineAlignBottom="false"
+                android:layoutDirection="inherit"
+                android:src="@drawable/ic_account_balance_black_24dp" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/txtNomeMovimentoItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="txtNomeMovimentoItem"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="normal|bold" />
+
+                <TextView
+                    android:id="@+id/txtContaMovimentoItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="txtContaMovimentoItem"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+
+                    />
+
+                <TextView
+                    android:id="@+id/txtTipoMovimentoItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="txtTipoMovimentoItem"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+
+                    />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtValorMovimentoItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:gravity="right"
+                android:text="123,25"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="18sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="10dp" />
+
+            <TextView
+                android:id="@+id/txtStatusMovimentoItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:gravity="right"
+                android:text="Não Recebido"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

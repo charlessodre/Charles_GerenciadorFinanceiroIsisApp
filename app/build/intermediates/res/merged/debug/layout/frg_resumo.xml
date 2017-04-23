@@ -2,15 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/corFragResumoFundo"
+    android:background="@drawable/borda_fragmento_tela_principal"
     android:padding="@dimen/fab_padding"
-    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgResumo">
+    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgResumo"
+    >
 
     <LinearLayout
         android:id="@+id/LinearLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <TextView
             android:id="@+id/txtResumoMes"

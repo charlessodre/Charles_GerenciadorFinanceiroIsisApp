@@ -44,6 +44,8 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
     private LinearLayout lnlfragBarraNavegacaoMovimento;
     private LinearLayout lnlrodapeMovimento;
     private TextView txtValorTotalMovimentosRod;
+    private TextView txtTextoSaldo;
+
     //Atributos
     private AdapterMovimentos adpMovimento;
     private Receita receita;
@@ -51,6 +53,7 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
     private Despesa despesa;
     private Transferencia transferencia;
     private int addMes = 0;
+    private int anoMesAtual = DateUtils.getCurrentYearAndMonth();
 
 
     private RepositorioTransferencia repositorioTransferencia;
@@ -88,12 +91,14 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
             case R.id.btnEsquerdaMov:
                 super.setAddMesCalendar(-1);
                 this.setNomeMes();
+                this.setTextoRodapeSaldo();
                 this.atualizaListView();
 
                 break;
             case R.id.btnDireitaMov:
                 super.setAddMesCalendar(1);
                 this.setNomeMes();
+                this.setTextoRodapeSaldo();
                 this.atualizaListView();
                 break;
 
@@ -177,6 +182,7 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
         this.txtNomeMes = (TextView) findViewById(R.id.txtNomeMesMov);
 
         this.txtValorTotalMovimentosRod = (TextView) findViewById(R.id.txtValorTotalMovimentosRod);
+        this.txtTextoSaldo = (TextView) findViewById(R.id.txtTextoSaldo);
 
         this.repositorioConta = new RepositorioConta(this);
         this.repositorioDespesa = new RepositorioDespesa(this);
@@ -205,9 +211,9 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
         Double valorTotal = 0.0;
 
         if (this.conta == null)
-            valorTotal = this.repositorioConta.getSaldoAtual(super.getAnoMes());
+            valorTotal = this.repositorioConta.getSaldoAtual(super.getAnoMes(),false);
         else
-            valorTotal = this.repositorioConta.getSaldoAtual(this.conta.getId(), super.getAnoMes());
+            valorTotal = this.repositorioConta.getSaldoAtual(this.conta.getId(), super.getAnoMes(),false);
 
         this.txtValorTotalMovimentosRod.setText(NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol() + " " + NumberUtis.getFormartCurrency(valorTotal));
 
@@ -216,6 +222,14 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
     private void setNomeMes() {
         this.txtNomeMes.setText(super.getNomeMesFormatado());
 
+    }
+
+    private void setTextoRodapeSaldo(){
+
+        if( super.getAnoMes() > this.anoMesAtual)
+            this.txtTextoSaldo.setText(this.getResources().getString(R.string.lblSaldoPrevisto));
+        else
+            this.txtTextoSaldo.setText(this.getResources().getString(R.string.lblSaldoAtual));
     }
 
     private void getParametrosRecebidos() {

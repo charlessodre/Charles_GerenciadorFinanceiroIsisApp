@@ -50,7 +50,7 @@ public class actListaSMS extends actBaseListas implements AdapterView.OnItemClic
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        PermissionsUtil.askPermissions(this);
+       // PermissionsUtil.askPermissions(this);
 
         //  this.getParametrosRecebidos();
         this.inicializaObjetos();

@@ -23,5 +23,4 @@
     <include layout="@layout/content_act_movimentos" />
 
 
-
 </android.support.design.widget.CoordinatorLayout>

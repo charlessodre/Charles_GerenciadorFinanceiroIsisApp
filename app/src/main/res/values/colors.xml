@@ -9,22 +9,24 @@
 
     <color name="novoItemSpinner">#000000</color>
 
-
     <color name="corTelaContas">#303F9F</color>
     <color name="corTelaReceitas">#4CAF50</color>
     <color name="corTelaDespesas">#e92727</color>
     <color name="corTelaTransferencias">#0288D1</color>
+    <color name="corTelaPrincipal">#3F51B5</color>
+    <color name="corFundoTelaPrincipal">#E0E0E0</color>
+    <color name="corTelaRegraImportacaoSMS">#39F</color>
+    <color name="corTelaListaSMS">#39A</color>
+
 
     <color name="corFragResumo">#3F51B5</color>
     <color name="corFragResumoFundo">#FFFFFF</color>
 
-    <color name="corTelaPrincipal">#3F51B5</color>
-    <color name="corTelaPrincipalFundo">#E0E0E0</color>
-
-    <color name="corTelaRegraImportacaoSMS">#39F</color>
-    <color name="corTelaListaSMS">#39A</color>
 
     <color name="corLinha">#c0c0c0</color>
+
+    <color name="corFundoBotoesAdd">#616161</color>
+    <color name="corFonteoBotoesAdd">#FFFFFF</color>
 
     <color name="corPendencia">#D50000</color>
     <color name="corResolvido">#00C853</color>

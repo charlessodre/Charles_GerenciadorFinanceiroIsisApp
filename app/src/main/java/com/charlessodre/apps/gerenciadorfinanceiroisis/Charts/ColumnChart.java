@@ -22,13 +22,14 @@ import lecho.lib.hellocharts.view.ColumnChartView;
 public class ColumnChart extends BaseChart {
 
     //Constructor
-    public ColumnChart(Activity activity, ColumnChartView chart) {
+    public ColumnChart(Activity activity, ColumnChartView chart, boolean onValueTouchListenerEnable) {
 
         this.chart = chart;
         this.data = new ColumnChartData();
         this.activity = activity;
 
-        this.chart.setOnValueTouchListener(new ValueTouchListener());
+        if(onValueTouchListenerEnable)
+            this.chart.setOnValueTouchListener(new ValueTouchListener());
 
     }
 
@@ -162,7 +163,7 @@ public class ColumnChart extends BaseChart {
 
         @Override
         public void onValueSelected(int columnIndex, int subcolumnIndex, SubcolumnValue value) {
-            Toast.makeText(activity, "Selected: " + value, Toast.LENGTH_SHORT).show();
+           // Toast.makeText(activity, "Selected: " + value, Toast.LENGTH_SHORT).show();
         }
 
         @Override

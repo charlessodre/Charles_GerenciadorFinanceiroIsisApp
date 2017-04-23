@@ -20,6 +20,10 @@
         "source": "C:\\Users\\charl\\.android\\build-cache\\8539ae108f168d412db27ecb2651ae5b7bcbc416\\output\\res\\drawable\\abc_ic_go_search_api_material.xml"
     },
     {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\borda_botoes_add_principal.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable\\borda_botoes_add_principal.xml"
+    },
+    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_spinner_textfield_background_material.xml",
         "source": "C:\\Users\\charl\\.android\\build-cache\\8539ae108f168d412db27ecb2651ae5b7bcbc416\\output\\res\\drawable\\abc_spinner_textfield_background_material.xml"
     },
@@ -178,5 +182,9 @@
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_light.xml",
         "source": "C:\\Users\\charl\\.android\\build-cache\\8539ae108f168d412db27ecb2651ae5b7bcbc416\\output\\res\\drawable\\abc_list_selector_holo_light.xml"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\borda_fragmento_tela_principal.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable\\borda_fragmento_tela_principal.xml"
     }
 ]

@@ -36,12 +36,17 @@
         android:gravity="center_vertical"
         android:padding="@dimen/standard_12"
         android:visibility="gone"
+
         >
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lblTransferencia" />
+            android:text="@string/lblTransferencia"
+            android:background="@drawable/borda_botoes_add_principal"
+            android:padding="@dimen/paddingBotoesAddPrincipal"
+            android:textColor="@color/corFonteoBotoesAdd"
+            />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab1"
@@ -70,7 +75,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lblDespesa" />
+            android:text="@string/lblDespesa"
+            android:background="@drawable/borda_botoes_add_principal"
+            android:padding="@dimen/paddingBotoesAddPrincipal"
+            android:textColor="@color/corFonteoBotoesAdd"
+            />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab2"
@@ -100,7 +109,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lblReceita" />
+            android:text="@string/lblReceita"
+            android:background="@drawable/borda_botoes_add_principal"
+            android:padding="@dimen/paddingBotoesAddPrincipal"
+            android:textColor="@color/corFonteoBotoesAdd"
+            />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab3"
@@ -131,7 +144,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/lblConta" />
+            android:text="@string/lblConta"
+            android:background="@drawable/borda_botoes_add_principal"
+            android:padding="@dimen/paddingBotoesAddPrincipal"
+            android:textColor="@color/corFonteoBotoesAdd"
+            />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab4"

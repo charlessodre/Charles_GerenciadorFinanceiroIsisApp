@@ -20,6 +20,8 @@
     <dimen name="fab_paddingLeft">10dp</dimen>
 
 
+    <dimen name="paddingBotoesAddPrincipal">5dp</dimen>
+
     <dimen name="standard_08">8dp</dimen>
     <dimen name="standard_10">10dp</dimen>
     <dimen name="standard_12">12dp</dimen>

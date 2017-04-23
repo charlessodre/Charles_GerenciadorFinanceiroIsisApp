@@ -137,7 +137,7 @@ public class frgResumo extends Fragment {
     private void atualizaResumo() {
 
 
-            double valorAcumuladoContas = this.repositorioConta.getValorTotal();
+            double valorAcumuladoContas = this.repositorioConta.getValorTotal(true);
             double valorAcumuladoReceitas = this.repositorioReceita.getValorTotalRecebido(this.anoMes,true);
             double valorAcumuladoDespesas = this.repositorioDespesa.getValorTotalDespesas(this.anoMes,true);
 

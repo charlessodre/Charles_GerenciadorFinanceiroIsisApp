@@ -115,13 +115,11 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
         if (id == android.R.id.home) {
             this.finish();
         }else if (id == R.id.menu_movimentos) {
-            ToastHelper.showToastLong(this,"Movimento");
 
             Intent it = new Intent(this, actMovimentos.class);
             it.putExtra(actMovimentos.PARAM_CONTA, this.conta);
 
             startActivity(it);
-
 
         }
 

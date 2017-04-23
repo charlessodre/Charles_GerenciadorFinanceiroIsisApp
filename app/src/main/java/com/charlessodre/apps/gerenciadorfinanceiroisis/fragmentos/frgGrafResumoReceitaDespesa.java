@@ -97,7 +97,7 @@ public class frgGrafResumoReceitaDespesa extends Fragment {
         this.txtTituloGrafico = (TextView) this.rootView.findViewById(R.id.txtTituloGrafico);
 
         //Instancia o grafico.
-        this.columnChart = new ColumnChart(this.getActivity(), (ColumnChartView) this.rootView.findViewById(R.id.chart));
+        this.columnChart = new ColumnChart(this.getActivity(), (ColumnChartView) this.rootView.findViewById(R.id.chart),false);
 
         if (this.somenteConfirmadas)
             this.txtTituloGrafico.setText(this.getContext().getString(R.string.title_receitas_x_despesas_confirmadas));

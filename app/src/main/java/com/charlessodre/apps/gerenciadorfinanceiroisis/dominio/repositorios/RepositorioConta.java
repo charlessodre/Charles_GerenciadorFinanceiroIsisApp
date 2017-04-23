@@ -85,8 +85,11 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
 
     }
 
-    public double getValorTotal(int anoMes) {
-        String[] parametros = {String.valueOf(anoMes)};
+    public double getValorTotal(boolean somenteExibeSoma) {
+        return getValorTotal(0,somenteExibeSoma);
+    }
+
+    public double getValorTotal(int anoMes, boolean somenteExibeSoma) {
 
         StringBuilder sql = new StringBuilder();
 
@@ -95,48 +98,20 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         sql.append(" ) AS VL_TOTAL_CONTA FROM ");
         sql.append(Conta.TABELA_NOME);
         sql.append(" WHERE ");
-        sql.append(Conta.NO_AM_CONTA);
-        sql.append(" <= ? ");
-        sql.append(" AND " + Conta.FL_ATIVO + " = 1");
-      //  sql.append(" AND " + Conta.FL_EXIBIR_SOMA + " = 1");
-
-        double valorTotal = 0;
-
-        try {
-
-            super.openConnectionRead();
-
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
-
-            if (cursor.getCount() > 0) {
-                cursor.moveToFirst();
-
-                do {
-                    valorTotal = cursor.getDouble(cursor.getColumnIndex("VL_TOTAL_CONTA"));
-
-                } while (cursor.moveToNext());
-            }
-            return valorTotal;
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.closeConnection();
-        }
-    }
-
-    public double getValorTotal() {
-        String[] parametros = {String.valueOf(1)};
-
-        StringBuilder sql = new StringBuilder();
-
-        sql.append("SELECT SUM( ");
-        sql.append(Conta.VL_SALDO);
-        sql.append(" ) AS VL_TOTAL_CONTA FROM ");
-        sql.append(Conta.TABELA_NOME);
-        sql.append(" WHERE  ");
         sql.append(Conta.FL_ATIVO + " = 1");
-        sql.append(" AND " + Conta.FL_EXIBIR_SOMA + " = ?");
+
+        if(anoMes > 0) {
+
+            sql.append(" AND ");
+            sql.append(Conta.NO_AM_CONTA);
+            sql.append(" <=  ");
+            sql.append(anoMes);
+        }
+
+
+
+        if(somenteExibeSoma)
+          sql.append(" AND " + Conta.FL_EXIBIR_SOMA + " = 1");
 
         double valorTotal = 0;
 
@@ -144,7 +119,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
+            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -163,50 +138,13 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         }
     }
 
-    public double getSaldoAtual(long idConta, int anoMes) {
-        String[] parametros = {String.valueOf(idConta),String.valueOf(anoMes),String.valueOf(1) };
+    public double getSaldoAtual(int anoMes, boolean somenteExibeSoma) {
 
-        StringBuilder sql = new StringBuilder();
+        return getSaldoAtual(0, anoMes,somenteExibeSoma);
 
-        sql.append("SELECT SUM( ");
-        sql.append(Conta.VL_SALDO);
-        sql.append(" ) AS VL_TOTAL_CONTA FROM ");
-        sql.append(Conta.TABELA_NOME);
-        sql.append(" WHERE ");
-        sql.append(Conta.ID);
-        sql.append(" = ? AND ");
-        sql.append(Conta.NO_AM_CONTA);
-        sql.append(" = ? ");
-        sql.append(" AND " + Conta.FL_ATIVO + " = 1");
-        sql.append(" AND " + Conta.FL_EXIBIR_SOMA + " = ?");
-
-        double valorTotal = 0;
-
-        try {
-
-            super.openConnectionRead();
-
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
-
-            if (cursor.getCount() > 0) {
-                cursor.moveToFirst();
-
-                do {
-                    valorTotal = cursor.getDouble(cursor.getColumnIndex("VL_TOTAL_CONTA"));
-
-                } while (cursor.moveToNext());
-            }
-            return valorTotal;
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.closeConnection();
-        }
     }
 
-    public double getSaldoAtual(int anoMes) {
-        String[] parametros = {String.valueOf(anoMes),String.valueOf(1) };
+    public double getSaldoAtual(long idConta, int anoMes, boolean somenteExibeSoma) {
 
         StringBuilder sql = new StringBuilder();
 
@@ -216,9 +154,20 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         sql.append(Conta.TABELA_NOME);
         sql.append(" WHERE ");
         sql.append(Conta.NO_AM_CONTA);
-        sql.append(" = ? ");
+        sql.append(" <=  ");
+        sql.append(anoMes);
+
+        if(idConta != 0) {
+            sql.append(" AND ");
+            sql.append(Conta.ID);
+            sql.append(" = ");
+            sql.append(idConta);
+        }
+
         sql.append(" AND " + Conta.FL_ATIVO + " = 1");
-        sql.append(" AND " + Conta.FL_EXIBIR_SOMA + " = ?");
+
+        if(somenteExibeSoma)
+            sql.append(" AND " + Conta.FL_EXIBIR_SOMA + " = 1");
 
         double valorTotal = 0;
 
@@ -226,7 +175,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
+            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -244,6 +193,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
             super.closeConnection();
         }
     }
+
 
     public ArrayList<Conta> buscaTodos() {
         try {
@@ -262,78 +212,46 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         }
     }
 
-    public ArrayList<Conta> buscarAtivas() {
-
-        ArrayList<Conta> contas;
-        try {
-
-            super.openConnectionRead();
-            super.setBeginTransaction();
-
-            Cursor cursor = super.select(Conta.FL_ATIVO + " = 1", Conta.NO_ORDEM_EXIBICAO + " , " + Conta.NM_CONTA);
-
-            contas = this.preencheObjeto(cursor);
-
-            super.setTransactionSuccessful();
-
-            return contas;
-
-        } catch (SQLException ex) {
-
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.setEndTransaction();
-            super.closeConnection();
-        }
-    }
-
-    public ArrayList<Conta> buscarAnoMes(int anoMes) {
-
-        String where = Conta.NO_AM_CONTA + "=" + anoMes;
-
-        try {
-
-            super.openConnectionRead();
-
-            Cursor cursor = super.select(where, Conta.NO_ORDEM_EXIBICAO + " , " + Conta.NM_CONTA);
-
-            return this.preencheObjeto(cursor);
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.closeConnection();
-        }
-    }
 
     public ArrayList<Conta> getSaldoContaAnoMes(int anoMes) {
 
-        String[] parametros = {String.valueOf(anoMes)};
+        return getSaldoContaAnoMes(0, anoMes);
+    }
 
-        String sql = "SELECT " +
-                " C._id," +
-                " C.NM_CONTA," +
-                " C.FL_ATIVO," +
-                " C.DT_INCLUSAO," +
-                " C.DT_ALTERACAO," +
-                " C.FL_EXIBIR," +
-                " C.FL_EXIBIR_SOMA," +
-                " C.CD_TIPO_CONTA," +
-                " C.NO_AM_CONTA, " +
-                " C.NO_ORDEM_EXIBICAO," +
-                " C.NO_COR," +
-                " C.NO_COR_ICONE," +
-                " C.VL_SALDO, " +
-                "  (SELECT SUM(R.VL_RECEITA) AS VL_RECEITA FROM TB_GF_RECEITA as R where R.NO_AM_RECEITA <= ? AND R.FL_RECEITA_PAGA=0 AND C._id=R.ID_CONTA ) AS RECEITAS_PREVISTAS, " +
-                "  (SELECT SUM(D.VL_DESPESA) AS VL_DESPESA FROM TB_GF_DESPESA as D where D.NO_AM_DESPESA <= ? AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS DESPESAS_PREVISTAS " +
-                " FROM TB_GF_CONTA C " +
-                " ORDER BY C.NO_ORDEM_EXIBICAO, C.NM_CONTA";
+    public ArrayList<Conta> getSaldoContaAnoMes(long idConta,int anoMes) {
+
+        String[] parametros = {String.valueOf(anoMes),String.valueOf(idConta) };
+
+        StringBuilder sql = new StringBuilder();
+
+        sql.append("SELECT ");
+        sql.append(" C._id," );
+        sql.append(" C.NM_CONTA," );
+        sql.append(" C.FL_ATIVO," );
+        sql.append(" C.DT_INCLUSAO," );
+        sql.append(" C.DT_ALTERACAO," );
+        sql.append(" C.FL_EXIBIR," );
+        sql.append(" C.FL_EXIBIR_SOMA," );
+        sql.append(" C.CD_TIPO_CONTA," );
+        sql.append(" C.NO_AM_CONTA, " );
+        sql.append(" C.NO_ORDEM_EXIBICAO," );
+        sql.append(" C.NO_COR," );
+        sql.append(" C.NO_COR_ICONE," );
+        sql.append(" C.VL_SALDO, " );
+        sql.append(" (SELECT SUM(R.VL_RECEITA) AS VL_RECEITA FROM TB_GF_RECEITA as R where R.NO_AM_RECEITA <= ? AND R.FL_RECEITA_PAGA=0 AND C._id=R.ID_CONTA)AS RECEITAS_PREVISTAS, " );
+        sql.append(" (SELECT SUM(D.VL_DESPESA) AS VL_DESPESA FROM TB_GF_DESPESA as D where D.NO_AM_DESPESA <= ? AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS DESPESAS_PREVISTAS " );
+        sql.append(" FROM TB_GF_CONTA C ");
+
+        if(idConta != 0)
+            sql.append(" WHERE  C._id = ?" );
+
+        sql.append(" ORDER BY C.NO_ORDEM_EXIBICAO, C.NM_CONTA");
 
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql, parametros);
+            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             return this.preencheObjeto(cursor);
 

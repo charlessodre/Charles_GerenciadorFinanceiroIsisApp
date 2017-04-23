@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/corTelaPrincipalFundo"
+    android:background="@color/corFundoTelaPrincipal"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.actPrincipal"
     tools:showIn="@layout/app_bar_act_principal">

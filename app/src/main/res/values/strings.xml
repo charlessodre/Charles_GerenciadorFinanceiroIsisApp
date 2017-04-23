@@ -34,6 +34,7 @@
     <string name="lblPendennte">Pendente</string>
     <string name="lblNaoRecebido">Não Recebido</string>
     <string name="lblRecebido">Recebido</string>
+    <string name="lblEfetivada">Efetivada</string>
     <string name="lblFixa">Fixa</string>
     <string name="lblErro">Erro</string>
 
@@ -81,6 +82,7 @@
     <string name="lblExibir">Exibir</string>
     <string name="lblPrevisto">Previsto</string>
     <string name="lblSaldoAtual">Saldo Atual</string>
+    <string name="lblSaldoPrevisto">Saldo Previsto</string>
     <string name="lblStatus">Status</string>
     <string name="lblTipoTransacao">Tipo Transação</string>
     <string name="lblTransferencias">Transferências</string>
