@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context=".frgIconeCor"
+    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgIconeCor"
     android:id="@+id/frag_icone_cor">
 
 

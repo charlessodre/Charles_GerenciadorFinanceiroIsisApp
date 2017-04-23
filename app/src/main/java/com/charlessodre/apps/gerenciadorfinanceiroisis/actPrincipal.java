@@ -36,6 +36,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actMovimento
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actRegraImportacaoSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actTransferencia;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgBotaoAddTransacao;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgResumo;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.FragmentHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.MessageBoxHelper;
@@ -50,8 +51,6 @@ public class actPrincipal extends actBaseListas
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     //Objetos tela
-    private FloatingActionButton fab, fab1, fab2, fab3, fab4;
-    private LinearLayout fabLayout1, fabLayout2, fabLayout3, fabLayout4;
     private ImageButton btnEsquerda;
     private ImageButton btnDireita;
     private TextView txtNomeMesResumo;
@@ -60,9 +59,9 @@ public class actPrincipal extends actBaseListas
     private frgResumo fragmentoResumo;
     private frgGrafResumoReceitaDespesa frgGrafResumoReceitaDespesaTotal;
     private frgGrafResumoReceitaDespesa frgGrafResumoReceitaDespesaConfirmadas;
+    private frgBotaoAddTransacao fragmentoBotaoAdd;
 
     //Atributos
-    private boolean isFABOpen = false;
 
     //Eventos
     @Override
@@ -236,7 +235,7 @@ public class actPrincipal extends actBaseListas
 
 
             //Intent it = new Intent(this, actResumoConta1.class);
-           // startActivityForResult(it, 0);
+            // startActivityForResult(it, 0);
             /*//exemplo_lista_single();
             verificaPermissoes();
             EnviarSMS sms = new EnviarSMS();
@@ -280,16 +279,6 @@ public class actPrincipal extends actBaseListas
         // super.setMenuHome(this.getString(R.string.title_principal));
         super.setColorStatusBar(R.color.corTelaPrincipal);
 
-        fabLayout1 = (LinearLayout) findViewById(R.id.fabLayout1);
-        fabLayout2 = (LinearLayout) findViewById(R.id.fabLayout2);
-        fabLayout3 = (LinearLayout) findViewById(R.id.fabLayout3);
-        fabLayout4 = (LinearLayout) findViewById(R.id.fabLayout4);
-
-        fab = (FloatingActionButton) findViewById(R.id.fabAdd);
-        fab1 = (FloatingActionButton) findViewById(R.id.fab1);
-        fab2 = (FloatingActionButton) findViewById(R.id.fab2);
-        fab3 = (FloatingActionButton) findViewById(R.id.fab3);
-        fab4 = (FloatingActionButton) findViewById(R.id.fab4);
 
         this.btnDireita = (ImageButton) findViewById(R.id.btnDireitaResumo);
         this.btnEsquerda = (ImageButton) findViewById(R.id.btnEsquerdaResumo);
@@ -299,56 +288,8 @@ public class actPrincipal extends actBaseListas
 
         this.txtNomeMesResumo = (TextView) this.findViewById(R.id.txtNomeMesResumo);
 
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!isFABOpen) {
-                    showFABMenu();
-                } else {
-                    closeFABMenu();
-                }
-            }
-        });
-
-        fab1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                closeFABMenu();
-                Intent it = new Intent(getBaseContext(), actCadTransferencia.class);
-                startActivityForResult(it, 0);
-            }
-        });
-
-        fab2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                closeFABMenu();
-                Intent it = new Intent(getBaseContext(), actCadDespesa.class);
-                startActivityForResult(it, 0);
-            }
-        });
-
-        fab3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                closeFABMenu();
-                Intent it = new Intent(getBaseContext(), actCadReceita.class);
-                startActivityForResult(it, 0);
-            }
-        });
-
-        fab4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                closeFABMenu();
-                Intent it = new Intent(getBaseContext(), actCadConta.class);
-                startActivityForResult(it, 0);
-            }
-        });
-
-       //Adiciona o Fragmento de Resumo
-            this.adicionaFragResumo();
+        //Adiciona o Fragmento de Resumo
+        this.adicionaFragResumo();
 
         //Adiciona o Fragmento Grafico Total
         this.adicionaFragGrafReceitasDespesaTotal();
@@ -356,6 +297,8 @@ public class actPrincipal extends actBaseListas
         //Adiciona o Fragmento Grafico Confirmadas
         this.adicionaFragGrafReceitasDespesaConfirmadas();
 
+        //Adiciona o Fragmento Botões Add Transação.
+        this.adicionaFragBotaoAdd();
 
 
     }
@@ -380,8 +323,7 @@ public class actPrincipal extends actBaseListas
         this.frgGrafResumoReceitaDespesaTotal = (frgGrafResumoReceitaDespesa) FragmentHelper.findFragmentByTag(getSupportFragmentManager(), frgGrafResumoReceitaDespesa.NOME_FRAGMENTO);
 
         //Verifica se o fragmento já foi adicionado.
-        if (this.frgGrafResumoReceitaDespesaTotal == null)
-        {
+        if (this.frgGrafResumoReceitaDespesaTotal == null) {
             this.frgGrafResumoReceitaDespesaTotal = frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), false);
 
             FragmentHelper.addFragment(getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaTotal, frgGrafResumoReceitaDespesa.NOME_FRAGMENTO, R.id.frag_container_2);
@@ -394,8 +336,7 @@ public class actPrincipal extends actBaseListas
         this.frgGrafResumoReceitaDespesaConfirmadas = (frgGrafResumoReceitaDespesa) FragmentHelper.findFragmentByTag(getSupportFragmentManager(), frgGrafResumoReceitaDespesa.NOME_FRAGMENTO);
 
         //Verifica se o fragmento já foi adicionado.
-        if (this.frgGrafResumoReceitaDespesaConfirmadas == null)
-        {
+        if (this.frgGrafResumoReceitaDespesaConfirmadas == null) {
             this.frgGrafResumoReceitaDespesaConfirmadas = frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), false);
 
             FragmentHelper.addFragment(getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaConfirmadas, frgGrafResumoReceitaDespesa.NOME_FRAGMENTO, R.id.frag_container_3);
@@ -403,62 +344,21 @@ public class actPrincipal extends actBaseListas
         }
     }
 
-    private void showFABMenu() {
+    private void adicionaFragBotaoAdd() {
 
-        isFABOpen = true;
-        fabLayout1.setVisibility(View.VISIBLE);
-        fabLayout2.setVisibility(View.VISIBLE);
-        fabLayout3.setVisibility(View.VISIBLE);
-        fabLayout4.setVisibility(View.VISIBLE);
 
-        fab.animate().rotationBy(180);
+        this.fragmentoBotaoAdd = (frgBotaoAddTransacao) FragmentHelper.findFragmentByTag(getSupportFragmentManager(), fragmentoBotaoAdd.NOME_FRAGMENTO);
 
-        fabLayout1.animate().translationY(-getResources().getDimension(R.dimen.standard_55));
-        fabLayout2.animate().translationY(-getResources().getDimension(R.dimen.standard_100));
-        fabLayout3.animate().translationY(-getResources().getDimension(R.dimen.standard_145));
-        fabLayout4.animate().translationY(-getResources().getDimension(R.dimen.standard_195));
+        //Verifica se o fragmento já foi adicionado.
+        if (this.fragmentoBotaoAdd == null) {
+            this.fragmentoBotaoAdd = fragmentoBotaoAdd.newInstance();
 
+            Bundle argument = new Bundle();
+
+            FragmentHelper.addFragment(getSupportFragmentManager(), this.fragmentoBotaoAdd, fragmentoBotaoAdd.NOME_FRAGMENTO, R.id.frag_container_botao_add_princ);
+        }
     }
 
-    private void closeFABMenu() {
-
-        isFABOpen = false;
-
-        fab.animate().rotationBy(-180);
-        fabLayout1.animate().translationY(0);
-        fabLayout2.animate().translationY(0);
-        fabLayout3.animate().translationY(0);
-        fabLayout4.animate().translationY(0).setListener(new Animator.AnimatorListener() {
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-
-                if (!isFABOpen) {
-                    fabLayout1.setVisibility(View.GONE);
-                    fabLayout2.setVisibility(View.GONE);
-                    fabLayout3.setVisibility(View.GONE);
-                    fabLayout4.setVisibility(View.GONE);
-                }
-            }
-
-            @Override
-            public void onAnimationStart(Animator animator) {
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-            }
-
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-            }
-
-
-        });
-
-
-    }
 
     private void setNomeMes() {
 
@@ -467,13 +367,13 @@ public class actPrincipal extends actBaseListas
 
     private void atualizaFragmentos() {
 
-        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(),frgResumo.newInstance(super.getAnoMes()),R.id.frag_container_1);
-        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(),frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), false),R.id.frag_container_2);
-        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(),frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), true),R.id.frag_container_3);
+        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(), frgResumo.newInstance(super.getAnoMes()), R.id.frag_container_1);
+        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(), frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), false), R.id.frag_container_2);
+        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(), frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), true), R.id.frag_container_3);
 
-        FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(),this.fragmentoResumo);
-        FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(),this.frgGrafResumoReceitaDespesaTotal);
-        FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(),this.frgGrafResumoReceitaDespesaConfirmadas);
+        FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(), this.fragmentoResumo);
+        FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaTotal);
+        FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaConfirmadas);
 
 
     }

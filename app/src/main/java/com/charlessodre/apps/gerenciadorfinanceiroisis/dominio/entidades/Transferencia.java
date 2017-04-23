@@ -14,8 +14,6 @@ import java.util.Date;
 
 public class Transferencia extends EntidadeBase implements Serializable {
 
-
-
     //Constantes
     public static String  TABELA_NOME 		  = "TB_GF_TRANSFERENCIA";
 

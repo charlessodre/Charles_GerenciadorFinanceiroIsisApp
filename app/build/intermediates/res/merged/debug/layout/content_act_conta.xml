@@ -68,7 +68,7 @@
 
         <TextView android:textColor="#FFFFFF" android:layout_height="wrap_content"
             android:layout_width="wrap_content" android:gravity="left"
-            android:id="@+id/txtTotal" android:text="Total: " android:layout_weight="0.2" />
+            android:id="@+id/txtTextoSaldoConta" android:text="Total: " android:layout_weight="0.2" />
 
         <TextView android:textColor="#FFFFFF" android:layout_height="wrap_content"
             android:layout_width="wrap_content" android:gravity="right"

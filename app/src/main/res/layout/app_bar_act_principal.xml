@@ -25,163 +25,24 @@
     <include layout="@layout/content_act_principal" />
 
 
-    <LinearLayout
-        android:id="@+id/fabLayout1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/standard_23"
-        android:layout_marginRight="@dimen/standard_23"
-        android:clipToPadding="false"
-        android:gravity="center_vertical"
-        android:padding="@dimen/standard_12"
-        android:visibility="gone"
-
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lblTransferencia"
-            android:background="@drawable/borda_botoes_add_principal"
-            android:padding="@dimen/paddingBotoesAddPrincipal"
-            android:textColor="@color/corFonteoBotoesAdd"
-            />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            app:fabSize="mini"
-            app:srcCompat="@drawable/ic_import_export_black_24dp"
-            android:tint="@android:color/white"
-            app:backgroundTint="@color/corTelaTransferencias"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/fabLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/standard_23"
-        android:layout_marginRight="@dimen/standard_23"
-        android:clipToPadding="false"
-        android:gravity="center_vertical"
-        android:padding="@dimen/standard_12"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lblDespesa"
-            android:background="@drawable/borda_botoes_add_principal"
-            android:padding="@dimen/paddingBotoesAddPrincipal"
-            android:textColor="@color/corFonteoBotoesAdd"
-            />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            app:fabSize="mini"
-            app:srcCompat="@drawable/ic_file_upload_black_24dp"
-            android:tint="@android:color/white"
-            app:backgroundTint="@color/corTelaDespesas"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-
-        android:id="@+id/fabLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/standard_23"
-        android:layout_marginRight="@dimen/standard_23"
-        android:clipToPadding="false"
-        android:gravity="center_vertical"
-        android:padding="@dimen/standard_12"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lblReceita"
-            android:background="@drawable/borda_botoes_add_principal"
-            android:padding="@dimen/paddingBotoesAddPrincipal"
-            android:textColor="@color/corFonteoBotoesAdd"
-            />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-
-            app:fabSize="mini"
-            app:srcCompat="@drawable/ic_file_download_black_24dp"
-            android:tint="@android:color/white"
-            app:backgroundTint="@color/corTelaReceitas"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-
-        android:id="@+id/fabLayout4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginBottom="@dimen/standard_23"
-        android:layout_marginRight="@dimen/standard_23"
-        android:clipToPadding="false"
-        android:gravity="center_vertical"
-        android:padding="@dimen/standard_12"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lblConta"
-            android:background="@drawable/borda_botoes_add_principal"
-            android:padding="@dimen/paddingBotoesAddPrincipal"
-            android:textColor="@color/corFonteoBotoesAdd"
-            />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-
-            app:fabSize="mini"
-            app:srcCompat="@drawable/ic_account_balance_black_24dp"
-            android:tint="@android:color/white"
-            app:backgroundTint="@color/corTelaContas"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+    <FrameLayout
+        android:id="@+id/frameContainerPrinc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
-        android:clipToPadding="false"
-        android:gravity="center_vertical"
-        android:padding="@dimen/standard_12">
+        >
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fabAdd"
+        <LinearLayout
+            android:id="@+id/frag_container_botao_add_princ"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="bottom|end"
-            android:gravity="center_vertical"
-            app:fabSize="normal"
-            app:srcCompat="@drawable/ic_add_white_24dp" />
+            android:orientation="vertical"
+            >
 
-    </LinearLayout>
+
+        </LinearLayout>
+    </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

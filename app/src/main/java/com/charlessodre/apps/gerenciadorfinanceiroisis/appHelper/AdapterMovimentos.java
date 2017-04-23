@@ -130,7 +130,8 @@ public class AdapterMovimentos extends ArrayAdapter<Object> {
             descricaoContaMovimento = conta.getNome();
             this.textoRecebido = this.context.getResources().getString(R.string.lblPago);
 
-            viewHolder.imgMovimento.setImageResource(noIcone);
+            descricaoContaMovimento = conta.getNome() + " | " + descricaoTransacao;
+
 
         } else if (movimento instanceof Receita) {
             receita = (Receita) movimento;
@@ -150,18 +151,22 @@ public class AdapterMovimentos extends ArrayAdapter<Object> {
             descricaoContaMovimento = conta.getNome();
             this.textoRecebido = this.context.getResources().getString(R.string.lblRecebido);
 
-            viewHolder.imgMovimento.setImageResource(noIcone);
+            descricaoContaMovimento = conta.getNome() + " | " + descricaoTransacao;
 
         } else if (movimento instanceof Transferencia) {
 
             transferencia = (Transferencia) movimento;
 
             colorCircle = R.color.corTelaTransferencias;
-            descricaoTransacao = this.context.getResources().getString(R.string.lblTransferencia);
             valor = transferencia.getValor();
             data = transferencia.getDataTransferencia();
 
-            if (transferencia.getContaOrigem().getId() == transferencia.getId()) {
+            conta = transferencia.getContaOrigem();
+            contaDestino = transferencia.getContaDestino();
+
+            noIcone = R.drawable.ic_import_export_black_24dp;
+
+          /*  if (conta.getId() == contaDestino.getId()) {
                 noIcone = corRecebida;
                 descricaoMovimento = this.context.getResources().getString(R.string.lblEntrada);
             } else {
@@ -169,18 +174,20 @@ public class AdapterMovimentos extends ArrayAdapter<Object> {
                 noIcone = corPendente;
                 descricaoMovimento = this.context.getResources().getString(R.string.lblSaida);
             }
+           */
 
-            conta = transferencia.getContaOrigem();
-            contaDestino = transferencia.getContaDestino();
 
-            descricaoContaMovimento = descricaoContaMovimento + " | " + this.context.getResources().getString(R.string.lblOrigem);
+            descricaoContaMovimento = this.context.getResources().getString(R.string.lblOrigem) + " " + conta.getNome();
 
-            categoriaTransacao = this.context.getResources().getString(R.string.lblDestino) +" "+ contaDestino.getNome();
+            descricaoMovimento = this.context.getResources().getString(R.string.lblTransferencia);
 
-            viewHolder.imgMovimento.setImageResource(R.drawable.ic_import_export_black_24dp);
+            categoriaTransacao = this.context.getResources().getString(R.string.lblDestino) + " " + contaDestino.getNome();
 
             this.textoRecebido = this.context.getResources().getString(R.string.lblEfetivada);
+
             efetivada = true;
+            fixo = false;
+            totalRepeticao = 0;
 
         }
 
@@ -190,31 +197,30 @@ public class AdapterMovimentos extends ArrayAdapter<Object> {
         String tipoMovimento = categoriaTransacao;
 
 
-            if (efetivada) {
-                viewHolder.txtStatusMovimento.setText(this.textoRecebido);
-                viewHolder.txtStatusMovimento.setTextColor(this.corRecebida);
-                viewHolder.txtValorMovimento.setTextColor(this.corRecebida);
-            } else {
-                viewHolder.txtStatusMovimento.setText(this.textoPendente);
-                viewHolder.txtStatusMovimento.setTextColor(this.corPendente);
-                viewHolder.txtValorMovimento.setTextColor(this.corPendente);
-            }
-
-        if ((movimento instanceof Transferencia) == false) {
-
-            if (fixo) {
-                tipoMovimento = tipoMovimento + " | " + this.context.getResources().getString(R.string.lblFixa);
-
-            } else if (totalRepeticao > 0) {
-                String repeticao = repeticaoAtual + " " + this.context.getResources().getString(R.string.lblDe) + " " + totalRepeticao;
-
-                tipoMovimento = tipoMovimento + " | " + repeticao;
-            }
-
+        if (efetivada) {
+            viewHolder.txtStatusMovimento.setText(this.textoRecebido);
+            viewHolder.txtStatusMovimento.setTextColor(this.corRecebida);
+            viewHolder.txtValorMovimento.setTextColor(this.corRecebida);
+        } else {
+            viewHolder.txtStatusMovimento.setText(this.textoPendente);
+            viewHolder.txtStatusMovimento.setTextColor(this.corPendente);
+            viewHolder.txtValorMovimento.setTextColor(this.corPendente);
         }
+
+
+        if (fixo) {
+            tipoMovimento = tipoMovimento + " | " + this.context.getResources().getString(R.string.lblFixa);
+
+        } else if (totalRepeticao > 0) {
+            String repeticao = repeticaoAtual + " " + this.context.getResources().getString(R.string.lblDe) + " " + totalRepeticao;
+
+            tipoMovimento = tipoMovimento + " | " + repeticao;
+        }
+
+
         viewHolder.txtTipoMovimento.setText(tipoMovimento);
 
-        descricaoContaMovimento = conta.getNome() + " | " + descricaoTransacao;
+        viewHolder.imgMovimento.setImageResource(noIcone);
 
         viewHolder.txtNomeMovimento.setText(descricaoMovimento);
 

@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -25,7 +27,9 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.Repo
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioTransferencia;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgBotaoAddTransacao;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.FragmentHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 
 import java.text.NumberFormat;
@@ -45,6 +49,7 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
     private LinearLayout lnlrodapeMovimento;
     private TextView txtValorTotalMovimentosRod;
     private TextView txtTextoSaldo;
+    private LinearLayout frag_container_botao_add;
 
     //Atributos
     private AdapterMovimentos adpMovimento;
@@ -54,6 +59,8 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
     private Transferencia transferencia;
     private int addMes = 0;
     private int anoMesAtual = DateUtils.getCurrentYearAndMonth();
+
+    private frgBotaoAddTransacao fragmentoBotaoAdd;
 
 
     private RepositorioTransferencia repositorioTransferencia;
@@ -80,6 +87,7 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
         super.setAnoMesCalendar(this.addMes);
         this.atualizaListView();
         this.setNomeMes();
+        this.adicionaFragBotaoAdd();
 
 
     }
@@ -184,12 +192,34 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
         this.txtValorTotalMovimentosRod = (TextView) findViewById(R.id.txtValorTotalMovimentosRod);
         this.txtTextoSaldo = (TextView) findViewById(R.id.txtTextoSaldo);
 
+        this.frag_container_botao_add = (LinearLayout) findViewById(R.id.frag_container_botao_add);
+
+
+        this.lstMovimentos.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView absListView, int i) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
+                if (i>0) {
+                    frag_container_botao_add.setVisibility(View.GONE);
+
+
+                } else {
+                    frag_container_botao_add.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
         this.repositorioConta = new RepositorioConta(this);
         this.repositorioDespesa = new RepositorioDespesa(this);
         this.repositorioReceita = new RepositorioReceita(this);
         this.repositorioTransferencia = new RepositorioTransferencia(this);
 
         this.adpMovimento = new AdapterMovimentos(this, R.layout.item_movimento);
+
 
     }
 
@@ -198,12 +228,15 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
         int anoMes = DateUtils.getYearAndMonth(super.getCalendar().getTime());
         List<Object> movimentos;
 
-        if (this.conta != null)
+        this.adpMovimento.clear();
+
+        if (this.conta != null) {
             movimentos = this.getMovimentoConta();
+        }
         else
             movimentos = this.getTodosMovimento();
 
-        this.adpMovimento.clear();
+
         this.adpMovimento.addAll(movimentos);
 
         this.lstMovimentos.setAdapter(this.adpMovimento);
@@ -279,6 +312,22 @@ public class actMovimentos extends actBaseListas implements AdapterView.OnItemCl
         movimentos.addAll(transferencias);
 
         return movimentos;
+    }
+
+
+    private void adicionaFragBotaoAdd() {
+
+
+        this.fragmentoBotaoAdd = (frgBotaoAddTransacao) FragmentHelper.findFragmentByTag(getSupportFragmentManager(), fragmentoBotaoAdd.NOME_FRAGMENTO);
+
+        //Verifica se o fragmento já foi adicionado.
+        if (this.fragmentoBotaoAdd == null) {
+            this.fragmentoBotaoAdd = fragmentoBotaoAdd.newInstance();
+
+            Bundle argument = new Bundle();
+
+            FragmentHelper.addFragment(getSupportFragmentManager(), this.fragmentoBotaoAdd, fragmentoBotaoAdd.NOME_FRAGMENTO, R.id.frag_container_botao_add);
+        }
     }
 
 }

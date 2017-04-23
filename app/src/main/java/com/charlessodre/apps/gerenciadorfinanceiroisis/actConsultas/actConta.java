@@ -36,12 +36,12 @@ public class actConta extends actBaseListas implements AdapterView.OnItemClickLi
     private TextView txtValorTotalContasRod;
     private FloatingActionButton fabAdd;
 
-
     //Atributos
     private AdapterConta adpConta;
     private RepositorioConta repositorioConta;
     private Conta conta;
     private int addMes = 0;
+
 
     //Constantes
     public static final String PARAM_CONTA = "CONTA";
@@ -63,6 +63,7 @@ public class actConta extends actBaseListas implements AdapterView.OnItemClickLi
         this.atualizaListView();
         this.setNomeMes();
 
+
     }
 
     @Override
@@ -74,11 +75,13 @@ public class actConta extends actBaseListas implements AdapterView.OnItemClickLi
                 this.setNomeMes();
                 this.atualizaListView();
 
+
                 break;
             case R.id.btnDireitaConta:
                 super.setAddMesCalendar(1);
                 this.setNomeMes();
                 this.atualizaListView();
+
                 break;
             case R.id.btnAdicionarConta:
 
@@ -141,6 +144,7 @@ public class actConta extends actBaseListas implements AdapterView.OnItemClickLi
         this.txtNomeMes = (TextView) findViewById(R.id.txtNomeMesConta);
         this.txtValorTotalContasRod = (TextView) findViewById(R.id.txtValorTotalContasRod);
 
+
         this.repositorioConta = new RepositorioConta(this);
 
         this.adpConta = new AdapterConta(this, R.layout.item_conta);
@@ -198,5 +202,6 @@ public class actConta extends actBaseListas implements AdapterView.OnItemClickLi
         }
 
     }
+
 
 }

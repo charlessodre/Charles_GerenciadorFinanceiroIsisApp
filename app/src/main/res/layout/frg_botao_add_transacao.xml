@@ -1,0 +1,156 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgBotaoAddTransacao">
+
+    <LinearLayout
+        android:id="@+id/fabLayoutTranferencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/fab_add_marginBottom"
+        android:layout_marginRight="@dimen/fab_add_marginRight"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borda_botoes_add_principal"
+            android:padding="@dimen/fab_add_padding_text"
+            android:text="@string/lblTransferencia"
+            android:textColor="@color/corFonteoBotoesAdd" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabTransferencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/fab_add_marginLeft_icon"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/corTelaTransferencias"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_import_export_black_24dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fabLayoutDespesa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/fab_add_marginBottom"
+        android:layout_marginRight="@dimen/fab_add_marginRight"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borda_botoes_add_principal"
+            android:padding="@dimen/fab_add_padding_text"
+            android:text="@string/lblDespesa"
+            android:textColor="@color/corFonteoBotoesAdd" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabDespesa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/fab_add_marginLeft_icon"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/corTelaDespesas"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_file_upload_black_24dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/fabLayoutReceita"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/fab_add_marginBottom"
+        android:layout_marginRight="@dimen/fab_add_marginRight"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borda_botoes_add_principal"
+            android:padding="@dimen/fab_add_padding_text"
+            android:text="@string/lblReceita"
+            android:textColor="@color/corFonteoBotoesAdd" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabReceita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/fab_add_marginLeft_icon"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/corTelaReceitas"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_file_download_black_24dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/fabLayoutConta"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="@dimen/fab_add_marginBottom"
+        android:layout_marginRight="@dimen/fab_add_marginRight"
+        android:clipToPadding="false"
+        android:gravity="center_vertical"
+        android:visibility="gone"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/borda_botoes_add_principal"
+            android:padding="@dimen/fab_add_padding_text"
+            android:text="@string/lblConta"
+            android:textColor="@color/corFonteoBotoesAdd" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabConta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/fab_add_marginLeft_icon"
+            android:tint="@android:color/white"
+            app:backgroundTint="@color/corTelaContas"
+            app:fabSize="mini"
+            app:srcCompat="@drawable/ic_account_balance_black_24dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fabLayoutAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:clipToPadding="false"
+        android:gravity="center_vertical">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fabAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:gravity="center_vertical"
+            app:fabSize="normal"
+            app:srcCompat="@drawable/ic_add_white_24dp" />
+
+    </LinearLayout>
+
+</FrameLayout>
