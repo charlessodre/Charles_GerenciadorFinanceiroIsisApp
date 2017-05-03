@@ -15,7 +15,7 @@ public class Receita extends EntidadeBase {
 
 
     //Constantes
-    public static String TABELA_NOME = "TB_GF_RECEITA";
+    public static String TABELA_NOME = "TB_GF_RECEITA_CONTA";
 
     public static String NM_RECEITA = "NM_RECEITA";
     public static String VL_RECEITA = "VL_RECEITA";

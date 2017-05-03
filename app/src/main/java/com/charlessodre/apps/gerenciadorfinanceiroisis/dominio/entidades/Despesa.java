@@ -11,7 +11,7 @@ public class Despesa extends EntidadeBase  {
 
 
     //Constantes
-    public static String  TABELA_NOME 			  = "TB_GF_DESPESA";
+    public static String  TABELA_NOME 			  = "TB_GF_DESPESA_CONTA";
 
 
     public static final String NM_DESPESA               = "NM_DESPESA";

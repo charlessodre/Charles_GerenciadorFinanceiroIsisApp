@@ -8,6 +8,7 @@ import android.telephony.SmsMessage;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.charlessodre.apps.gerenciadorfinanceiroisis.Servicos.ServicoGetSMSRecebido;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Despesa;
@@ -107,6 +108,11 @@ public class ReceberSMS extends BroadcastReceiver {
 
             }
         }
+
+        //Executa o serviço que vai ficar verificando o recebimento de SMS quando o App estiver fechado.
+        //TODO: Rever
+        Intent serviceIntent  = new Intent(context, ReceberSMS.class);
+        context.startService(serviceIntent );
     }
 
 
@@ -186,6 +192,8 @@ public class ReceberSMS extends BroadcastReceiver {
         }
 
     }
+
+
 
     public void onReceiveTEste(Context context, Intent intent) {
 

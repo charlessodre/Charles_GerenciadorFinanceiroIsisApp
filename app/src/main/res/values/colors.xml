@@ -14,6 +14,7 @@
     <color name="corTelaDespesas">#e92727</color>
     <color name="corTelaTransferencias">#0288D1</color>
     <color name="corTelaPrincipal">#3F51B5</color>
+    <color name="corTelaCartaoCredito">#34B</color>
     <color name="corFundoTelaPrincipal">#E0E0E0</color>
     <color name="corTelaRegraImportacaoSMS">#39F</color>
     <color name="corTelaListaSMS">#39A</color>

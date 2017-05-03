@@ -1,14 +1,17 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.ColorHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgIconeCor;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgOrdemExibicaoCor;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgConfirmaExclusaoDialog;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgConfirmacaoDialog;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgLancamentosDialog;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ActionBarHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.FragmentHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.StringUtils;
 
@@ -20,6 +23,28 @@ public abstract class actBaseCadastros extends AppCompatActivity {
     }
 
     protected abstract void inicializaObjetos();
+
+    protected void setMenuHome(String titulo)
+    {
+        ActionBarHelper.menuHome(getSupportActionBar(), titulo);
+    }
+
+    protected void setMenuCancel(String titulo)
+    {
+        ActionBarHelper.menuCancel(getSupportActionBar(), titulo);
+    }
+    protected void setColorStatusBar(int color)
+    {
+        ActionBarHelper.setStatusBarColor(this.getWindow(), ColorHelper.getColor(this, color));
+
+    }
+
+    protected void setColorActionBar(int color)
+    {
+        ActionBarHelper.setBackgroundColor(getSupportActionBar(), Color.parseColor(getResources().getString(color)));
+    }
+
+
 
     protected int getNumOrdemExibicao() {
         int numOrdem = 1;

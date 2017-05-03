@@ -78,7 +78,7 @@
     <string name="lblDesabilitada">Desabilitada</string>
     <string name="lblCor">Cor</string>
     <string name="lblIcone">Icone</string>
-    <string name="lblExibirSomaResumo">Exibir a Soma no Resumo?</string>
+    <string name="lblExibirSomaResumo">Exibir a Soma no Resumo</string>
     <string name="lblExibir">Exibir</string>
     <string name="lblPrevisto">Previsto</string>
     <string name="lblSaldoAtual">Saldo Atual</string>
@@ -94,7 +94,28 @@
     <string name="lblInvestimento">Investimento</string>
     <string name="lblOutros">Outros</string>
     <string name="lblCancelar">Cancelar</string>
-    <string name="title_activity_act_login">Sign in</string>
+    <string name="lblAtivo">Ativo</string>
+
+    <!-- Cartão de Crédito -->
+    <string name="lblCartaoCredito">Cartão de Crédito</string>
+    <string name="lblCartao">Cartão</string>
+    <string name="lblBandeiraCartao">Bandeira do Cartão</string>
+    <string name="lblDiaFechamento">Dia de Fechamento</string>
+    <string name="lblDiaVencimento">Dia de Vencimento</string>
+    <string name="lblContaAssociada">Conta Associada</string>
+    <string name="lblLimiteCartao">Valor do Limite</string>
+
+
+    <!-- Bandeira Cartões -->
+    <string name="lblCartaoVisa">Visa</string>
+    <string name="lblCartaoMasterCard">MasterCard</string>
+    <string name="lblCartaoHiperCard">HiperCard</string>
+    <string name="lblCartaoAmericanExpress">American Express</string>
+    <string name="lblCartaoDinersClub">Diners Club</string>
+    <string name="lblCartaoBNDES">BNDES</string>
+    <string name="lblCartaoSodexo">Sodexo</string>
+    <string name="lblCartaoAlelo">Alelo</string>
+    <string name="lblCartaoOutros">Outros</string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

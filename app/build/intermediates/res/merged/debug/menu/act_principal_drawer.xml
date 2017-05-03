@@ -30,6 +30,11 @@
             android:title="@string/lblTransferencias" />
 
         <item
+            android:id="@+id/nav_cartao_credito"
+            android:icon="@drawable/ic_credit_card_black_24dp"
+            android:title="@string/lblCartaoCredito" />
+
+        <item
             android:id="@+id/nav_movimento"
             android:icon="@drawable/ic_view_headline_black_24dp"
             android:title="@string/lblMovimentos" />

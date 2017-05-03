@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -12,6 +13,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--
+        <service android:name=".Servicos.ServicoGetSMSRecebido" android:exported="false"
+
+            />
+        -->
+
+        <receiver android:name=".util.ReceberSMS">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".actPrincipal"
             android:label="@string/app_name"
@@ -45,30 +60,16 @@
             android:label="@string/title_receitas"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".actCadastros.actCadReceita" />
-        <!-- <activity android:name=".actCadastros.actBaseCadastros" /> -->
         <activity android:name=".actCadastros.actCadTransferencia" />
         <activity
             android:name=".actConsultas.actTransferencia"
             android:label="@string/title_transferencias"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".actLogin"
-            android:label="@string/title_activity_act_login" />
-        <activity android:name=".actLoginNumerico" />
-        <activity
             android:name=".actConsultas.actDespesa"
             android:label="@string/title_despesas"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".actCadastros.actCadDespesa" />
-
-
-        <receiver android:name=".util.ReceberSMS">
-            <intent-filter>
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-            </intent-filter>
-        </receiver>
-
-
         <activity
             android:name=".actConsultas.actRegraImportacaoSMS"
             android:label="@string/title_regra_imp_sms"
@@ -85,7 +86,12 @@
         <activity
             android:name=".actConsultas.actMovimentos"
             android:label="@string/title_movimentos"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".actConsultas.actCartaoCredito"
+            android:label="@string/title_cartao_credito"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".actCadastros.actCadCartaoCredito"></activity>
     </application>
 
 </manifest>

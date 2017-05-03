@@ -54,7 +54,7 @@ public class AdapterImagem extends ArrayAdapter<Integer> {
 
             viewHolder = new ViewHolder();
 
-            viewHolder.imgCategoria = (ImageView) view.findViewById(R.id.imgIcone);
+            viewHolder.image = (ImageView) view.findViewById(R.id.imgIcone);
 
             view.setTag(viewHolder);
 
@@ -67,7 +67,7 @@ public class AdapterImagem extends ArrayAdapter<Integer> {
             view = convertView;
         }
 
-        viewHolder.imgCategoria.setImageResource(getItem(position));
+        viewHolder.image.setImageResource(getItem(position));
 
         return view;
     }
@@ -83,7 +83,7 @@ public class AdapterImagem extends ArrayAdapter<Integer> {
     }
 
     public static class ViewHolder {
-        ImageView imgCategoria;
+        ImageView image;
 
     }
 

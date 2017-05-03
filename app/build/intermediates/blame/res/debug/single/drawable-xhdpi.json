@@ -12,12 +12,12 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_investimento_24dp.png"
     },
     {
-        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_delete_white_24dp.png",
-        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_delete_white_24dp.png"
-    },
-    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_musica_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_musica_24dp.png"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_delete_white_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_delete_white_24dp.png"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_drink_24dp.png",
@@ -40,6 +40,10 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_loyalty_black_24dp.png"
     },
     {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_keyboard_arrow_left_white_36dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_keyboard_arrow_left_white_36dp.png"
+    },
+    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_build_black_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_build_black_24dp.png"
     },
@@ -52,12 +56,12 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_conta_outros_24dp.png"
     },
     {
-        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_trabalho_24dp.png",
-        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_trabalho_24dp.png"
-    },
-    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_bookmark_black_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_bookmark_black_24dp.png"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_trabalho_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_trabalho_24dp.png"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_message_black_24dp.png",
@@ -338,6 +342,10 @@
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_camera_alt_black_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_camera_alt_black_24dp.png"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_keyboard_arrow_right_white_36dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xhdpi\\ic_keyboard_arrow_right_white_36dp.png"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_pets_24dp.png",

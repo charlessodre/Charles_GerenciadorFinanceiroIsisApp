@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Despesa;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Receita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.BooleanUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 
@@ -38,6 +40,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         values.put(Conta.NO_COR, conta.getNoCor());
         values.put(Conta.NO_COR_ICONE, conta.getNoCorIcone());
         values.put(Conta.VL_SALDO, conta.getValorSaldo());
+        values.put(Conta.FL_EXIBIR_SOMA, BooleanUtils.parseBooleanToint(conta.isExibiSomaResumo()));
 
         if (conta.getId() == 0)
             values.put(Conta.DT_INCLUSAO, conta.getDataInclusao().getTime());
@@ -65,6 +68,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
                 conta.setAnoMes(cursor.getInt(cursor.getColumnIndex(Conta.NO_AM_CONTA)));
                 conta.setExibir(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Conta.FL_EXIBIR))));
                 conta.setAtivo(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Conta.FL_ATIVO))));
+                conta.setExibiSomaResumo(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Conta.FL_EXIBIR_SOMA))));
 
                 conta.setValorSaldo(cursor.getDouble(cursor.getColumnIndex(Conta.VL_SALDO)));
 
@@ -238,9 +242,15 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         sql.append(" C.NO_COR," );
         sql.append(" C.NO_COR_ICONE," );
         sql.append(" C.VL_SALDO, " );
-        sql.append(" (SELECT SUM(R.VL_RECEITA) AS VL_RECEITA FROM TB_GF_RECEITA as R where R.NO_AM_RECEITA <= ? AND R.FL_RECEITA_PAGA=0 AND C._id=R.ID_CONTA)AS RECEITAS_PREVISTAS, " );
-        sql.append(" (SELECT SUM(D.VL_DESPESA) AS VL_DESPESA FROM TB_GF_DESPESA as D where D.NO_AM_DESPESA <= ? AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS DESPESAS_PREVISTAS " );
-        sql.append(" FROM TB_GF_CONTA C ");
+        sql.append(" (SELECT SUM(R.VL_RECEITA) AS VL_RECEITA FROM ");
+        sql.append(Receita.TABELA_NOME);
+        sql.append("  as R where R.NO_AM_RECEITA <= ? AND R.FL_RECEITA_PAGA=0 AND C._id=R.ID_CONTA)AS RECEITAS_PREVISTAS, " );
+        sql.append(" (SELECT SUM(D.VL_DESPESA) AS VL_DESPESA FROM ");
+        sql.append(Despesa.TABELA_NOME);
+        sql.append(" as D where D.NO_AM_DESPESA <= ? AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS DESPESAS_PREVISTAS " );
+        sql.append(" FROM ");
+        sql.append(Conta.TABELA_NOME);
+        sql.append(" C ");
 
         if(idConta != 0)
             sql.append(" WHERE  C._id = ?" );

@@ -256,7 +256,7 @@ public class DateUtils {
         Date convertedDate;
         String stringDate;
         Matcher matcher;
-        ArrayList<Date> allMatches = new  ArrayList<Date>();
+        ArrayList<Date> allMatches = new ArrayList<Date>();
 
         matcher = Pattern.compile(regexDateLong).matcher(strigWithDates);
 
@@ -264,25 +264,65 @@ public class DateUtils {
             allMatches.add(DateUtils.stringToDateShort(matcher.group()));
         }
 
-        if(allMatches.size()==0)
-        {
+        if (allMatches.size() == 0) {
             matcher = Pattern.compile(regexShort).matcher(strigWithDates);
 
             while (matcher.find()) {
 
                 stringDate = matcher.group();
 
-                if(stringDate.split("/").length<3)
-                    stringDate = stringDate.substring(0,5) + "/" + getCurrentYear();
+                if (stringDate.split("/").length < 3)
+                    stringDate = stringDate.substring(0, 5) + "/" + getCurrentYear();
 
                 convertedDate = DateUtils.stringToDateShort(stringDate);
 
-                if(convertedDate != null)
+                if (convertedDate != null)
                     allMatches.add(convertedDate);
             }
 
         }
 
         return allMatches;
+    }
+
+
+    public static ArrayList<Integer> getDiasDoMes() {
+
+        ArrayList<Integer> diasMes = new ArrayList<Integer>();
+
+        diasMes.add(1);
+        diasMes.add(2);
+        diasMes.add(3);
+        diasMes.add(4);
+        diasMes.add(5);
+        diasMes.add(6);
+        diasMes.add(7);
+        diasMes.add(8);
+        diasMes.add(9);
+        diasMes.add(10);
+        diasMes.add(11);
+        diasMes.add(12);
+        diasMes.add(13);
+        diasMes.add(14);
+        diasMes.add(15);
+        diasMes.add(16);
+        diasMes.add(17);
+        diasMes.add(18);
+        diasMes.add(19);
+        diasMes.add(20);
+        diasMes.add(21);
+        diasMes.add(22);
+        diasMes.add(23);
+        diasMes.add(24);
+        diasMes.add(25);
+        diasMes.add(26);
+        diasMes.add(27);
+        diasMes.add(28);
+        diasMes.add(29);
+        diasMes.add(30);
+        diasMes.add(31);
+
+
+        return diasMes;
     }
 }

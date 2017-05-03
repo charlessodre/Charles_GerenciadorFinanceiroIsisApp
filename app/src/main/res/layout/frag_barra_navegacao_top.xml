@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.fragBarraNavegacaoTop">
+    tools:context=".fragBarraNavegacaoTop">
 
 
     <LinearLayout
@@ -17,7 +17,7 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_keyboard_arrow_left_white_24dp"
+            app:srcCompat="@drawable/ic_keyboard_arrow_left_white_36dp"
             android:id="@+id/btnEsquerda"
             android:layout_weight="2"
             android:layout_gravity="center"
@@ -39,7 +39,7 @@
         <ImageButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_keyboard_arrow_right_white_24dp"
+            app:srcCompat="@drawable/ic_keyboard_arrow_right_white_36dp"
             android:id="@+id/btnDireita"
             android:layout_weight="2"
             android:layout_gravity="center"

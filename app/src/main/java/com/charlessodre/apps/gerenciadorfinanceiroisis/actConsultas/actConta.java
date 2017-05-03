@@ -44,7 +44,6 @@ public class actConta extends actBaseListas implements AdapterView.OnItemClickLi
 
 
     //Constantes
-    public static final String PARAM_CONTA = "CONTA";
     public static final String PARAM_CONTA_ANO_MES = "ANO_MES";
 
     //Eventos

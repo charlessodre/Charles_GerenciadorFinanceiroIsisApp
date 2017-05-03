@@ -1,4 +1,4 @@
-#Sun Apr 23 20:36:02 BRT 2017
+#Tue May 02 21:33:08 BRT 2017
 base.0=C\:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_4
 renamed.0=classes.dex
 file.0=C\:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_4\\classes.dex

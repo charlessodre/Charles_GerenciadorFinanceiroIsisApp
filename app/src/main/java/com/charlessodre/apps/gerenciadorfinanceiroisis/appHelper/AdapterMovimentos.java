@@ -166,6 +166,7 @@ public class AdapterMovimentos extends ArrayAdapter<Object> {
 
             noIcone = R.drawable.ic_import_export_black_24dp;
 
+
           /*  if (conta.getId() == contaDestino.getId()) {
                 noIcone = corRecebida;
                 descricaoMovimento = this.context.getResources().getString(R.string.lblEntrada);
@@ -217,7 +218,6 @@ public class AdapterMovimentos extends ArrayAdapter<Object> {
             tipoMovimento = tipoMovimento + " | " + repeticao;
         }
 
-
         viewHolder.txtTipoMovimento.setText(tipoMovimento);
 
         viewHolder.imgMovimento.setImageResource(noIcone);
@@ -243,6 +243,7 @@ public class AdapterMovimentos extends ArrayAdapter<Object> {
         TextView txtValorMovimento;
         TextView txtDataMovimento;
         TextView txtContaMovimentoItem;
+
 
     }
 

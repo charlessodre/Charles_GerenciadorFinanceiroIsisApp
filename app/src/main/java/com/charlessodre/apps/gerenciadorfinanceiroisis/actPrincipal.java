@@ -1,12 +1,10 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis;
 
-import android.animation.Animator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -18,15 +16,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadConta;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesa;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadReceita;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadTransferencia;
+
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actBaseListas;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actCategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actCategoriaReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actConta;
@@ -41,11 +36,11 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgResumo;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.FragmentHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.MessageBoxHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.PermissionsUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgGrafResumoReceitaDespesa;
+
 
 public class actPrincipal extends actBaseListas
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
@@ -62,6 +57,7 @@ public class actPrincipal extends actBaseListas
     private frgBotaoAddTransacao fragmentoBotaoAdd;
 
     //Atributos
+
 
     //Eventos
     @Override
@@ -215,6 +211,11 @@ public class actPrincipal extends actBaseListas
         } else if (id == R.id.nav_transferencia) {
 
             Intent it = new Intent(this, actTransferencia.class);
+            startActivityForResult(it, 0);
+
+        } else if (id == R.id.nav_cartao_credito) {
+
+            Intent it = new Intent(this, actCartaoCredito.class);
             startActivityForResult(it, 0);
 
         } else if (id == R.id.nav_movimento) {
@@ -377,6 +378,7 @@ public class actPrincipal extends actBaseListas
 
 
     }
+
 
 
     //TESTE

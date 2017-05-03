@@ -144,6 +144,10 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxhdpi\\ic_lazer_24dp.png"
     },
     {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_keyboard_arrow_left_white_36dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxhdpi\\ic_keyboard_arrow_left_white_36dp.png"
+    },
+    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_automovel_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxhdpi\\ic_automovel_24dp.png"
     },
@@ -308,12 +312,12 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxhdpi\\ic_drafts_black_24dp.png"
     },
     {
-        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_desconto_percentual_24dp.png",
-        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxhdpi\\ic_desconto_percentual_24dp.png"
-    },
-    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_dashboard_black_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxhdpi\\ic_dashboard_black_24dp.png"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_desconto_percentual_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxhdpi\\ic_desconto_percentual_24dp.png"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_toc_black_24dp.png",
@@ -386,6 +390,10 @@
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_musica_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxhdpi\\ic_musica_24dp.png"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_keyboard_arrow_right_white_36dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxhdpi\\ic_keyboard_arrow_right_white_36dp.png"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_loyalty_black_24dp.png",

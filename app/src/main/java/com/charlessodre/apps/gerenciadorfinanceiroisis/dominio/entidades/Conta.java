@@ -12,7 +12,7 @@ import java.util.ArrayList;
 /**
  * Created by charl on 10/09/2016.
  */
-public class Conta extends EntidadeBase implements Serializable {
+public class Conta extends EntidadeBase {
 
 
     //Constantes
@@ -38,8 +38,20 @@ public class Conta extends EntidadeBase implements Serializable {
     private double despesasPrevistas;
     private int noCorIcone;
 
+    private boolean exibiSomaResumo;
+
 
     //Propriedades
+
+
+
+    public boolean isExibiSomaResumo() {
+        return exibiSomaResumo;
+    }
+
+    public void setExibiSomaResumo(boolean exibiSomaResumo) {
+        this.exibiSomaResumo = exibiSomaResumo;
+    }
 
 
     public int getNoCorIcone() {
@@ -108,11 +120,6 @@ public class Conta extends EntidadeBase implements Serializable {
 
 
     //Métodos
-
-    public Double getvalorSaldoPrevisto()
-    {
-        return  null;
-    }
 
     public static ArrayList<String> getTipoContas(Context context)
     {

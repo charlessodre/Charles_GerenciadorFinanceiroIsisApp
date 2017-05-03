@@ -141,11 +141,11 @@ public class ScriptSQL {
 
 
 
-    public static String getCreateTBDespesa()
+    public static String getCreateTBDespesaConta()
     {
         StringBuilder sqlBuilder = new StringBuilder();
 
-        sqlBuilder.append(" CREATE TABLE IF NOT EXISTS TB_GF_DESPESA ( " );
+        sqlBuilder.append(" CREATE TABLE IF NOT EXISTS TB_GF_DESPESA_CONTA ( " );
         sqlBuilder.append("  _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, " );
         sqlBuilder.append("   NM_DESPESA VARCHAR(200) NOT NULL, " );
         sqlBuilder.append("   DT_DESPESA DATETIME NOT NULL, " );
@@ -168,7 +168,7 @@ public class ScriptSQL {
         sqlBuilder.append("   ID_SUB_CATEGORIA_DESPESA INTEGER  NOT NULL, " );
         sqlBuilder.append("   ID_DESPESA_PAI INTEGER  NULL, " );
         sqlBuilder.append("   ID_TIPO_REPETICAO INTEGER  NULL, " );
-        sqlBuilder.append("   FOREIGN KEY (ID_DESPESA_PAI)REFERENCES TB_GF_DESPESA (_id), " );
+        sqlBuilder.append("   FOREIGN KEY (ID_DESPESA_PAI)REFERENCES TB_GF_DESPESA_CONTA (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_CONTA) REFERENCES TB_GF_CONTA (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_CATEGORIA_DESPESA) REFERENCES TB_GF_CATEGORIA_DESPESA (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_SUB_CATEGORIA_DESPESA) REFERENCES TB_GF_SUB_CATEGORIA_DESPESA (_id) " );
@@ -180,11 +180,13 @@ public class ScriptSQL {
     }
 
 
-    public static String getCreateTBReceita()
+
+
+    public static String getCreateTBReceitaConta()
     {
 
         StringBuilder sqlBuilder = new StringBuilder();
-        sqlBuilder.append(" CREATE TABLE IF NOT EXISTS TB_GF_RECEITA ( " );
+        sqlBuilder.append(" CREATE TABLE IF NOT EXISTS TB_GF_RECEITA_CONTA ( " );
         sqlBuilder.append("   _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, " );
         sqlBuilder.append("   NM_RECEITA VARCHAR(200) NOT NULL, " );
         sqlBuilder.append("   VL_RECEITA DECIMAL(18,2) NOT NULL, " );
@@ -204,7 +206,7 @@ public class ScriptSQL {
         sqlBuilder.append("   ID_CATEGORIA_RECEITA INTEGER  NULL, " );
         sqlBuilder.append("   ID_TIPO_REPETICAO INTEGER  NULL, " );
         sqlBuilder.append("   ID_RECEITA_PAI INTEGER  NULL, " );
-        sqlBuilder.append("   FOREIGN KEY (ID_RECEITA_PAI)REFERENCES TB_GF_RECEITA (_id), " );
+        sqlBuilder.append("   FOREIGN KEY (ID_RECEITA_PAI)REFERENCES TB_GF_RECEITA_CONTA (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_CATEGORIA_RECEITA) REFERENCES TB_GF_CATEGORIA_RECEITA (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_CONTA)REFERENCES TB_GF_CONTA (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_TIPO_REPETICAO)REFERENCES TB_GF_TIPO_REPETICAO (_id) " );
@@ -271,20 +273,94 @@ public class ScriptSQL {
         return sqlBuilder.toString();
     }
 
-    // Carga inicial de tabelas
+
+
+    public static String getCreateTBCartaoCredito()
+    {
+        StringBuilder sqlBuilder = new StringBuilder();
+
+        sqlBuilder.append(" CREATE TABLE IF NOT EXISTS TB_GF_CARTAO_CREDITO ( " );
+        sqlBuilder.append("  _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, " );
+        sqlBuilder.append("   NM_CARTAO VARCHAR(200) NOT NULL, " );
+        sqlBuilder.append("   VL_LIMITE DECIMAL(18,2) NOT NULL, " );
+        sqlBuilder.append("   NO_DIA_FECHAMENTO_FATURA INTEGER  NOT NULL, " );
+        sqlBuilder.append("   NO_DIA_VENCIMENTO_FATURA INTEGER  NOT NULL, " );
+        sqlBuilder.append("   NO_BANDEIRA_CARTAO INTEGER  NOT NULL, " );
+        sqlBuilder.append("   FL_EXIBIR_SOMA CHAR(1) NOT NULL DEFAULT 1, ");
+        sqlBuilder.append("   FL_EXIBIR CHAR(1) NOT NULL DEFAULT 1, " );
+        sqlBuilder.append("   FL_ATIVO CHAR(1) NOT NULL DEFAULT 1, " );
+        sqlBuilder.append("   NO_ORDEM_EXIBICAO INTEGER NULL, " );
+        sqlBuilder.append("   NO_COR INTEGER NULL, " );
+        sqlBuilder.append("   DT_INCLUSAO DATETIME NOT NULL, " );
+        sqlBuilder.append("   DT_ALTERACAO DATETIME NULL, " );
+        sqlBuilder.append("   FL_ALERTA_VENCIMENTO CHAR(1) NOT NULL DEFAULT 1, " );
+
+        sqlBuilder.append("   ID_CONTA_ASSOCIADA INTEGER NOT NULL, " );
+        sqlBuilder.append("   FOREIGN KEY (ID_CONTA_ASSOCIADA) REFERENCES TB_GF_CONTA (_id) " );
+        sqlBuilder.append("  ); " );
+
+
+       return sqlBuilder.toString();
+
+    }
+
+    public static String getCreateTBDespesaCartaoCredito()
+    {
+        StringBuilder sqlBuilder = new StringBuilder();
+
+        sqlBuilder.append(" CREATE TABLE IF NOT EXISTS TB_GF_DESPESA_CARTAO_CREDITO ( " );
+        sqlBuilder.append("  _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, " );
+        sqlBuilder.append("   NM_DESPESA VARCHAR(200) NOT NULL, " );
+        sqlBuilder.append("   DT_DESPESA DATETIME NOT NULL, " );
+        sqlBuilder.append("   VL_DESPESA DECIMAL(18,2) NOT NULL, " );
+        sqlBuilder.append("   DT_PAGAMENTO DATETIME NULL, " );
+        sqlBuilder.append("   VL_PAGAMENTO DECIMAL(18,2) NULL, " );
+        sqlBuilder.append("   NO_TOTAL_REPETICAO INTEGER NULL, " );
+        sqlBuilder.append("   NO_REPETICAO_ATUAL INTEGER NULL, " );
+        sqlBuilder.append("   FL_DESPESA_PAGA CHAR(1) NULL DEFAULT 0, " );
+        sqlBuilder.append("   FL_DEPESA_FIXA CHAR(1) NULL DEFAULT 0, " );
+        sqlBuilder.append("   FL_ALERTA_DESPESA CHAR(1) NULL DEFAULT 0, " );
+        sqlBuilder.append("   DT_INCLUSAO DATETIME NOT NULL, " );
+        sqlBuilder.append("   DT_ALTERACAO DATETIME NULL, " );
+        sqlBuilder.append("   FL_EXIBIR CHAR(1) NOT NULL DEFAULT 1, " );
+        sqlBuilder.append("   FL_ATIVO CHAR(1) NOT NULL DEFAULT 1, " );
+        sqlBuilder.append("   NO_AM_DESPESA INTEGER  NULL, " );
+        sqlBuilder.append("   NO_ORDEM_EXIBICAO INTEGER NULL, " );
+        sqlBuilder.append("   ID_CARTAO INTEGER NOT NULL, " );
+        sqlBuilder.append("   ID_CONTA INTEGER NULL, " );
+        sqlBuilder.append("   ID_CATEGORIA_DESPESA INTEGER  NOT NULL, " );
+        sqlBuilder.append("   ID_SUB_CATEGORIA_DESPESA INTEGER  NOT NULL, " );
+        sqlBuilder.append("   ID_DESPESA_PAI INTEGER  NULL, " );
+        sqlBuilder.append("   ID_TIPO_REPETICAO INTEGER  NULL, " );
+        sqlBuilder.append("   FOREIGN KEY (ID_DESPESA_PAI)REFERENCES TB_GF_DESPESA_CARTAO_CREDITO (_id), " );
+        sqlBuilder.append("   FOREIGN KEY (ID_CONTA) REFERENCES TB_GF_CONTA (_id), " );
+        sqlBuilder.append("   FOREIGN KEY (ID_CARTAO) REFERENCES TB_GF_CARTAO (_id), " );
+        sqlBuilder.append("   FOREIGN KEY (ID_CATEGORIA_DESPESA) REFERENCES TB_GF_CATEGORIA_DESPESA (_id), " );
+        sqlBuilder.append("   FOREIGN KEY (ID_SUB_CATEGORIA_DESPESA) REFERENCES TB_GF_SUB_CATEGORIA_DESPESA (_id) " );
+        sqlBuilder.append("  ); " );
+
+        return sqlBuilder.toString();
+
+    }
+
+
+    //############################################################################################################
+    // Carga Inicial Tabelas
+    //############################################################################################################
+
     public static ArrayList<String> getInsertCategoriaDespesa() {
 
         ArrayList<String> arrayList = new ArrayList<String>();
 
         arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Alimentação',1, CURRENT_TIMESTAMP,1,1,   %d ,  %d);",R.color.red_A200,R.drawable.ic_alimentacao_24dp));
-        arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Automóvel',1, CURRENT_TIMESTAMP,1,2,   %d ,  %d);",R.color.red_A700,R.drawable.ic_automovel_24dp));
+        arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Automóvel',1, CURRENT_TIMESTAMP,1,2,   %d ,  %d);",R.color.grey_500,R.drawable.ic_automovel_24dp));
         arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Educação',1, CURRENT_TIMESTAMP,1,3,   %d ,  %d);",R.color.deep_purple_A700,R.drawable.ic_educacao_24dp));
         arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Impostos e Tarifas',1, CURRENT_TIMESTAMP,1,4,   %d ,  %d);",R.color.light_blue_A700,R.drawable.ic_impostos_24dp));
         arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Investimentos',1, CURRENT_TIMESTAMP,1,5,   %d ,  %d);",R.color.green_A700,R.drawable.ic_investimento_24dp));
         arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Lazer',1, CURRENT_TIMESTAMP,1,6,   %d ,  %d);",R.color.yellow_A700,R.drawable.ic_lazer_24dp));
-        arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Moradia',1, CURRENT_TIMESTAMP,1,7,   %d ,  %d);",R.color.deep_orange_A700,R.drawable.ic_moradia_24dp));
+        arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Moradia',1, CURRENT_TIMESTAMP,1,7,   %d ,  %d);",R.color.deep_orange_300,R.drawable.ic_moradia_24dp));
         arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Pessoal',1, CURRENT_TIMESTAMP,1,8,   %d ,  %d);",R.color.blue_grey_900,R.drawable.ic_pessoal_24dp));
-        arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Pets',1, CURRENT_TIMESTAMP,1,9,   %d ,  %d);",R.color.pink_A700,R.drawable.ic_pets_24dp));
+        arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Pets',1, CURRENT_TIMESTAMP,1,9,   %d ,  %d);",R.color.pink_500,R.drawable.ic_pets_24dp));
         arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Saúde',1, CURRENT_TIMESTAMP,1,10,   %d ,  %d);",R.color.indigo_A700,R.drawable.ic_saude_24dp));
         arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Sem Categoria',1, CURRENT_TIMESTAMP,1,11,   %d ,  %d);",R.color.cyan_A700,R.drawable.ic_sem_categoria_24dp));
         arrayList.add( String.format(" INSERT INTO TB_GF_CATEGORIA_DESPESA(NM_CATEGORIA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR,NO_ORDEM_EXIBICAO,NO_COR, NO_ICONE) VALUES ( 'Trabalho',1, CURRENT_TIMESTAMP,1,12,   %d ,  %d);",R.color.light_green_A700,R.drawable.ic_trabalho_24dp));
@@ -378,9 +454,7 @@ public class ScriptSQL {
 
         ArrayList<String> arrayList = new ArrayList<String>();
 
-        arrayList.add(String.format(" INSERT INTO TB_GF_CONTA (_id,NM_CONTA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR, FL_EXIBIR_SOMA,CD_TIPO_CONTA, NO_ORDEM_EXIBICAO, NO_COR,VL_SALDO, NO_AM_CONTA)VALUES (1,'Carteira',1, CURRENT_TIMESTAMP,1,1, 3,1,%d,0,%s);", R.color.red_A200, DateUtils.getCurrentYearAndMonth()));
-
-
+        arrayList.add(String.format(" INSERT INTO TB_GF_CONTA (_id,NM_CONTA,FL_ATIVO,DT_INCLUSAO,FL_EXIBIR, FL_EXIBIR_SOMA,CD_TIPO_CONTA, NO_ORDEM_EXIBICAO, NO_COR,VL_SALDO, NO_AM_CONTA)VALUES (1,'Carteira',1, CURRENT_TIMESTAMP,1,1, 3,1,%d,0,%s);", R.color.grey_700, DateUtils.getCurrentYearAndMonth()));
 
 
         return arrayList;

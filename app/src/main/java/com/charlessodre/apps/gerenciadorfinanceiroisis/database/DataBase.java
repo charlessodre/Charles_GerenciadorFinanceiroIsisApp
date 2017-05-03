@@ -26,13 +26,16 @@ public class DataBase extends SQLiteOpenHelper{
         db.execSQL( ScriptSQL.getCreateTBSubCategoriaDespesa() );
         db.execSQL( ScriptSQL.getCreateTBCategoriaReceita() );
 
-        db.execSQL( ScriptSQL.getCreateTBDespesa() );
-        db.execSQL( ScriptSQL.getCreateTBReceita() );
+        db.execSQL( ScriptSQL.getCreateTBDespesaConta() );
+        db.execSQL( ScriptSQL.getCreateTBReceitaConta() );
         db.execSQL( ScriptSQL.getCreateTBTransferencia() );
         db.execSQL( ScriptSQL.getCreateTBRegraImportacaoSMS() );
+        db.execSQL(ScriptSQL.getCreateTBCartaoCredito());
 
 
-        //Carga Inicial Tabelas
+        //############################################################################################################
+        // Carga Inicial Tabelas
+        //############################################################################################################
 
         //Categorias Despesa
         ArrayList<String> ArrayListCategoriaDespesa = ScriptSQL.getInsertCategoriaDespesa();

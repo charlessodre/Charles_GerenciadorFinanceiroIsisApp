@@ -27,6 +27,7 @@
     <string name="title_receitas_x_despesas_confirmadas">Receitas x Despesas (Confirmadas)</string>
     <string name="title_resumo_conta">Resumo da Conta</string>
     <string name="title_movimentos">Movimentos</string>
+    <string name="title_cartao_credito">Cartão de Crédito</string>
 
 
 </resources>

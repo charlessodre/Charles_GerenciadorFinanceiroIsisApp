@@ -25,6 +25,7 @@ public class AdapterRegraImpSMS extends ArrayAdapter<RegraImportacaoSMS> {
     private int resource = 0;
     private String symbol;
 
+
     public AdapterRegraImpSMS(Context applicationContext, int resource) {
 
         super(applicationContext, resource);
@@ -51,6 +52,7 @@ public class AdapterRegraImpSMS extends ArrayAdapter<RegraImportacaoSMS> {
         ViewHolder viewHolder = null;
         View view = null;
 
+
         if (convertView == null) {
 
             view = inflater.inflate(this.resource, parent, false);
@@ -60,7 +62,8 @@ public class AdapterRegraImpSMS extends ArrayAdapter<RegraImportacaoSMS> {
             viewHolder.txtNumTelefone = (TextView) view.findViewById(R.id.txtNumTelefone);
             viewHolder.txtNomeRegra = (TextView) view.findViewById(R.id.txtNomeRegra);
             viewHolder.txtStatusRegra = (TextView) view.findViewById(R.id.txtStatusRegra);
-            viewHolder.txtTipoTransacao = (TextView) view.findViewById(R.id.txtTipoTransacao);
+            viewHolder.txtDetalhesTransacao = (TextView) view.findViewById(R.id.txtDetalhesTransacao);
+            viewHolder.txtCategoriaTransacao = (TextView) view.findViewById(R.id.txtCategoriaTransacao);
 
             view.setTag(viewHolder);
             convertView = view;
@@ -70,16 +73,36 @@ public class AdapterRegraImpSMS extends ArrayAdapter<RegraImportacaoSMS> {
             view = convertView;
         }
 
+        String detalhesTransacao="";
+        String categoriaTransacao="";
+        String statuRegra="";
+
         RegraImportacaoSMS regraImportacaoSMS = getItem(position);
+
+        detalhesTransacao = regraImportacaoSMS.getContaOrigem().getNome() + " | " + RegraImportacaoSMS.getNomeTipoTransacao(regraImportacaoSMS.getIdTipoTransacao());
+
+
+        if (regraImportacaoSMS.getCategoriaDespesa().getId() > 0)
+            categoriaTransacao = regraImportacaoSMS.getCategoriaDespesa().getNome();
+
+        if (regraImportacaoSMS.getCategoriaReceita().getId() > 0)
+            categoriaTransacao = regraImportacaoSMS.getCategoriaReceita().getNome();
+
+
+        if (regraImportacaoSMS.isAtivo())
+            statuRegra = this.context.getResources().getString(R.string.lblHabilitada);
+
+        else
+            statuRegra = this.context.getResources().getString(R.string.lblDesabilitada);
+
 
         viewHolder.txtNomeRegra.setText(regraImportacaoSMS.getNome());
         viewHolder.txtNumTelefone.setText(regraImportacaoSMS.getNoTelefone());
-        viewHolder.txtTipoTransacao.setText(RegraImportacaoSMS.getNomeTipoTransacao(regraImportacaoSMS.getIdTipoTransacao()));
+        viewHolder.txtDetalhesTransacao.setText(detalhesTransacao);
+        viewHolder.txtCategoriaTransacao.setText(categoriaTransacao);
+        viewHolder.txtStatusRegra.setText(statuRegra);
 
-        if (regraImportacaoSMS.isAtivo())
-            viewHolder.txtStatusRegra.setText(this.context.getResources().getString(R.string.lblHabilitada));
-        else
-            viewHolder.txtStatusRegra.setText(this.context.getResources().getString(R.string.lblDesabilitada));
+
         return view;
     }
 
@@ -95,8 +118,9 @@ public class AdapterRegraImpSMS extends ArrayAdapter<RegraImportacaoSMS> {
     public static class ViewHolder {
         TextView txtNumTelefone;
         TextView txtNomeRegra;
-        TextView txtTipoTransacao;
+        TextView txtDetalhesTransacao;
         TextView txtStatusRegra;
+        TextView txtCategoriaTransacao;
     }
 
 
