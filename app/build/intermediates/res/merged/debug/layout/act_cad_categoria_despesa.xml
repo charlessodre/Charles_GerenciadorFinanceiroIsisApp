@@ -50,6 +50,9 @@
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_obj_cadastro" />
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
@@ -71,7 +74,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
+                android:layout_height="@dimen/space_obj_cadastro" />
 
             <LinearLayout
                 android:id="@+id/frag_container_cad_categoria_despesa_icone_cor"
@@ -84,6 +87,10 @@
 
             </LinearLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_obj_cadastro" />
+
             <LinearLayout
                 android:id="@+id/frag_container_cad_categoria_despesa"
                 android:layout_width="match_parent"
@@ -95,7 +102,9 @@
 
             </LinearLayout>
 
-
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_obj_cadastro" />
             <LinearLayout
                 android:id="@+id/lnlSubcategorias"
                 android:layout_width="match_parent"

@@ -20,6 +20,7 @@
     <dimen name="fab_paddingLeft">10dp</dimen>
 
 
+
     <dimen name="fab_add_marginRight">6dp</dimen>
     <dimen name="fab_add_marginLeft_icon">10dp</dimen>
     <dimen name="fab_add_padding_text">5dp</dimen>
@@ -31,6 +32,9 @@
     <dimen name="distance_fabDespesa">100dp</dimen>
     <dimen name="distance_fabReceita">145dp</dimen>
     <dimen name="distance_fabConta">195dp</dimen>
+
+
+    <dimen name="space_obj_cadastro">10dp</dimen>
 
     <dimen name="standard_08">8dp</dimen>
     <dimen name="standard_10">10dp</dimen>

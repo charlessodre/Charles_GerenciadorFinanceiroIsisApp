@@ -50,13 +50,13 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="10dp" />
+            android:layout_height="@dimen/space_obj_cadastro" />
 
     </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="30dp" />
+            android:layout_height="@dimen/space_obj_cadastro" />
 
     <LinearLayout
         android:id="@+id/frag_container_cad_sub_categoria"

@@ -22,6 +22,7 @@
 
     <color name="corFragResumo">#3F51B5</color>
     <color name="corFragResumoFundo">#FFFFFF</color>
+    <color name="corFundoItemCartaoCredito">#FFFFFF</color>
 
 
     <color name="corLinha">#c0c0c0</color>

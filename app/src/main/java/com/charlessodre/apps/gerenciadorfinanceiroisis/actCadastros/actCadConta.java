@@ -35,6 +35,7 @@ public class actCadConta extends actBaseCadastros implements frgConfirmaExclusao
     private Spinner spnTipoConta;
     private EditText edtSaldo;
     private CheckBox cbxExibirSomaResumo;
+    private CheckBox cbxContaAtiva;
     private Conta conta;
     private TextWatcherPay textWatcher;
     private RepositorioConta repositorioConta;
@@ -136,6 +137,7 @@ public class actCadConta extends actBaseCadastros implements frgConfirmaExclusao
         this.edtSaldo = (EditText) findViewById(R.id.edtSaldoInicial);
 
         this.cbxExibirSomaResumo = (CheckBox) findViewById(R.id.cbxExibirSomaResumo);
+        this.cbxContaAtiva = (CheckBox) findViewById(R.id.cbxContaAtiva);
 
         textWatcher = new TextWatcherPay(this.edtSaldo, "%.2f");
 
@@ -156,7 +158,7 @@ public class actCadConta extends actBaseCadastros implements frgConfirmaExclusao
 
         this.conta.setNome(this.edtNome.getText().toString());
         this.conta.setExibir(this.cbxExibirSomaResumo.isChecked());
-        this.conta.setAtivo(true);
+        this.conta.setAtivo(this.cbxContaAtiva.isChecked());
         this.conta.setCdTipoConta(this.spnTipoConta.getSelectedItemPosition());
         this.conta.setValorSaldo(textWatcher.getValueWithoutMask());
 
@@ -282,6 +284,7 @@ public class actCadConta extends actBaseCadastros implements frgConfirmaExclusao
 
             this.spnTipoConta.setSelection(this.conta.getCdTipoConta());
             this.cbxExibirSomaResumo.setChecked(this.conta.isExibir());
+            this.cbxContaAtiva.setChecked(this.conta.isAtivo());
 
         } else
             this.conta = new Conta();

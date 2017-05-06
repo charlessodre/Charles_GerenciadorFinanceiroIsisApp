@@ -179,6 +179,7 @@
     <color name="corFragResumo">#3F51B5</color>
     <color name="corFragResumoFundo">#FFFFFF</color>
     <color name="corFundoBotoesAdd">#616161</color>
+    <color name="corFundoItemCartaoCredito">#FFFFFF</color>
     <color name="corFundoTelaPrincipal">#E0E0E0</color>
     <color name="corLinha">#c0c0c0</color>
     <color name="corPendencia">#D50000</color>
@@ -899,6 +900,7 @@
     <dimen name="notification_large_icon_height">64dp</dimen>
     <dimen name="notification_large_icon_width">64dp</dimen>
     <dimen name="notification_subtext_size">12dp</dimen>
+    <dimen name="space_obj_cadastro">10dp</dimen>
     <dimen name="standard_08">8dp</dimen>
     <dimen name="standard_10">10dp</dimen>
     <dimen name="standard_100">100dp</dimen>
@@ -1022,6 +1024,8 @@
     <string name="lblExcluir"> Excluir </string>
     <string name="lblExibir">Exibir</string>
     <string name="lblExibirSomaResumo">Exibir a Soma no Resumo</string>
+    <string name="lblFaturaAberta">Fatura Aberta</string>
+    <string name="lblFaturaFechada">Fatura Fechada</string>
     <string name="lblFixa">Fixa</string>
     <string name="lblHabilitada">Habilitada</string>
     <string name="lblHabilitadaPergunta">Habilitada?</string>
@@ -1030,6 +1034,7 @@
     <string name="lblImportacaoSMS">Lista de SMS para Importação</string>
     <string name="lblInvestimento">Investimento</string>
     <string name="lblLimiteCartao">Valor do Limite</string>
+    <string name="lblLimiteDisponivel">Limite Disponível</string>
     <string name="lblMovimentos"> Movimentos </string>
     <string name="lblNao">Não</string>
     <string name="lblNaoRecebido">Não Recebido</string>

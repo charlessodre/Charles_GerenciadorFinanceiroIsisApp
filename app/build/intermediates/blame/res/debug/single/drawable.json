@@ -184,6 +184,10 @@
         "source": "C:\\Users\\charl\\.android\\build-cache\\8539ae108f168d412db27ecb2651ae5b7bcbc416\\output\\res\\drawable\\abc_btn_default_mtrl_shape.xml"
     },
     {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\borda_item_cartao_credito.xml",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable\\borda_item_cartao_credito.xml"
+    },
+    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_cab_background_top_material.xml",
         "source": "C:\\Users\\charl\\.android\\build-cache\\8539ae108f168d412db27ecb2651ae5b7bcbc416\\output\\res\\drawable\\abc_cab_background_top_material.xml"
     },

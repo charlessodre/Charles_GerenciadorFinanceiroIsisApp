@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actCartaoCredito"
-    tools:showIn="@layout/act_cartao_credito">
+    tools:showIn="@layout/act_cartao_credito"
+    android:background="@color/corFundoTelaPrincipal">
 
 
     <ListView
@@ -14,7 +15,10 @@
         android:layout_height="match_parent"
         android:id="@+id/lstCartao"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="@dimen/listview_bottom" />
+        android:layout_marginBottom="@dimen/listview_bottom"
+        android:layout_margin="12dp"
+        android:dividerHeight="12dp"
+        android:divider="@android:color/transparent" />
 
     <LinearLayout android:layout_width="match_parent" android:orientation="horizontal"
         android:layout_alignParentBottom="true" android:gravity="center_vertical"

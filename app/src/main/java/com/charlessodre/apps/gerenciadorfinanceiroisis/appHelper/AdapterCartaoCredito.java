@@ -123,9 +123,9 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
 
             viewHolder.imgCartao = (ImageView) view.findViewById(R.id.imgCartaoItem);
             viewHolder.txtNomeCartao = (TextView) view.findViewById(R.id.txtNomeCartaoItem);
-            viewHolder.txtSaldoAtual = (TextView) view.findViewById(R.id.txtSaldoAtualItem);
+            viewHolder.txtValorFaturaFechada = (TextView) view.findViewById(R.id.txtValorFaturaFechada);
+            viewHolder.txtValorFaturaAberta = (TextView) view.findViewById(R.id.txtValorFaturaAberta);
             viewHolder.txtSaldoPrevistoData = (TextView) view.findViewById(R.id.txtSaldoPrevistoDataItem);
-            viewHolder.txtSaldoPrevistoValor = (TextView) view.findViewById(R.id.txtSaldoPrevistoValorItem);
             viewHolder.imgCirculo = (ImageView) view.findViewById(R.id.imgCartaoItemCir);
 
             view.setTag(viewHolder);
@@ -176,9 +176,9 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
         ImageView imgCirculo;
         ImageView imgCartao;
         TextView txtNomeCartao;
-        TextView txtSaldoAtual;
+        TextView txtValorFaturaFechada;
         TextView txtSaldoPrevistoData;
-        TextView txtSaldoPrevistoValor;
+        TextView txtValorFaturaAberta;
 
     }
 

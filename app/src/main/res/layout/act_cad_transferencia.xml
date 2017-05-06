@@ -39,10 +39,9 @@
             android:imeOptions="actionDone"
 
             android:focusable="false" />
-
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
         <TextView
             android:id="@+id/lblValorTransferencia"
@@ -63,8 +62,8 @@
             android:imeOptions="actionDone" />
 
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
         <TextView
             android:id="@+id/lblContaOrigem"
@@ -82,8 +81,8 @@
             android:gravity="center_vertical|start" />
 
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
         <TextView
             android:id="@+id/lblContaDestino"
             android:layout_width="wrap_content"

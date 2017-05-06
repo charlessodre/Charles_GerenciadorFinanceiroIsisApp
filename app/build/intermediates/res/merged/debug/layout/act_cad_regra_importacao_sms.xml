@@ -122,8 +122,8 @@
                     android:orientation="vertical">
 
                     <Space
-                        android:layout_width="@dimen/standard_20"
-                        android:layout_height="20dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/space_obj_cadastro" />
 
                     <TextView
                         android:id="@+id/lblTipoTransacao"
@@ -132,8 +132,8 @@
                         android:text="@string/lblTipoTransacao" />
 
                     <Space
-                        android:layout_width="@dimen/standard_20"
-                        android:layout_height="20dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/space_obj_cadastro" />
 
                     <Spinner
                         android:id="@+id/spnTipoTransacao"
@@ -142,8 +142,8 @@
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
                     <Space
-                        android:layout_width="@dimen/standard_20"
-                        android:layout_height="20dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/space_obj_cadastro" />
 
 
                 </LinearLayout>
@@ -156,8 +156,8 @@
 
 
                     <Space
-                        android:layout_width="@dimen/standard_20"
-                        android:layout_height="10dp" />
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/space_obj_cadastro" />
 
                     <CheckBox
                         android:id="@+id/cbxStatus"
@@ -214,8 +214,8 @@
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <Space
-                    android:layout_width="@dimen/standard_20"
-                    android:layout_height="@dimen/standard_20" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_obj_cadastro" />
 
                 <TextView
                     android:id="@+id/lblSubCategoriaDespesa"
@@ -302,8 +302,8 @@
             </LinearLayout>
 
             <Space
-                android:layout_width="@dimen/standard_20"
-                android:layout_height="20dp" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_obj_cadastro" />
 
             <LinearLayout
                 android:id="@+id/lnlTransferencia"

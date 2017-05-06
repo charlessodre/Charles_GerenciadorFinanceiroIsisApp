@@ -48,97 +48,137 @@
             />
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout"
-        android:layout_alignParentStart="true"
-        android:id="@+id/linearLayout31">
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_obj_cadastro" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblTipoConta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lblTipoConta" />
+
+                <Spinner
+                    android:id="@+id/spnTipoConta"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            </LinearLayout>
 
             <Space
-                android:layout_width="@dimen/standard_20"
-                android:layout_height="40px" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_obj_cadastro" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblSaldo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lblSaldo" />
+
+                <EditText
+                    android:id="@+id/edtSaldoInicial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789-"
+                    android:ems="10"
+                    android:hint="@string/lblSimboloRealComZero"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberSigned"
+                    android:maxLines="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_obj_cadastro" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lblSaldo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lblSaldo" />
+
+                <EditText
+                    android:id="@+id/edtSaldoInicial"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:digits="0123456789-"
+                    android:ems="10"
+                    android:hint="@string/lblSimboloRealComZero"
+                    android:imeOptions="actionDone"
+                    android:inputType="numberSigned"
+                    android:maxLines="1"
+                    android:textAppearance="?android:attr/textAppearanceLarge" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_obj_cadastro" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/lblTipoConta"
-                android:id="@+id/lblTipoConta" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+
+                <CheckBox
+                    android:id="@+id/cbxExibirSomaResumo"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:checked="true"
+
+                    android:nestedScrollingEnabled="false"
+                    android:text="@string/lblExibirSomaResumo" />
+
+            </LinearLayout>
 
             <Space
-                android:layout_width="@dimen/standard_20"
-                android:layout_height="30px" />
-
-            <Spinner
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:id="@+id/spnTipoConta"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:layout_height="@dimen/space_obj_cadastro" />
 
-            <Space
-                android:layout_width="@dimen/standard_20"
-                android:layout_height="40px" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lblSaldo"
-                android:id="@+id/lblSaldo" />
-
-            <Space
-                android:layout_width="@dimen/standard_20"
-                android:layout_height="@dimen/standard_10" />
-
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="numberSigned"
-                android:digits="0123456789-"
-                android:ems="10"
-                android:hint="@string/lblSimboloRealComZero"
-                android:id="@+id/edtSaldoInicial"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:maxLines="1"
-                android:imeOptions="actionDone"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+                android:layout_weight="1"
+                android:orientation="vertical">
 
 
-            <Space
-                android:layout_width="@dimen/standard_20"
-                android:layout_height="130px" />
+                <CheckBox
+                    android:id="@+id/cbxContaAtiva"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:checked="true"
 
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:text="@string/lblExibirSomaResumo"
-                android:id="@+id/cbxExibirSomaResumo"
-                android:checked="false"
-                android:layout_gravity="center"
+                    android:nestedScrollingEnabled="false"
+                    android:text="@string/lblAtivo" />
 
-                android:nestedScrollingEnabled="false"
-                android:layout_marginLeft="10dp" />
-        </LinearLayout>
-
-    </LinearLayout>
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="30dp" />
-    <LinearLayout
+                android:layout_height="@dimen/space_obj_cadastro" />
+
+            <LinearLayout
         android:id="@+id/frag_container_cad_conta"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -147,7 +187,7 @@
         android:layout_alignParentStart="true">
 
 
-    </LinearLayout>
+            </LinearLayout>
 </LinearLayout>
     </ScrollView>
 

@@ -61,8 +61,8 @@
         </LinearLayout>
 
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
         <TextView
             android:id="@+id/lblDataDespesa"
@@ -83,8 +83,8 @@
             />
 
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
         <TextView
             android:id="@+id/lblValorDespesa"
@@ -104,10 +104,9 @@
             android:maxLines="1"
             android:imeOptions="actionDone"
             />
-
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
         <TextView
             android:id="@+id/lblCategoriaDespesa"
@@ -123,8 +122,8 @@
             android:dropDownWidth="match_parent" />
 
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
 
         <TextView
@@ -141,8 +140,8 @@
             android:dropDownWidth="match_parent" />
 
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
         <TextView
             android:id="@+id/lblContaDespesa"
@@ -159,8 +158,8 @@
             android:gravity="center_vertical|start" />
 
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
         <CheckBox
             android:id="@+id/cbxDespesaPaga"

@@ -62,8 +62,8 @@
         </LinearLayout>
 
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
         <TextView
             android:id="@+id/lblDataReceita"
@@ -84,8 +84,8 @@
              />
 
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
         <TextView
             android:id="@+id/lblValorReceita"
@@ -106,9 +106,9 @@
              android:imeOptions="actionDone"
              />
 
-            <Space
-                android:layout_width="@dimen/standard_20"
-                android:layout_height="@dimen/standard_20" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
             <TextView
                 android:id="@+id/lblCategoriaReceital1"
@@ -125,9 +125,9 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:dropDownWidth="match_parent" />
 
-            <Space
-                android:layout_width="@dimen/standard_20"
-                android:layout_height="@dimen/standard_20" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
         <TextView
             android:id="@+id/lblCategoriaReceita"
             android:layout_width="wrap_content"
@@ -144,8 +144,8 @@
             android:gravity="center_vertical|start" />
 
         <Space
-            android:layout_width="@dimen/standard_20"
-            android:layout_height="@dimen/standard_20" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
 
         <CheckBox
             android:id="@+id/cbxReceitaRecebida"
