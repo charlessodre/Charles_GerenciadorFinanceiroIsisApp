@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ReceberSMS;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.RecebeSMS;
 
 /**
  * Created by charl on 25/04/2017.
@@ -37,8 +37,8 @@ public class ServicoGetSMSRecebido extends IntentService {
         // Normally we would do some work here, like download a file.
         // For our sample, we just sleep for 5 seconds.
         try {
-            ReceberSMS receberSMS = new ReceberSMS();
-            receberSMS.onReceive(this,intent);
+            RecebeSMS recebeSMS = new RecebeSMS();
+            recebeSMS.onReceive(this,intent);
 
             Toast.makeText(this, "service starting onHandleIntent", Toast.LENGTH_SHORT).show();
 

@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -42,7 +43,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.util.StringUtils;
 
 import java.util.Date;
 
-public class actCadDespesa extends actBaseCadastros implements CompoundButton.OnCheckedChangeListener, frgLancamentosDialog.onDialogClick, frgConfirmacaoDialog.onDialogClick,Spinner.OnItemSelectedListener {
+public class actCadDespesa extends actBaseCadastros implements CompoundButton.OnCheckedChangeListener, frgLancamentosDialog.onDialogClick, frgConfirmacaoDialog.onDialogClick, Spinner.OnItemSelectedListener {
 
     //Objetos Tela
     private EditText edtNome;
@@ -51,22 +52,27 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
     private Spinner spnContaDespesa;
     private Spinner spnTipoRepeticao;
     private EditText edtDataDespesa;
+    private EditText edtDataPagamento;
     private EditText edtValorDespesa;
     private EditText edtTotalRepeticao;
-    private CheckBox cbxDespesaRecebida;
+    private CheckBox cbxDespesaPaga;
     private CheckBox cbxRepetir;
     private CheckBox cbxFixa;
     private TextWatcherPay textWatcher;
     private TextView txtParcelas;
 
+    private LinearLayout lnlDetalhePagamento;
+
     //Atributos
     private Despesa despesa;
     private RepositorioDespesa repositorioDespesa;
-    private DateListenerShow dateListenerShow;
+    private DateListenerShow dataDespesaListenerShow;
+    private DateListenerShow dataPagamentoDespesaListenerShow;
     private AdapterConta adapterConta;
     private AdapterCategoriaDespesa adapterCategoriaDespesa;
     private AdapterSubCategoriaDespesa adapterSubCategoriaDespesa;
     private Date dataDespesa;
+    private Date dataPagamentoDespesa;
 
     //Contantes
     public static final String PARAM_DESPESA = "DESPESA";
@@ -97,6 +103,7 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
 
         return super.onCreateOptionsMenu(menu);
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -146,11 +153,16 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
                 this.spnTipoRepeticao.setEnabled(true);
 
             }
+        } else if (buttonView.getId() == R.id.cbxDespesaPaga) {
+            if (this.cbxDespesaPaga.isChecked())
+                this.lnlDetalhePagamento.setVisibility(View.VISIBLE);
+            else
+                this.lnlDetalhePagamento.setVisibility(View.GONE);
         }
     }
 
     @Override
-    public void onDialogClick(frgLancamentosDialog dialog,int opcaoSelecionada, int tipoMensagem) {
+    public void onDialogClick(frgLancamentosDialog dialog, int opcaoSelecionada, int tipoMensagem) {
 
         if (tipoMensagem == Constantes.TipoMensagem.EXCLUSAO) {
             if (opcaoSelecionada == Constantes.OpcaoExclusaoAlteracao.ATUAL) {
@@ -202,7 +214,7 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
 
     //Métodos
     @Override
-    protected  void inicializaObjetos() {
+    protected void inicializaObjetos() {
         this.edtNome = (EditText) findViewById(R.id.edtNomeDespesa);
         this.spnCategoriaDespesa = (Spinner) findViewById(R.id.spnCategoriaDespesa);
         this.spnContaDespesa = (Spinner) findViewById(R.id.spnContaDespesa);
@@ -210,18 +222,22 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
 
         this.spnCategoriaDespesa.setOnItemSelectedListener(this);
 
+        this.lnlDetalhePagamento = (LinearLayout) findViewById(R.id.lnlDetalhePagamento);
+
 
         this.spnTipoRepeticao = (Spinner) findViewById(R.id.spnTipoRepeticao);
         this.edtDataDespesa = (EditText) findViewById(R.id.edtDataDespesa);
+        this.edtDataPagamento = (EditText) findViewById(R.id.edtDataPagamento);
         this.edtValorDespesa = (EditText) findViewById(R.id.edtValorDespesa);
         this.edtTotalRepeticao = (EditText) findViewById(R.id.edtTotalRepeticao);
-        this.cbxDespesaRecebida = (CheckBox) findViewById(R.id.cbxDespesaPaga);
+        this.cbxDespesaPaga = (CheckBox) findViewById(R.id.cbxDespesaPaga);
         this.cbxFixa = (CheckBox) findViewById(R.id.cbxFixa);
         this.cbxRepetir = (CheckBox) findViewById(R.id.cbxRepetir);
         this.txtParcelas = (TextView) findViewById(R.id.txtParcelas);
 
         this.cbxFixa.setOnCheckedChangeListener(this);
         this.cbxRepetir.setOnCheckedChangeListener(this);
+        this.cbxDespesaPaga.setOnCheckedChangeListener(this);
 
         this.spnTipoRepeticao.setEnabled(false);
 
@@ -236,11 +252,14 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
 
         ActionBarHelper.setStatusBarColor(this.getWindow(), corTela);
 
-        this.dateListenerShow = new DateListenerShow(this, this.edtDataDespesa, false);
+        this.dataDespesaListenerShow = new DateListenerShow(this, this.edtDataDespesa, false);
+        this.dataPagamentoDespesaListenerShow = new DateListenerShow(this, this.edtDataPagamento, false);
 
         this.edtDataDespesa.setText(DateUtils.getCurrentDateShort());
+        this.edtDataPagamento.setText(DateUtils.getCurrentDateShort());
 
     }
+
 
     private void carregaSpinnerConta() {
         RepositorioConta repositorioConta = new RepositorioConta(this);
@@ -293,7 +312,11 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
 
 
             this.edtDataDespesa.setText(DateUtils.dateToString(this.despesa.getDataDespesa()));
-            this.cbxDespesaRecebida.setChecked(this.despesa.isPaga());
+
+            if(this.despesa.isPaga())
+                this.edtDataPagamento.setText(DateUtils.dateToString(this.despesa.getDataPagamento()));
+
+            this.cbxDespesaPaga.setChecked(this.despesa.isPaga());
 
 
             if (this.despesa.getTotalRepeticao() > 0 || this.despesa.isFixa()) {
@@ -316,7 +339,7 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
             this.spnTipoRepeticao.setEnabled(false);
             this.cbxFixa.setEnabled(false);
 
-           } else {
+        } else {
             this.despesa = new Despesa();
         }
 
@@ -332,8 +355,7 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
             retorno = false;
         }
 
-        if(this.textWatcher.getValueWithoutMask()< 0)
-        {
+        if (this.textWatcher.getValueWithoutMask() < 1) {
             this.edtValorDespesa.setError(this.getString(R.string.msg_valor_maior_zero));
 
             retorno = false;
@@ -360,19 +382,19 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
 
         this.despesa.setValor(this.textWatcher.getValueWithoutMask());
 
-        this.dataDespesa = this.dateListenerShow.getDateListenerSelect().getDate();
+        this.dataDespesa = this.dataDespesaListenerShow.getDateListenerSelect().getDate();
 
         if (this.dataDespesa == null)
             this.dataDespesa = DateUtils.getCurrentDatetime();
 
         this.despesa.setDataDespesa(this.dataDespesa);
-        this.despesa.setAnoMes(DateUtils.getYearAndMonth(this.dataDespesa));
+        this.despesa.setAnoMesDespesa(DateUtils.getYearAndMonth(this.dataDespesa));
 
         Conta conta = this.adapterConta.getItem(this.spnContaDespesa.getSelectedItemPosition());
 
         CategoriaDespesa categoriaDespesa = this.adapterCategoriaDespesa.getItem(this.spnCategoriaDespesa.getSelectedItemPosition());
 
-        if(this.adapterSubCategoriaDespesa.getCount()>0) {
+        if (this.adapterSubCategoriaDespesa.getCount() > 0) {
             SubCategoriaDespesa subCategoriaDespesa = this.adapterSubCategoriaDespesa.getItem(this.spnSubCategoriaDespesa.getSelectedItemPosition());
             this.despesa.setSubCategoriaDespesa(subCategoriaDespesa);
         }
@@ -397,15 +419,25 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
             this.despesa.setFixa(this.cbxFixa.isChecked());
         }
 
-        if (!this.despesa.isPaga() && this.cbxDespesaRecebida.isChecked()) {
-            this.despesa.setPaga(true);
-            this.despesa.setDataPagamento(DateUtils.getCurrentDatetime());
+        if (this.cbxDespesaPaga.isChecked()) {
 
-        } else if (!this.cbxDespesaRecebida.isChecked() && this.despesa.getId() != 0 && this.despesa.getDataPagamento() != null) {
+            this.despesa.setPaga(true);
+
+            this.dataPagamentoDespesa = this.dataPagamentoDespesaListenerShow.getDateListenerSelect().getDate();
+
+            if (this.dataPagamentoDespesa == null)
+                this.dataPagamentoDespesa = DateUtils.getCurrentDatetime();
+
+            this.despesa.setDataPagamento(this.dataPagamentoDespesa);
+            this.despesa.setAnoMesPagamento(DateUtils.getYearAndMonth(this.dataPagamentoDespesa));
+
+
+        } else if (!this.cbxDespesaPaga.isChecked() && this.despesa.getId() != 0 && this.despesa.getDataPagamento() != null) {
 
             this.despesa.setEstornaPagamento(true);
             this.despesa.setPaga(false);
             this.despesa.setDataPagamento(null);
+            this.despesa.setAnoMesPagamento(null);
 
         }
 
@@ -552,7 +584,6 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
         }
 
     }
-
 
 
 }

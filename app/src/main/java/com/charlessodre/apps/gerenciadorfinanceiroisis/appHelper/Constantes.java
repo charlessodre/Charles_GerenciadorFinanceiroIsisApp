@@ -9,6 +9,7 @@ public class Constantes {
 
 
     public static final int TOTAL_MESES_REPETICAO = 240; // 240 meses equivalente a 20 anos.
+    public static final String SIMBOLO_CIFRAO = "$";
 
     //Tipo de Lançamentos
     public class TipoLancamento {

@@ -300,7 +300,7 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
             retorno = false;
         }
 
-        if(this.textWatcher.getValueWithoutMask()< 0)
+        if(this.textWatcher.getValueWithoutMask()< 1)
         {
             this.edtValorReceita.setError(this.getString(R.string.msg_valor_maior_zero));
 

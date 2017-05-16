@@ -1,5 +1,6 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,8 +11,10 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterCategoriaDespesa;
@@ -43,7 +46,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.util.StringUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ToastHelper;
 
 
-public class actCadRegraImportacaoSMS extends actBaseCadastros implements CompoundButton.OnCheckedChangeListener,  frgConfirmacaoDialog.onDialogClick, Spinner.OnItemSelectedListener {
+public class actCadRegraImportacaoSMS extends actBaseCadastros implements CompoundButton.OnCheckedChangeListener, View.OnClickListener, frgConfirmacaoDialog.onDialogClick, Spinner.OnItemSelectedListener {
 
     //Objetos Tela
     private Spinner spnCategoriaDespesa;
@@ -59,14 +62,25 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
     private EditText edtTexto2NoSMS;
     private EditText edtTextoDescReceita;
     private EditText edtTextoDescDespesa;
-
+    private EditText edtTextoDataNoSMS1;
+    private EditText edtTextoDataNoSMS2;
+    private EditText edtTextoValorNoSMS1;
+    private EditText edtTextoValorNoSMS2;
 
     private CheckBox cbxStatus;
+    private CheckBox cbxEfetivaAutomaticamente;
+    private CheckBox cbxNotificarLancamento;
+
+    private TextView txtExibeDetalhes;
+
+    private ImageView imgExibeDetalhes;
 
 
     private LinearLayout lnlDespesa;
     private LinearLayout lnlReceita;
     private LinearLayout lnlTransferencia;
+    private LinearLayout lnlDetalhesRegra;
+    private LinearLayout lnlDetalhesConteudoRegra;
 
     //Atributos
     private RegraImportacaoSMS regraImportacaoSMS;
@@ -75,6 +89,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
     private AdapterCategoriaDespesa adapterCategoriaDespesa;
     private AdapterSubCategoriaDespesa adapterSubCategoriaDespesa;
     private AdapterCategoriaReceita adapterCategoriaReceita;
+    private boolean exibirDetalhes = false;
 
     //Constantes
     public static final String PARAM_REGRA_IMP_SMS = "REGRA_IMP_SMS";
@@ -98,6 +113,21 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
         this.preencheDados();
 
     }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.lnlDetalhesRegra:
+
+                this.exibeDetalhes();
+
+                break;
+
+
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -147,7 +177,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
     }
 
-        @Override
+    @Override
     public void onDialogClick(frgConfirmacaoDialog dialog) {
         this.excluiAtual();
 
@@ -207,15 +237,27 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
         this.spnTipoTransacao = (Spinner) findViewById(R.id.spnTipoTransacao);
         this.cbxStatus = (CheckBox) findViewById(R.id.cbxStatus);
+        this.cbxEfetivaAutomaticamente = (CheckBox) findViewById(R.id.cbxEfetivaAutomaticamente);
+        this.cbxNotificarLancamento = (CheckBox) findViewById(R.id.cbxNotificarLancamento);
 
         this.lnlReceita = (LinearLayout) findViewById(R.id.lnlReceita);
         this.lnlTransferencia = (LinearLayout) findViewById(R.id.lnlTransferencia);
         this.lnlDespesa = (LinearLayout) findViewById(R.id.lnlDespesa);
+        this.lnlDetalhesRegra = (LinearLayout) findViewById(R.id.lnlDetalhesRegra);
+        this.lnlDetalhesConteudoRegra = (LinearLayout) findViewById(R.id.lnlDetalhesConteudoRegra);
+        this.lnlDetalhesConteudoRegra.setOnClickListener(this);
+        this.lnlDetalhesRegra.setOnClickListener(this);
 
+        this.txtExibeDetalhes = (TextView) findViewById(R.id.txtExibeDetalhes);
+        this.imgExibeDetalhes = (ImageView) findViewById(R.id.imgExibeDetalhes);
 
         this.spnCategoriaDespesa.setOnItemSelectedListener(this);
         this.spnTipoTransacao.setOnItemSelectedListener(this);
 
+        this.edtTextoDataNoSMS1 = (EditText) findViewById(R.id.edtTextoDataNoSMS1);
+        this.edtTextoDataNoSMS2 = (EditText) findViewById(R.id.edtTextoDataNoSMS2);
+        this.edtTextoValorNoSMS1 = (EditText) findViewById(R.id.edtTextoValorNoSMS1);
+        this.edtTextoValorNoSMS2 = (EditText) findViewById(R.id.edtTextoValorNoSMS2);
 
         ActionBarHelper.menuCancel(getSupportActionBar(), this.getString(R.string.lblRegraImpSMS));
 
@@ -227,6 +269,27 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
     }
 
+    private void exibeDetalhes() {
+        if (this.exibirDetalhes) {
+
+            this.exibirDetalhes = false;
+
+            this.txtExibeDetalhes.setText(this.getString(R.string.lblMaisDetalhes));
+            this.imgExibeDetalhes.setImageResource(R.drawable.ic_keyboard_arrow_down_black_18dp);
+            this.lnlDetalhesConteudoRegra.setVisibility(View.GONE);
+
+        } else {
+
+            this.exibirDetalhes = true;
+
+            this.txtExibeDetalhes.setText(this.getString(R.string.lblMenosDetalhes));
+            this.imgExibeDetalhes.setImageResource(R.drawable.ic_keyboard_arrow_up_black_18dp);
+            this.lnlDetalhesConteudoRegra.setVisibility(View.VISIBLE);
+
+        }
+
+
+    }
 
     private void carregaSpinnerTipoTransacao() {
         ArrayAdapter arrayAdapter = ArrayAdapterHelper.fillSpinnerString(this, this.spnTipoTransacao);
@@ -320,6 +383,13 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
         this.edtTexto2NoSMS.setText(this.regraImportacaoSMS.getTextoPesquisa2());
         this.spnContaOrigem.setSelection(this.adapterConta.getIndexFromElement(this.regraImportacaoSMS.getContaOrigem().getId()));
         this.cbxStatus.setChecked(this.regraImportacaoSMS.isAtivo());
+        this.cbxNotificarLancamento.setChecked(this.regraImportacaoSMS.isNotificarLancamento());
+        this.cbxEfetivaAutomaticamente.setChecked(this.regraImportacaoSMS.isEfetivaAutomaticamente());
+
+        this.edtTextoDataNoSMS1.setText(this.regraImportacaoSMS.getTextoAntesData());
+        this.edtTextoDataNoSMS2.setText(this.regraImportacaoSMS.getTextoDepoisData());
+        this.edtTextoValorNoSMS1.setText(this.regraImportacaoSMS.getTextoAntesValor());
+        this.edtTextoValorNoSMS2.setText(this.regraImportacaoSMS.getTextoDepoisValor());
 
         int idTipoTransacao = this.regraImportacaoSMS.getIdTipoTransacao();
 
@@ -389,6 +459,13 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
         this.regraImportacaoSMS.setTextoPesquisa1(this.edtTexto1NoSMS.getText().toString());
         this.regraImportacaoSMS.setTextoPesquisa2(this.edtTexto2NoSMS.getText().toString());
         this.regraImportacaoSMS.setAtivo(this.cbxStatus.isChecked());
+        this.regraImportacaoSMS.setEfetivaAutomaticamente(this.cbxEfetivaAutomaticamente.isChecked());
+        this.regraImportacaoSMS.setNotificarLancamento(this.cbxNotificarLancamento.isChecked());
+
+        this.regraImportacaoSMS.setTextoAntesData(this.edtTextoDataNoSMS1.getText().toString());
+        this.regraImportacaoSMS.setTextoDepoisData(this.edtTextoDataNoSMS2.getText().toString());
+        this.regraImportacaoSMS.setTextoAntesValor(this.edtTextoValorNoSMS1.getText().toString());
+        this.regraImportacaoSMS.setTextoDepoisValor(this.edtTextoValorNoSMS2.getText().toString());
 
         Conta contaOrigem = this.adapterConta.getItem(this.spnContaOrigem.getSelectedItemPosition());
         this.regraImportacaoSMS.setContaOrigem(contaOrigem);

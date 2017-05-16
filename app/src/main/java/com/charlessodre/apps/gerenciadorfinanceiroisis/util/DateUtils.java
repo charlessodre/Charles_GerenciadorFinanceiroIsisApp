@@ -249,7 +249,7 @@ public class DateUtils {
 
 
     //Com RegEx
-    public static ArrayList<Date> getDatesInStringWithRegEx(String strigWithDates) {
+    public static ArrayList<Date> getDatesInStringWithRegEx(String stringWithDates) {
 
         String regexDateLong = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\\d\\d";
         String regexShort = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.]\\d\\d";
@@ -257,15 +257,16 @@ public class DateUtils {
         String stringDate;
         Matcher matcher;
         ArrayList<Date> allMatches = new ArrayList<Date>();
+        String stringClear = stringWithDates.replace("-","/");
 
-        matcher = Pattern.compile(regexDateLong).matcher(strigWithDates);
+        matcher = Pattern.compile(regexDateLong).matcher(stringClear);
 
         while (matcher.find()) {
             allMatches.add(DateUtils.stringToDateShort(matcher.group()));
         }
 
         if (allMatches.size() == 0) {
-            matcher = Pattern.compile(regexShort).matcher(strigWithDates);
+            matcher = Pattern.compile(regexShort).matcher(stringClear);
 
             while (matcher.find()) {
 
@@ -285,6 +286,39 @@ public class DateUtils {
         return allMatches;
     }
 
+
+
+    public static Date getDatesInBetweenStrings(String stringFull, String stringBegin)
+    {
+        return getDatesInBetweenStrings(stringFull,stringBegin);
+    }
+
+    public static Date getDatesInBetweenStrings(String stringFull, String stringBegin, String stringEnd)
+    {
+        Date date = getCurrentDatetime();
+        int indexFirstString = -1;
+        int indexLastString = -1;
+        String stringContentValue = "";
+
+        indexFirstString = stringFull.toLowerCase().indexOf(stringBegin.toLowerCase()) + stringBegin.length();
+        indexLastString = stringFull.toLowerCase().indexOf(stringEnd.toLowerCase());
+
+        if (indexFirstString > -1 && indexLastString > -1) {
+            stringContentValue = stringFull.substring(indexFirstString+1, indexLastString);
+        }else if(indexFirstString > -1) {
+            stringContentValue = stringFull.substring(indexFirstString);
+        }
+
+        if (stringContentValue.length() > 0) {
+
+            ArrayList<Date> allValues = getDatesInStringWithRegEx(stringContentValue);
+
+            if (allValues != null && allValues.size() > 0)
+                date = allValues.get(0);
+        }
+
+        return date;
+    }
 
     public static ArrayList<Integer> getDiasDoMes() {
 

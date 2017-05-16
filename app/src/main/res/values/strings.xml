@@ -31,6 +31,8 @@
     <string name="lblDescricaoReceita">Descrição da Receita</string>
 
     <string name="lblData">Data</string>
+    <string name="lblDataPagamento">Data do Pagamento</string>
+    <string name="lblDataRecebimento">Data do Recebimento</string>
     <string name="lblPendennte">Pendente</string>
     <string name="lblNaoRecebido">Não Recebido</string>
     <string name="lblRecebido">Recebido</string>
@@ -95,6 +97,18 @@
     <string name="lblOutros">Outros</string>
     <string name="lblCancelar">Cancelar</string>
     <string name="lblAtivo">Ativo</string>
+    <string name="lblEfetivarAutomaticamente">Efetivar Automaticamente</string>
+    <string name="lblNotificarLancamento">Notificar Lançamento</string>
+
+    <string name="lblValorEntreTextos">O Valor está entre os seguintes textos</string>
+    <string name="lblDataEntreTextos">A Data está entre os seguintes textos</string>
+    <string name="lblNomeEntreTextos">A Descrição está entre os seguintes textos</string>
+    <string name="lblTexto1">Texto 1</string>
+    <string name="lblTexto2">Texto 2</string>
+
+    <string name="lblMaisDetalhes">Mais Detalhes</string>
+
+    <string name="lblMenosDetalhes">Menos Detalhes</string>
 
     <!-- Cartão de Crédito -->
     <string name="lblCartaoCredito">Cartão de Crédito</string>

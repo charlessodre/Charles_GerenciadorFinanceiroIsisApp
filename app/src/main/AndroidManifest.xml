@@ -20,7 +20,7 @@
             />
         -->
 
-        <receiver android:name=".util.ReceberSMS">
+        <receiver android:name=".util.RecebeSMS">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
                 <action android:name="android.intent.action.BOOT_COMPLETED" />

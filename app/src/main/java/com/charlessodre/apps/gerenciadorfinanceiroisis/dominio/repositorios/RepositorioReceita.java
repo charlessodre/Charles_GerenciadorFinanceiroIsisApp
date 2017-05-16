@@ -117,6 +117,8 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
                     nova.setIdPai(item.getId());
                     nova.setId(0);
+                    nova.setPaga(false);
+                    nova.setDataRecebimento(null);
                     nova.setRepeticaoAtual(i);
 
                     if (tipoRepeticao != TipoRepeticao.DIARIA)
@@ -127,9 +129,9 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
                     super.insert(super.getTransaction(), preencheContentValues(nova));
 
-                    if (nova.isPaga()) {
-                        repositorioConta.setValorEntradaConta(super.getTransaction(), nova.getConta().getId(), nova.getValor());
-                    }
+                   // if (nova.isPaga()) {
+                   //     repositorioConta.setValorEntradaConta(super.getTransaction(), nova.getConta().getId(), nova.getValor());
+                   // }
                 }
             } else if (item.isFixa()) {
 
@@ -143,6 +145,8 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
                     nova.setIdPai(item.getId());
                     nova.setId(0);
+                    nova.setPaga(false);
+                    nova.setDataRecebimento(null);
 
                     data = TipoRepeticao.getDataRepeticao(TipoRepeticao.MENSAL, data);
 
@@ -151,9 +155,9 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
                     super.insert(super.getTransaction(), preencheContentValues(nova));
 
-                    if (nova.isPaga()) {
-                        repositorioConta.setValorEntradaConta(super.getTransaction(), nova.getConta().getId(), nova.getValor());
-                    }
+                  //  if (nova.isPaga()) {
+                  //      repositorioConta.setValorEntradaConta(super.getTransaction(), nova.getConta().getId(), nova.getValor());
+                  //  }
                 }
             }
 

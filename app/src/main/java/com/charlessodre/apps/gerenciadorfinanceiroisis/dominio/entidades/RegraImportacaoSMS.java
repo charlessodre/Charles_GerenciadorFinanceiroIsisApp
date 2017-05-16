@@ -27,7 +27,12 @@ public class RegraImportacaoSMS extends EntidadeBase {
     public static String ID_CONTA_DESTINO = "ID_CONTA_DESTINO";
     public static String ID_SUB_CATEGORIA_DESPESA = "ID_SUB_CATEGORIA_DESPESA";
     public static String DS_RECEITA_DESPESA = "DS_RECEITA_DESPESA";
-
+    public static String FL_EFETIVA_AUTOMATICO = "FL_EFETIVA_AUTOMATICO";
+    public static String FL_NOTIFICAR_LANCAMENTO = "FL_NOTIFICAR_LANCAMENTO";
+    public static String DS_TEXTO_INI_VALOR = "DS_TEXTO_INI_VALOR";
+    public static String DS_TEXTO_FIM_VALOR = "DS_TEXTO_FIM_VALOR";
+    public static String DS_TEXTO_INI_DATA  = "DS_TEXTO_INI_DATA";
+    public static String DS_TEXTO_FIM_DATA  = "DS_TEXTO_FIM_DATA";
 
     //Atributos
     private Conta contaOrigem;
@@ -40,9 +45,63 @@ public class RegraImportacaoSMS extends EntidadeBase {
     private CategoriaReceita categoriaReceita;
     private int idTipoTransacao;
     private String descricaoReceitaDespesa;
-
+    private boolean efetivaAutomaticamente;
+    private boolean notificarLancamento;
+    private String textoAntesValor;
+    private String textoDepoisValor;
+    private String textoAntesData;
+    private String textoDepoisData;
 
     //Propriedades
+
+    public String getTextoAntesData() {
+        return textoAntesData;
+    }
+
+    public void setTextoAntesData(String textoAntesData) {
+        this.textoAntesData = textoAntesData;
+    }
+
+    public String getTextoDepoisData() {
+        return textoDepoisData;
+    }
+
+    public void setTextoDepoisData(String textoDepoisData) {
+        this.textoDepoisData = textoDepoisData;
+    }
+
+    public String getTextoAntesValor() {
+        return textoAntesValor;
+    }
+
+    public void setTextoAntesValor(String textoAntesValor) {
+        this.textoAntesValor = textoAntesValor;
+    }
+
+    public String getTextoDepoisValor() {
+        return textoDepoisValor;
+    }
+
+    public void setTextoDepoisValor(String textoDepoisValor) {
+        this.textoDepoisValor = textoDepoisValor;
+    }
+
+
+    public boolean isEfetivaAutomaticamente() {
+        return efetivaAutomaticamente;
+    }
+
+    public void setEfetivaAutomaticamente(boolean efetivaAutomaticamente) {
+        this.efetivaAutomaticamente = efetivaAutomaticamente;
+    }
+
+    public boolean isNotificarLancamento() {
+        return notificarLancamento;
+    }
+
+    public void setNotificarLancamento(boolean notificarLancamento) {
+        this.notificarLancamento = notificarLancamento;
+    }
 
 
     public String getDescricaoReceitaDespesa() {
@@ -160,23 +219,11 @@ public class RegraImportacaoSMS extends EntidadeBase {
        }
     }
 
-   /*@Override
-    public boolean equals(Object objeto) {
 
-        boolean iguais = false;
+    public boolean existeRegra()
+    {
 
-        if (objeto!=null && objeto instanceof SMS){
-            SMS sms = (SMS) objeto;
-
-            if(sms.getNumero().indexOf(this.getNoTelefone())>=0 && sms.getMensagem().indexOf(this.getTextoPesquisa1())>=0)
-            {
-                iguais = true;
-            }
-        }
-
-        return iguais;
+        return true;
     }
-    */
-
 
 }

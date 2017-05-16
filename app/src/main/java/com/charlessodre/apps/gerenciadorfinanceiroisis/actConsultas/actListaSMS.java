@@ -25,7 +25,6 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgTipoTransac
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.LerHistoricoSMS;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.PermissionsUtil;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -140,7 +139,7 @@ public class actListaSMS extends actBaseListas implements AdapterView.OnItemClic
 
         Double valor = 0.0;
         Date data = this.sms.getData();
-        ArrayList<Double> valores = NumberUtis.getCurrencyInStringWithRegEx(this.sms.getMensagem(), "$");
+        ArrayList<Double> valores = NumberUtis.getCurrencyInStringWithRegEx(this.sms.getMensagem(), Constantes.SIMBOLO_CIFRAO);
         ArrayList<Date> datas = DateUtils.getDatesInStringWithRegEx(this.sms.getMensagem());
         Date dataInclusao = DateUtils.getCurrentDatetime();
         int noAnoMEs = DateUtils.getYearAndMonth(data);
@@ -178,7 +177,7 @@ public class actListaSMS extends actBaseListas implements AdapterView.OnItemClic
 
             despesa.setValor(valor);
             despesa.setDataDespesa(data);
-            despesa.setAnoMes(noAnoMEs);
+            despesa.setAnoMesDespesa(noAnoMEs);
             despesa.setDataInclusao(dataInclusao);
             despesa.setNome(descricao);
 

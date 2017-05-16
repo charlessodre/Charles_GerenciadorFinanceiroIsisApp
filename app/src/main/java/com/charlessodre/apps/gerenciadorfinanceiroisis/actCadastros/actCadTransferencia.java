@@ -190,7 +190,7 @@ public class actCadTransferencia extends actBaseCadastros implements frgConfirma
             retorno = false;
         }
 
-        if (this.textWatcher.getValueWithoutMask() < 0) {
+        if (this.textWatcher.getValueWithoutMask() < 1) {
             this.edtValorTransferencia.setError(this.getString(R.string.msg_valor_maior_zero));
 
             retorno = false;

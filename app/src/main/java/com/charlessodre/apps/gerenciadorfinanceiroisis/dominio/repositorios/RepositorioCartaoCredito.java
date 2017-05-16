@@ -376,7 +376,7 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
             repositorioReceita.excluiTodasSemEstorno(super.getTransaction(), item.getId());
 
             //Exclui todas as despesas da conta.
-            repositorioDespesa.excluiTodasSemEstorno(super.getTransaction(), item.getId());
+            //repositorioDespesa.excluiTodasSemEstorno(super.getTransaction(), item.getId());
 
             //Exclui todas as transferencias da conta de origem.
            // repositorioTransferencia.excluiTransferenciasCartaoOrigem(super.getTransaction(), this, item.getId());

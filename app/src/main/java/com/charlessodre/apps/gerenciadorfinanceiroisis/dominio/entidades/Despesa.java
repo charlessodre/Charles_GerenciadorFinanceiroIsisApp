@@ -1,6 +1,5 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -29,6 +28,7 @@ public class Despesa extends EntidadeBase  {
     public static final String ID_CATEGORIA_DESPESA     = "ID_CATEGORIA_DESPESA";
     public static final String ID_SUB_CATEGORIA_DESPESA = "ID_SUB_CATEGORIA_DESPESA";
     public static final String ID_TIPO_REPETICAO        = "ID_TIPO_REPETICAO";
+    public static final String NO_AM_PAGAMENTO_DESPESA  = "NO_AM_PAGAMENTO_DESPESA";
 
     public static final String ID_DESPESA_PAI = "ID_DESPESA_PAI";
 
@@ -40,7 +40,7 @@ public class Despesa extends EntidadeBase  {
     private boolean fixa;
     private int totalRepeticao;
     private int repeticaoAtual;
-    private int anoMes;
+    private int anoMesDespesa;
     private Conta conta;
     private CategoriaDespesa categoriaDespesa;
     private Date dataPagamento;
@@ -50,9 +50,17 @@ public class Despesa extends EntidadeBase  {
     private int idTipoRepeticao;
     private boolean estornaPagamento;
     private long idPai;
-
+    private Integer anoMesPagamento;
 
     //Propriedades
+
+    public Integer getAnoMesPagamento() {
+        return anoMesPagamento;
+    }
+
+    public void setAnoMesPagamento(Integer anoMesPagamento) {
+        this.anoMesPagamento = anoMesPagamento;
+    }
 
     public long getIdPai() {
         return idPai;
@@ -144,12 +152,12 @@ public class Despesa extends EntidadeBase  {
         this.repeticaoAtual = repeticaoAtual;
     }
 
-    public int getAnoMes() {
-        return anoMes;
+    public int getAnoMesDespesa() {
+        return anoMesDespesa;
     }
 
-    public void setAnoMes(int anoMes) {
-        this.anoMes = anoMes;
+    public void setAnoMesDespesa(int anoMesDespesa) {
+        this.anoMesDespesa = anoMesDespesa;
     }
 
     public Conta getConta() {

@@ -87,6 +87,13 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
         values.put(RegraImportacaoSMS.ID_CONTA_DESTINO, regraImportacaoSMS.getContaDestino().getId());
         values.put(RegraImportacaoSMS.ID_TIPO_TRANSACAO, regraImportacaoSMS.getIdTipoTransacao());
         values.put(RegraImportacaoSMS.DS_RECEITA_DESPESA, regraImportacaoSMS.getDescricaoReceitaDespesa());
+        values.put(RegraImportacaoSMS.FL_EFETIVA_AUTOMATICO, BooleanUtils.parseBooleanToint(regraImportacaoSMS.isEfetivaAutomaticamente()));
+        values.put(RegraImportacaoSMS.FL_NOTIFICAR_LANCAMENTO, BooleanUtils.parseBooleanToint(regraImportacaoSMS.isNotificarLancamento()));
+
+        values.put(RegraImportacaoSMS.DS_TEXTO_INI_VALOR, regraImportacaoSMS.getTextoAntesValor());
+        values.put(RegraImportacaoSMS.DS_TEXTO_FIM_VALOR, regraImportacaoSMS.getTextoDepoisValor());
+        values.put(RegraImportacaoSMS.DS_TEXTO_INI_DATA, regraImportacaoSMS.getTextoAntesData());
+        values.put(RegraImportacaoSMS.DS_TEXTO_FIM_DATA, regraImportacaoSMS.getTextoDepoisData());
 
         if (regraImportacaoSMS.getDataAlteracao() != null)
             values.put(RegraImportacaoSMS.DT_ALTERACAO, regraImportacaoSMS.getDataAlteracao().getTime());
@@ -116,6 +123,11 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
                 regraImportacaoSMS.setTextoPesquisa2(cursor.getString(cursor.getColumnIndex(RegraImportacaoSMS.DS_TEXTO_PESQUISA_2)));
                 regraImportacaoSMS.setIdTipoTransacao(cursor.getInt(cursor.getColumnIndex(RegraImportacaoSMS.ID_TIPO_TRANSACAO)));
 
+                regraImportacaoSMS.setTextoAntesValor(cursor.getString(cursor.getColumnIndex(RegraImportacaoSMS.DS_TEXTO_INI_VALOR)));
+                regraImportacaoSMS.setTextoDepoisValor(cursor.getString(cursor.getColumnIndex(RegraImportacaoSMS.DS_TEXTO_FIM_VALOR)));
+                regraImportacaoSMS.setTextoAntesData(cursor.getString(cursor.getColumnIndex(RegraImportacaoSMS.DS_TEXTO_INI_DATA)));
+                regraImportacaoSMS.setTextoDepoisData(cursor.getString(cursor.getColumnIndex(RegraImportacaoSMS.DS_TEXTO_FIM_DATA)));
+
                 regraImportacaoSMS.setCategoriaReceita(repCategoriaReceita.getCatergoriaReceita(transaction, cursor.getLong(cursor.getColumnIndex(RegraImportacaoSMS.ID_CATEGORIA_RECEITA))));
                 regraImportacaoSMS.setContaOrigem(repConta.get(transaction, cursor.getLong(cursor.getColumnIndex(RegraImportacaoSMS.ID_CONTA_ORIGEM))));
                 regraImportacaoSMS.setContaDestino(repConta.get(transaction, cursor.getLong(cursor.getColumnIndex(RegraImportacaoSMS.ID_CONTA_DESTINO))));
@@ -124,6 +136,8 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
                 regraImportacaoSMS.setSubCategoriaDespesa(repSubCategoriaDespesa.get(transaction, cursor.getLong(cursor.getColumnIndex(RegraImportacaoSMS.ID_SUB_CATEGORIA_DESPESA))));
 
                 regraImportacaoSMS.setAtivo(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(RegraImportacaoSMS.FL_ATIVO))));
+                regraImportacaoSMS.setNotificarLancamento(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(RegraImportacaoSMS.FL_NOTIFICAR_LANCAMENTO))));
+                regraImportacaoSMS.setEfetivaAutomaticamente(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(RegraImportacaoSMS.FL_EFETIVA_AUTOMATICO))));
 
                 regraImportacaoSMS.setDataAlteracao(DateUtils.longToDate(cursor.getLong(cursor.getColumnIndex(RegraImportacaoSMS.DT_ALTERACAO))));
                 regraImportacaoSMS.setDataInclusao(DateUtils.longToDate(cursor.getLong(cursor.getColumnIndex(RegraImportacaoSMS.DT_INCLUSAO))));

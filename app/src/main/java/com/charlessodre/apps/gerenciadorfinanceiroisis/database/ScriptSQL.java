@@ -162,6 +162,7 @@ public class ScriptSQL {
         sqlBuilder.append("   FL_EXIBIR CHAR(1) NOT NULL DEFAULT 1, " );
         sqlBuilder.append("   FL_ATIVO CHAR(1) NOT NULL DEFAULT 1, " );
         sqlBuilder.append("   NO_AM_DESPESA INTEGER  NULL, " );
+        sqlBuilder.append("   NO_AM_PAGAMENTO_DESPESA INTEGER  NULL, " );
         sqlBuilder.append("   NO_ORDEM_EXIBICAO INTEGER NULL, " );
         sqlBuilder.append("   ID_CONTA INTEGER NOT NULL, " );
         sqlBuilder.append("   ID_CATEGORIA_DESPESA INTEGER  NOT NULL, " );
@@ -251,9 +252,15 @@ public class ScriptSQL {
         sqlBuilder.append("   NM_REGRA_IMPORTACAO VARCHAR(30) NOT NULL, " );
         sqlBuilder.append("   DS_TEXTO_PESQUISA_1 VARCHAR(30) NOT NULL, " );
         sqlBuilder.append("   DS_TEXTO_PESQUISA_2 VARCHAR(30) NULL, " );
+        sqlBuilder.append("   DS_TEXTO_INI_VALOR VARCHAR(30) NULL, " );
+        sqlBuilder.append("   DS_TEXTO_FIM_VALOR VARCHAR(30) NULL, " );
+        sqlBuilder.append("   DS_TEXTO_INI_DATA VARCHAR(30) NULL, " );
+        sqlBuilder.append("   DS_TEXTO_FIM_DATA VARCHAR(30) NULL, " );
         sqlBuilder.append("   DS_RECEITA_DESPESA VARCHAR(40) NULL, " );
         sqlBuilder.append("   NO_TELEFONE VARCHAR(30) NOT NULL, " );
         sqlBuilder.append("   FL_ATIVO CHAR(1) NOT NULL DEFAULT 1, " );
+        sqlBuilder.append("   FL_NOTIFICAR_LANCAMENTO CHAR(1) NOT NULL DEFAULT 0, " );
+        sqlBuilder.append("   FL_EFETIVA_AUTOMATICO CHAR(1) NOT NULL DEFAULT 0, " );
         sqlBuilder.append("   DT_INCLUSAO DATETIME NOT NULL, " );
         sqlBuilder.append("   DT_ALTERACAO DATETIME NULL, " );
         sqlBuilder.append("   ID_TIPO_TRANSACAO INT NOT NULL, " );

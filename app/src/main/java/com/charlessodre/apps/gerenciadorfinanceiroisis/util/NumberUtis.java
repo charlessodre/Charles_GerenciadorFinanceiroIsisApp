@@ -1,5 +1,7 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis.util;
 
+import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
+
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -38,8 +40,8 @@ public class NumberUtis {
             stringValue = matcher.group();
             stringValueClear = stringValue.replace(currencySymbol, "").replace(".", "").replace(",", ".");
 
-            if(stringValueClear.endsWith(".") || stringValueClear.endsWith(","))
-                stringValueClear = stringValueClear.substring(0, stringValueClear.length()-1);
+            if (stringValueClear.endsWith(".") || stringValueClear.endsWith(","))
+                stringValueClear = stringValueClear.substring(0, stringValueClear.length() - 1);
 
             try {
                 value = Double.parseDouble(stringValueClear);
@@ -48,7 +50,38 @@ public class NumberUtis {
                 value = null;
             }
 
-            if( value != null)
+            if (value != null)
+                allMatches.add(value);
+        }
+
+        return allMatches;
+    }
+
+    public static ArrayList<Double> getNumberInStringWithRegEx(String strigWithOutCurrency) {
+        ArrayList<Double> allMatches = new ArrayList<Double>();
+        String clearString = strigWithOutCurrency.replace(" ", "");
+        Pattern pattern = Pattern.compile("[\\d.,]+");
+        Matcher matcher = pattern.matcher(clearString);
+        String stringValue;
+        String stringValueClear;
+        Double value = null;
+
+        while (matcher.find()) {
+
+            stringValue = matcher.group();
+            stringValueClear = stringValue.replace(".", "").replace(",", ".");
+
+            if (stringValueClear.endsWith(".") || stringValueClear.endsWith(","))
+                stringValueClear = stringValueClear.substring(0, stringValueClear.length() - 1);
+
+            try {
+                value = Double.parseDouble(stringValueClear);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                value = null;
+            }
+
+            if (value != null)
                 allMatches.add(value);
         }
 
@@ -89,4 +122,35 @@ public class NumberUtis {
 
         return firtIndex;
     }
+
+    public static Double getNumberBetweenStrings(String stringFull, String stringBegin) {
+        return getNumberBetweenStrings(stringFull, stringBegin, "");
+    }
+
+    public static Double getNumberBetweenStrings(String stringFull, String stringBegin, String stringEnd) {
+        Double valor = 0.0;
+        int indexFirstString = -1;
+        int indexLastString = -1;
+        String stringContentValue = "";
+
+        indexFirstString = stringFull.toLowerCase().indexOf(stringBegin.toLowerCase()) + stringBegin.length();
+        indexLastString = stringFull.toLowerCase().indexOf(stringEnd.toLowerCase());
+
+        if (indexFirstString > -1 && indexLastString > -1) {
+            stringContentValue = stringFull.substring(indexFirstString, indexLastString);
+        }else if(indexFirstString > -1) {
+            stringContentValue = stringFull.substring(indexFirstString);
+        }
+
+        if (stringContentValue.length() > 0) {
+
+            ArrayList<Double> allValues = NumberUtis.getNumberInStringWithRegEx(stringContentValue);
+
+            if (allValues != null && allValues.size() > 0)
+                valor = allValues.get(0);
+        }
+
+        return valor;
+    }
+
 }

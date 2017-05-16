@@ -46,22 +46,24 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         values.put(Despesa.FL_ALERTA_DESPESA, BooleanUtils.parseBooleanToint(despesa.isAlertar()));
         values.put(Despesa.NO_TOTAL_REPETICAO, despesa.getTotalRepeticao());
         values.put(Despesa.NO_REPETICAO_ATUAL, despesa.getRepeticaoAtual());
-        values.put(Despesa.NO_AM_DESPESA, despesa.getAnoMes());
+        values.put(Despesa.NO_AM_DESPESA, despesa.getAnoMesDespesa());
         values.put(Despesa.ID_CONTA, despesa.getConta().getId());
         values.put(Despesa.ID_CATEGORIA_DESPESA, despesa.getCategoriaDespesa().getId());
 
-        if(despesa.getSubCategoriaDespesa().getId() != 0)
+        if (despesa.getSubCategoriaDespesa().getId() != 0)
             values.put(Despesa.ID_SUB_CATEGORIA_DESPESA, despesa.getSubCategoriaDespesa().getId());
 
         values.put(Despesa.NO_ORDEM_EXIBICAO, despesa.getOrdemExibicao());
         values.put(Despesa.FL_ATIVO, BooleanUtils.parseBooleanToint(despesa.isAtivo()));
         values.put(Despesa.FL_EXIBIR, BooleanUtils.parseBooleanToint(despesa.isExibir()));
 
-
-        if (despesa.isPaga())
+        if (despesa.isPaga()) {
             values.put(Despesa.DT_PAGAMENTO, despesa.getDataPagamento().getTime());
-        else
+            values.put(Despesa.NO_AM_PAGAMENTO_DESPESA, despesa.getAnoMesPagamento());
+        } else {
             values.put(Despesa.DT_PAGAMENTO, "");
+            values.put(Despesa.NO_AM_PAGAMENTO_DESPESA, "");
+        }
 
         if (despesa.getIdPai() != 0)
             values.put(Despesa.ID_DESPESA_PAI, despesa.getIdPai());
@@ -108,14 +110,14 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
                 despesa.setTotalRepeticao(cursor.getInt(cursor.getColumnIndex(Despesa.NO_TOTAL_REPETICAO)));
                 despesa.setRepeticaoAtual(cursor.getInt(cursor.getColumnIndex(Despesa.NO_REPETICAO_ATUAL)));
 
-                despesa.setAnoMes(cursor.getInt(cursor.getColumnIndex(Despesa.NO_AM_DESPESA)));
+                despesa.setAnoMesDespesa(cursor.getInt(cursor.getColumnIndex(Despesa.NO_AM_DESPESA)));
+                despesa.setAnoMesPagamento(cursor.getInt(cursor.getColumnIndex(Despesa.NO_AM_PAGAMENTO_DESPESA)));
 
                 despesa.setIdPai(cursor.getLong(cursor.getColumnIndex(Despesa.ID_DESPESA_PAI)));
 
                 despesa.setConta(repConta.get(transaction, cursor.getLong(cursor.getColumnIndex(Despesa.ID_CONTA))));
-                despesa.setCategoriaDespesa(repCategoriaDespesa.get(transaction,cursor.getLong(cursor.getColumnIndex(Despesa.ID_CATEGORIA_DESPESA))));
+                despesa.setCategoriaDespesa(repCategoriaDespesa.get(transaction, cursor.getLong(cursor.getColumnIndex(Despesa.ID_CATEGORIA_DESPESA))));
                 despesa.setSubCategoriaDespesa(repSubCategoriaDespesa.get(transaction, cursor.getLong(cursor.getColumnIndex(Despesa.ID_SUB_CATEGORIA_DESPESA))));
-
 
                 despesa.setDataAlteracao(DateUtils.longToDate(cursor.getLong(cursor.getColumnIndex(Despesa.DT_ALTERACAO))));
                 despesa.setDataInclusao(DateUtils.longToDate(cursor.getLong(cursor.getColumnIndex(Despesa.DT_INCLUSAO))));
@@ -128,7 +130,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         return arrayList;
 
     }
-    
+
     //Métodos
     @Override
     public int altera(Despesa item) {
@@ -142,13 +144,17 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
             Despesa despesaAnterior = this.get(super.getTransaction(), item.getId());
 
-            //Estorna o valor da despesa recebida.
-            if (item.isEstornaPagamento()) {
-                repositorioConta.setValorEntradaConta(super.getTransaction(), despesaAnterior.getConta().getId(), despesaAnterior.getValor());
+            if (despesaAnterior.isPaga()) {
 
-            } else if (item.isPaga()) {
+                if (despesaAnterior.getConta().getId() == item.getConta().getId()) {
+                    repositorioConta.setValorEntradaConta(super.getTransaction(), item.getConta().getId(), despesaAnterior.getValor());
+                } else {
+                    repositorioConta.setValorEntradaConta(super.getTransaction(), despesaAnterior.getConta().getId(), despesaAnterior.getValor());
+                }
+            }
 
-                this.atualizaValorPago(super.getTransaction(), repositorioConta, item, despesaAnterior);
+            if (item.isPaga()) {
+                repositorioConta.setValorSaidaConta(super.getTransaction(), item.getConta().getId(), item.getValor());
             }
 
             int linhas = super.update(super.getTransaction(), this.preencheContentValues(item), item.getId());
@@ -167,7 +173,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
                     novaFixa.setDataPagamento(null);
                     novaFixa.setDataDespesa(dataReceita);
                     novaFixa.setDataInclusao(DateUtils.getCurrentDatetime());
-                    novaFixa.setAnoMes(DateUtils.getYearAndMonth(dataReceita));
+                    novaFixa.setAnoMesDespesa(DateUtils.getYearAndMonth(dataReceita));
                     novaFixa.setIdPai(item.getId());
 
                     super.insert(super.getTransaction(), this.preencheContentValues(novaFixa));
@@ -216,18 +222,19 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
                     nova.setIdPai(item.getId());
                     nova.setId(0);
                     nova.setRepeticaoAtual(i);
+                    nova.setPaga(false);
+                    nova.setEstornaPagamento(false);
+                    nova.setAnoMesPagamento(null);
+                    nova.setDataPagamento(null);
 
                     if (tipoRepeticao != TipoRepeticao.DIARIA)
                         data = TipoRepeticao.getDataRepeticao(tipoRepeticao, data);
 
                     nova.setDataDespesa(data);
-                    nova.setAnoMes(DateUtils.getYearAndMonth(data));
+                    nova.setAnoMesDespesa(DateUtils.getYearAndMonth(data));
 
                     super.insert(super.getTransaction(), preencheContentValues(nova));
 
-                    if (nova.isPaga()) {
-                        repositorioConta.setValorSaidaConta(super.getTransaction(), nova.getConta().getId(), nova.getValor());
-                    }
                 }
             } else if (item.isFixa()) {
 
@@ -241,17 +248,18 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
                     nova.setIdPai(item.getId());
                     nova.setId(0);
+                    nova.setPaga(false);
+                    nova.setEstornaPagamento(false);
+                    nova.setAnoMesPagamento(null);
+                    nova.setDataPagamento(null);
 
                     data = TipoRepeticao.getDataRepeticao(TipoRepeticao.MENSAL, data);
 
                     nova.setDataDespesa(data);
-                    nova.setAnoMes(DateUtils.getYearAndMonth(data));
+                    nova.setAnoMesDespesa(DateUtils.getYearAndMonth(data));
 
                     super.insert(super.getTransaction(), preencheContentValues(nova));
 
-                    if (nova.isPaga()) {
-                        repositorioConta.setValorSaidaConta(super.getTransaction(), nova.getConta().getId(), nova.getValor());
-                    }
                 }
             }
 
@@ -332,7 +340,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
             Cursor cursor = super.selectAll(Despesa.DT_DESPESA + "," + Despesa.ID);
 
-            return this.preencheObjeto(super.getTransaction(),cursor);
+            return this.preencheObjeto(super.getTransaction(), cursor);
 
         } catch (SQLException ex) {
             throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
@@ -458,7 +466,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         sql.append(" WHERE ");
         sql.append(Despesa.NO_AM_DESPESA);
         sql.append(" = ? ");
-         if(somentePagas) {
+        if (somentePagas) {
             sql.append(" AND ");
             sql.append(Despesa.FL_DESPESA_PAGA + " = 1");
         }
@@ -487,7 +495,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         }
     }
 
-    public Double getValorTotalDespesasContaMes(long idConta,int anoMes, boolean somentePagas) {
+    public Double getValorTotalDespesasContaMes(long idConta, int anoMes, boolean somentePagas) {
         String[] parametros = {String.valueOf(idConta), String.valueOf(anoMes)};
 
         StringBuilder sql = new StringBuilder();
@@ -502,7 +510,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         sql.append(" AND " + Despesa.NO_AM_DESPESA);
         sql.append(" = ?");
 
-        if(somentePagas) {
+        if (somentePagas) {
             sql.append(" AND ");
             sql.append(Despesa.FL_DESPESA_PAGA + " = 1");
         }
@@ -571,7 +579,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
     }
 
-    public int getQtdDespesaContaMes(long idConta,int anoMes, boolean somentePagas) {
+    public int getQtdDespesaContaMes(long idConta, int anoMes, boolean somentePagas) {
 
         int qtdDespesas = 0;
 
@@ -587,7 +595,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         sql.append(Despesa.NO_AM_DESPESA);
         sql.append(" = ? ");
 
-        if(somentePagas) {
+        if (somentePagas) {
             sql.append(" AND ");
             sql.append(Despesa.FL_DESPESA_PAGA + " = 1");
         }
@@ -698,28 +706,19 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
     //Alterações
     public int alteraProximas(Despesa despesaAlterada) {
 
-        double valorAnterior = 0;
-        double valorDiferenca = 0;
-
         try {
 
             super.openConnectionWrite();
             super.setBeginTransaction();
 
-            RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
-
             //Busca as despesas que serão alteradas.
-            ArrayList<Despesa> proximasDespesas = this.buscaDespesasDependentes(super.getTransaction(), despesaAlterada.getIdPai(), despesaAlterada.getId(), true, false);
+            ArrayList<Despesa> proximasOcorrenciasDespesas = this.buscaDespesasDependentes(super.getTransaction(), despesaAlterada.getIdPai(), despesaAlterada.getId(), true, false);
 
-            for (Despesa proxima : proximasDespesas) {
-
-                proxima = this.atualizaDependentes(super.getTransaction(), repositorioConta, despesaAlterada, proxima);
-                super.update(super.getTransaction(), preencheContentValues(proxima), proxima.getId());
-            }
+            this.atualizaOcorrenciasDespesas(super.getTransaction(), despesaAlterada, proximasOcorrenciasDespesas);
 
             super.setTransactionSuccessful();
 
-            return 1;
+            return proximasOcorrenciasDespesas.size();
 
         } catch (SQLException ex) {
             throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_despesa));
@@ -734,28 +733,19 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
     public int alteraTodas(Despesa despesaAlterada) {
 
-        double valorAnterior = 0;
-        double valorDiferenca = 0;
-
         try {
 
             super.openConnectionWrite();
             super.setBeginTransaction();
 
-            RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
-
             //Busca as despesas que serão alteradas.
             ArrayList<Despesa> todasOcorrenciasDespesas = this.buscaDespesasDependentes(super.getTransaction(), despesaAlterada.getIdPai(), despesaAlterada.getId(), false, false);
 
-            for (Despesa ocorrencia : todasOcorrenciasDespesas) {
-
-                ocorrencia = this.atualizaDependentes(super.getTransaction(), repositorioConta, despesaAlterada, ocorrencia);
-                super.update(super.getTransaction(), preencheContentValues(ocorrencia), ocorrencia.getId());
-            }
+            this.atualizaOcorrenciasDespesas(super.getTransaction(), despesaAlterada, todasOcorrenciasDespesas);
 
             super.setTransactionSuccessful();
 
-            return 1;
+            return todasOcorrenciasDespesas.size();
 
         } catch (SQLException ex) {
             throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_despesa));
@@ -768,84 +758,47 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
     }
 
-    private Despesa atualizaDependentes(SQLiteDatabase transaction, RepositorioConta repositorioConta, Despesa despesaAtualizada, Despesa despesaSalva) {
+    private void atualizaOcorrenciasDespesas(SQLiteDatabase transaction, Despesa despesaAlterada, ArrayList<Despesa> listaDepesas) {
 
-        despesaSalva.setNome(despesaAtualizada.getNome());
-        despesaSalva.setDataAlteracao(despesaAtualizada.getDataAlteracao());
-        despesaSalva.setCategoriaDespesa(despesaAtualizada.getCategoriaDespesa());
-        despesaSalva.setConta(despesaAtualizada.getConta());
+        RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
 
-        if (despesaAtualizada.isPaga()) {
+        for (Despesa ocorrencia : listaDepesas) {
 
-            despesaSalva.setPaga(true);
-            despesaSalva.setDataPagamento(despesaAtualizada.getDataPagamento());
+            if (ocorrencia.isPaga()) {
 
-            this.atualizaValorPago(transaction, repositorioConta, despesaAtualizada, despesaSalva);
-
-        } else if (despesaSalva.isPaga() && despesaAtualizada.isEstornaPagamento()) {
-
-            despesaSalva.setPaga(false);
-            despesaSalva.setDataPagamento(null);
-            despesaAtualizada.setEstornaPagamento(true);
-
-            repositorioConta.setValorSaidaConta(transaction, despesaSalva.getConta().getId(), despesaSalva.getValor());
-        }
-
-        despesaSalva.setValor(despesaAtualizada.getValor());
-
-        return despesaSalva;
-
-    }
-
-    private void atualizaValorPago(SQLiteDatabase transaction, RepositorioConta repositorioConta, Despesa despesaAtualizada, Despesa despesaSalva) {
-
-        double valorAnterior = 0;
-        double valorAtualizado = 0;
-        double valorDiferenca = 0;
-        long idContaAnterior = 1;
-        long idContaAtualizada = 1;
-
-        idContaAnterior = despesaSalva.getConta().getId();
-        idContaAtualizada = despesaAtualizada.getConta().getId();
-
-        valorAnterior = despesaSalva.getValor();
-        valorAtualizado = despesaAtualizada.getValor();
-
-        //Se Contas diferentes, retira o valor da conta anterior e adiciona na conta atual.
-        if (idContaAnterior != idContaAtualizada) {
-            if (despesaSalva.isPaga())
-                repositorioConta.setValorEntradaConta(transaction, idContaAnterior, valorAnterior);
-
-            repositorioConta.setValorSaidaConta(transaction, idContaAtualizada, valorAtualizado);
-
-        } else {
-
-            //Verifica se houve alteração no valor.
-            if (valorAnterior > valorAtualizado && despesaSalva.isPaga()) {
-                if (despesaSalva.isPaga()) {
-                    valorDiferenca = valorAnterior - valorAtualizado;
-                    repositorioConta.setValorEntradaConta(transaction, idContaAtualizada, valorDiferenca);
-                } else
-                    repositorioConta.setValorSaidaConta(transaction, idContaAtualizada, valorAtualizado);
-
-            } else if (valorAnterior < valorAtualizado && despesaSalva.isPaga()) {
-                if (despesaSalva.isPaga()) {
-                    valorDiferenca = valorAtualizado - valorAnterior;
-                    repositorioConta.setValorSaidaConta(transaction, idContaAtualizada, valorDiferenca);
-
-                } else
-                    repositorioConta.setValorSaidaConta(transaction, idContaAtualizada, valorAtualizado);
-
-            } else {
-                if (!despesaSalva.isPaga()) {
-                    repositorioConta.setValorSaidaConta(transaction, idContaAtualizada, valorAtualizado);
+                if (ocorrencia.getConta().getId() == despesaAlterada.getConta().getId()) {
+                    repositorioConta.setValorEntradaConta(transaction, despesaAlterada.getConta().getId(), ocorrencia.getValor());
+                } else {
+                    repositorioConta.setValorEntradaConta(transaction, ocorrencia.getConta().getId(), ocorrencia.getValor());
                 }
             }
 
+            if (despesaAlterada.isPaga()) {
+                repositorioConta.setValorSaidaConta(transaction, despesaAlterada.getConta().getId(), despesaAlterada.getValor());
+            }
+
+            ocorrencia.setNome(despesaAlterada.getNome());
+            ocorrencia.setDataAlteracao(despesaAlterada.getDataAlteracao());
+            ocorrencia.setCategoriaDespesa(despesaAlterada.getCategoriaDespesa());
+            ocorrencia.setSubCategoriaDespesa(despesaAlterada.getSubCategoriaDespesa());
+            ocorrencia.setConta(despesaAlterada.getConta());
+
+            ocorrencia.setEstornaPagamento(despesaAlterada.isEstornaPagamento());
+
+            ocorrencia.setDataPagamento(despesaAlterada.getDataPagamento());
+            ocorrencia.setPaga(despesaAlterada.isPaga());
+            ocorrencia.setDataPagamento(despesaAlterada.getDataPagamento());
+            ocorrencia.setValor(despesaAlterada.getValor());
+            ocorrencia.setAnoMesPagamento(despesaAlterada.getAnoMesPagamento());
+            ocorrencia.setAlertar(despesaAlterada.isAlertar());
+
+
+            super.update(super.getTransaction(), preencheContentValues(ocorrencia), ocorrencia.getId());
+
         }
 
-    }
 
+    }
 
     //Exclusões
     public int excluiProximas(Despesa item) {
@@ -978,7 +931,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             //Busca as despesas da categoria que serão excluidas.
             ArrayList<Despesa> todasOcorrenciasDespesas = null;//this.buscaDespesasCategoria(transaction,idCategoriaDespesa);
 
-          //  this.estonaValorContaExcluiDespesa(transaction, repositorioConta, todasOcorrenciasDespesas);
+            //  this.estonaValorContaExcluiDespesa(transaction, repositorioConta, todasOcorrenciasDespesas);
 
             return 1;
 

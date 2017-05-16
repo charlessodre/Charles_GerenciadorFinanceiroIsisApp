@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/act_cad_conta"
     android:layout_width="match_parent"
@@ -13,7 +14,9 @@
     <ScrollView
         android:id="@+id/createdrill_scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,6 +75,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lblTextoNoSMS" />
 
+
                 <EditText
                     android:id="@+id/edtTexto1NoSMS"
                     android:layout_width="match_parent"
@@ -85,27 +89,164 @@
                     android:maxLines="1"
                     android:textAppearance="?android:attr/textAppearanceLarge" />
 
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_obj_cadastro" />
 
-                <TextView
-                    android:id="@+id/lblTexto2NoSMS"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lblTextoNoSMS" />
-
-                <EditText
-                    android:id="@+id/edtTexto2NoSMS"
+                <LinearLayout
+                    android:id="@+id/lnlDetalhesRegra"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:elegantTextHeight="true"
-                    android:ems="10"
-                    android:hint="@string/lblTextoNoSMS"
-                    android:imeOptions="actionDone"
-                    android:inputType="textCapSentences"
-                    android:maxLength="30"
-                    android:maxLines="1"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/txtExibeDetalhes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lblMaisDetalhes"
+                        android:textColor="@color/indigo_A700" />
+
+                    <ImageView
+                        android:id="@+id/imgExibeDetalhes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/ic_keyboard_arrow_down_black_18dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lnlDetalhesConteudoRegra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/lnlDetalhesRegra"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                                       <TextView
+                        android:id="@+id/lblTexto2NoSMS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lblTextoNoSMS" />
+
+                    <EditText
+                        android:id="@+id/edtTexto2NoSMS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elegantTextHeight="true"
+                        android:ems="10"
+                        android:hint="@string/lblTextoNoSMS"
+                        android:imeOptions="actionDone"
+                        android:inputType="textCapSentences"
+                        android:maxLength="30"
+                        android:maxLines="1"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblValorNomeNoSMS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lblValorEntreTextos" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edtTextoValorNoSMS1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:elegantTextHeight="true"
+                                android:ems="10"
+                                android:hint="@string/lblTexto1"
+                                android:imeOptions="actionDone"
+                                android:inputType="textCapSentences"
+                                android:maxLength="30"
+                                android:maxLines="1"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:layout_weight="1"/>
+
+
+                            <EditText
+                                android:id="@+id/edtTextoValorNoSMS2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:elegantTextHeight="true"
+                                android:ems="10"
+                                android:hint="@string/lblTexto2"
+                                android:imeOptions="actionDone"
+                                android:inputType="textCapSentences"
+                                android:maxLength="30"
+                                android:maxLines="1"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/lblDataNomeNoSMS"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/lblDataEntreTextos" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/edtTextoDataNoSMS1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:elegantTextHeight="true"
+                                android:ems="10"
+                                android:hint="@string/lblTexto1"
+                                android:imeOptions="actionDone"
+                                android:inputType="textCapSentences"
+                                android:maxLength="30"
+                                android:maxLines="1"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:layout_weight="1"/>
+
+
+                            <EditText
+                                android:id="@+id/edtTextoDataNoSMS2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:elegantTextHeight="true"
+                                android:ems="10"
+                                android:hint="@string/lblTexto2"
+                                android:imeOptions="actionDone"
+                                android:inputType="textCapSentences"
+                                android:maxLength="30"
+                                android:maxLines="1"
+                                android:textAppearance="?android:attr/textAppearanceSmall"
+                                android:layout_weight="1"/>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_obj_cadastro" />
 
             <LinearLayout
                 android:id="@+id/linearLayout31"
@@ -138,7 +279,7 @@
                     <Spinner
                         android:id="@+id/spnTipoTransacao"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
+                        android:layout_height="30dp"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
                     <Space
@@ -172,6 +313,9 @@
 
             </LinearLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_obj_cadastro" />
             <LinearLayout
                 android:id="@+id/lnlDespesa"
                 android:layout_width="match_parent"
@@ -301,10 +445,6 @@
                     android:textAppearance="?android:attr/textAppearanceLarge" />
             </LinearLayout>
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_obj_cadastro" />
-
             <LinearLayout
                 android:id="@+id/lnlTransferencia"
                 android:layout_width="match_parent"
@@ -330,7 +470,43 @@
 
             </LinearLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_obj_cadastro" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <CheckBox
+                    android:id="@+id/cbxEfetivaAutomaticamente"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:checked="true"
+                    android:nestedScrollingEnabled="false"
+                    android:text="@string/lblEfetivarAutomaticamente" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <CheckBox
+                    android:id="@+id/cbxNotificarLancamento"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:checked="true"
+                    android:nestedScrollingEnabled="false"
+                    android:text="@string/lblNotificarLancamento" />
+
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

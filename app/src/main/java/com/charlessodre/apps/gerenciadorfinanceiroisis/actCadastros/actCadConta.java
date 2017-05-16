@@ -139,9 +139,9 @@ public class actCadConta extends actBaseCadastros implements frgConfirmaExclusao
         this.cbxExibirSomaResumo = (CheckBox) findViewById(R.id.cbxExibirSomaResumo);
         this.cbxContaAtiva = (CheckBox) findViewById(R.id.cbxContaAtiva);
 
-        textWatcher = new TextWatcherPay(this.edtSaldo, "%.2f");
+        this.textWatcher = new TextWatcherPay(this.edtSaldo, "%.2f");
 
-        edtSaldo.addTextChangedListener(textWatcher);
+        this.edtSaldo.addTextChangedListener(textWatcher);
 
         ActionBarHelper.menuCancel(getSupportActionBar(), this.getString(R.string.lblConta));
 
@@ -157,7 +157,7 @@ public class actCadConta extends actBaseCadastros implements frgConfirmaExclusao
     private void salva() {
 
         this.conta.setNome(this.edtNome.getText().toString());
-        this.conta.setExibir(this.cbxExibirSomaResumo.isChecked());
+        this.conta.setExibiSomaResumo(this.cbxExibirSomaResumo.isChecked());
         this.conta.setAtivo(this.cbxContaAtiva.isChecked());
         this.conta.setCdTipoConta(this.spnTipoConta.getSelectedItemPosition());
         this.conta.setValorSaldo(textWatcher.getValueWithoutMask());
@@ -283,7 +283,7 @@ public class actCadConta extends actBaseCadastros implements frgConfirmaExclusao
             this.edtSaldo.setText(NumberUtis.getFormartCurrency(this.conta.getValorSaldo()));
 
             this.spnTipoConta.setSelection(this.conta.getCdTipoConta());
-            this.cbxExibirSomaResumo.setChecked(this.conta.isExibir());
+            this.cbxExibirSomaResumo.setChecked(this.conta.isExibiSomaResumo());
             this.cbxContaAtiva.setChecked(this.conta.isAtivo());
 
         } else

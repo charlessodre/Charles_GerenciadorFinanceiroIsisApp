@@ -171,6 +171,35 @@
             android:nestedScrollingEnabled="false"
             android:text="@string/lblPago" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
+
+        <LinearLayout
+            android:id="@+id/lnlDetalhePagamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+        <TextView
+            android:id="@+id/lblDataPagtoDespesa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lblDataPagamento" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/edtDataPagamento"
+            android:inputType="date"
+            android:hint="@string/lblDataPagamento"
+            android:maxLines="1"
+            android:imeOptions="actionDone"/>
+
+        </LinearLayout>
+
         <CheckBox
             android:id="@+id/cbxFixa"
             android:layout_width="match_parent"

@@ -317,32 +317,36 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
 
     public void setValorEntradaConta(SQLiteDatabase transaction, long idConta, double valorEntrada) {
 
-        Conta contaSaldo = this.get(transaction, idConta);
+        if(valorEntrada> 0) {
+            Conta contaSaldo = this.get(transaction, idConta);
 
-        contaSaldo.setDataAlteracao(DateUtils.getCurrentDatetime());
+            contaSaldo.setDataAlteracao(DateUtils.getCurrentDatetime());
 
-        double valorSaldoAtual = contaSaldo.getValorSaldo();
+            double valorSaldoAtual = contaSaldo.getValorSaldo();
 
-        valorSaldoAtual = valorSaldoAtual + valorEntrada;
+            valorSaldoAtual = valorSaldoAtual + valorEntrada;
 
-        contaSaldo.setValorSaldo(valorSaldoAtual);
+            contaSaldo.setValorSaldo(valorSaldoAtual);
 
-        this.alterarTransaction(transaction, contaSaldo);
+            this.alterarTransaction(transaction, contaSaldo);
+        }
     }
 
     public void setValorSaidaConta(SQLiteDatabase transaction, long idConta, double valorSaida) {
 
-        Conta contaSaldo = this.get(transaction, idConta);
+        if(valorSaida>0) {
+            Conta contaSaldo = this.get(transaction, idConta);
 
-        contaSaldo.setDataAlteracao(DateUtils.getCurrentDatetime());
+            contaSaldo.setDataAlteracao(DateUtils.getCurrentDatetime());
 
-        double valorSaldoAtual = contaSaldo.getValorSaldo();
+            double valorSaldoAtual = contaSaldo.getValorSaldo();
 
-        valorSaldoAtual = valorSaldoAtual - valorSaida;
+            valorSaldoAtual = valorSaldoAtual - valorSaida;
 
-        contaSaldo.setValorSaldo(valorSaldoAtual);
+            contaSaldo.setValorSaldo(valorSaldoAtual);
 
-        this.alterarTransaction(transaction, contaSaldo);
+            this.alterarTransaction(transaction, contaSaldo);
+        }
     }
 
     public int excluiComDependentes(Conta item) {
