@@ -365,7 +365,7 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
 
         } else if (!this.cbxReceitaRecebida.isChecked() && this.receita.getId() != 0 && this.receita.getDataRecebimento() != null) {
 
-            this.receita.setEstornaPagamento(true);
+            this.receita.setEstornaRecebimentoReceita(true);
             this.receita.setPaga(false);
             this.receita.setDataRecebimento(null);
 

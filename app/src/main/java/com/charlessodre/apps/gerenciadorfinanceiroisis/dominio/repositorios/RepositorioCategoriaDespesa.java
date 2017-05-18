@@ -141,11 +141,11 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
             super.setBeginTransaction();
 
             RepositorioDespesa repositorioDespesa = new RepositorioDespesa(super.getContext());
-            RepositorioSubCategoriaDespesa subCategoriaDespesa = new RepositorioSubCategoriaDespesa(super.getContext());
+            RepositorioSubCategoriaDespesa repositorioSubCategoriaDespesa = new RepositorioSubCategoriaDespesa(super.getContext());
 
-            repositorioDespesa.excluiDespesasDaCategoriaComEstorno(super.getTransaction(),item.getId());
+            repositorioDespesa.excluiDespesasCategoria(super.getTransaction(),item.getId());
 
-            subCategoriaDespesa.excluiSubCategoriaDespesa(super.getTransaction(),item.getId());
+            repositorioSubCategoriaDespesa.excluiSubCategoriaDespesa(super.getTransaction(),item.getId());
 
             super.delete(super.getTransaction(),item.getId());
 

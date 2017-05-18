@@ -224,8 +224,6 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
 
     public ArrayList<Conta> getSaldoContaAnoMes(long idConta,int anoMes) {
 
-        String[] parametros = {String.valueOf(anoMes),String.valueOf(idConta) };
-
         StringBuilder sql = new StringBuilder();
 
         sql.append("SELECT ");
@@ -244,16 +242,23 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         sql.append(" C.VL_SALDO, " );
         sql.append(" (SELECT SUM(R.VL_RECEITA) AS VL_RECEITA FROM ");
         sql.append(Receita.TABELA_NOME);
-        sql.append("  as R where R.NO_AM_RECEITA <= ? AND R.FL_RECEITA_PAGA=0 AND C._id=R.ID_CONTA)AS RECEITAS_PREVISTAS, " );
+        sql.append("  as R where R.NO_AM_RECEITA <= ");
+        sql.append(anoMes);
+        sql.append(" AND R.FL_RECEITA_PAGA=0 AND C._id=R.ID_CONTA)AS ");
+        sql.append(Conta.RECEITAS_PREVISTAS );
+        sql.append(" , ");
         sql.append(" (SELECT SUM(D.VL_DESPESA) AS VL_DESPESA FROM ");
         sql.append(Despesa.TABELA_NOME);
-        sql.append(" as D where D.NO_AM_DESPESA <= ? AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS DESPESAS_PREVISTAS " );
+        sql.append(" as D where D.NO_AM_DESPESA <= ");
+        sql.append(anoMes);
+        sql.append(" AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS " );
+        sql.append(Conta.DESPESAS_PREVISTAS);
         sql.append(" FROM ");
         sql.append(Conta.TABELA_NOME);
         sql.append(" C ");
 
         if(idConta != 0)
-            sql.append(" WHERE  C._id = ?" );
+            sql.append(" WHERE  C._id = " + idConta);
 
         sql.append(" ORDER BY C.NO_ORDEM_EXIBICAO, C.NM_CONTA");
 
@@ -261,7 +266,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            Cursor cursor = super.selectCustomQuery(sql.toString(), null);
 
             return this.preencheObjeto(cursor);
 

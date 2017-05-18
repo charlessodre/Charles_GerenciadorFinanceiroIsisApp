@@ -288,7 +288,8 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
             RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
 
-            repositorioConta.setValorSaidaConta(super.getTransaction(), item.getConta().getId(), item.getValor());
+            if(item.isPaga())
+                repositorioConta.setValorEntradaConta(super.getTransaction(), item.getConta().getId(), item.getValor());
 
             super.delete(super.getTransaction(), item.getId());
 
@@ -393,7 +394,6 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         }
     }
 
-
     public ArrayList<Despesa> buscaDespesasDependentes(SQLiteDatabase transaction, long idPai, long id, boolean proximas, boolean somentePendentes) {
 
         StringBuilder where = new StringBuilder();
@@ -423,6 +423,17 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         StringBuilder where = new StringBuilder();
 
         where.append(Despesa.ID_CATEGORIA_DESPESA + " = " + idCategoriaDespesa);
+
+        Cursor cursor = super.select(transaction, where.toString(), Despesa.DT_DESPESA + "," + Despesa.ID);
+
+        return this.preencheObjeto(transaction, cursor);
+    }
+
+    public ArrayList<Despesa> buscaDespesasSubCategoria(SQLiteDatabase transaction, long idSubCategoriaDespesa) {
+
+        StringBuilder where = new StringBuilder();
+
+        where.append(Despesa.ID_SUB_CATEGORIA_DESPESA + " = " + idSubCategoriaDespesa);
 
         Cursor cursor = super.select(transaction, where.toString(), Despesa.DT_DESPESA + "," + Despesa.ID);
 
@@ -793,7 +804,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             ocorrencia.setAlertar(despesaAlterada.isAlertar());
 
 
-            super.update(super.getTransaction(), preencheContentValues(ocorrencia), ocorrencia.getId());
+            super.update(transaction, preencheContentValues(ocorrencia), ocorrencia.getId());
 
         }
 
@@ -818,7 +829,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
                 if (ocorrencia.isPaga()) {
                     //Estorna o pagamento realizado
-                    repositorioConta.setValorSaidaConta(super.getTransaction(), ocorrencia.getConta().getId(), ocorrencia.getValor());
+                    repositorioConta.setValorEntradaConta(super.getTransaction(), ocorrencia.getConta().getId(), ocorrencia.getValor());
                 }
 
                 super.delete(super.getTransaction(), ocorrencia.getId());
@@ -854,7 +865,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
                 if (ocorrencia.isPaga()) {
                     //Estorna o pagamento realizado
-                    repositorioConta.setValorSaidaConta(super.getTransaction(), ocorrencia.getConta().getId(), ocorrencia.getValor());
+                    repositorioConta.setValorEntradaConta(super.getTransaction(), ocorrencia.getConta().getId(), ocorrencia.getValor());
                 }
 
                 super.delete(super.getTransaction(), ocorrencia.getId());
@@ -886,10 +897,37 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
                 if (ocorrencia.isPaga()) {
                     //Estorna o pagamento realizado
-                    repositorioConta.setValorSaidaConta(super.getTransaction(), ocorrencia.getConta().getId(), ocorrencia.getValor());
+                    repositorioConta.setValorEntradaConta(transaction, ocorrencia.getConta().getId(), ocorrencia.getValor());
                 }
 
-                super.delete(super.getTransaction(), ocorrencia.getId());
+                super.delete(transaction, ocorrencia.getId());
+
+                linhas = linhas++;
+            }
+
+            return linhas;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa));
+        }
+    }
+
+    public int excluiDespesasSubCategoria(SQLiteDatabase transaction, long idSubCategoriaDespesa) {
+        try {
+
+            RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
+            int linhas = 0;
+            //Busca as despesas da categoria que serão excluidas.
+            ArrayList<Despesa> todasOcorrenciasDespesas = this.buscaDespesasSubCategoria(transaction, idSubCategoriaDespesa);
+
+            for (Despesa ocorrencia : todasOcorrenciasDespesas) {
+
+                if (ocorrencia.isPaga()) {
+                    //Estorna o pagamento realizado
+                    repositorioConta.setValorEntradaConta(transaction, ocorrencia.getConta().getId(), ocorrencia.getValor());
+                }
+
+                super.delete(transaction, ocorrencia.getId());
 
                 linhas = linhas++;
             }
@@ -923,21 +961,6 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         }
     }
 
-    public int excluiDespesasDaCategoriaComEstorno(SQLiteDatabase transaction, long idCategoriaDespesa) {
-        try {
 
-            RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
-
-            //Busca as despesas da categoria que serão excluidas.
-            ArrayList<Despesa> todasOcorrenciasDespesas = null;//this.buscaDespesasCategoria(transaction,idCategoriaDespesa);
-
-            //  this.estonaValorContaExcluiDespesa(transaction, repositorioConta, todasOcorrenciasDespesas);
-
-            return 1;
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa));
-        }
-    }
 
 }

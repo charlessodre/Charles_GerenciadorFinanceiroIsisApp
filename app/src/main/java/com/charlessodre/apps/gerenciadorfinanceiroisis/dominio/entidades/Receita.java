@@ -1,13 +1,5 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades;
 
-import android.content.Context;
-import android.content.res.Resources;
-
-import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
-
-import java.io.Serializable;
-
-import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -30,6 +22,8 @@ public class Receita extends EntidadeBase {
     public static String ID_TIPO_REPETICAO = "ID_TIPO_REPETICAO";
     public static String DT_RECEBIMENTO = "DT_RECEBIMENTO";
     public static String ID_RECEITA_PAI = "ID_RECEITA_PAI";
+    public static String NO_AM_RECEBIMENTO_RECEITA = "NO_AM_RECEBIMENTO_RECEITA";
+    public static String FL_ALERTA_RECEITA = "FL_ALERTA_RECEITA";
 
 
     //Atributos
@@ -46,16 +40,36 @@ public class Receita extends EntidadeBase {
     private int idTipoRepeticao;
     private Date dataRecebimento;
     private long idPai;
-  private boolean estornaPagamento;
+    private boolean estornaRecebimentoReceita;
+    private Integer anoMesRecebimentoReceita;
+    private boolean alertar;
+
 
 
     //Propriedades
-    public boolean isEstornaPagamento() {
-        return estornaPagamento;
+
+    public boolean isAlertar() {
+        return alertar;
     }
 
-    public void setEstornaPagamento(boolean estornaPagamento) {
-        this.estornaPagamento = estornaPagamento;
+    public void setAlertar(boolean alertar) {
+        this.alertar = alertar;
+    }
+
+    public Integer getAnoMesRecebimentoReceita() {
+        return anoMesRecebimentoReceita;
+    }
+
+    public void setAnoMesRecebimentoReceita(Integer anoMesRecebimentoReceita) {
+        this.anoMesRecebimentoReceita = anoMesRecebimentoReceita;
+    }
+
+    public boolean isEstornaRecebimentoReceita() {
+        return estornaRecebimentoReceita;
+    }
+
+    public void setEstornaRecebimentoReceita(boolean estornaRecebimentoReceita) {
+        this.estornaRecebimentoReceita = estornaRecebimentoReceita;
     }
     public long getIdPai() {
         return idPai;

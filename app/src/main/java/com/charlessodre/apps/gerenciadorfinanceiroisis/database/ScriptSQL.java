@@ -201,8 +201,10 @@ public class ScriptSQL {
         sqlBuilder.append("   DT_ALTERACAO DATETIME NULL, " );
         sqlBuilder.append("   FL_EXIBIR CHAR(1) NOT NULL DEFAULT 1, " );
         sqlBuilder.append("   FL_ATIVO CHAR(1) NOT NULL DEFAULT 1, " );
+        sqlBuilder.append("   FL_ALERTA_RECEITA CHAR(1) NULL DEFAULT 0, " );
         sqlBuilder.append("   NO_ORDEM_EXIBICAO INTEGER NULL, " );
         sqlBuilder.append("   NO_AM_RECEITA INTEGER  NULL, " );
+        sqlBuilder.append("   NO_AM_RECEBIMENTO_RECEITA INTEGER  NULL, " );
         sqlBuilder.append("   ID_CONTA INTEGER  NOT NULL, " );
         sqlBuilder.append("   ID_CATEGORIA_RECEITA INTEGER  NULL, " );
         sqlBuilder.append("   ID_TIPO_REPETICAO INTEGER  NULL, " );

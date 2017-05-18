@@ -223,7 +223,7 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
 
             RepositorioDespesa repositorioDespesa = new RepositorioDespesa(super.getContext());
 
-            repositorioDespesa.excluiDespesasDaCategoriaComEstorno(super.getTransaction(),item.getId());
+            repositorioDespesa.excluiDespesasSubCategoria(super.getTransaction(),item.getId());
 
             super.delete(super.getTransaction(),item.getId());
 

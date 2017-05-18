@@ -29,7 +29,6 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
         super(context, Receita.TABELA_NOME);
     }
 
-
     //Métodos Principais
     @Override
     public int altera(Receita item) {
@@ -43,14 +42,19 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
             Receita receitaAnterior = this.get(super.getTransaction(), item.getId());
 
-            //Estorna o valor da receita recebida.
-            if (item.isEstornaPagamento()) {
-                repositorioConta.setValorSaidaConta(super.getTransaction(), receitaAnterior.getConta().getId(), receitaAnterior.getValor());
+            if (receitaAnterior.isPaga()) {
 
-            } else if (item.isPaga()) {
-
-                this.atualizaValorRecebido(super.getTransaction(), repositorioConta, item, receitaAnterior);
+                if (receitaAnterior.getConta().getId() == item.getConta().getId()) {
+                    repositorioConta.setValorEntradaConta(super.getTransaction(), item.getConta().getId(), receitaAnterior.getValor());
+                } else {
+                    repositorioConta.setValorEntradaConta(super.getTransaction(), receitaAnterior.getConta().getId(), receitaAnterior.getValor());
+                }
             }
+
+            if (item.isPaga()) {
+                repositorioConta.setValorSaidaConta(super.getTransaction(), item.getConta().getId(), item.getValor());
+            }
+
 
             int linhas = super.update(super.getTransaction(), this.preencheContentValues(item), item.getId());
 
@@ -66,9 +70,12 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
                     novaFixa.setPaga(false);
                     novaFixa.setDataAlteracao(null);
                     novaFixa.setDataRecebimento(null);
+                    novaFixa.setAnoMesRecebimentoReceita(null);
+                    novaFixa.setEstornaRecebimentoReceita(false);
                     novaFixa.setDataReceita(dataReceita);
                     novaFixa.setDataInclusao(DateUtils.getCurrentDatetime());
                     novaFixa.setAnoMes(DateUtils.getYearAndMonth(dataReceita));
+
                     novaFixa.setIdPai(item.getId());
 
                     super.insert(super.getTransaction(), this.preencheContentValues(novaFixa));
@@ -119,6 +126,8 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
                     nova.setId(0);
                     nova.setPaga(false);
                     nova.setDataRecebimento(null);
+                    nova.setAnoMesRecebimentoReceita(null);
+                    nova.setEstornaRecebimentoReceita(false);
                     nova.setRepeticaoAtual(i);
 
                     if (tipoRepeticao != TipoRepeticao.DIARIA)
@@ -129,9 +138,6 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
                     super.insert(super.getTransaction(), preencheContentValues(nova));
 
-                   // if (nova.isPaga()) {
-                   //     repositorioConta.setValorEntradaConta(super.getTransaction(), nova.getConta().getId(), nova.getValor());
-                   // }
                 }
             } else if (item.isFixa()) {
 
@@ -147,6 +153,8 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
                     nova.setId(0);
                     nova.setPaga(false);
                     nova.setDataRecebimento(null);
+                    nova.setAnoMesRecebimentoReceita(null);
+                    nova.setEstornaRecebimentoReceita(false);
 
                     data = TipoRepeticao.getDataRepeticao(TipoRepeticao.MENSAL, data);
 
@@ -155,9 +163,6 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
                     super.insert(super.getTransaction(), preencheContentValues(nova));
 
-                  //  if (nova.isPaga()) {
-                  //      repositorioConta.setValorEntradaConta(super.getTransaction(), nova.getConta().getId(), nova.getValor());
-                  //  }
                 }
             }
 
@@ -185,7 +190,8 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
             RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
 
-            repositorioConta.setValorSaidaConta(super.getTransaction(), item.getConta().getId(), item.getValor());
+            if (item.isPaga())
+                repositorioConta.setValorSaidaConta(super.getTransaction(), item.getConta().getId(), item.getValor());
 
             super.delete(super.getTransaction(), item.getId());
 
@@ -228,6 +234,27 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
         }
     }
 
+    public Receita get(SQLiteDatabase transaction, Long id) {
+        String where = Receita.ID + "=" + id;
+
+        Receita receita = new Receita();
+
+        try {
+
+
+            Cursor cursor = super.select(transaction, where);
+
+            ArrayList<Receita> arrayList = this.preencheObjeto(transaction, cursor);
+
+            if (arrayList.size() > 0)
+                receita = arrayList.get(0);
+
+            return receita;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_receita));
+        }
+    }
 
     //Auxiliares
     private ContentValues preencheContentValues(Receita receita) {
@@ -239,12 +266,14 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
         values.put(Receita.DT_RECEITA, receita.getDataReceita().getTime());
         values.put(Receita.FL_RECEITA_PAGA, BooleanUtils.parseBooleanToint(receita.isPaga()));
         values.put(Receita.FL_RECEITA_FIXA, BooleanUtils.parseBooleanToint(receita.isFixa()));
+        values.put(Receita.FL_ALERTA_RECEITA, BooleanUtils.parseBooleanToint(receita.isAlertar()));
         values.put(Receita.NO_TOTAL_REPETICAO, receita.getTotalRepeticao());
         values.put(Receita.NO_REPETICAO_ATUAL, receita.getRepeticaoAtual());
         values.put(Receita.ID_CONTA, receita.getConta().getId());
         values.put(Receita.ID_CATEGORIA_RECEITA, receita.getCategoriaReceita().getId());
         values.put(Receita.ID_TIPO_REPETICAO, receita.getIdTipoRepeticao());
         values.put(Receita.NO_AM_RECEITA, receita.getAnoMes());
+        values.put(Receita.NO_AM_RECEBIMENTO_RECEITA, receita.getAnoMesRecebimentoReceita());
         values.put(Receita.NO_ORDEM_EXIBICAO, receita.getOrdemExibicao());
         values.put(Receita.FL_ATIVO, BooleanUtils.parseBooleanToint(receita.isAtivo()));
         values.put(Receita.FL_EXIBIR, BooleanUtils.parseBooleanToint(receita.isExibir()));
@@ -282,6 +311,7 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
                 receita.setOrdemExibicao(cursor.getInt(cursor.getColumnIndex(Receita.NO_ORDEM_EXIBICAO)));
                 receita.setExibir(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Receita.FL_EXIBIR))));
                 receita.setAtivo(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Receita.FL_ATIVO))));
+                receita.setAlertar(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Receita.FL_ALERTA_RECEITA))));
                 receita.setValor(cursor.getDouble(cursor.getColumnIndex(Receita.VL_RECEITA)));
                 receita.setPaga(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Receita.FL_RECEITA_PAGA))));
                 receita.setFixa(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Receita.FL_RECEITA_FIXA))));
@@ -292,6 +322,7 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
                 receita.setDataInclusao(DateUtils.longToDate(cursor.getLong(cursor.getColumnIndex(Receita.DT_INCLUSAO))));
 
                 receita.setAnoMes(cursor.getInt(cursor.getColumnIndex(Receita.NO_AM_RECEITA)));
+                receita.setAnoMesRecebimentoReceita(cursor.getInt(cursor.getColumnIndex(Receita.NO_AM_RECEBIMENTO_RECEITA)));
 
                 receita.setIdTipoRepeticao(cursor.getInt(cursor.getColumnIndex(Receita.ID_TIPO_REPETICAO)));
                 receita.setTotalRepeticao(cursor.getInt(cursor.getColumnIndex(Receita.NO_TOTAL_REPETICAO)));
@@ -405,28 +436,6 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
         Cursor cursor = super.select(transaction, where.toString(), Receita.DT_RECEITA + "," + Receita.ID);
 
         return this.preencheObjeto(transaction, cursor);
-    }
-
-    public Receita get(SQLiteDatabase transaction, Long id) {
-        String where = Receita.ID + "=" + id;
-
-        Receita receita = new Receita();
-
-        try {
-
-
-            Cursor cursor = super.select(transaction, where);
-
-            ArrayList<Receita> arrayList = this.preencheObjeto(transaction, cursor);
-
-            if (arrayList.size() > 0)
-                receita = arrayList.get(0);
-
-            return receita;
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_receita));
-        }
     }
 
 
@@ -559,10 +568,10 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
     }
 
-    public int getQtdReceitaContaMes(long idConta,int anoMes, boolean somentePagas) {
+    public int getQtdReceitaContaMes(long idConta, int anoMes, boolean somentePagas) {
         int qtdReceitas = 0;
 
-        String[] parametros = {String.valueOf(idConta),String.valueOf(anoMes)};
+        String[] parametros = {String.valueOf(idConta), String.valueOf(anoMes)};
 
         StringBuilder sql = new StringBuilder();
 
@@ -658,20 +667,14 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
             super.openConnectionWrite();
             super.setBeginTransaction();
 
-            RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
-
             //Busca as receitas que serão alteradas.
-            ArrayList<Receita> proximasReceitas = this.buscaReceitasDependentes(super.getTransaction(), receitaAlterada.getIdPai(), receitaAlterada.getId(), true, false);
+            ArrayList<Receita> proximasOcorrenciasReceitas = this.buscaReceitasDependentes(super.getTransaction(), receitaAlterada.getIdPai(), receitaAlterada.getId(), true, false);
 
-            for (Receita proxima : proximasReceitas) {
-
-                proxima = this.atualizaDependentes(super.getTransaction(), repositorioConta, receitaAlterada, proxima);
-                super.update(super.getTransaction(), preencheContentValues(proxima), proxima.getId());
-            }
+            this.atualizaOcorrenciasReceitas(super.getTransaction(), receitaAlterada, proximasOcorrenciasReceitas);
 
             super.setTransactionSuccessful();
 
-            return 1;
+            return proximasOcorrenciasReceitas.size();
 
         } catch (SQLException ex) {
             throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_receita));
@@ -694,20 +697,14 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
             super.openConnectionWrite();
             super.setBeginTransaction();
 
-            RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
-
             //Busca as receitas que serão alteradas.
             ArrayList<Receita> todasOcorrenciasReceitas = this.buscaReceitasDependentes(super.getTransaction(), receitaAlterada.getIdPai(), receitaAlterada.getId(), false, false);
 
-            for (Receita ocorrencia : todasOcorrenciasReceitas) {
-
-                ocorrencia = this.atualizaDependentes(super.getTransaction(), repositorioConta, receitaAlterada, ocorrencia);
-                super.update(super.getTransaction(), preencheContentValues(ocorrencia), ocorrencia.getId());
-            }
+            this.atualizaOcorrenciasReceitas(super.getTransaction(), receitaAlterada, todasOcorrenciasReceitas);
 
             super.setTransactionSuccessful();
 
-            return 1;
+            return todasOcorrenciasReceitas.size();
 
         } catch (SQLException ex) {
             throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_receita));
@@ -720,79 +717,37 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
     }
 
-    private Receita atualizaDependentes(SQLiteDatabase transaction, RepositorioConta repositorioConta, Receita receitaAtualizada, Receita receitaSalva) {
+    private void atualizaOcorrenciasReceitas(SQLiteDatabase transaction, Receita receitaAlterada, ArrayList<Receita> listaReceita) {
 
-        receitaSalva.setNome(receitaAtualizada.getNome());
-        receitaSalva.setDataAlteracao(receitaAtualizada.getDataAlteracao());
-        receitaSalva.setCategoriaReceita(receitaAtualizada.getCategoriaReceita());
-        receitaSalva.setConta(receitaAtualizada.getConta());
+        RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
 
-        if (receitaAtualizada.isPaga()) {
+        for (Receita ocorrencia : listaReceita) {
 
-            receitaSalva.setPaga(true);
-            receitaSalva.setDataRecebimento(receitaAtualizada.getDataRecebimento());
+            if (ocorrencia.isPaga()) {
 
-            this.atualizaValorRecebido(transaction, repositorioConta, receitaAtualizada, receitaSalva);
-
-        } else if (receitaSalva.isPaga() && receitaAtualizada.isEstornaPagamento()) {
-
-            receitaSalva.setPaga(false);
-            receitaSalva.setDataRecebimento(null);
-            receitaAtualizada.setEstornaPagamento(true);
-
-            repositorioConta.setValorSaidaConta(transaction, receitaSalva.getConta().getId(), receitaSalva.getValor());
-        }
-
-        receitaSalva.setValor(receitaAtualizada.getValor());
-
-        return receitaSalva;
-
-    }
-
-    private void atualizaValorRecebido(SQLiteDatabase transaction, RepositorioConta repositorioConta, Receita receitaAtualizada, Receita receitaSalva) {
-
-        double valorAnterior = 0;
-        double valorAtualizado = 0;
-        double valorDiferenca = 0;
-        long idContaAnterior = 1;
-        long idContaAtualizada = 1;
-
-        idContaAnterior = receitaSalva.getConta().getId();
-        idContaAtualizada = receitaAtualizada.getConta().getId();
-
-        valorAnterior = receitaSalva.getValor();
-        valorAtualizado = receitaAtualizada.getValor();
-
-        //Se Contas diferentes, retira o valor da conta anterior e adiciona na conta atual.
-        if (idContaAnterior != idContaAtualizada) {
-            if (receitaSalva.isPaga())
-                repositorioConta.setValorSaidaConta(transaction, idContaAnterior, valorAnterior);
-
-            repositorioConta.setValorEntradaConta(transaction, idContaAtualizada, valorAtualizado);
-
-        } else {
-
-            //Verifica se houve alteração no valor.
-            if (valorAnterior > valorAtualizado && receitaSalva.isPaga()) {
-                if (receitaSalva.isPaga()) {
-                    valorDiferenca = valorAnterior - valorAtualizado;
-                    repositorioConta.setValorSaidaConta(transaction, idContaAtualizada, valorDiferenca);
-                } else
-                    repositorioConta.setValorEntradaConta(transaction, idContaAtualizada, valorAtualizado);
-
-            } else if (valorAnterior < valorAtualizado && receitaSalva.isPaga()) {
-                if (receitaSalva.isPaga()) {
-                    valorDiferenca = valorAtualizado - valorAnterior;
-                    repositorioConta.setValorEntradaConta(transaction, idContaAtualizada, valorDiferenca);
-
-                } else
-                    repositorioConta.setValorEntradaConta(transaction, idContaAtualizada, valorAtualizado);
-
-            } else {
-                if (!receitaSalva.isPaga()) {
-                    repositorioConta.setValorEntradaConta(transaction, idContaAtualizada, valorAtualizado);
+                if (ocorrencia.getConta().getId() == receitaAlterada.getConta().getId()) {
+                    repositorioConta.setValorSaidaConta(transaction, receitaAlterada.getConta().getId(), ocorrencia.getValor());
+                } else {
+                    repositorioConta.setValorSaidaConta(transaction, ocorrencia.getConta().getId(), ocorrencia.getValor());
                 }
             }
+
+            if (receitaAlterada.isPaga()) {
+                repositorioConta.setValorEntradaConta(transaction, receitaAlterada.getConta().getId(), receitaAlterada.getValor());
+            }
+
+            ocorrencia.setNome(receitaAlterada.getNome());
+            ocorrencia.setDataAlteracao(receitaAlterada.getDataAlteracao());
+            ocorrencia.setCategoriaReceita(receitaAlterada.getCategoriaReceita());
+            ocorrencia.setConta(receitaAlterada.getConta());
+            ocorrencia.setEstornaRecebimentoReceita(receitaAlterada.isEstornaRecebimentoReceita());
+            ocorrencia.setPaga(receitaAlterada.isPaga());
+            ocorrencia.setDataRecebimento(receitaAlterada.getDataRecebimento());
+            ocorrencia.setAnoMesRecebimentoReceita(receitaAlterada.getAnoMesRecebimentoReceita());
+            ocorrencia.setValor(receitaAlterada.getValor());
+            ocorrencia.setAlertar(receitaAlterada.isAlertar());
+
+            super.update(transaction, preencheContentValues(ocorrencia), ocorrencia.getId());
 
         }
 
@@ -885,10 +840,10 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
                 if (ocorrencia.isPaga()) {
                     //Estorna o pagamento realizado
-                    repositorioConta.setValorSaidaConta(super.getTransaction(), ocorrencia.getConta().getId(), ocorrencia.getValor());
+                    repositorioConta.setValorSaidaConta(transaction, ocorrencia.getConta().getId(), ocorrencia.getValor());
                 }
 
-                super.delete(super.getTransaction(), ocorrencia.getId());
+                super.delete(transaction, ocorrencia.getId());
 
                 linhas = linhas++;
             }
