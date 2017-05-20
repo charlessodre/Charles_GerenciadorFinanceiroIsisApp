@@ -13,6 +13,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CategoriaReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Receita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Transferencia;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.BooleanUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 
 
@@ -113,6 +114,8 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
         values.put(Transferencia.ID_CONTA_DESTINO, transferencia.getContaDestino().getId());
         values.put(Transferencia.DT_TRANSFERENCIA, transferencia.getDataTransferencia().getTime());
         values.put(Transferencia.DT_INCLUSAO, transferencia.getDataInclusao().getTime());
+        values.put(Transferencia.FL_ALERTA_TRANSFERENCIA, BooleanUtils.parseBooleanToint(transferencia.isAlertaTranferencia()));
+        values.put(Transferencia.FL_TRANSFERENCIA_EFETIVADA, BooleanUtils.parseBooleanToint(transferencia.isEfetivada()));
 
         if (transferencia.getId() != 0)
             values.put(Transferencia.DT_ALTERACAO, transferencia.getDataAlteracao().getTime());
@@ -142,7 +145,8 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
                 transferencia.setValor(cursor.getDouble(cursor.getColumnIndex(Transferencia.VL_TRANSFERENCIA)));
                 transferencia.setRepeticaoAtual(cursor.getInt(cursor.getColumnIndex(Transferencia.NO_REPETICAO_ATUAL)));
                 transferencia.setTotalRepeticao(cursor.getInt(cursor.getColumnIndex(Transferencia.NO_TOTAL_REPETICAO)));
-
+                transferencia.setAlertaTranferencia(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Transferencia.FL_ALERTA_TRANSFERENCIA))));
+                transferencia.setEfetivada(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(Transferencia.FL_TRANSFERENCIA_EFETIVADA))));
 
                 arrayList.add(transferencia);
 

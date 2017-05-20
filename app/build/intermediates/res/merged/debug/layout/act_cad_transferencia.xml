@@ -83,6 +83,9 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="@dimen/space_obj_cadastro" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_obj_cadastro" />
         <TextView
             android:id="@+id/lblContaDestino"
             android:layout_width="wrap_content"

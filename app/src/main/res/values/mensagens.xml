@@ -24,7 +24,7 @@
     <string name="msg_consultar_erro_receita">Falha ao consultar a Receita!</string>
     <string name="msg_salvar_erro_receita">Falha ao salvar a Receita!</string>
     <string name="msg_excluir_erro_receita">Falha ao excluir a Receita!</string>
-    <string name="msg_excluir_conta_com_receita_despesa">Esta conta possui Receitas, Despesas e Transferências associadas que também serão excluídas. Confirma a Exclusão? </string>
+    <string name="msg_excluir_conta_com_receita_despesa">Esta cartaoCredito possui Receitas, Despesas e Transferências associadas que também serão excluídas. Confirma a Exclusão? </string>
 
     <string name="msg_consultar_erro_despesa">Falha ao consultar a Despesa!</string>
     <string name="msg_salvar_erro_despesa">Falha ao salvar a Despesa!</string>

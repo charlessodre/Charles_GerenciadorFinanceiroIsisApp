@@ -24,6 +24,12 @@ public class CartaoCredito extends EntidadeBase {
     public static String FL_ALERTA_VENCIMENTO = "FL_ALERTA_VENCIMENTO";
     public static String ID_CONTA_ASSOCIADA = "ID_CONTA_ASSOCIADA";
     public static String FL_EXIBIR_SOMA = "FL_EXIBIR_SOMA";
+    public static String FL_AGRUPAR_DESPESAS = "FL_AGRUPAR_DESPESAS";
+    public static String RECEITAS_PREVISTAS = "RECEITAS_PREVISTAS";
+    public static String DESPESAS_PREVISTAS = "DESPESAS_PREVISTAS";
+    public static String VL_TAXA_JUROS_ROTATIVO = "VL_TAXA_JUROS_ROTATIVO";
+    public static String VL_TAXA_JUROS_FINANCIAMENTO = "VL_TAXA_JUROS_FINANCIAMENTO";
+
 
 
     //Atributos
@@ -32,12 +38,63 @@ public class CartaoCredito extends EntidadeBase {
     private int noDiaFechamentoFatura;
     private int noDiaVencimentoFatura;
     private int noBandeiraCartao;
-    private boolean altertaVEncimento;
+    private boolean altertaVencimento;
     private Conta contaAssociada;
     private boolean exibiSomaResumo;
+    private boolean agruparDespesas;
+    private double receitasPrevistas;
+    private double despesasPrevistas;
+    private Double valorSaldo;
+
+    private Double valorTaxaJurosFinaciamento;
+    private Double valorTaxaJurosRotativo;
 
     //Propriedades
+    public Double getValorTaxaJurosFinaciamento() {
+        return valorTaxaJurosFinaciamento;
+    }
 
+    public void setValorTaxaJurosFinaciamento(Double valorTaxaJurosFinaciamento) {
+        this.valorTaxaJurosFinaciamento = valorTaxaJurosFinaciamento;
+    }
+
+    public Double getValorTaxaJurosRotativo() {
+        return valorTaxaJurosRotativo;
+    }
+
+    public void setValorTaxaJurosRotativo(Double valorTaxaJurosRotativo) {
+        this.valorTaxaJurosRotativo = valorTaxaJurosRotativo;
+    }
+
+
+    public double getReceitasPrevistas() {
+        return receitasPrevistas;
+    }
+
+    public void setReceitasPrevistas(double receitasPrevistas) {
+        this.receitasPrevistas = receitasPrevistas;
+    }
+
+    public double getDespesasPrevistas() {
+        return despesasPrevistas;
+    }
+
+    public void setDespesasPrevistas(double despesasPrevistas) {
+        this.despesasPrevistas = despesasPrevistas;
+    }
+
+    public double getSaldoPrevisto() {
+
+        return(this.valorSaldo +  this.receitasPrevistas) - this.despesasPrevistas ;
+
+    }
+    public boolean isAgruparDespesas() {
+        return agruparDespesas;
+    }
+
+    public void setAgruparDespesas(boolean agruparDespesas) {
+        this.agruparDespesas = agruparDespesas;
+    }
 
     public boolean isExibiSomaResumo() {
         return exibiSomaResumo;
@@ -87,12 +144,12 @@ public class CartaoCredito extends EntidadeBase {
         this.noBandeiraCartao = noBandeiraCartao;
     }
 
-    public boolean isAltertaVEncimento() {
-        return altertaVEncimento;
+    public boolean isAltertaVencimento() {
+        return altertaVencimento;
     }
 
-    public void setAltertaVEncimento(boolean altertaVEncimento) {
-        this.altertaVEncimento = altertaVEncimento;
+    public void setAltertaVencimento(boolean altertaVencimento) {
+        this.altertaVencimento = altertaVencimento;
     }
 
     public Conta getContaAssociada() {

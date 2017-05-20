@@ -338,7 +338,7 @@ public class actPrincipal extends actBaseListas
 
         //Verifica se o fragmento já foi adicionado.
         if (this.frgGrafResumoReceitaDespesaConfirmadas == null) {
-            this.frgGrafResumoReceitaDespesaConfirmadas = frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), false);
+            this.frgGrafResumoReceitaDespesaConfirmadas = frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(),true);
 
             FragmentHelper.addFragment(getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaConfirmadas, frgGrafResumoReceitaDespesa.NOME_FRAGMENTO, R.id.frag_container_3);
 
@@ -368,17 +368,22 @@ public class actPrincipal extends actBaseListas
 
     private void atualizaFragmentos() {
 
-        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(), frgResumo.newInstance(super.getAnoMes()), R.id.frag_container_1);
-        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(), frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), false), R.id.frag_container_2);
-        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(), frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), true), R.id.frag_container_3);
 
         FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(), this.fragmentoResumo);
         FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaTotal);
         FragmentHelper.removeFragmentWithStateLoss(this.getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaConfirmadas);
 
+        this.fragmentoResumo = frgResumo.newInstance(super.getAnoMes());
+        this.frgGrafResumoReceitaDespesaTotal = frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), false);
+        this.frgGrafResumoReceitaDespesaConfirmadas = frgGrafResumoReceitaDespesa.newInstance(super.getAnoMes(), true);
+
+        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(), this.fragmentoResumo, R.id.frag_container_1);
+        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaTotal, R.id.frag_container_2);
+        FragmentHelper.replaceFragmentWithStateLoss(this.getSupportFragmentManager(), this.frgGrafResumoReceitaDespesaConfirmadas, R.id.frag_container_3);
+
+
 
     }
-
 
 
     //TESTE

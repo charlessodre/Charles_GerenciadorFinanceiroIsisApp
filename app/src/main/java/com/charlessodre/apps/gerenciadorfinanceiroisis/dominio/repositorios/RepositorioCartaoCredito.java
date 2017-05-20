@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Despesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Receita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.BooleanUtils;
@@ -33,16 +34,17 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
         values.put(CartaoCredito.NM_CARTAO, cartaoCredito.getNome());
         values.put(CartaoCredito.NO_BANDEIRA_CARTAO, cartaoCredito.getNoBandeiraCartao());
         values.put(CartaoCredito.VL_LIMITE, cartaoCredito.getValorLimite());
-        values.put(CartaoCredito.FL_ALERTA_VENCIMENTO, BooleanUtils.parseBooleanToint(cartaoCredito.isAltertaVEncimento()));
+        values.put(CartaoCredito.FL_ALERTA_VENCIMENTO, BooleanUtils.parseBooleanToint(cartaoCredito.isAltertaVencimento()));
         values.put(CartaoCredito.ID_CONTA_ASSOCIADA, cartaoCredito.getContaAssociada().getId());
         values.put(CartaoCredito.NO_DIA_FECHAMENTO_FATURA, cartaoCredito.getNoDiaFechamentoFatura());
         values.put(CartaoCredito.NO_DIA_VENCIMENTO_FATURA, cartaoCredito.getNoDiaVencimentoFatura());
-
+        values.put(CartaoCredito.FL_AGRUPAR_DESPESAS, BooleanUtils.parseBooleanToint(cartaoCredito.isAgruparDespesas()));
         values.put(CartaoCredito.FL_ATIVO, BooleanUtils.parseBooleanToint(cartaoCredito.isAtivo()));
         values.put(CartaoCredito.FL_EXIBIR, BooleanUtils.parseBooleanToint(cartaoCredito.isExibir()));
         values.put(CartaoCredito.NO_ORDEM_EXIBICAO, cartaoCredito.getOrdemExibicao());
         values.put(CartaoCredito.NO_COR, cartaoCredito.getNoCor());
-
+        values.put(CartaoCredito.VL_TAXA_JUROS_FINANCIAMENTO, cartaoCredito.getValorTaxaJurosFinaciamento());
+        values.put(CartaoCredito.VL_TAXA_JUROS_ROTATIVO, cartaoCredito.getValorTaxaJurosRotativo());
 
         if (cartaoCredito.getId() == 0)
             values.put(CartaoCredito.DT_INCLUSAO, cartaoCredito.getDataInclusao().getTime());
@@ -70,7 +72,8 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
                 cartaoCredito.setContaAssociada(repConta.get(transaction, cursor.getLong(cursor.getColumnIndex(CartaoCredito.ID_CONTA_ASSOCIADA))));
                 cartaoCredito.setNoDiaFechamentoFatura(cursor.getInt(cursor.getColumnIndex(CartaoCredito.NO_DIA_FECHAMENTO_FATURA)));
                 cartaoCredito.setNoDiaVencimentoFatura(cursor.getInt(cursor.getColumnIndex(CartaoCredito.NO_DIA_VENCIMENTO_FATURA)));
-                cartaoCredito.setAltertaVEncimento(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(CartaoCredito.FL_ALERTA_VENCIMENTO))));
+                cartaoCredito.setAltertaVencimento(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(CartaoCredito.FL_ALERTA_VENCIMENTO))));
+                cartaoCredito.setAgruparDespesas(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(CartaoCredito.FL_AGRUPAR_DESPESAS))));
 
                 cartaoCredito.setNoCor(cursor.getInt(cursor.getColumnIndex(CartaoCredito.NO_COR)));
                 cartaoCredito.setOrdemExibicao(cursor.getInt(cursor.getColumnIndex(CartaoCredito.NO_ORDEM_EXIBICAO)));
@@ -78,14 +81,15 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
                 cartaoCredito.setExibir(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(CartaoCredito.FL_EXIBIR))));
                 cartaoCredito.setAtivo(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(CartaoCredito.FL_ATIVO))));
 
+                cartaoCredito.setValorTaxaJurosFinaciamento(cursor.getDouble(cursor.getColumnIndex(CartaoCredito.VL_TAXA_JUROS_FINANCIAMENTO)));
+                cartaoCredito.setValorTaxaJurosRotativo(cursor.getDouble(cursor.getColumnIndex(CartaoCredito.VL_TAXA_JUROS_ROTATIVO)));
 
-
-                /*if (cursor.getColumnIndex(CartaoCredito.RECEITAS_PREVISTAS) != -1)
+                if (cursor.getColumnIndex(CartaoCredito.RECEITAS_PREVISTAS) != -1)
                     cartaoCredito.setReceitasPrevistas(cursor.getDouble(cursor.getColumnIndex(CartaoCredito.RECEITAS_PREVISTAS)));
 
                 if (cursor.getColumnIndex(CartaoCredito.DESPESAS_PREVISTAS) != -1)
                     cartaoCredito.setDespesasPrevistas(cursor.getDouble(cursor.getColumnIndex(CartaoCredito.DESPESAS_PREVISTAS)));
-*/
+
                 arrayList.add(cartaoCredito);
 
             } while (cursor.moveToNext());
@@ -95,6 +99,84 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
 
         return arrayList;
 
+    }
+
+
+    @Override
+    public int altera(CartaoCredito item) {
+        try {
+
+            super.openConnectionWrite();
+            return super.update(preencheContentValues(item), item.getId());
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
+
+    @Override
+    public long insere(CartaoCredito item) {
+        try {
+
+            super.openConnectionWrite();
+            return super.insert(preencheContentValues(item));
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
+
+    @Override
+    public int exclui(CartaoCredito item) {
+
+        try {
+            super.openConnectionWrite();
+            super.setBeginTransaction();
+
+            super.delete(super.getTransaction(), item.getId());
+
+            super.setTransactionSuccessful();
+            return 1;
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+        } finally {
+            super.setEndTransaction();
+            super.closeConnection();
+        }
+    }
+
+    @Override
+    public CartaoCredito get(Long id) {
+
+        String where = CartaoCredito.ID + "=" + id;
+
+        CartaoCredito conta = new CartaoCredito();
+
+        try {
+
+            super.openConnectionRead();
+            super.setBeginTransaction();
+
+            Cursor cursor = super.select(where);
+
+            ArrayList<CartaoCredito> arrayList = this.preencheObjeto(super.getTransaction(),cursor);
+
+            if (arrayList.size() > 0)
+                conta = arrayList.get(0);
+
+            super.setTransactionSuccessful();
+            return conta;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.setEndTransaction();
+            super.closeConnection();
+        }
     }
 
     public double getValorTotal(boolean somenteExibeSoma) {
@@ -242,25 +324,32 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
         StringBuilder sql = new StringBuilder();
 
         sql.append("SELECT ");
-        sql.append(" C._id,");
-        sql.append(" C.NM_CONTA,");
-        sql.append(" C.FL_ATIVO,");
-        sql.append(" C.DT_INCLUSAO,");
-        sql.append(" C.DT_ALTERACAO,");
-        sql.append(" C.FL_EXIBIR,");
-        sql.append(" C.FL_EXIBIR_SOMA,");
-        sql.append(" C.CD_TIPO_CONTA,");
-        sql.append(" C.NO_AM_CONTA, ");
-        sql.append(" C.NO_ORDEM_EXIBICAO,");
-        sql.append(" C.NO_COR,");
-        sql.append(" C.NO_COR_ICONE,");
-        sql.append(" C.VL_SALDO, ");
+        sql.append(" C._id," );
+        sql.append(" C.NM_CONTA," );
+        sql.append(" C.FL_ATIVO," );
+        sql.append(" C.DT_INCLUSAO," );
+        sql.append(" C.DT_ALTERACAO," );
+        sql.append(" C.FL_EXIBIR," );
+        sql.append(" C.FL_EXIBIR_SOMA," );
+        sql.append(" C.CD_TIPO_CONTA," );
+        sql.append(" C.NO_AM_CONTA, " );
+        sql.append(" C.NO_ORDEM_EXIBICAO," );
+        sql.append(" C.NO_COR," );
+        sql.append(" C.NO_COR_ICONE," );
+        sql.append(" C.VL_SALDO, " );
         sql.append(" (SELECT SUM(R.VL_RECEITA) AS VL_RECEITA FROM ");
         sql.append(Receita.TABELA_NOME);
-        sql.append("  as R where R.NO_AM_RECEITA <= ? AND R.FL_RECEITA_PAGA=0 AND C._id=R.ID_CONTA)AS RECEITAS_PREVISTAS, ");
+        sql.append("  as R where R.NO_AM_RECEITA <= ");
+        sql.append(anoMes);
+        sql.append(" AND R.FL_RECEITA_PAGA=0 AND C._id=R.ID_CONTA)AS ");
+        sql.append(CartaoCredito.RECEITAS_PREVISTAS );
+        sql.append(" , ");
         sql.append(" (SELECT SUM(D.VL_DESPESA) AS VL_DESPESA FROM ");
         sql.append(Despesa.TABELA_NOME);
-        sql.append(" as D where D.NO_AM_DESPESA <= ? AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS DESPESAS_PREVISTAS ");
+        sql.append(" as D where D.NO_AM_DESPESA <= ");
+        sql.append(anoMes);
+        sql.append(" AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS " );
+        sql.append(CartaoCredito.DESPESAS_PREVISTAS);
         sql.append(" FROM ");
         sql.append(CartaoCredito.TABELA_NOME);
         sql.append(" C ");
@@ -289,19 +378,8 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
         }
     }
 
-    @Override
-    public int altera(CartaoCredito item) {
-        try {
 
-            super.openConnectionWrite();
-            return super.update(preencheContentValues(item), item.getId());
 
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
-        } finally {
-            super.closeConnection();
-        }
-    }
 
     public int alterarTransaction(SQLiteDatabase transaction, CartaoCredito item) {
 
@@ -393,68 +471,6 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
         }
     }
 
-    @Override
-    public long insere(CartaoCredito item) {
-        try {
-
-            super.openConnectionWrite();
-            return super.insert(preencheContentValues(item));
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
-        } finally {
-            super.closeConnection();
-        }
-    }
-
-    @Override
-    public int exclui(CartaoCredito item) {
-
-        try {
-            super.openConnectionWrite();
-            super.setBeginTransaction();
-
-            super.delete(super.getTransaction(), item.getId());
-
-            super.setTransactionSuccessful();
-            return 1;
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
-        } finally {
-            super.setEndTransaction();
-            super.closeConnection();
-        }
-    }
-
-    @Override
-    public CartaoCredito get(Long id) {
-
-        String where = CartaoCredito.ID + "=" + id;
-
-        CartaoCredito conta = new CartaoCredito();
-
-        try {
-
-            super.openConnectionRead();
-            super.setBeginTransaction();
-
-            Cursor cursor = super.select(where);
-
-            ArrayList<CartaoCredito> arrayList = this.preencheObjeto(super.getTransaction(),cursor);
-
-            if (arrayList.size() > 0)
-                conta = arrayList.get(0);
-
-            super.setTransactionSuccessful();
-            return conta;
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.setEndTransaction();
-            super.closeConnection();
-        }
-    }
 
 
 }

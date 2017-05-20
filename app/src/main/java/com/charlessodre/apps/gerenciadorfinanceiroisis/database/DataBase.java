@@ -31,6 +31,8 @@ public class DataBase extends SQLiteOpenHelper{
         db.execSQL( ScriptSQL.getCreateTBTransferencia() );
         db.execSQL( ScriptSQL.getCreateTBRegraImportacaoSMS() );
         db.execSQL(ScriptSQL.getCreateTBCartaoCredito());
+        db.execSQL(ScriptSQL.getCreateTBDespesaCartaoCredito());
+        db.execSQL(ScriptSQL.getCreateTBFaturaCartaoCredito());
 
 
         //############################################################################################################

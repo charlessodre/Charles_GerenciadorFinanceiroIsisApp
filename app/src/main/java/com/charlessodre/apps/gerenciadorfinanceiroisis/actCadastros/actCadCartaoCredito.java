@@ -186,7 +186,7 @@ public class actCadCartaoCredito extends actBaseCadastros implements frgConfirma
         if (this.cartaoCredito.getId() == 0) {
 
             this.cartaoCredito.setDataInclusao(DateUtils.getCurrentDatetime());
-           // this.cartaoCredito.setAnoMesDespesa(DateUtils.getCurrentYearAndMonth());
+           // this.cartaoCredito.setAnoMesFatura(DateUtils.getCurrentYearAndMonth());
             repositorioCartaoCredito.insere(this.cartaoCredito);
         } else {
             this.cartaoCredito.setDataAlteracao(DateUtils.getCurrentDatetime());

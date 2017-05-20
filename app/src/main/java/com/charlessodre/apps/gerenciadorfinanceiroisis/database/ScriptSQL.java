@@ -234,6 +234,8 @@ public class ScriptSQL {
         sqlBuilder.append("   NO_TOTAL_REPETICAO INTEGER NULL, " );
         sqlBuilder.append("   NO_REPETICAO_ATUAL INTEGER NULL, " );
         sqlBuilder.append("   NO_AM_TRANSFERENCIA INTEGER  NULL, " );
+        sqlBuilder.append("   FL_ALERTA_TRANSFERENCIA CHAR(1) NULL DEFAULT 0, " );
+        sqlBuilder.append("   FL_TRANSFERENCIA_EFETIVADA CHAR(1) NULL DEFAULT 0, " );
         sqlBuilder.append("   FOREIGN KEY (ID_CONTA_ORIGEM)REFERENCES TB_GF_CONTA (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_CONTA_DESTINO)REFERENCES TB_GF_CONTA (_id) " );
         sqlBuilder.append("  ); " );
@@ -292,6 +294,8 @@ public class ScriptSQL {
         sqlBuilder.append("  _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, " );
         sqlBuilder.append("   NM_CARTAO VARCHAR(200) NOT NULL, " );
         sqlBuilder.append("   VL_LIMITE DECIMAL(18,2) NOT NULL, " );
+        sqlBuilder.append("   VL_TAXA_JUROS_ROTATIVO DECIMAL(5,2)  NULL, " );
+        sqlBuilder.append("   VL_TAXA_JUROS_FINANCIAMENTO DECIMAL(5,2)  NULL, " );
         sqlBuilder.append("   NO_DIA_FECHAMENTO_FATURA INTEGER  NOT NULL, " );
         sqlBuilder.append("   NO_DIA_VENCIMENTO_FATURA INTEGER  NOT NULL, " );
         sqlBuilder.append("   NO_BANDEIRA_CARTAO INTEGER  NOT NULL, " );
@@ -303,9 +307,10 @@ public class ScriptSQL {
         sqlBuilder.append("   DT_INCLUSAO DATETIME NOT NULL, " );
         sqlBuilder.append("   DT_ALTERACAO DATETIME NULL, " );
         sqlBuilder.append("   FL_ALERTA_VENCIMENTO CHAR(1) NOT NULL DEFAULT 1, " );
-
+        sqlBuilder.append("   FL_AGRUPAR_DESPESAS CHAR(1) NOT NULL DEFAULT 1, " );
         sqlBuilder.append("   ID_CONTA_ASSOCIADA INTEGER NOT NULL, " );
         sqlBuilder.append("   FOREIGN KEY (ID_CONTA_ASSOCIADA) REFERENCES TB_GF_CONTA (_id) " );
+
         sqlBuilder.append("  ); " );
 
 
@@ -334,16 +339,17 @@ public class ScriptSQL {
         sqlBuilder.append("   FL_EXIBIR CHAR(1) NOT NULL DEFAULT 1, " );
         sqlBuilder.append("   FL_ATIVO CHAR(1) NOT NULL DEFAULT 1, " );
         sqlBuilder.append("   NO_AM_DESPESA INTEGER  NULL, " );
+        sqlBuilder.append("   NO_AM_PAGAMENTO_DESPESA INTEGER  NULL, " );
         sqlBuilder.append("   NO_ORDEM_EXIBICAO INTEGER NULL, " );
-        sqlBuilder.append("   ID_CARTAO INTEGER NOT NULL, " );
-        sqlBuilder.append("   ID_CONTA INTEGER NULL, " );
+        sqlBuilder.append("   ID_CARTAO_CREDITO INTEGER NOT NULL, " );
         sqlBuilder.append("   ID_CATEGORIA_DESPESA INTEGER  NOT NULL, " );
         sqlBuilder.append("   ID_SUB_CATEGORIA_DESPESA INTEGER  NOT NULL, " );
         sqlBuilder.append("   ID_DESPESA_PAI INTEGER  NULL, " );
         sqlBuilder.append("   ID_TIPO_REPETICAO INTEGER  NULL, " );
+        sqlBuilder.append("   ID_FATURA_CARTAO_CREDITO INTEGER NOT NULL, " );
+        sqlBuilder.append("   FOREIGN KEY (ID_FATURA_CARTAO_CREDITO) REFERENCES TB_GF_FATURA_CARTAO_CREDITO (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_DESPESA_PAI)REFERENCES TB_GF_DESPESA_CARTAO_CREDITO (_id), " );
-        sqlBuilder.append("   FOREIGN KEY (ID_CONTA) REFERENCES TB_GF_CONTA (_id), " );
-        sqlBuilder.append("   FOREIGN KEY (ID_CARTAO) REFERENCES TB_GF_CARTAO (_id), " );
+        sqlBuilder.append("   FOREIGN KEY (ID_CARTAO_CREDITO) REFERENCES TB_GF_CARTAO (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_CATEGORIA_DESPESA) REFERENCES TB_GF_CATEGORIA_DESPESA (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_SUB_CATEGORIA_DESPESA) REFERENCES TB_GF_SUB_CATEGORIA_DESPESA (_id) " );
         sqlBuilder.append("  ); " );
@@ -351,6 +357,36 @@ public class ScriptSQL {
         return sqlBuilder.toString();
 
     }
+
+    public static String getCreateTBFaturaCartaoCredito()
+    {
+        StringBuilder sqlBuilder = new StringBuilder();
+
+        sqlBuilder.append(" CREATE TABLE IF NOT EXISTS TB_GF_FATURA_CARTAO_CREDITO ( " );
+        sqlBuilder.append("   _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, " );
+        sqlBuilder.append("   DT_FATURA DATETIME NOT NULL, " );
+        sqlBuilder.append("   VL_FATURA DECIMAL(18,2) NOT NULL, " );
+        sqlBuilder.append("   DT_PAGAMENTO DATETIME NULL, " );
+        sqlBuilder.append("   VL_PAGAMENTO DECIMAL(18,2) NULL, " );
+        sqlBuilder.append("   FL_FATURA_PAGA CHAR(1) NULL DEFAULT 0, " );
+        sqlBuilder.append("   FL_FATURA_FECHADA CHAR(1) NULL DEFAULT 0, " );
+        sqlBuilder.append("   FL_ALERTA_FECHAMENTO_FATURA CHAR(1) NULL DEFAULT 0, " );
+        sqlBuilder.append("   NO_AM_FATURA INTEGER  NULL, " );
+        sqlBuilder.append("   NO_AM_PAGAMENTO_FATURA INTEGER  NULL, " );
+        sqlBuilder.append("   ID_CARTAO_CREDITO INTEGER NOT NULL, " );
+        sqlBuilder.append("   FL_EXIBIR CHAR(1) NOT NULL DEFAULT 1, " );
+        sqlBuilder.append("   FL_ATIVO CHAR(1) NOT NULL DEFAULT 1, " );
+        sqlBuilder.append("   DT_INCLUSAO DATETIME NOT NULL, " );
+        sqlBuilder.append("   DT_ALTERACAO DATETIME NULL, " );
+        sqlBuilder.append("   FOREIGN KEY (ID_CARTAO_CREDITO) REFERENCES TB_GF_CARTAO (_id) " );
+
+        sqlBuilder.append("  ); " );
+
+        return sqlBuilder.toString();
+
+    }
+
+
 
 
     //############################################################################################################

@@ -24,6 +24,8 @@ public class Transferencia extends EntidadeBase implements Serializable {
     public static String  ID_CONTA_ORIGEM      =  "ID_CONTA_ORIGEM";
     public static String  ID_CONTA_DESTINO     =  "ID_CONTA_DESTINO";
     public static String  DT_TRANSFERENCIA     =  "DT_TRANSFERENCIA";
+    public static String  FL_ALERTA_TRANSFERENCIA = "FL_ALERTA_TRANSFERENCIA";
+    public static String  FL_TRANSFERENCIA_EFETIVADA = "FL_TRANSFERENCIA_EFETIVADA";
 
     //Atributos
 
@@ -34,10 +36,29 @@ public class Transferencia extends EntidadeBase implements Serializable {
     private Conta contaOrigem;
     private Conta contaDestino;
     private Date dataTransferencia;
+    private boolean alertaTranferencia;
+    private boolean efetivada;
 
 
     //Propriedades
-    
+
+    public boolean isAlertaTranferencia() {
+        return alertaTranferencia;
+    }
+
+    public void setAlertaTranferencia(boolean alertaTranferencia) {
+        this.alertaTranferencia = alertaTranferencia;
+    }
+
+    public boolean isEfetivada() {
+        return efetivada;
+    }
+
+    public void setEfetivada(boolean efetivada) {
+        this.efetivada = efetivada;
+    }
+
+
     public Date getDataTransferencia() {
         return dataTransferencia;
     }

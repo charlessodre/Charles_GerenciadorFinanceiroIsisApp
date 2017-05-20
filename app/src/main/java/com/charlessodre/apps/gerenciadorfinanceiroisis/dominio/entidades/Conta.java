@@ -37,14 +37,10 @@ public class Conta extends EntidadeBase {
     private double receitasPrevistas;
     private double despesasPrevistas;
     private int noCorIcone;
-
     private boolean exibiSomaResumo;
 
 
     //Propriedades
-
-
-
     public boolean isExibiSomaResumo() {
         return exibiSomaResumo;
     }
@@ -52,7 +48,6 @@ public class Conta extends EntidadeBase {
     public void setExibiSomaResumo(boolean exibiSomaResumo) {
         this.exibiSomaResumo = exibiSomaResumo;
     }
-
 
     public int getNoCorIcone() {
         return noCorIcone;
