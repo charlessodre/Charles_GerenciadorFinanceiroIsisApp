@@ -365,7 +365,7 @@ public class ScriptSQL {
         sqlBuilder.append(" CREATE TABLE IF NOT EXISTS TB_GF_FATURA_CARTAO_CREDITO ( " );
         sqlBuilder.append("   _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, " );
         sqlBuilder.append("   DT_FATURA DATETIME NOT NULL, " );
-        sqlBuilder.append("   VL_FATURA DECIMAL(18,2) NOT NULL, " );
+        sqlBuilder.append("   VL_FATURA DECIMAL(18,2) NULL, " );
         sqlBuilder.append("   DT_PAGAMENTO DATETIME NULL, " );
         sqlBuilder.append("   VL_PAGAMENTO DECIMAL(18,2) NULL, " );
         sqlBuilder.append("   FL_FATURA_PAGA CHAR(1) NULL DEFAULT 0, " );

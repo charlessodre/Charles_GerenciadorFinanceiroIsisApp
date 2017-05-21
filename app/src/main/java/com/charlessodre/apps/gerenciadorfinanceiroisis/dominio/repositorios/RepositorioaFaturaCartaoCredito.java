@@ -35,15 +35,11 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
         values.put(FaturaCartaoCredito.VL_FATURA, faturaCartaoCredito.getValor());
         values.put(FaturaCartaoCredito.VL_PAGAMENTO, faturaCartaoCredito.getValorPagamento());
         values.put(FaturaCartaoCredito.DT_FATURA, faturaCartaoCredito.getDataFatura().getTime());
-        values.put(FaturaCartaoCredito.DT_PAGAMENTO, faturaCartaoCredito.getDataPagamento().getTime());
         values.put(FaturaCartaoCredito.FL_FATURA_PAGA, BooleanUtils.parseBooleanToint(faturaCartaoCredito.isPaga()));
         values.put(FaturaCartaoCredito.FL_FATURA_FECHADA, BooleanUtils.parseBooleanToint(faturaCartaoCredito.isFechada()));
         values.put(FaturaCartaoCredito.FL_ALERTA_FECHAMENTO_FATURA, BooleanUtils.parseBooleanToint(faturaCartaoCredito.isAlertar()));
         values.put(FaturaCartaoCredito.NO_AM_FATURA, faturaCartaoCredito.getAnoMesFatura());
-        values.put(FaturaCartaoCredito.NO_AM_PAGAMENTO_FATURA, faturaCartaoCredito.getAnoMesPagamento());
         values.put(FaturaCartaoCredito.ID_CARTAO_CREDITO, faturaCartaoCredito.getCartaoCredito().getId());
-
-        values.put(FaturaCartaoCredito.NO_ORDEM_EXIBICAO, faturaCartaoCredito.getOrdemExibicao());
         values.put(FaturaCartaoCredito.FL_ATIVO, BooleanUtils.parseBooleanToint(faturaCartaoCredito.isAtivo()));
         values.put(FaturaCartaoCredito.FL_EXIBIR, BooleanUtils.parseBooleanToint(faturaCartaoCredito.isExibir()));
 
@@ -78,7 +74,6 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
                 FaturaCartaoCredito faturaCartaoCredito = new FaturaCartaoCredito();
 
                 faturaCartaoCredito.setId(cursor.getLong(cursor.getColumnIndex(FaturaCartaoCredito.ID)));
-                faturaCartaoCredito.setOrdemExibicao(cursor.getInt(cursor.getColumnIndex(FaturaCartaoCredito.NO_ORDEM_EXIBICAO)));
                 faturaCartaoCredito.setExibir(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(FaturaCartaoCredito.FL_EXIBIR))));
                 faturaCartaoCredito.setAtivo(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(FaturaCartaoCredito.FL_ATIVO))));
                 faturaCartaoCredito.setValor(cursor.getDouble(cursor.getColumnIndex(FaturaCartaoCredito.VL_FATURA)));
@@ -115,9 +110,7 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
             super.openConnectionWrite();
             super.setBeginTransaction();
 
-
             long id = super.insert(super.getTransaction(), this.preencheContentValues(item));
-            item.setId(id);
 
             if (item.isPaga()) {
 
@@ -137,6 +130,28 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
         } finally {
             super.setEndTransaction();
             super.closeConnection();
+        }
+
+    }
+
+    public long insere(SQLiteDatabase transaction, FaturaCartaoCredito item) {
+        try {
+
+            long id = super.insert(transaction, this.preencheContentValues(item));
+
+            if (item.isPaga()) {
+
+                RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
+
+                Conta contaAssociada = item.getCartaoCredito().getContaAssociada();
+
+                repositorioConta.setValorSaidaConta(transaction, contaAssociada.getId(), item.getValor());
+            }
+
+            return id;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
         }
 
     }
@@ -166,7 +181,7 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
             }
 
             if (item.isPaga()) {
-                   repositorioConta.setValorSaidaConta(super.getTransaction(), contaAssociadaAtual.getId(), item.getValor());
+                repositorioConta.setValorSaidaConta(super.getTransaction(), contaAssociadaAtual.getId(), item.getValor());
             }
 
             int linhas = super.update(super.getTransaction(), this.preencheContentValues(item), item.getId());
@@ -249,7 +264,7 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
     public FaturaCartaoCredito get(Long idCartaoCredito, int anoMesFatura) {
         StringBuilder where = new StringBuilder();
 
-        where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO );
+        where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO);
         where.append(" = ");
         where.append(idCartaoCredito);
         where.append(FaturaCartaoCredito.NO_AM_FATURA);
@@ -278,18 +293,43 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
         }
     }
 
+    public FaturaCartaoCredito get(SQLiteDatabase transaction, Long id) {
+        StringBuilder where = new StringBuilder();
+
+        where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO);
+        where.append(" = ");
+        where.append(id);
+
+        try {
+
+            FaturaCartaoCredito faturaCartaoCredito = new FaturaCartaoCredito();
+
+            Cursor cursor = super.select(where.toString());
+
+            ArrayList<FaturaCartaoCredito> arrayList = this.preencheObjeto(transaction, cursor);
+
+            if (arrayList.size() > 0)
+                faturaCartaoCredito = arrayList.get(0);
+
+            return faturaCartaoCredito;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_receita));
+        }
+    }
+
     public ArrayList<FaturaCartaoCredito> getFaturasCartaoCredito(Long idCartaoCredito) {
         try {
 
             StringBuilder where = new StringBuilder();
 
-            where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO );
+            where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO);
             where.append(" = ");
             where.append(idCartaoCredito);
 
             super.openConnectionWrite();
 
-            Cursor cursor = super.select(where.toString(),FaturaCartaoCredito.NO_AM_FATURA);
+            Cursor cursor = super.select(where.toString(), FaturaCartaoCredito.NO_AM_FATURA);
 
             return this.preencheObjeto(super.getTransaction(), cursor);
 
@@ -300,10 +340,37 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
         }
     }
 
+    public ArrayList<FaturaCartaoCredito> getFaturasAbertasCartaoCredito(Long idCartaoCredito) {
+        try {
+
+            StringBuilder where = new StringBuilder();
+
+            where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO);
+            where.append(" = ");
+            where.append(idCartaoCredito);
+            where.append(" AND ");
+            where.append(FaturaCartaoCredito.FL_FATURA_FECHADA);
+            where.append(" = 0");
+
+
+            super.openConnectionWrite();
+
+            Cursor cursor = super.select(where.toString(), FaturaCartaoCredito.NO_AM_FATURA);
+
+            return this.preencheObjeto(super.getTransaction(), cursor);
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
+
+
     public FaturaCartaoCredito get(SQLiteDatabase transaction, Long idCartaoCredito, int anoMesFatura) {
         StringBuilder where = new StringBuilder();
 
-        where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO );
+        where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO);
         where.append(" = ");
         where.append(idCartaoCredito);
         where.append(FaturaCartaoCredito.NO_AM_FATURA);
@@ -314,7 +381,7 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
 
         try {
 
-            Cursor cursor = super.select(transaction,where.toString());
+            Cursor cursor = super.select(transaction, where.toString());
 
             ArrayList<FaturaCartaoCredito> arrayList = this.preencheObjeto(super.getTransaction(), cursor);
 
@@ -328,7 +395,7 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
         }
     }
 
-    public int excluiTodas(Long idCartaoCredito ) {
+    public int excluiTodas(Long idCartaoCredito) {
 
         try {
             super.openConnectionWrite();

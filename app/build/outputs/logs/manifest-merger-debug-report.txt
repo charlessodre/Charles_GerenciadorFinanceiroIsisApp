@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-97:12
+ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-99:12
 	package
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:3:5-62
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
@@ -30,7 +30,7 @@ ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\And
 	android:name
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:8:22-78
 application
-ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:10:5-95:19
+ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:10:5-97:19
 MERGED from [com.android.support:design:24.2.1] C:\Users\charl\.android\build-cache\faa278becd56839cd4966f8bf768682ed81c26f6\output\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charl\.android\build-cache\8539ae108f168d412db27ecb2651ae5b7bcbc416\output\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:support-v4:24.2.1] C:\Users\charl\.android\build-cache\cf4bea35601ee0f9e411631dfdeaad200a943951\output\AndroidManifest.xml:25:5-20
@@ -210,6 +210,10 @@ activity#com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadCart
 ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:94:9-79
 	android:name
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:94:19-67
+activity#com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesaCartaoCredito
+ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:96:9-77
+	android:name
+		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:96:19-74
 uses-sdk
 INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:24.2.1] C:\Users\charl\.android\build-cache\faa278becd56839cd4966f8bf768682ed81c26f6\output\AndroidManifest.xml:20:5-43

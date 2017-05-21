@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesa;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadTransferencia;
 
@@ -23,8 +24,8 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadTransf
 public class frgBotaoAddTransacao extends Fragment {
 
     //Objetos tela
-    private FloatingActionButton fab, fabTransferencia, fabDespesa, fabReceita, fabConta;
-    private LinearLayout fabLayoutTranferencia, fabLayoutDespesa, fabLayoutReceita, fabLayoutConta;
+    private FloatingActionButton fab, fabTransferencia, fabDespesa, fabReceita, fabConta, fabCartaoCredito;
+    private LinearLayout fabLayoutTranferencia, fabLayoutDespesa, fabLayoutReceita, fabLayoutConta,fabLayoutCartoCredito;
 
     //Atributos
     private View rootView;
@@ -66,12 +67,14 @@ public class frgBotaoAddTransacao extends Fragment {
         fabLayoutDespesa = (LinearLayout) this.rootView.findViewById(R.id.fabLayoutDespesa);
         fabLayoutReceita = (LinearLayout) this.rootView.findViewById(R.id.fabLayoutReceita);
         fabLayoutConta = (LinearLayout) this.rootView.findViewById(R.id.fabLayoutConta);
+        fabLayoutCartoCredito = (LinearLayout)this.rootView.findViewById(R.id.fabLayoutCartoCredito);
 
         fab = (FloatingActionButton) this.rootView.findViewById(R.id.fabAdd);
         fabTransferencia = (FloatingActionButton) this.rootView.findViewById(R.id.fabTransferencia);
         fabDespesa = (FloatingActionButton) this.rootView.findViewById(R.id.fabDespesa);
         fabReceita = (FloatingActionButton) this.rootView.findViewById(R.id.fabReceita);
         fabConta = (FloatingActionButton) this.rootView.findViewById(R.id.fabConta);
+        fabCartaoCredito = (FloatingActionButton) this.rootView.findViewById(R.id.fabCartaoCredito);
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +93,15 @@ public class frgBotaoAddTransacao extends Fragment {
             public void onClick(View view) {
                 closeFABMenu();
                 Intent it = new Intent(getContext(), actCadTransferencia.class);
+                startActivityForResult(it, 0);
+            }
+        });
+
+        fabCartaoCredito.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                closeFABMenu();
+                Intent it = new Intent(getContext(), actCadDespesaCartaoCredito.class);
                 startActivityForResult(it, 0);
             }
         });
@@ -130,13 +142,16 @@ public class frgBotaoAddTransacao extends Fragment {
         fabLayoutDespesa.setVisibility(View.VISIBLE);
         fabLayoutReceita.setVisibility(View.VISIBLE);
         fabLayoutConta.setVisibility(View.VISIBLE);
+        fabLayoutCartoCredito.setVisibility(View.VISIBLE);
 
         fab.animate().rotationBy(180);
 
         fabLayoutTranferencia.animate().translationY(-getResources().getDimension(R.dimen.distance_fabTransferencia));
+        fabLayoutCartoCredito.animate().translationY(-getResources().getDimension(R.dimen.distance_fabCartaoCredito));
         fabLayoutDespesa.animate().translationY(-getResources().getDimension(R.dimen.distance_fabDespesa));
         fabLayoutReceita.animate().translationY(-getResources().getDimension(R.dimen.distance_fabReceita));
         fabLayoutConta.animate().translationY(-getResources().getDimension(R.dimen.distance_fabConta));
+
 
     }
 
@@ -146,6 +161,7 @@ public class frgBotaoAddTransacao extends Fragment {
 
         fab.animate().rotationBy(-180);
         fabLayoutTranferencia.animate().translationY(0);
+        fabLayoutCartoCredito.animate().translationY(0);
         fabLayoutDespesa.animate().translationY(0);
         fabLayoutReceita.animate().translationY(0);
         fabLayoutConta.animate().translationY(0).setListener(new Animator.AnimatorListener() {
@@ -158,6 +174,7 @@ public class frgBotaoAddTransacao extends Fragment {
                     fabLayoutDespesa.setVisibility(View.GONE);
                     fabLayoutReceita.setVisibility(View.GONE);
                     fabLayoutConta.setVisibility(View.GONE);
+                    fabLayoutCartoCredito.setVisibility(View.GONE);
                 }
             }
 

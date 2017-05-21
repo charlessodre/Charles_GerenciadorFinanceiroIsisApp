@@ -16,7 +16,7 @@
         android:layout_weight="0.1">
 
         <ImageView
-            android:id="@+id/imgCategoriaCir"
+            android:id="@+id/imgCirculo"
             android:src="@drawable/circle"
             android:layout_width="38dp"
             android:layout_height="38dp"

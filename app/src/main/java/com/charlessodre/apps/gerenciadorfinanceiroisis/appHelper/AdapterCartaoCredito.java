@@ -60,7 +60,7 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
 
         View row;
 
-        if (this.resource == R.layout.item_conta_simples) {
+        if (this.resource == R.layout.item_cartao_credito_simples) {
             row = getCustomDropDownView(pos, currentView, viewGroup);
         } else {
             row = getCustomView(pos, currentView, viewGroup);
@@ -81,7 +81,7 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
             viewHolderSimple = new ViewHolderSimple();
 
             viewHolderSimple.imgCartao = (ImageView) view.findViewById(R.id.imgCartao);
-            viewHolderSimple.imgCirculo = (ImageView) view.findViewById(R.id.imgCategoriaCir);
+            //viewHolderSimple.imgCirculo = (ImageView) view.findViewById(R.id.imgCirculo);
             viewHolderSimple.txtNomeCartao = (TextView) view.findViewById(R.id.txtNomeCartao);
 
             view.setTag(viewHolderSimple);
@@ -96,15 +96,15 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
 
         CartaoCredito cartaoCredito = getItem(position);
 
-        Drawable circle = viewHolderSimple.imgCirculo.getDrawable();
-        circle.setColorFilter(ColorHelper.getColor(this.context, cartaoCredito.getNoCor()), PorterDuff.Mode.MULTIPLY);
+       // Drawable circle = viewHolderSimple.imgCirculo.getDrawable();
+       // circle.setColorFilter(ColorHelper.getColor(this.context, cartaoCredito.getNoCor()), PorterDuff.Mode.MULTIPLY);
 
         viewHolderSimple.imgCartao.setImageResource(CartaoCredito.getImagemBandeiraCartao(cartaoCredito.getNoBandeiraCartao()));
 
         viewHolderSimple.txtNomeCartao.setText(cartaoCredito.getNome());
 
        // if (cartaoCredito.getNoCorIcone() != 0)
-        //    viewHolderSimple.imgCartao.setColorFilter(ColorHelper.getColor(this.context, conta.getNoCorIcone()));
+        //    viewHolderSimple.imgFatura.setColorFilter(ColorHelper.getColor(this.context, conta.getNoCorIcone()));
 
         return view;
 
@@ -153,7 +153,7 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
        // viewHolder.txtSaldoPrevistoValor.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getSaldoPrevisto()));
 
       //  if (cartaoCredito.getNoCorIcone() != 0)
-       //     viewHolder.imgCartao.setColorFilter(ColorHelper.getColor(this.context, cartaoCredito.getNoCorIcone()));
+       //     viewHolder.imgFatura.setColorFilter(ColorHelper.getColor(this.context, cartaoCredito.getNoCorIcone()));
 
 
       /*  if (cartaoCredito.getValorSaldo() < 0) {

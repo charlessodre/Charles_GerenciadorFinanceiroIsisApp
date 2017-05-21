@@ -28,10 +28,11 @@
     <dimen name="fab_add_marginBottom">5dp</dimen>
     <dimen name="fab_add_padding">12dp</dimen>
 
-    <dimen name="distance_fabTransferencia">55dp</dimen>
-    <dimen name="distance_fabDespesa">100dp</dimen>
-    <dimen name="distance_fabReceita">145dp</dimen>
-    <dimen name="distance_fabConta">195dp</dimen>
+    <dimen name="distance_fabTransferencia">60dp</dimen>
+    <dimen name="distance_fabCartaoCredito">120dp</dimen>
+    <dimen name="distance_fabDespesa">180dp</dimen>
+    <dimen name="distance_fabReceita">240dp</dimen>
+    <dimen name="distance_fabConta">300dp</dimen>
 
 
     <dimen name="space_obj_cadastro">10dp</dimen>

@@ -143,6 +143,24 @@ public class DateUtils {
 
     }
 
+    public static int getYear(Date date) {
+
+        SimpleDateFormat year = new SimpleDateFormat("yyyy");
+
+        return Integer.parseInt(year.format(date.getTime()));
+
+    }
+
+    public static int getMonth(Date date) {
+
+        SimpleDateFormat month = new SimpleDateFormat("MM");
+
+        return Integer.parseInt(month.format(date.getTime()));
+
+    }
+
+
+
     public static String getWeekNameAndDay(Date date) {
 
         SimpleDateFormat yearMonth = new SimpleDateFormat("EEEE, dd");
@@ -150,6 +168,16 @@ public class DateUtils {
         return yearMonth.format(date.getTime());
 
     }
+
+
+    public static String getDateFormat(Date date, String format) {
+
+        SimpleDateFormat yearMonth = new SimpleDateFormat(format);
+
+        return yearMonth.format(date.getTime());
+
+    }
+
 
     public static int getLastDayOfMonth(Date date) {
 

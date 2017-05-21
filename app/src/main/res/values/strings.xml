@@ -22,6 +22,7 @@
     <string name="lblReceita">Receita</string>
     <string name="lblReceitas">Receitas</string>
     <string name="lblDespesa">Despesa</string>
+    <string name="lblDespesaCartaoCredito">Despesa Cartão de Crédito</string>
     <string name="lblDespesas">Despesas</string>
     <string name="lblOrigem">Origem:</string>
     <string name="lblDestino">Destino:</string>
@@ -119,6 +120,7 @@
     <string name="lblContaAssociada">Conta Associada</string>
     <string name="lblLimiteCartao">Valor do Limite</string>
 
+    <string name="lblFatura">Fatura</string>
     <string name="lblFaturaAberta">Fatura Aberta</string>
     <string name="lblFaturaFechada">Fatura Fechada</string>
     <string name="lblLimiteDisponivel">Limite Disponível</string>

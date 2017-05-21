@@ -187,6 +187,7 @@
     <color name="corTelaCartaoCredito">#34B</color>
     <color name="corTelaContas">#303F9F</color>
     <color name="corTelaDespesas">#e92727</color>
+    <color name="corTelaDespesasCartaoCredito">#e92727</color>
     <color name="corTelaListaSMS">#39A</color>
     <color name="corTelaPrincipal">#3F51B5</color>
     <color name="corTelaReceitas">#4CAF50</color>
@@ -867,10 +868,11 @@
     <dimen name="design_tab_text_size_2line">12sp</dimen>
     <item format="float" name="disabled_alpha_material_dark" type="dimen">0.30</item>
     <item format="float" name="disabled_alpha_material_light" type="dimen">0.26</item>
-    <dimen name="distance_fabConta">195dp</dimen>
-    <dimen name="distance_fabDespesa">100dp</dimen>
-    <dimen name="distance_fabReceita">145dp</dimen>
-    <dimen name="distance_fabTransferencia">55dp</dimen>
+    <dimen name="distance_fabCartaoCredito">120dp</dimen>
+    <dimen name="distance_fabConta">300dp</dimen>
+    <dimen name="distance_fabDespesa">180dp</dimen>
+    <dimen name="distance_fabReceita">240dp</dimen>
+    <dimen name="distance_fabTransferencia">60dp</dimen>
     <dimen name="fab_add_marginBottom">5dp</dimen>
     <dimen name="fab_add_marginLeft_icon">10dp</dimen>
     <dimen name="fab_add_marginRight">6dp</dimen>
@@ -1016,6 +1018,7 @@
     <string name="lblDescricaoDespesa">Descrição da Despesa</string>
     <string name="lblDescricaoReceita">Descrição da Receita</string>
     <string name="lblDespesa">Despesa</string>
+    <string name="lblDespesaCartaoCredito">Despesa Cartão de Crédito</string>
     <string name="lblDespesas">Despesas</string>
     <string name="lblDestino">Destino:</string>
     <string name="lblDiaFechamento">Dia de Fechamento</string>
@@ -1028,6 +1031,7 @@
     <string name="lblExcluir"> Excluir </string>
     <string name="lblExibir">Exibir</string>
     <string name="lblExibirSomaResumo">Exibir a Soma no Resumo</string>
+    <string name="lblFatura">Fatura</string>
     <string name="lblFaturaAberta">Fatura Aberta</string>
     <string name="lblFaturaFechada">Fatura Fechada</string>
     <string name="lblFixa">Fixa</string>

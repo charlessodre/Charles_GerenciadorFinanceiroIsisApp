@@ -12,6 +12,7 @@
     <color name="corTelaContas">#303F9F</color>
     <color name="corTelaReceitas">#4CAF50</color>
     <color name="corTelaDespesas">#e92727</color>
+    <color name="corTelaDespesasCartaoCredito">#e92727</color>
     <color name="corTelaTransferencias">#0288D1</color>
     <color name="corTelaPrincipal">#3F51B5</color>
     <color name="corTelaCartaoCredito">#34B</color>

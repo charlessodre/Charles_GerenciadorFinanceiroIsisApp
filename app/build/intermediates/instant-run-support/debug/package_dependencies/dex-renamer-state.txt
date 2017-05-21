@@ -1,4 +1,4 @@
-#Mon May 15 20:56:43 BRT 2017
+#Sat May 20 14:09:08 BRT 2017
 file.2=C\:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\support-annotations-24.2.1_e4c7a6d22edee56372325b012f9ea1fcbbb89689\\classes.dex
 base.2=C\:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\support-annotations-24.2.1_e4c7a6d22edee56372325b012f9ea1fcbbb89689
 file.1=C\:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10\\internal_impl-24.2.1_4a7631ba80a32a866d707369c491a929c7bcf444\\classes.dex

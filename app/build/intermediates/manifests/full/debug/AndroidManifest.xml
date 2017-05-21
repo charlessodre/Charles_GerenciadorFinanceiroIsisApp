@@ -98,6 +98,7 @@
             android:label="@string/title_cartao_credito"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadCartaoCredito" />
+        <activity android:name="com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesaCartaoCredito" />
     </application>
 
 </manifest>
