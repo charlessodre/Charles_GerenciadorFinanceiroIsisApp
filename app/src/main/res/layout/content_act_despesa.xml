@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/corTelaDespesas"
-        android:id="@+id/lnlfragBarraNavegacaoDespesa"
+        android:id="@+id/lnlfragBarraNavegacaoDespesaCartao"
         >
 
         <ImageButton
@@ -57,7 +57,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/lstDespesas"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/lnlfragBarraNavegacaoDespesa"
+        android:layout_below="@+id/lnlfragBarraNavegacaoDespesaCartao"
         android:layout_marginBottom="@dimen/listview_bottom" />
 
 

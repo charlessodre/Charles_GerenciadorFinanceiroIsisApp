@@ -14,7 +14,12 @@
     <string name="msg_estornar_pagamento_erro">Falha ao estornar o pagamento!</string>
     <string name="msg_preenchimento_obrigatorio">Preenchimento Obrigatório!</string>
 
+    <string name="msg_cadastrar_conta">Primeiro é necessário cadastrar uma conta!</string>
+    <string name="msg_cadastrar_cartao_credito">Primeiro é necessário cadastrar um cartão de crédito!</string>
+
     <string name="msg_valor_maior_zero">O valor deve ser maior que 0 (zero)!</string>
+
+    <string name="msg_qtd_parcela_maior_um">O valor da parcela dever ser maior que 1 (um).</string>
 
     <string name="msg_consultar_erro_subcateogira_receita">Falha ao consultar a SubCategoria da Receita!</string>
     <string name="msg_consultar_erro_conta">Falha ao consultar a Conta!</string>

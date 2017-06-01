@@ -99,6 +99,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadCartaoCredito" />
         <activity android:name="com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesaCartaoCredito" />
+        <activity
+            android:name="com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actDespesaCartaoCredito"
+            android:label="@string/title_despesas_cartao_credito"
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <provider
             android:name="com.android.tools.fd.runtime.InstantRunContentProvider"

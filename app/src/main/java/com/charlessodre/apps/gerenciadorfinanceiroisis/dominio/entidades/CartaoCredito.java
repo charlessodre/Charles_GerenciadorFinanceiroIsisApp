@@ -30,6 +30,9 @@ public class CartaoCredito extends EntidadeBase {
     public static String VL_TAXA_JUROS_ROTATIVO = "VL_TAXA_JUROS_ROTATIVO";
     public static String VL_TAXA_JUROS_FINANCIAMENTO = "VL_TAXA_JUROS_FINANCIAMENTO";
 
+    //Colunas lógicas
+    public static final String VL_TOTAL_DESPESA_LG      = "VL_TOTAL_DESPESA";
+
 
 
     //Atributos

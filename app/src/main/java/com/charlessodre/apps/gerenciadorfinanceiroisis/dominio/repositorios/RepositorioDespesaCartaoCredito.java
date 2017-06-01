@@ -9,8 +9,10 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.DespesaCartaoCredito;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.FaturaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.TipoRepeticao;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.BooleanUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
@@ -180,20 +182,73 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
     public long insere(DespesaCartaoCredito item) {
         try {
 
+            int qtdRepeticao = item.getTotalRepeticao();
+            double valorParcela = 0;
+
             super.openConnectionWrite();
             super.setBeginTransaction();
 
-            if (item.isPaga()) {
-
-                RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
-
-                Conta contaAssociada = item.getCartaoCredito().getContaAssociada();
-
-                repositorioConta.setValorSaidaConta(super.getTransaction(), contaAssociada.getId(), item.getValor());
+            if (qtdRepeticao > 0) {
+                item.setValor(item.getValor() / qtdRepeticao);
             }
 
             //Insere a DespesaCartaoCredito "Pai".
             long id = super.insert(super.getTransaction(), this.preencheContentValues(item));
+
+            //Insere as Despesas filhas
+            if (qtdRepeticao > 0) {
+
+                Date data = item.getDataDespesa(); //Diaria
+                int tipoRepeticao = item.getIdTipoRepeticao();
+
+                for (int i = 2; i <= qtdRepeticao; i++) {
+
+                    DespesaCartaoCredito nova = item.clone();
+
+                    nova.setIdPai(item.getId());
+                    nova.setId(0);
+                    nova.setRepeticaoAtual(i);
+                    nova.setPaga(false);
+                    nova.setEstornaPagamento(false);
+                    nova.setAnoMesPagamento(null);
+                    nova.setDataPagamento(null);
+
+                    if (tipoRepeticao != TipoRepeticao.DIARIA)
+                        data = TipoRepeticao.getDataRepeticao(tipoRepeticao, data);
+
+                    nova.setDataDespesa(data);
+                    nova.setAnoMesDespesa(DateUtils.getYearAndMonth(data));
+
+                    super.insert(super.getTransaction(), preencheContentValues(nova));
+
+                }
+            } else if (item.isFixa()) {
+
+                int total = Constantes.TOTAL_MESES_REPETICAO; //20 anos.
+
+                Date data = item.getDataDespesa(); //Diaria
+
+                for (int i = 2; i <= total; i++) {
+
+                    DespesaCartaoCredito nova = item.clone();
+
+                    nova.setIdPai(item.getId());
+                    nova.setId(0);
+                    nova.setPaga(false);
+                    nova.setEstornaPagamento(false);
+                    nova.setAnoMesPagamento(null);
+                    nova.setDataPagamento(null);
+
+                    data = TipoRepeticao.getDataRepeticao(TipoRepeticao.MENSAL, data);
+
+                    nova.setDataDespesa(data);
+                    nova.setAnoMesDespesa(DateUtils.getYearAndMonth(data));
+
+                    super.insert(super.getTransaction(), preencheContentValues(nova));
+
+                }
+            }
+
 
             super.setTransactionSuccessful();
 
@@ -216,7 +271,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             super.openConnectionWrite();
             super.setBeginTransaction();
 
-            if(item.isPaga()) {
+            if (item.isPaga()) {
                 RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
                 repositorioConta.setValorEntradaConta(super.getTransaction(), item.getCartaoCredito().getContaAssociada().getId(), item.getValor());
 
@@ -298,7 +353,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
         }
     }
 
-    public ArrayList<DespesaCartaoCredito> buscaPorContaAnoMes(long idCartaoCredito, int anoMes) {
+    public ArrayList<DespesaCartaoCredito> buscaPorAnoMes(long idCartaoCredito, int anoMes) {
 
         StringBuilder where = new StringBuilder();
 
@@ -391,42 +446,108 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
         }
     }
 
-
-//Totalizadores
-
-    public Double getValorTotalDespesaCartaoCreditos(int anoMes, boolean somentePagas) {
-        String[] parametros = {String.valueOf(anoMes)};
+    public ArrayList<DespesaCartaoCredito> getDespesas(long idCartaoCredito, int anoMes, boolean somenteExibeSoma) {
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT SUM( ");
-        sql.append(DespesaCartaoCredito.VL_DESPESA);
-        sql.append(" ) AS VL_TOTAL_DESPESA FROM ");
+        sql.append("SELECT ");
+
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.ID);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.NM_DESPESA);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.DT_DESPESA);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.VL_DESPESA);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.DT_PAGAMENTO);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.VL_PAGAMENTO);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.NO_TOTAL_REPETICAO);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.NO_REPETICAO_ATUAL);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.FL_DESPESA_PAGA);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.FL_DEPESA_FIXA);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.FL_ALERTA_DESPESA);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.NO_AM_DESPESA);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.ID_FATURA_CARTAO_CREDITO);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.ID_CARTAO_CREDITO);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.ID_CATEGORIA_DESPESA);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.ID_SUB_CATEGORIA_DESPESA);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.ID_TIPO_REPETICAO);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.NO_AM_PAGAMENTO_DESPESA);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.ID_DESPESA_PAI);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.FL_ATIVO);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.DT_INCLUSAO);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.DT_ALTERACAO);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.FL_EXIBIR);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.NO_ORDEM_EXIBICAO);
+        sql.append(",");
+        sql.append(FaturaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.NO_AM_FATURA);
+        sql.append(" FROM ");
+        sql.append(CartaoCredito.TABELA_NOME);
+        sql.append(" INNER JOIN ");
+        sql.append(FaturaCartaoCredito.TABELA_NOME);
+        sql.append(" ON ");
+        sql.append(FaturaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.ID_CARTAO_CREDITO);
+        sql.append(" = ");
+        sql.append(CartaoCredito.TABELA_NOME + "." + CartaoCredito.ID);
+        sql.append(" INNER JOIN ");
         sql.append(DespesaCartaoCredito.TABELA_NOME);
+        sql.append(" ON ");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.ID_FATURA_CARTAO_CREDITO);
+        sql.append(" = ");
+        sql.append(FaturaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.ID);
         sql.append(" WHERE ");
-        sql.append(DespesaCartaoCredito.NO_AM_DESPESA);
-        sql.append(" = ? ");
-        if (somentePagas) {
+        sql.append(CartaoCredito.TABELA_NOME + "." + CartaoCredito.FL_ATIVO);
+        sql.append(" = 1");
+
+        if (idCartaoCredito != 0) {
             sql.append(" AND ");
-            sql.append(DespesaCartaoCredito.FL_DESPESA_PAGA + " = 1");
+            sql.append(CartaoCredito.TABELA_NOME + "." + CartaoCredito.ID);
+            sql.append(" = ");
+            sql.append(idCartaoCredito);
         }
-        double valorTotal = 0;
+
+        if (anoMes > 0) {
+            sql.append(" AND ");
+            sql.append(FaturaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.NO_AM_FATURA);
+            sql.append(" =  ");
+            sql.append(anoMes);
+        }
+
+        if (somenteExibeSoma)
+            sql.append(" AND " + CartaoCredito.TABELA_NOME + "." + CartaoCredito.FL_EXIBIR_SOMA + " = 1");
+
+        sql.append(" ORDER BY ");
+        sql.append(FaturaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.NO_AM_FATURA);
+        sql.append(",");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.DT_DESPESA);
 
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
+            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
 
-            if (cursor.getCount() > 0) {
-                cursor.moveToFirst();
-
-                do {
-                    valorTotal = cursor.getDouble(cursor.getColumnIndex("VL_TOTAL_DESPESA"));
-
-                } while (cursor.moveToNext());
-            }
-            return valorTotal;
+            return this.preencheObjeto(super.getTransaction(), cursor);
 
         } catch (SQLException ex) {
             throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
@@ -435,38 +556,77 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
         }
     }
 
-    public Double getValorTotalDespesaCartaoCreditosContaMes(long idCartaoCredito, int anoMes, boolean somentePagas) {
-        String[] parametros = {String.valueOf(idCartaoCredito), String.valueOf(anoMes)};
+    //Totalizadores
+    public double getValorTotalDespesa(int anoMes, boolean somenteExibeSoma) {
+        return getValorTotalDespesa(0, anoMes, somenteExibeSoma);
+    }
+
+    public double getValorTotalDespesa(long idCartaoCredito, int anoMes, boolean somenteExibeSoma) {
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("SELECT SUM( ");
+        sql.append("SELECT ");
+        sql.append(FaturaCartaoCredito.NO_AM_FATURA);
+        sql.append(",");
+        sql.append(" SUM( ");
         sql.append(DespesaCartaoCredito.VL_DESPESA);
-        sql.append(" ) AS VL_TOTAL_DESPESA FROM ");
+        sql.append(" ) ");
+        sql.append(DespesaCartaoCredito.VL_TOTAL_DESPESAS_CARTAO_LG);
+        sql.append(" FROM ");
+        sql.append(CartaoCredito.TABELA_NOME);
+        sql.append(" INNER JOIN ");
+        sql.append(FaturaCartaoCredito.TABELA_NOME);
+        sql.append(" ON ");
+        sql.append(FaturaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.ID_CARTAO_CREDITO);
+        sql.append(" = ");
+        sql.append(CartaoCredito.TABELA_NOME + "." + CartaoCredito.ID);
+        sql.append(" INNER JOIN ");
         sql.append(DespesaCartaoCredito.TABELA_NOME);
+        sql.append(" ON ");
+        sql.append(DespesaCartaoCredito.ID_FATURA_CARTAO_CREDITO);
+        sql.append(" = ");
+        sql.append(FaturaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.ID);
         sql.append(" WHERE ");
-        sql.append(DespesaCartaoCredito.ID_CARTAO_CREDITO);
-        sql.append(" = ? ");
-        sql.append(" AND " + DespesaCartaoCredito.NO_AM_DESPESA);
-        sql.append(" = ?");
+        sql.append(CartaoCredito.TABELA_NOME + "." + CartaoCredito.FL_ATIVO);
+        sql.append(" = 1");
 
-        if (somentePagas) {
+        if (idCartaoCredito != 0) {
             sql.append(" AND ");
-            sql.append(DespesaCartaoCredito.FL_DESPESA_PAGA + " = 1");
+            sql.append(CartaoCredito.TABELA_NOME + "." + CartaoCredito.ID);
+            sql.append(" = ");
+            sql.append(idCartaoCredito);
         }
+
+        if (anoMes > 0) {
+            sql.append(" AND ");
+            sql.append(FaturaCartaoCredito.NO_AM_FATURA);
+            sql.append(" =  ");
+            sql.append(anoMes);
+        }
+
+        if (somenteExibeSoma)
+            sql.append(" AND " + CartaoCredito.FL_EXIBIR_SOMA + " = 1");
+
+        sql.append(" GROUP BY ");
+        sql.append(FaturaCartaoCredito.NO_AM_FATURA);
+
+        sql.append(" ORDER BY ");
+        sql.append(FaturaCartaoCredito.NO_AM_FATURA);
+
+
         double valorTotal = 0;
 
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
+            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
 
                 do {
-                    valorTotal = cursor.getDouble(cursor.getColumnIndex("VL_TOTAL_DESPESA"));
+                    valorTotal = cursor.getDouble(cursor.getColumnIndex(DespesaCartaoCredito.VL_TOTAL_DESPESAS_CARTAO_LG));
 
                 } while (cursor.moveToNext());
             }
@@ -889,7 +1049,6 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa));
         }
     }
-
 
 
 }

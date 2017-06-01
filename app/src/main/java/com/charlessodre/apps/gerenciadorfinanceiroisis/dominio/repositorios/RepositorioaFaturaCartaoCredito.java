@@ -8,12 +8,14 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.FaturaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.BooleanUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by charl on 18/05/2017.
@@ -134,21 +136,40 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
 
     }
 
-    public long insere(SQLiteDatabase transaction, FaturaCartaoCredito item) {
+    public void insere(SQLiteDatabase transaction, CartaoCredito cartaoCredito) {
+
+        int ano = DateUtils.getCurrentYear();
+        int mes = DateUtils.getCurrentMonth();
+        int dia = DateUtils.getCurrentDay();
+        Date data = null;
+
         try {
 
-            long id = super.insert(transaction, this.preencheContentValues(item));
+            for (int i = 0; i < 3; i++) {
 
-            if (item.isPaga()) {
+                FaturaCartaoCredito faturaCartaoCredito = new FaturaCartaoCredito();
 
-                RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
+                if (cartaoCredito.getNoDiaVencimentoFatura() > dia) {
 
-                Conta contaAssociada = item.getCartaoCredito().getContaAssociada();
+                    if (mes > 11) {
+                        ano = ano + 1;
+                        mes = 1;
+                    }
+                }
 
-                repositorioConta.setValorSaidaConta(transaction, contaAssociada.getId(), item.getValor());
+                data = DateUtils.getDate(ano, mes, cartaoCredito.getNoDiaVencimentoFatura());
+
+                faturaCartaoCredito.setCartaoCredito(cartaoCredito);
+                faturaCartaoCredito.setAlertar(cartaoCredito.isAltertaVencimento());
+                faturaCartaoCredito.setDataInclusao(cartaoCredito.getDataInclusao());
+                faturaCartaoCredito.setAnoMesFatura(DateUtils.getYearAndMonth(data));
+                faturaCartaoCredito.setDataFatura(data);
+
+                long id = super.insert(transaction, this.preencheContentValues(faturaCartaoCredito));
+
+                mes = mes + 1;
+
             }
-
-            return id;
 
         } catch (SQLException ex) {
             throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
@@ -296,7 +317,7 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
     public FaturaCartaoCredito get(SQLiteDatabase transaction, Long id) {
         StringBuilder where = new StringBuilder();
 
-        where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO);
+        where.append(FaturaCartaoCredito.ID);
         where.append(" = ");
         where.append(id);
 
@@ -304,7 +325,7 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
 
             FaturaCartaoCredito faturaCartaoCredito = new FaturaCartaoCredito();
 
-            Cursor cursor = super.select(where.toString());
+            Cursor cursor = super.select(transaction,where.toString());
 
             ArrayList<FaturaCartaoCredito> arrayList = this.preencheObjeto(transaction, cursor);
 
@@ -318,7 +339,7 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
         }
     }
 
-    public ArrayList<FaturaCartaoCredito> getFaturasCartaoCredito(Long idCartaoCredito) {
+    public ArrayList<FaturaCartaoCredito> getProximasFaturasCartaoCredito(Long idCartaoCredito, int anoMesFatura) {
         try {
 
             StringBuilder where = new StringBuilder();
@@ -326,6 +347,13 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
             where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO);
             where.append(" = ");
             where.append(idCartaoCredito);
+
+            if(anoMesFatura > 0) {
+                where.append(" AND ");
+                where.append(FaturaCartaoCredito.NO_AM_FATURA);
+                where.append(" >= ");
+                where.append(anoMesFatura);
+            }
 
             super.openConnectionWrite();
 
@@ -338,6 +366,40 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
         } finally {
             super.closeConnection();
         }
+    }
+
+    public ArrayList<FaturaCartaoCredito> getFaturasCartaoCredito(Long idCartaoCredito, int anoMesFatura) {
+        try {
+
+            StringBuilder where = new StringBuilder();
+
+            where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO);
+            where.append(" = ");
+            where.append(idCartaoCredito);
+
+            if(anoMesFatura > 0) {
+                where.append(" AND ");
+                where.append(FaturaCartaoCredito.NO_AM_FATURA);
+                where.append(" = ");
+                where.append(anoMesFatura);
+            }
+
+            super.openConnectionWrite();
+
+            Cursor cursor = super.select(where.toString(), FaturaCartaoCredito.NO_AM_FATURA);
+
+            return this.preencheObjeto(super.getTransaction(), cursor);
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+        } finally {
+            super.closeConnection();
+        }
+    }
+
+    public ArrayList<FaturaCartaoCredito> getFaturasCartaoCredito(Long idCartaoCredito) {
+
+        return getFaturasCartaoCredito(idCartaoCredito,0);
     }
 
     public ArrayList<FaturaCartaoCredito> getFaturasAbertasCartaoCredito(Long idCartaoCredito) {
@@ -373,6 +435,7 @@ public class RepositorioaFaturaCartaoCredito extends RepositorioBase implements 
         where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO);
         where.append(" = ");
         where.append(idCartaoCredito);
+        where.append(" AND ");
         where.append(FaturaCartaoCredito.NO_AM_FATURA);
         where.append(" = ");
         where.append(anoMesFatura);

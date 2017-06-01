@@ -159,27 +159,6 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
             int linhas = super.update(super.getTransaction(), this.preencheContentValues(item), item.getId());
 
-            if (item.isFixa()) {
-
-                if (item.isPaga()) {
-
-                    Despesa novaFixa = item.clone();
-
-                    Date dataReceita = DateUtils.getDateAddMonth(item.getDataDespesa(), 1);
-
-                    novaFixa.setId(0);
-                    novaFixa.setPaga(false);
-                    novaFixa.setDataAlteracao(null);
-                    novaFixa.setDataPagamento(null);
-                    novaFixa.setDataDespesa(dataReceita);
-                    novaFixa.setDataInclusao(DateUtils.getCurrentDatetime());
-                    novaFixa.setAnoMesDespesa(DateUtils.getYearAndMonth(dataReceita));
-                    novaFixa.setIdPai(item.getId());
-
-                    super.insert(super.getTransaction(), this.preencheContentValues(novaFixa));
-                }
-            }
-
             super.setTransactionSuccessful();
 
             return linhas;

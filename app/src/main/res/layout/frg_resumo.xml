@@ -164,6 +164,53 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_marginTop="@dimen/fab_margin_top"
+            android:id="@+id/lnlResumoCartaoCredito"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/fragResumoAltura"
+            android:layout_below="@+id/LinearLayout3"
+            android:background="@drawable/bg_tab_pressed"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingBottom="1dp"
+            android:textAlignment="center"
+
+            >
+
+            <LinearLayout
+                android:id="@+id/lnlCorCartaoCredito"
+                android:layout_width="@dimen/fragResumoLarguraFaixaCor"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/corTelaCartaoCredito"
+                android:orientation="horizontal"></LinearLayout>
+
+            <TextView
+                android:id="@+id/txtNomeCartaoCredito"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="4dp"
+                android:text="@string/lblCartaoCredito"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/txtValorCartaoCreditoAcumulado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="R$ 0,00"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </FrameLayout>

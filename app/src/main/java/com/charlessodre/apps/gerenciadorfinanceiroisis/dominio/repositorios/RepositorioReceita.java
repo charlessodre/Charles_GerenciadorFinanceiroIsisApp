@@ -45,42 +45,18 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
             if (receitaAnterior.isPaga()) {
 
                 if (receitaAnterior.getConta().getId() == item.getConta().getId()) {
-                    repositorioConta.setValorEntradaConta(super.getTransaction(), item.getConta().getId(), receitaAnterior.getValor());
+                    repositorioConta.setValorSaidaConta(super.getTransaction(), item.getConta().getId(), receitaAnterior.getValor());
                 } else {
-                    repositorioConta.setValorEntradaConta(super.getTransaction(), receitaAnterior.getConta().getId(), receitaAnterior.getValor());
+                    repositorioConta.setValorSaidaConta(super.getTransaction(), receitaAnterior.getConta().getId(), receitaAnterior.getValor());
                 }
             }
 
             if (item.isPaga()) {
-                repositorioConta.setValorSaidaConta(super.getTransaction(), item.getConta().getId(), item.getValor());
+                repositorioConta.setValorEntradaConta(super.getTransaction(), item.getConta().getId(), item.getValor());
             }
 
 
             int linhas = super.update(super.getTransaction(), this.preencheContentValues(item), item.getId());
-
-            if (item.isFixa()) {
-
-                if (item.isPaga()) {
-
-                    Receita novaFixa = item.clone();
-
-                    Date dataReceita = DateUtils.getDateAddMonth(item.getDataReceita(), 1);
-
-                    novaFixa.setId(0);
-                    novaFixa.setPaga(false);
-                    novaFixa.setDataAlteracao(null);
-                    novaFixa.setDataRecebimento(null);
-                    novaFixa.setAnoMesRecebimentoReceita(null);
-                    novaFixa.setEstornaRecebimentoReceita(false);
-                    novaFixa.setDataReceita(dataReceita);
-                    novaFixa.setDataInclusao(DateUtils.getCurrentDatetime());
-                    novaFixa.setAnoMes(DateUtils.getYearAndMonth(dataReceita));
-
-                    novaFixa.setIdPai(item.getId());
-
-                    super.insert(super.getTransaction(), this.preencheContentValues(novaFixa));
-                }
-            }
 
             super.setTransactionSuccessful();
 
@@ -186,7 +162,6 @@ public class RepositorioReceita extends RepositorioBase implements IRepositorio<
 
             super.openConnectionWrite();
             super.setBeginTransaction();
-
 
             RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
 

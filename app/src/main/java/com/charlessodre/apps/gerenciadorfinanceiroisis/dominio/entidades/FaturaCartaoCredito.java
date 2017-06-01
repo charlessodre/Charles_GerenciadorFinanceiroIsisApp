@@ -22,6 +22,11 @@ public class FaturaCartaoCredito extends EntidadeBase  {
     public static final String NO_AM_FATURA            = "NO_AM_FATURA";
     public static final String NO_AM_PAGAMENTO_FATURA  = "NO_AM_PAGAMENTO_FATURA";
     public static final String ID_CARTAO_CREDITO       = "ID_CARTAO_CREDITO";
+    public static final String FL_EXIBIR_SOMA           = "FL_EXIBIR_SOMA";
+
+
+    //Colunas lógicas
+    public static final String VL_TOTAL_FATURA_LG      = "VL_TOTAL_FATURA";
 
 
     //Atributos
@@ -36,6 +41,7 @@ public class FaturaCartaoCredito extends EntidadeBase  {
     private Integer anoMesPagamento;
     private CartaoCredito cartaoCredito;
     private boolean alertar;
+
 
     //Propriedades
 

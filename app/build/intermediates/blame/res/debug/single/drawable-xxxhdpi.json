@@ -68,6 +68,10 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_airplanemode_active_black_24dp.png"
     },
     {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\ic_add_circle_outline_black_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_add_circle_outline_black_24dp.png"
+    },
+    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\ic_drafts_black_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_drafts_black_24dp.png"
     },
@@ -148,8 +152,16 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_home_black_24dp.png"
     },
     {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\ic_add_circle_black_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_add_circle_black_24dp.png"
+    },
+    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\ic_maleta_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_maleta_24dp.png"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\ic_add_black_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_add_black_24dp.png"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\ic_keyboard_arrow_up_white_24dp.png",
@@ -290,6 +302,10 @@
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\ic_announcement_black_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_announcement_black_24dp.png"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\ic_clear_black_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-xxxhdpi\\ic_clear_black_24dp.png"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi\\ic_trending_down_black_24dp.png",

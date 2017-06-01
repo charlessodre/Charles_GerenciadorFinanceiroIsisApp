@@ -345,8 +345,8 @@ public class ScriptSQL {
         sqlBuilder.append("   ID_CATEGORIA_DESPESA INTEGER  NOT NULL, " );
         sqlBuilder.append("   ID_SUB_CATEGORIA_DESPESA INTEGER  NOT NULL, " );
         sqlBuilder.append("   ID_DESPESA_PAI INTEGER  NULL, " );
-        sqlBuilder.append("   ID_TIPO_REPETICAO INTEGER  NULL, " );
         sqlBuilder.append("   ID_FATURA_CARTAO_CREDITO INTEGER NOT NULL, " );
+        sqlBuilder.append("   ID_TIPO_REPETICAO INTEGER  NULL, " );
         sqlBuilder.append("   FOREIGN KEY (ID_FATURA_CARTAO_CREDITO) REFERENCES TB_GF_FATURA_CARTAO_CREDITO (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_DESPESA_PAI)REFERENCES TB_GF_DESPESA_CARTAO_CREDITO (_id), " );
         sqlBuilder.append("   FOREIGN KEY (ID_CARTAO_CREDITO) REFERENCES TB_GF_CARTAO (_id), " );

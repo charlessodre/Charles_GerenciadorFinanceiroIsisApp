@@ -1,12 +1,13 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -24,6 +25,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.DespesaCartaoCredito;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.FaturaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.SubCategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.TipoRepeticao;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCartaoCredito;
@@ -34,7 +36,6 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.Repo
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgConfirmacaoDialog;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgLancamentosDialog;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ActionBarHelper;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ArrayAdapterHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateListenerShow;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.MessageBoxHelper;
@@ -43,8 +44,10 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.util.StringUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.TextWatcherPay;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ToastHelper;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class actCadDespesaCartaoCredito extends actBaseCadastros implements CompoundButton.OnCheckedChangeListener, frgLancamentosDialog.onDialogClick, frgConfirmacaoDialog.onDialogClick, Spinner.OnItemSelectedListener {
 
@@ -53,19 +56,15 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
     private Spinner spnCategoriaDespesa;
     private Spinner spnSubCategoriaDespesa;
     private Spinner spnCartaoCredito;
-    private Spinner spnTipoRepeticao;
     private Spinner spnFaturaCartaoCredito;
     private EditText edtDataDespesa;
-    private EditText edtDataPagamento;
     private EditText edtValorDespesa;
     private EditText edtTotalRepeticao;
-    private CheckBox cbxDespesaPaga;
-    private CheckBox cbxRepetir;
+    private CheckBox cbxParcelada;
     private CheckBox cbxFixa;
-    private TextWatcherPay textWatcher;
+    private TextWatcherPay twValorDespesa;
     private TextView txtParcelas;
-
-    private LinearLayout lnlDetalhePagamento;
+    private TextView txtValorParcela;
 
     //Atributos
     private DespesaCartaoCredito despesaCartaoCredito;
@@ -73,16 +72,16 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
     private RepositorioaFaturaCartaoCredito repositorioaFaturaCartaoCredito;
     private RepositorioSubCategoriaDespesa repositorioSubCategoriaDespesa;
     private DateListenerShow dataDespesaListenerShow;
-    private DateListenerShow dataPagamentoDespesaListenerShow;
     private AdapterCartaoCredito adapterCartaoCredito;
     private AdapterFaturaCartaoCredito adapterFaturaCartaoCredito;
     private AdapterCategoriaDespesa adapterCategoriaDespesa;
     private AdapterSubCategoriaDespesa adapterSubCategoriaDespesa;
     private Date dataDespesa;
-    private Date dataPagamentoDespesa;
+    private String symbol;
 
     //Contantes
     public static final String DESPESA_CARTAO_CREDITO = "DESPESA_CARTAO_CREDITO";
+    public static final String PARAM_CARTAO_CREDITO_ID = "PARAM_CARTAO_CREDITO_ID";
 
     //Eventos
     @Override
@@ -93,8 +92,8 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
         inicializaObjetos();
         carregaSpinnerCartaoCredito();
         carregaSpinnerCategoriaDespesa();
-        carregaSpinnerTipoRepeticao();
 
+        getParametrosRecebidos();
         preencheDados();
 
     }
@@ -148,23 +147,16 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
 
         if (buttonView.getId() == R.id.cbxFixa) {
             if (this.cbxFixa.isChecked()) {
-                this.cbxRepetir.setChecked(false);
+                this.cbxParcelada.setChecked(false);
                 this.edtTotalRepeticao.setEnabled(false);
-                this.spnTipoRepeticao.setEnabled(false);
+
             }
 
-        } else if (buttonView.getId() == R.id.cbxRepetir) {
-            if (this.cbxRepetir.isChecked()) {
+        } else if (buttonView.getId() == R.id.cbxParcelada) {
+            if (this.cbxParcelada.isChecked()) {
                 this.cbxFixa.setChecked(false);
                 this.edtTotalRepeticao.setEnabled(true);
-                this.spnTipoRepeticao.setEnabled(true);
-
             }
-        } else if (buttonView.getId() == R.id.cbxDespesaPaga) {
-            if (this.cbxDespesaPaga.isChecked())
-                this.lnlDetalhePagamento.setVisibility(View.VISIBLE);
-            else
-                this.lnlDetalhePagamento.setVisibility(View.GONE);
         }
     }
 
@@ -213,7 +205,7 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
             this.carregaSpinnerSubCategoriaDespesa(idCategoria);
 
             this.spnSubCategoriaDespesa.setSelection(this.adapterSubCategoriaDespesa.getIndexFromElement(this.despesaCartaoCredito.getSubCategoriaDespesa().getId()));
-        }else  if (parent.getId() == R.id.spnCartaoCredito) {
+        } else if (parent.getId() == R.id.spnCartaoCredito) {
 
             long idCartao = ((CartaoCredito) parent.getSelectedItem()).getId();
             this.carregaSpinnerFatura(idCartao);
@@ -238,27 +230,21 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
         this.spnCategoriaDespesa.setOnItemSelectedListener(this);
         this.spnFaturaCartaoCredito.setOnItemSelectedListener(this);
 
-        this.lnlDetalhePagamento = (LinearLayout) findViewById(R.id.lnlDetalhePagamento);
-
-
-        this.spnTipoRepeticao = (Spinner) findViewById(R.id.spnTipoRepeticao);
         this.edtDataDespesa = (EditText) findViewById(R.id.edtDataDespesa);
-        this.edtDataPagamento = (EditText) findViewById(R.id.edtDataPagamento);
         this.edtValorDespesa = (EditText) findViewById(R.id.edtValorDespesa);
         this.edtTotalRepeticao = (EditText) findViewById(R.id.edtTotalRepeticao);
-        this.cbxDespesaPaga = (CheckBox) findViewById(R.id.cbxDespesaPaga);
+
         this.cbxFixa = (CheckBox) findViewById(R.id.cbxFixa);
-        this.cbxRepetir = (CheckBox) findViewById(R.id.cbxRepetir);
+        this.cbxParcelada = (CheckBox) findViewById(R.id.cbxParcelada);
         this.txtParcelas = (TextView) findViewById(R.id.txtParcelas);
 
         this.cbxFixa.setOnCheckedChangeListener(this);
-        this.cbxRepetir.setOnCheckedChangeListener(this);
-        this.cbxDespesaPaga.setOnCheckedChangeListener(this);
+        this.cbxParcelada.setOnCheckedChangeListener(this);
 
-        this.spnTipoRepeticao.setEnabled(false);
+        this.txtValorParcela = (TextView) findViewById(R.id.txtValorParcela);
 
-        this.textWatcher = new TextWatcherPay(this.edtValorDespesa, "%.2f");
-        this.edtValorDespesa.addTextChangedListener(this.textWatcher);
+        this.twValorDespesa = new TextWatcherPay(this.edtValorDespesa, "%.2f");
+        this.edtValorDespesa.addTextChangedListener(this.twValorDespesa);
 
         ActionBarHelper.menuCancel(getSupportActionBar(), this.getString(R.string.lblDespesaCartaoCredito));
 
@@ -269,10 +255,36 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
         ActionBarHelper.setStatusBarColor(this.getWindow(), corTela);
 
         this.dataDespesaListenerShow = new DateListenerShow(this, this.edtDataDespesa, false);
-        this.dataPagamentoDespesaListenerShow = new DateListenerShow(this, this.edtDataPagamento, false);
 
         this.edtDataDespesa.setText(DateUtils.getCurrentDateShort());
-        this.edtDataPagamento.setText(DateUtils.getCurrentDateShort());
+
+        this.symbol = NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol();
+        this.edtTotalRepeticao.addTextChangedListener(new TextWatcher() {
+
+            public void onTextChanged(CharSequence s, int start, int before,
+                                      int count) {
+                if (s.length() > 0) {
+                    int qtdParcelas = Integer.parseInt(edtTotalRepeticao.getText().toString());
+                    Double valorDespesa = twValorDespesa.getValueWithoutMask();
+
+                    if (qtdParcelas > 0 && valorDespesa > 0) {
+
+                        double valorParcela = valorDespesa / qtdParcelas;
+                        txtValorParcela.setText(symbol + " " + NumberUtis.getFormartCurrency(valorParcela));
+                    }
+                }
+
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+
+            }
+
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
     }
 
@@ -288,7 +300,7 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
 
         this.spnCartaoCredito.setAdapter(this.adapterCartaoCredito);
 
-        if(cartoes.size()>0)
+        if (cartoes.size() > 0)
             this.carregaSpinnerFatura(cartoes.get(0).getId());
     }
 
@@ -300,7 +312,9 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
 
         this.adapterFaturaCartaoCredito = new AdapterFaturaCartaoCredito(this, R.layout.item_fatura_simples);
 
-        this.adapterFaturaCartaoCredito.addAll(repositorioaFaturaCartaoCredito.getFaturasAbertasCartaoCredito(idCartaoCredito));
+        int anoMes = DateUtils.getCurrentYearAndMonthAddMonth(-1);
+
+        this.adapterFaturaCartaoCredito.addAll(repositorioaFaturaCartaoCredito.getProximasFaturasCartaoCredito(idCartaoCredito, anoMes));
 
         this.spnFaturaCartaoCredito.setAdapter(this.adapterFaturaCartaoCredito);
     }
@@ -329,17 +343,30 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
         this.spnSubCategoriaDespesa.setAdapter(this.adapterSubCategoriaDespesa);
     }
 
-    private void carregaSpinnerTipoRepeticao() {
-        ArrayAdapter arrayAdapter = ArrayAdapterHelper.fillSpinnerString(this, this.spnTipoRepeticao);
-        arrayAdapter.addAll(TipoRepeticao.getTipoRepeticao());
-    }
-
-    private void preencheDados() {
+    private void getParametrosRecebidos() {
         Bundle bundle = getIntent().getExtras();
 
         if ((bundle != null) && (bundle.containsKey(actCadDespesaCartaoCredito.DESPESA_CARTAO_CREDITO))) {
             this.despesaCartaoCredito = (DespesaCartaoCredito) bundle.getSerializable(actCadDespesaCartaoCredito.DESPESA_CARTAO_CREDITO);
 
+        } else {
+            this.despesaCartaoCredito = new DespesaCartaoCredito();
+        }
+
+        if ((bundle != null) && (bundle.containsKey(actCadDespesaCartaoCredito.PARAM_CARTAO_CREDITO_ID))) {
+
+            long idCartao = 0;
+            idCartao = bundle.getLong(actCadDespesaCartaoCredito.PARAM_CARTAO_CREDITO_ID);
+
+            this.spnCartaoCredito.setSelection(this.adapterCartaoCredito.getIndexFromElement(idCartao));
+
+        }
+
+    }
+
+    private void preencheDados() {
+
+        if( this.despesaCartaoCredito.getId()>0) {
             this.edtNome.setText(this.despesaCartaoCredito.getNome());
 
             this.edtValorDespesa.setText(NumberUtis.getFormartCurrency(this.despesaCartaoCredito.getValor()));
@@ -350,36 +377,23 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
 
             this.edtDataDespesa.setText(DateUtils.dateToString(this.despesaCartaoCredito.getDataDespesa()));
 
-            if (this.despesaCartaoCredito.isPaga())
-                this.edtDataPagamento.setText(DateUtils.dateToString(this.despesaCartaoCredito.getDataPagamento()));
-
-            this.cbxDespesaPaga.setChecked(this.despesaCartaoCredito.isPaga());
-
-
             if (this.despesaCartaoCredito.getTotalRepeticao() > 0 || this.despesaCartaoCredito.isFixa()) {
 
-                this.spnTipoRepeticao.setSelection(this.despesaCartaoCredito.getIdTipoRepeticao());
                 this.edtTotalRepeticao.setText(String.valueOf(this.despesaCartaoCredito.getTotalRepeticao()));
-                this.cbxRepetir.setChecked(true);
+                this.cbxParcelada.setChecked(true);
                 this.cbxFixa.setChecked(this.despesaCartaoCredito.isFixa());
 
                 if (!this.despesaCartaoCredito.isFixa()) {
                     this.txtParcelas.setVisibility(View.VISIBLE);
                     this.txtParcelas.setText(this.despesaCartaoCredito.getRepeticaoAtual() + "/" + this.despesaCartaoCredito.getTotalRepeticao());
-                    this.spnTipoRepeticao.setSelection(this.despesaCartaoCredito.getIdTipoRepeticao());
                     this.edtDataDespesa.setEnabled(false);
                 }
             }
 
-            this.cbxRepetir.setEnabled(false);
+            this.cbxParcelada.setEnabled(false);
             this.edtTotalRepeticao.setEnabled(false);
-            this.spnTipoRepeticao.setEnabled(false);
             this.cbxFixa.setEnabled(false);
-
-        } else {
-            this.despesaCartaoCredito = new DespesaCartaoCredito();
         }
-
 
     }
 
@@ -392,11 +406,23 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
             retorno = false;
         }
 
-        if (this.textWatcher.getValueWithoutMask() < 1) {
+        if (this.twValorDespesa.getValueWithoutMask() <= 0) {
             this.edtValorDespesa.setError(this.getString(R.string.msg_valor_maior_zero));
 
             retorno = false;
         }
+
+        if (this.spnCartaoCredito.getCount() < 1) {
+            MessageBoxHelper.show(this, "", this.getString(R.string.msg_cadastrar_cartao_credito));
+            retorno = false;
+        }
+
+        if (this.cbxParcelada.isChecked() && StringUtils.isNullOrEmpty(this.edtTotalRepeticao.getText().toString())) {
+            // MessageBoxHelper.show(this,"", this.getString(R.string.msg_qtd_parcela_maior_um));
+            this.edtTotalRepeticao.setError(this.getString(R.string.msg_qtd_parcela_maior_um));
+            retorno = false;
+        }
+
         return retorno;
 
     }
@@ -417,7 +443,7 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
 
         this.despesaCartaoCredito.setNome(this.edtNome.getText().toString());
 
-        this.despesaCartaoCredito.setValor(this.textWatcher.getValueWithoutMask());
+        this.despesaCartaoCredito.setValor(this.twValorDespesa.getValueWithoutMask());
 
         this.dataDespesa = this.dataDespesaListenerShow.getDateListenerSelect().getDate();
 
@@ -428,20 +454,20 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
         this.despesaCartaoCredito.setAnoMesDespesa(DateUtils.getYearAndMonth(this.dataDespesa));
 
         CartaoCredito cartaoCredito = this.adapterCartaoCredito.getItem(this.spnCartaoCredito.getSelectedItemPosition());
-
+        FaturaCartaoCredito faturaCartaoCredito = this.adapterFaturaCartaoCredito.getItem(this.spnFaturaCartaoCredito.getSelectedItemPosition());
         CategoriaDespesa categoriaDespesa = this.adapterCategoriaDespesa.getItem(this.spnCategoriaDespesa.getSelectedItemPosition());
+
+        this.despesaCartaoCredito.setCartaoCredito(cartaoCredito);
+        this.despesaCartaoCredito.setFaturaCartaoCredito(faturaCartaoCredito);
+        this.despesaCartaoCredito.setCategoriaDespesa(categoriaDespesa);
 
         if (this.adapterSubCategoriaDespesa.getCount() > 0) {
             SubCategoriaDespesa subCategoriaDespesa = this.adapterSubCategoriaDespesa.getItem(this.spnSubCategoriaDespesa.getSelectedItemPosition());
             this.despesaCartaoCredito.setSubCategoriaDespesa(subCategoriaDespesa);
         }
 
-        this.despesaCartaoCredito.setCartaoCredito(cartaoCredito);
-        this.despesaCartaoCredito.setCategoriaDespesa(categoriaDespesa);
-
-
         if (this.despesaCartaoCredito.getId() == 0) {
-            if (this.cbxRepetir.isChecked()) {
+            if (this.cbxParcelada.isChecked()) {
 
                 int totalRepeticao = 1;
 
@@ -450,34 +476,12 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
 
                 this.despesaCartaoCredito.setTotalRepeticao(totalRepeticao);
                 this.despesaCartaoCredito.setRepeticaoAtual(1);
-                this.despesaCartaoCredito.setIdTipoRepeticao(this.spnTipoRepeticao.getSelectedItemPosition());
+                this.despesaCartaoCredito.setIdTipoRepeticao(TipoRepeticao.MENSAL);
+
             }
 
             this.despesaCartaoCredito.setFixa(this.cbxFixa.isChecked());
         }
-
-        if (this.cbxDespesaPaga.isChecked()) {
-
-            this.despesaCartaoCredito.setPaga(true);
-
-            this.dataPagamentoDespesa = this.dataPagamentoDespesaListenerShow.getDateListenerSelect().getDate();
-
-            if (this.dataPagamentoDespesa == null)
-                this.dataPagamentoDespesa = DateUtils.getCurrentDatetime();
-
-            this.despesaCartaoCredito.setDataPagamento(this.dataPagamentoDespesa);
-            this.despesaCartaoCredito.setAnoMesPagamento(DateUtils.getYearAndMonth(this.dataPagamentoDespesa));
-
-
-        } else if (!this.cbxDespesaPaga.isChecked() && this.despesaCartaoCredito.getId() != 0 && this.despesaCartaoCredito.getDataPagamento() != null) {
-
-            this.despesaCartaoCredito.setEstornaPagamento(true);
-            this.despesaCartaoCredito.setPaga(false);
-            this.despesaCartaoCredito.setDataPagamento(null);
-            this.despesaCartaoCredito.setAnoMesPagamento(null);
-
-        }
-
 
         this.despesaCartaoCredito.setOrdemExibicao(super.getNumOrdemExibicao());
 

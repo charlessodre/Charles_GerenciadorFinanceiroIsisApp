@@ -31,6 +31,9 @@ public class DespesaCartaoCredito extends EntidadeBase  {
     public static final String NO_AM_PAGAMENTO_DESPESA  = "NO_AM_PAGAMENTO_DESPESA";
     public static final String ID_DESPESA_PAI = "ID_DESPESA_PAI";
 
+    //Colunas lógicas
+    public static final String VL_TOTAL_DESPESAS_CARTAO_LG      = "VL_TOTAL_DESPESAS_CARTAO";
+
     //Atributos
 
     private Date dataDespesa;
@@ -51,6 +54,7 @@ public class DespesaCartaoCredito extends EntidadeBase  {
     private boolean estornaPagamento;
     private long idPai;
     private Integer anoMesPagamento;
+
 
     //Propriedades
 

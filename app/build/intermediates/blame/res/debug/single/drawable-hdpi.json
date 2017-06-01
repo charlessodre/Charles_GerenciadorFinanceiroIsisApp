@@ -8,12 +8,12 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_keyboard_arrow_up_white_24dp.png"
     },
     {
-        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_desconto_percentual_24dp.png",
-        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_desconto_percentual_24dp.png"
-    },
-    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_content_cut_black_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_content_cut_black_24dp.png"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_desconto_percentual_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_desconto_percentual_24dp.png"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_home_black_24dp.png",
@@ -64,6 +64,10 @@
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_watch_black_24dp.png"
     },
     {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_clear_black_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_clear_black_24dp.png"
+    },
+    {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_dashboard_black_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_dashboard_black_24dp.png"
     },
@@ -86,6 +90,10 @@
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_add_white_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_add_white_24dp.png"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_add_circle_outline_black_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_add_circle_outline_black_24dp.png"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_carrinho_bb_24dp.png",
@@ -370,6 +378,14 @@
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_educacao_24dp.png",
         "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_educacao_24dp.png"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_add_circle_black_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_add_circle_black_24dp.png"
+    },
+    {
+        "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_add_black_24dp.png",
+        "source": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\src\\main\\res\\drawable-hdpi\\ic_add_black_24dp.png"
     },
     {
         "merged": "C:\\DESENVOLVIMENTO\\Android\\GerenciadorFinanceiroIsis\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_drafts_black_24dp.png",

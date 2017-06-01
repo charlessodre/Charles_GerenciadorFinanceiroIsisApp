@@ -10,10 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadCartaoCredito;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCartaoCredito;
@@ -23,6 +25,7 @@ public class actCartaoCredito extends actBaseListas implements AdapterView.OnIte
     //Objetos Tela
     private ListView lstCartao;
     private FloatingActionButton fabAdd;
+
 
 
     //Atributos
@@ -48,14 +51,19 @@ public class actCartaoCredito extends actBaseListas implements AdapterView.OnIte
     @Override
     public void onClick(View v) {
 
+        Intent it= null;
+
         switch (v.getId()) {
 
               case R.id.btnAdicionarCartao:
 
-                  Intent it = new Intent(this, actCadCartaoCredito.class);
+                  it = new Intent(this, actCadCartaoCredito.class);
                   startActivityForResult(it, 0);
 
                 break;
+
+
+
         }
     }
 
@@ -100,13 +108,16 @@ public class actCartaoCredito extends actBaseListas implements AdapterView.OnIte
         this.repositorioCartaoCredito = new RepositorioCartaoCredito(this);
         this.adapterCartaoCredito = new AdapterCartaoCredito(this, R.layout.item_cartao_credito);
 
-        this.lstCartao = (ListView) findViewById(R.id.lstCartao);
-        this.lstCartao.setOnItemClickListener(this);
-
         this.fabAdd = (FloatingActionButton) findViewById(R.id.btnAdicionarCartao);
         this.fabAdd.setOnClickListener(this);
         this.fabAdd.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.corTelaCartaoCredito)));
 
+
+
+
+
+        this.lstCartao = (ListView) findViewById(R.id.lstCartao);
+        this.lstCartao.setOnItemClickListener(this);
 
         this.lstCartao.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -124,7 +135,6 @@ public class actCartaoCredito extends actBaseListas implements AdapterView.OnIte
                 }
             }
         });
-
 
     }
 

@@ -40,6 +40,13 @@ public class DateUtils {
         return calendar.getTime();
     }
 
+    public static int getCurrentYearAndMonthAddMonth(int amount) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.MONTH, amount);
+
+        return getYearAndMonth(calendar.getTime());
+    }
+
     public static Date getCurrentDateAddYears(int amount) {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.YEAR, amount);
@@ -79,7 +86,6 @@ public class DateUtils {
         return Integer.parseInt(yearMonth.format(cal.getTime()));
 
     }
-
 
     public static int getCurrentDay() {
         return Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
@@ -159,8 +165,6 @@ public class DateUtils {
 
     }
 
-
-
     public static String getWeekNameAndDay(Date date) {
 
         SimpleDateFormat yearMonth = new SimpleDateFormat("EEEE, dd");
@@ -168,7 +172,6 @@ public class DateUtils {
         return yearMonth.format(date.getTime());
 
     }
-
 
     public static String getDateFormat(Date date, String format) {
 
@@ -178,7 +181,6 @@ public class DateUtils {
 
     }
 
-
     public static int getLastDayOfMonth(Date date) {
 
         Calendar calendar = Calendar.getInstance();
@@ -187,7 +189,6 @@ public class DateUtils {
         return calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
 
     }
-
 
     public static Date getDate(int year, int monthOfYear, int dayOfMonth) {
         Calendar calendar = Calendar.getInstance();
@@ -211,7 +212,6 @@ public class DateUtils {
         DateFormat format = DateFormat.getDateInstance(DateFormat.SHORT);
         return format.format(date);
     }
-
 
     public static Date longToDate(long longDate) {
         Date date = null;
@@ -313,8 +313,6 @@ public class DateUtils {
 
         return allMatches;
     }
-
-
 
     public static Date getDatesInBetweenStrings(String stringFull, String stringBegin)
     {

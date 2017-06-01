@@ -272,6 +272,11 @@ public class actCadCartaoCredito extends actBaseCadastros implements frgConfirma
             retorno = false;
         }
 
+        if(this.spnContaAssociada.getCount() < 1)
+        {
+            MessageBoxHelper.show(this,"", this.getString(R.string.msg_cadastrar_conta));
+            retorno = false;
+        }
         return retorno;
 
     }

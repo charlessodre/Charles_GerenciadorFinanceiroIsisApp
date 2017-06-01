@@ -342,9 +342,7 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
         } else {
             this.despesa = new Despesa();
         }
-
-
-    }
+            }
 
     private boolean validaCamposTela() {
         boolean retorno = true;
@@ -355,11 +353,18 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
             retorno = false;
         }
 
-        if (this.textWatcher.getValueWithoutMask() < 1) {
+        if (this.textWatcher.getValueWithoutMask() <= 0) {
             this.edtValorDespesa.setError(this.getString(R.string.msg_valor_maior_zero));
 
             retorno = false;
         }
+
+        if(this.spnContaDespesa.getCount() < 1)
+        {
+            MessageBoxHelper.show(this,"", this.getString(R.string.msg_cadastrar_conta));
+            retorno = false;
+        }
+
         return retorno;
 
     }
@@ -384,8 +389,12 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
 
         this.dataDespesa = this.dataDespesaListenerShow.getDateListenerSelect().getDate();
 
-        if (this.dataDespesa == null)
-            this.dataDespesa = DateUtils.getCurrentDatetime();
+        if (this.dataDespesa == null) {
+            if(this.despesa.getDataDespesa()!=null)
+                this.dataDespesa = this.despesa.getDataDespesa();
+            else
+                this.dataDespesa = DateUtils.getCurrentDatetime();
+        }
 
         this.despesa.setDataDespesa(this.dataDespesa);
         this.despesa.setAnoMesDespesa(DateUtils.getYearAndMonth(this.dataDespesa));

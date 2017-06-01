@@ -1,6 +1,7 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
@@ -11,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadCartaoCredito;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesaCartaoCredito;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actDespesaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 
 import java.text.NumberFormat;
 import java.util.Date;
@@ -96,14 +99,14 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
 
         CartaoCredito cartaoCredito = getItem(position);
 
-       // Drawable circle = viewHolderSimple.imgCirculo.getDrawable();
-       // circle.setColorFilter(ColorHelper.getColor(this.context, cartaoCredito.getNoCor()), PorterDuff.Mode.MULTIPLY);
+        // Drawable circle = viewHolderSimple.imgCirculo.getDrawable();
+        // circle.setColorFilter(ColorHelper.getColor(this.context, cartaoCredito.getNoCor()), PorterDuff.Mode.MULTIPLY);
 
         viewHolderSimple.imgCartao.setImageResource(CartaoCredito.getImagemBandeiraCartao(cartaoCredito.getNoBandeiraCartao()));
 
         viewHolderSimple.txtNomeCartao.setText(cartaoCredito.getNome());
 
-       // if (cartaoCredito.getNoCorIcone() != 0)
+        // if (cartaoCredito.getNoCorIcone() != 0)
         //    viewHolderSimple.imgFatura.setColorFilter(ColorHelper.getColor(this.context, conta.getNoCorIcone()));
 
         return view;
@@ -114,6 +117,8 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
 
         ViewHolder viewHolder = null;
         View view = null;
+
+       final CartaoCredito cartaoCredito = getItem(position);
 
         if (convertView == null) {
 
@@ -128,6 +133,36 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
             viewHolder.txtSaldoPrevistoData = (TextView) view.findViewById(R.id.txtSaldoPrevistoDataItem);
             viewHolder.imgCirculo = (ImageView) view.findViewById(R.id.imgCartaoItemCir);
 
+
+            viewHolder.imgBtnAddDespesas = (ImageView) view.findViewById(R.id.imgBtnAddDespesas);
+            viewHolder.imgBtnListaDespesas = (ImageView) view.findViewById(R.id.imgBtnListaDespesas);
+            viewHolder.imgBtnEdit = (ImageView) view.findViewById(R.id.imgBtnEdit);
+
+            viewHolder.imgBtnAddDespesas.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent it = new Intent(getContext(), actCadDespesaCartaoCredito.class);
+                    it.putExtra(actCadDespesaCartaoCredito.PARAM_CARTAO_CREDITO_ID, cartaoCredito.getId());
+                    getContext().startActivity(it);
+                }
+            });
+
+            viewHolder.imgBtnListaDespesas.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent it = new Intent(getContext(), actDespesaCartaoCredito.class);
+                    it.putExtra(actDespesaCartaoCredito.PARAM_CARTAO_CREDITO, cartaoCredito);
+                    getContext().startActivity(it);
+                }
+            });
+
+
+            viewHolder.imgBtnEdit.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent it = new Intent(getContext(), actCadCartaoCredito.class);
+                    it.putExtra(actCadCartaoCredito.PARAM_CARTAO_CREDITO, cartaoCredito);
+                    getContext().startActivity(it);
+                }
+            });
+
             view.setTag(viewHolder);
 
             convertView = view;
@@ -137,23 +172,23 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
             view = convertView;
         }
 
-        CartaoCredito cartaoCredito = getItem(position);
+
 
         Drawable circle = viewHolder.imgCirculo.getDrawable();
         circle.setColorFilter(ColorHelper.getColor(this.context, cartaoCredito.getNoCor()), PorterDuff.Mode.MULTIPLY);
 
 
-       // String texto = String.valueOf(DateUtils.getLastDayOfMonth(this.data)) + "/" + String.valueOf(DateUtils.getMonthNameShort(this.data));
-       // texto = texto + " (" + this.textoPreviso + ")";
+        // String texto = String.valueOf(DateUtils.getLastDayOfMonth(this.data)) + "/" + String.valueOf(DateUtils.getMonthNameShort(this.data));
+        // texto = texto + " (" + this.textoPreviso + ")";
 
         viewHolder.imgCartao.setImageResource(CartaoCredito.getImagemBandeiraCartao(cartaoCredito.getNoBandeiraCartao()));
         viewHolder.txtNomeCartao.setText(cartaoCredito.getNome());
-       // viewHolder.txtSaldoAtual.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getValorSaldo()));
-      //  viewHolder.txtSaldoPrevistoData.setText(texto);
-       // viewHolder.txtSaldoPrevistoValor.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getSaldoPrevisto()));
+        // viewHolder.txtSaldoAtual.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getValorSaldo()));
+        //  viewHolder.txtSaldoPrevistoData.setText(texto);
+        // viewHolder.txtSaldoPrevistoValor.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getSaldoPrevisto()));
 
-      //  if (cartaoCredito.getNoCorIcone() != 0)
-       //     viewHolder.imgFatura.setColorFilter(ColorHelper.getColor(this.context, cartaoCredito.getNoCorIcone()));
+        //  if (cartaoCredito.getNoCorIcone() != 0)
+        //     viewHolder.imgFatura.setColorFilter(ColorHelper.getColor(this.context, cartaoCredito.getNoCorIcone()));
 
 
       /*  if (cartaoCredito.getValorSaldo() < 0) {
@@ -179,6 +214,11 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
         TextView txtValorFaturaFechada;
         TextView txtSaldoPrevistoData;
         TextView txtValorFaturaAberta;
+
+        ImageView imgBtnAddDespesas;
+        ImageView imgBtnListaDespesas;
+        ImageView imgBtnEdit;
+
 
     }
 

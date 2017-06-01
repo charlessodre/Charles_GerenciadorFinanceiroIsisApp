@@ -41,8 +41,8 @@ import java.util.Date;
 public class actCadReceita extends actBaseCadastros implements CompoundButton.OnCheckedChangeListener, frgLancamentosDialog.onDialogClick, frgConfirmacaoDialog.onDialogClick {
 
 
-
-
+    //Contantes
+    public static final String PARAM_RECEITA = "RECEITA";
     //Objetos Tela
     private EditText edtNome;
     private Spinner spnCategoriaReceita;
@@ -56,7 +56,6 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
     private CheckBox cbxFixa;
     private TextWatcherPay textWatcher;
     private TextView txtParcelas;
-
     //Atributos
     private Receita receita;
     private RepositorioReceita repositorioReceita;
@@ -64,9 +63,6 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
     private AdapterConta adapterConta;
     private AdapterCategoriaReceita adapterCategoriaReceita;
     private Date dataReceita;
-
-    //Contantes
-    public static final String PARAM_RECEITA = "RECEITA";
 
     //Eventos
     @Override
@@ -110,7 +106,7 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
                 if (validaCamposTela()) {
 
                     this.getTipoSalvamento();
-                    }
+                }
 
                 break;
 
@@ -147,7 +143,7 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
     }
 
     @Override
-    public void onDialogClick(frgLancamentosDialog dialog,int opcaoSelecionada, int tipoMensagem) {
+    public void onDialogClick(frgLancamentosDialog dialog, int opcaoSelecionada, int tipoMensagem) {
 
         if (tipoMensagem == Constantes.TipoMensagem.EXCLUSAO) {
             if (opcaoSelecionada == Constantes.OpcaoExclusaoAlteracao.ATUAL) {
@@ -185,7 +181,7 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
 
     //Métodos
     @Override
-    protected  void inicializaObjetos() {
+    protected void inicializaObjetos() {
         this.edtNome = (EditText) findViewById(R.id.edtNomeReceita);
         this.spnCategoriaReceita = (Spinner) findViewById(R.id.spnCategoriaReceita);
         this.spnContaReceita = (Spinner) findViewById(R.id.spnContaReceita);
@@ -283,7 +279,6 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
             this.cbxFixa.setEnabled(false);
 
 
-
         } else {
             this.receita = new Receita();
         }
@@ -300,10 +295,15 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
             retorno = false;
         }
 
-        if(this.textWatcher.getValueWithoutMask()< 1)
-        {
+        if (this.textWatcher.getValueWithoutMask() <= 0) {
             this.edtValorReceita.setError(this.getString(R.string.msg_valor_maior_zero));
 
+            retorno = false;
+        }
+
+        if(this.spnContaReceita.getCount() < 1)
+        {
+            MessageBoxHelper.show(this,"", this.getString(R.string.msg_cadastrar_conta));
             retorno = false;
         }
         return retorno;
@@ -330,8 +330,13 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
 
         this.dataReceita = this.dateListenerShow.getDateListenerSelect().getDate();
 
-        if (this.dataReceita == null)
-            this.dataReceita = DateUtils.getCurrentDatetime();
+        if (this.dataReceita == null) {
+
+            if (this.receita.getDataReceita() != null)
+                this.dataReceita = this.receita.getDataReceita();
+            else
+                this.dataReceita = DateUtils.getCurrentDatetime();
+        }
 
         this.receita.setDataReceita(this.dataReceita);
         this.receita.setAnoMes(DateUtils.getYearAndMonth(this.dataReceita));

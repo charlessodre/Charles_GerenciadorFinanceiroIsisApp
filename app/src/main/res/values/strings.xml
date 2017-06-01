@@ -45,6 +45,8 @@
 
     <string name="lblDe">de</string>
     <string name="lblRepetir">Repetir</string>
+    <string name="lblParcelada">Parcelada</string>
+    <string name="lblTotalParcelas">Total de Parcelas</string>
 
     <string name="lblTransferencia">Transferência</string>
 

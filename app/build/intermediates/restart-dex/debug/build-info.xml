@@ -6,33 +6,30 @@
     density="560dpi"
     format="10"
     plugin-version="2.3.2"
-    timestamp="1495401198508"
+    timestamp="1496279290050"
     token="3012946830325438358"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="1976" />
+        duration="4640" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="37" />
+        duration="157" />
     <task
         name="verifier"
-        duration="19" />
+        duration="10" />
 
     <artifact
-        location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+        location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
         type="SPLIT" />
 
     <build
         build-mode="FULL"
-        timestamp="1495398226584"
+        timestamp="1496278671497"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
@@ -73,7 +70,7 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1495399940964"
+        timestamp="1496279156123"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
@@ -81,33 +78,10 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1495401005743"
+        timestamp="1496279290050"
         verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
         <artifact
             location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\outputs\apk\app-debug.apk"
-            type="SPLIT_MAIN" />
-    </build>
-    <build
-        build-mode="COLD"
-        timestamp="1495401198508"
-        verifier="COLD_SWAP_REQUESTED" >
-        <artifact
-            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
     </build>
 

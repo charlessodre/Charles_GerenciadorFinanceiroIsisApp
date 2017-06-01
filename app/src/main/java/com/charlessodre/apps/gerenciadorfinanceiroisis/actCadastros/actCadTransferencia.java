@@ -184,13 +184,19 @@ public class actCadTransferencia extends actBaseCadastros implements frgConfirma
 
         boolean retorno = true;
 
+        if(this.spnContaOrigem.getCount() < 1)
+        {
+            MessageBoxHelper.show(this,"", this.getString(R.string.msg_cadastrar_conta));
+            retorno = false;
+        }
+
         if (StringUtils.isNullOrEmpty(this.edtDataTransferencia.getText().toString())) {
             this.edtDataTransferencia.setError(this.getString(R.string.msg_preenchimento_obrigatorio));
 
             retorno = false;
         }
 
-        if (this.textWatcher.getValueWithoutMask() < 1) {
+        if (this.textWatcher.getValueWithoutMask() <= 0) {
             this.edtValorTransferencia.setError(this.getString(R.string.msg_valor_maior_zero));
 
             retorno = false;

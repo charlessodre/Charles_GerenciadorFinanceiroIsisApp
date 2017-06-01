@@ -114,7 +114,7 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
 
         if (id == android.R.id.home) {
             this.finish();
-        }else if (id == R.id.menu_movimentos) {
+        } else if (id == R.id.menu_movimentos) {
 
             Intent it = new Intent(this, actMovimentos.class);
             it.putExtra(actMovimentos.PARAM_CONTA, this.conta);
@@ -155,11 +155,9 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-
         RepositorioConta repositorioConta = new RepositorioConta(this);
         this.conta = repositorioConta.get(this.conta.getId());
         this.preencheCampos();
-
 
     }
 
@@ -193,8 +191,8 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
         this.btnDireita.setOnClickListener(this);
         this.btnEsquerda.setOnClickListener(this);
 
-        this.linearLayoutConta = (LinearLayout)findViewById(R.id.LinearLayoutConta);
-        this.lnlfragBarraNavegacaoConta = (LinearLayout)findViewById(R.id.lnlfragBarraNavegacaoConta);
+        this.linearLayoutConta = (LinearLayout) findViewById(R.id.LinearLayoutConta);
+        this.lnlfragBarraNavegacaoConta = (LinearLayout) findViewById(R.id.lnlfragBarraNavegacaoConta);
         this.lblSaldoValor = (TextView) findViewById(R.id.lblSaldoValor);
 
         this.btnEditarConta = (FloatingActionButton) findViewById(R.id.btnEditarConta);
@@ -204,7 +202,6 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
         this.repositorioDespesa = new RepositorioDespesa(this);
         this.repositorioReceita = new RepositorioReceita(this);
         this.repositorioTransferencia = new RepositorioTransferencia(this);
-
 
 
     }
@@ -217,82 +214,83 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
 
     private void preencheCampos() {
 
-        super.setMenuHome(this.conta.getNome());
-        super.setColorStatusBar( this.conta.getNoCor());
-        super.setColorActionBar( this.conta.getNoCor());
-        this.linearLayoutConta.setBackgroundColor( ColorHelper.getColor(this, this.conta.getNoCor()));
-        this.lnlfragBarraNavegacaoConta.setBackgroundColor( ColorHelper.getColor(this, this.conta.getNoCor()));
+        if(this.conta != null) {
+
+            super.setMenuHome(this.conta.getNome());
+            super.setColorStatusBar(this.conta.getNoCor());
+            super.setColorActionBar(this.conta.getNoCor());
+            this.linearLayoutConta.setBackgroundColor(ColorHelper.getColor(this, this.conta.getNoCor()));
+            this.lnlfragBarraNavegacaoConta.setBackgroundColor(ColorHelper.getColor(this, this.conta.getNoCor()));
 
 
-        int receitasQtdTotal = 0;
-        int receitasQtdConfirmadas = 0;
+            int receitasQtdTotal = 0;
+            int receitasQtdConfirmadas = 0;
 
-        Double receitaValorTotal = 0.0;
-        Double receitaValorConfirmadas = 0.0;
+            Double receitaValorTotal = 0.0;
+            Double receitaValorConfirmadas = 0.0;
 
-        int despesasQtdTotal = 0;
-        int despesasQtdConfirmadas = 0;
+            int despesasQtdTotal = 0;
+            int despesasQtdConfirmadas = 0;
 
-        Double despesasValorTotal = 0.0;
-        Double despesasValorConfirmadas = 0.0;
+            Double despesasValorTotal = 0.0;
+            Double despesasValorConfirmadas = 0.0;
 
-        int transferenciaQtdTotal = 0;
-        Double transferenciaValorTotal = 0.0;
+            int transferenciaQtdTotal = 0;
+            Double transferenciaValorTotal = 0.0;
 
-        int transferenciaEntradaQtd = 0;
-        Double transferenciaEntradaValor = 0.0;
+            int transferenciaEntradaQtd = 0;
+            Double transferenciaEntradaValor = 0.0;
 
-        int transferenciaSaidaQtd = 0;
-        Double transferenciaSaidaValor = 0.0;
+            int transferenciaSaidaQtd = 0;
+            Double transferenciaSaidaValor = 0.0;
 
-        String symbol = NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol();
+            String symbol = NumberFormat.getCurrencyInstance(Locale.getDefault()).getCurrency().getSymbol();
 
-        despesasQtdTotal = this.repositorioDespesa.getQtdDespesaContaMes(this.conta.getId(), super.getAnoMes(), false);
-        despesasValorTotal = this.repositorioDespesa.getValorTotalDespesasContaMes(this.conta.getId(), super.getAnoMes(), false);
+            despesasQtdTotal = this.repositorioDespesa.getQtdDespesaContaMes(this.conta.getId(), super.getAnoMes(), false);
+            despesasValorTotal = this.repositorioDespesa.getValorTotalDespesasContaMes(this.conta.getId(), super.getAnoMes(), false);
 
-        despesasQtdConfirmadas = this.repositorioDespesa.getQtdDespesaContaMes(this.conta.getId(), super.getAnoMes(), true);
-        despesasValorConfirmadas = this.repositorioDespesa.getValorTotalDespesasContaMes(this.conta.getId(), super.getAnoMes(), true);
+            despesasQtdConfirmadas = this.repositorioDespesa.getQtdDespesaContaMes(this.conta.getId(), super.getAnoMes(), true);
+            despesasValorConfirmadas = this.repositorioDespesa.getValorTotalDespesasContaMes(this.conta.getId(), super.getAnoMes(), true);
 
-        receitasQtdTotal = this.repositorioReceita.getQtdReceitaContaMes(this.conta.getId(), super.getAnoMes(), false);
-        receitaValorTotal = this.repositorioReceita.getValorTotalRecebidoContaMes(this.conta.getId(), super.getAnoMes(), false);
+            receitasQtdTotal = this.repositorioReceita.getQtdReceitaContaMes(this.conta.getId(), super.getAnoMes(), false);
+            receitaValorTotal = this.repositorioReceita.getValorTotalRecebidoContaMes(this.conta.getId(), super.getAnoMes(), false);
 
-        receitasQtdConfirmadas = this.repositorioReceita.getQtdReceitaContaMes(this.conta.getId(), super.getAnoMes(), true);
-        receitaValorConfirmadas = this.repositorioReceita.getValorTotalRecebidoContaMes(this.conta.getId(), super.getAnoMes(), true);
+            receitasQtdConfirmadas = this.repositorioReceita.getQtdReceitaContaMes(this.conta.getId(), super.getAnoMes(), true);
+            receitaValorConfirmadas = this.repositorioReceita.getValorTotalRecebidoContaMes(this.conta.getId(), super.getAnoMes(), true);
 
-        transferenciaEntradaQtd = this.repositorioTransferencia.getQtdTransferenciaEntradaContaMes(this.conta.getId(), super.getAnoMes());
-        transferenciaSaidaQtd = this.repositorioTransferencia.getQtdTransferenciaSaidaContaMes(this.conta.getId(), super.getAnoMes());
+            transferenciaEntradaQtd = this.repositorioTransferencia.getQtdTransferenciaEntradaContaMes(this.conta.getId(), super.getAnoMes());
+            transferenciaSaidaQtd = this.repositorioTransferencia.getQtdTransferenciaSaidaContaMes(this.conta.getId(), super.getAnoMes());
 
-        //transferenciaQtdTotal = transferenciaEntradaQtd + transferenciaSaidaQtd;
+            //transferenciaQtdTotal = transferenciaEntradaQtd + transferenciaSaidaQtd;
 
-        transferenciaSaidaValor = this.repositorioTransferencia.getValorTransferenciaSaidaContaMes(this.conta.getId(), super.getAnoMes());
-        transferenciaEntradaValor = this.repositorioTransferencia.getValorTransferenciaEntradaContaMes(this.conta.getId(), super.getAnoMes());
+            transferenciaSaidaValor = this.repositorioTransferencia.getValorTransferenciaSaidaContaMes(this.conta.getId(), super.getAnoMes());
+            transferenciaEntradaValor = this.repositorioTransferencia.getValorTransferenciaEntradaContaMes(this.conta.getId(), super.getAnoMes());
 
-        //  transferenciaValorTotal = transferenciaEntradaValor + transferenciaSaidaValor;
+            //  transferenciaValorTotal = transferenciaEntradaValor + transferenciaSaidaValor;
 
-        this.lblSaldoValor.setText(symbol + " " + NumberUtis.getFormartCurrency(this.conta.getValorSaldo()));
+            this.lblSaldoValor.setText(symbol + " " + NumberUtis.getFormartCurrency(this.conta.getValorSaldo()));
 
-        this.imgTipoConta.setImageResource(Conta.getImagemTipoConta(conta.getCdTipoConta()));
-        this.lblTipoConta.setText(Conta.getTipoContas(this).get(this.conta.getCdTipoConta()));
+            this.imgTipoConta.setImageResource(Conta.getImagemTipoConta(conta.getCdTipoConta()));
+            this.lblTipoConta.setText(Conta.getTipoContas(this).get(this.conta.getCdTipoConta()));
 
-        this.lblReceitasQtdTotal.setText(String.valueOf(receitasQtdTotal));
-        this.lblReceitasQtdConfirmadas.setText(String.valueOf(receitasQtdConfirmadas));
-        this.lblReceitasValorTotal.setText(symbol + " " + NumberUtis.getFormartCurrency(receitaValorTotal));
+            this.lblReceitasQtdTotal.setText(String.valueOf(receitasQtdTotal));
+            this.lblReceitasQtdConfirmadas.setText(String.valueOf(receitasQtdConfirmadas));
+            this.lblReceitasValorTotal.setText(symbol + " " + NumberUtis.getFormartCurrency(receitaValorTotal));
 
-        this.lblReceitaValorConfirmadas.setText(symbol + " " + NumberUtis.getFormartCurrency(receitaValorConfirmadas));
+            this.lblReceitaValorConfirmadas.setText(symbol + " " + NumberUtis.getFormartCurrency(receitaValorConfirmadas));
 
-        this.lblDespesasQtdTotal.setText(String.valueOf(despesasQtdTotal));
-        this.lblDespesasValorTotal.setText(symbol + " " + NumberUtis.getFormartCurrency(despesasValorTotal));
-        this.lblDespesasQtdConfirmadas.setText(String.valueOf(despesasQtdConfirmadas));
-        this.lblDespesasValorConfirmadas.setText(symbol + " " + NumberUtis.getFormartCurrency(despesasValorConfirmadas));
+            this.lblDespesasQtdTotal.setText(String.valueOf(despesasQtdTotal));
+            this.lblDespesasValorTotal.setText(symbol + " " + NumberUtis.getFormartCurrency(despesasValorTotal));
+            this.lblDespesasQtdConfirmadas.setText(String.valueOf(despesasQtdConfirmadas));
+            this.lblDespesasValorConfirmadas.setText(symbol + " " + NumberUtis.getFormartCurrency(despesasValorConfirmadas));
 
-        this.lblTransferenciasEntradaQtd.setText(String.valueOf(transferenciaEntradaQtd));
-        this.lblTransferenciasSaidaQtd.setText(String.valueOf(transferenciaSaidaQtd));
+            this.lblTransferenciasEntradaQtd.setText(String.valueOf(transferenciaEntradaQtd));
+            this.lblTransferenciasSaidaQtd.setText(String.valueOf(transferenciaSaidaQtd));
 
-        this.lblTransferenciasValorEntrada.setText(symbol + " " + NumberUtis.getFormartCurrency(transferenciaEntradaValor));
-        this.lblTransferenciasValorSaida.setText(symbol + " " + NumberUtis.getFormartCurrency(transferenciaSaidaValor));
+            this.lblTransferenciasValorEntrada.setText(symbol + " " + NumberUtis.getFormartCurrency(transferenciaEntradaValor));
+            this.lblTransferenciasValorSaida.setText(symbol + " " + NumberUtis.getFormartCurrency(transferenciaSaidaValor));
 
-
-
+        }
     }
 
     private void getParametrosRecebidos() {
@@ -301,16 +299,14 @@ public class actResumoConta extends actBaseListas implements View.OnClickListene
 
         if ((bundle != null) && (bundle.containsKey(PARAM_CONTA))) {
             this.conta = (Conta) bundle.getSerializable(PARAM_CONTA);
-
         } else {
-
             this.conta = new Conta();
+            this.conta.setNoCorIcone(ColorHelper.getColor(this, R.color.blue_500));
+            this.conta.setNoCor(ColorHelper.getColor(this, R.color.blue_500));
         }
 
         if ((bundle != null) && (bundle.containsKey(PARAM_CONTA_ANO_MES))) {
-
             this.addMes = bundle.getInt(PARAM_CONTA_ANO_MES);
-
         } else {
             this.addMes = DateUtils.getCurrentYearAndMonth();
         }

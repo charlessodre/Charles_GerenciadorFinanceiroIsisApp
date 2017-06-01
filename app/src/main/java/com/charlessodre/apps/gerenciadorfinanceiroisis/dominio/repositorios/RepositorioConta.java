@@ -423,7 +423,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
 
         String where = Conta.ID + "=" + id;
 
-        Conta conta = new Conta();
+        Conta conta = null;
 
         try {
 

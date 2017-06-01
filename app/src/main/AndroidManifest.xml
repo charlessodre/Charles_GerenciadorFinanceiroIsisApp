@@ -94,6 +94,12 @@
         <activity android:name=".actCadastros.actCadCartaoCredito"></activity>
 
         <activity android:name=".actCadastros.actCadDespesaCartaoCredito" />
+
+        <activity
+            android:name=".actConsultas.actDespesaCartaoCredito"
+            android:label="@string/title_despesas_cartao_credito"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>
