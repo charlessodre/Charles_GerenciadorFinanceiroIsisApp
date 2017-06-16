@@ -48,7 +48,7 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
         return values;
     }
 
-    private ArrayList<SubCategoriaDespesa> preencheObjeto(SQLiteDatabase transaction,Cursor cursor) {
+    private ArrayList<SubCategoriaDespesa> preencheObjeto(SQLiteDatabase transaction, Cursor cursor) {
         ArrayList<SubCategoriaDespesa> arrayList = new ArrayList<SubCategoriaDespesa>();
 
         if (cursor.getCount() > 0) {
@@ -84,7 +84,7 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
             super.openConnectionWrite();
             return super.update(preencheContentValues(item), item.getId());
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_sub_categoria_despesa));
         } finally {
             super.closeConnection();
         }
@@ -96,7 +96,7 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
             super.openConnectionWrite();
             return super.insert(preencheContentValues(item));
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_sub_categoria_despesa));
         } finally {
             super.closeConnection();
         }
@@ -109,7 +109,7 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
 
             return super.delete(item.getId());
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_sub_categoria_despesa));
         } finally {
             super.closeConnection();
         }
@@ -120,38 +120,50 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
         return null;
     }
 
-    public ArrayList<SubCategoriaDespesa> buscaTodos() {
+    public ArrayList<SubCategoriaDespesa> getAll() {
+        Cursor cursor = null;
         try {
 
             super.openConnectionWrite();
 
-            Cursor cursor = super.selectAll(SubCategoriaDespesa.NO_ORDEM_EXIBICAO + " , " + SubCategoriaDespesa.NM_SUB_CATEGORIA);
+            cursor = super.selectAll(SubCategoriaDespesa.NO_ORDEM_EXIBICAO + " , " + SubCategoriaDespesa.NM_SUB_CATEGORIA);
 
-            return this.preencheObjeto(super.getTransaction(),cursor);
+            return this.preencheObjeto(super.getTransaction(), cursor);
 
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_sub_categoria_despesa));
         } finally {
+            if (cursor != null)
+                cursor.close();
+
+
             super.closeConnection();
         }
     }
 
     public ArrayList<SubCategoriaDespesa> buscaPorIdCategoriaDespesa(Long idCategoriaDespesa) {
+
+        Cursor cursor = null;
+
         try {
 
             super.openConnectionRead();
 
             String where = SubCategoriaDespesa.ID_CATEGORIA_DESPESA + "=" + idCategoriaDespesa;
 
-            Cursor cursor = super.select(super.getTransaction(), where,SubCategoriaDespesa.NO_ORDEM_EXIBICAO + " , " + SubCategoriaDespesa.NM_SUB_CATEGORIA);
+            cursor = super.select(super.getTransaction(), where, SubCategoriaDespesa.NO_ORDEM_EXIBICAO + " , " + SubCategoriaDespesa.NM_SUB_CATEGORIA);
 
-            return this.preencheObjeto(super.getTransaction(),cursor);
+            return this.preencheObjeto(super.getTransaction(), cursor);
 
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_sub_categoria_despesa));
         } finally {
+
+            if (cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
@@ -168,12 +180,13 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
         sql.append(SubCategoriaDespesa.TABELA_NOME);
         sql.append(" WHERE " + SubCategoriaDespesa.ID_CATEGORIA_DESPESA);
         sql.append(" = ?");
+        Cursor cursor = null;
 
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -187,8 +200,11 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
             return qtdSubCategoriasDespesas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_sub_categoria_despesa));
         } finally {
+            if (cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
 
@@ -212,7 +228,7 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
             return 1;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_receita));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_sub_categoria_despesa));
         }
     }
 
@@ -223,15 +239,15 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
 
             RepositorioDespesa repositorioDespesa = new RepositorioDespesa(super.getContext());
 
-            repositorioDespesa.excluiDespesasSubCategoria(super.getTransaction(),item.getId());
+            repositorioDespesa.excluiDespesasSubCategoria(super.getTransaction(), item.getId());
 
-            super.delete(super.getTransaction(),item.getId());
+            super.delete(super.getTransaction(), item.getId());
 
             super.setTransactionSuccessful();
             return 1;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_sub_categoria_despesa));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -242,11 +258,11 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
         String where = SubCategoriaDespesa.ID + "=" + id;
 
         SubCategoriaDespesa subCategoriaDespesa = new SubCategoriaDespesa();
-
+        Cursor cursor = null;
         try {
 
 
-            Cursor cursor = super.select(transaction, where);
+            cursor = super.select(transaction, where);
 
             ArrayList<SubCategoriaDespesa> arrayList = this.preencheObjeto(transaction, cursor);
 
@@ -256,7 +272,12 @@ public class RepositorioSubCategoriaDespesa extends RepositorioBase implements I
             return subCategoriaDespesa;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_sub_categoria_despesa));
+        } finally {
+
+            if (cursor != null)
+                cursor.close();
+
         }
     }
 

@@ -15,7 +15,6 @@ import android.widget.ListView;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadCategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterCategoriaDespesa;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.ImageHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCategoriaDespesa;
 
@@ -116,7 +115,7 @@ public class actCategoriaDespesa extends actBaseListas implements AdapterView.On
 
         this.adpCategoriaDespesa = new AdapterCategoriaDespesa(this, R.layout.item_categoria);
 
-        adpCategoriaDespesa.addAll(repositorioCategoriaDespesa.buscaTodos());
+        adpCategoriaDespesa.addAll(repositorioCategoriaDespesa.getAll());
 
         this.lstCategorias.setAdapter(this.adpCategoriaDespesa);
 

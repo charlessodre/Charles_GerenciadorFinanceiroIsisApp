@@ -90,7 +90,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
     }
 
     public double getValorTotal(boolean somenteExibeSoma) {
-        return getValorTotal(0,somenteExibeSoma);
+        return getValorTotal(0, somenteExibeSoma);
     }
 
     public double getValorTotal(int anoMes, boolean somenteExibeSoma) {
@@ -104,7 +104,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         sql.append(" WHERE ");
         sql.append(Conta.FL_ATIVO + " = 1");
 
-        if(anoMes > 0) {
+        if (anoMes > 0) {
 
             sql.append(" AND ");
             sql.append(Conta.NO_AM_CONTA);
@@ -113,17 +113,16 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         }
 
 
-
-        if(somenteExibeSoma)
-          sql.append(" AND " + Conta.FL_EXIBIR_SOMA + " = 1");
+        if (somenteExibeSoma)
+            sql.append(" AND " + Conta.FL_EXIBIR_SOMA + " = 1");
 
         double valorTotal = 0;
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
+            cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -136,15 +135,18 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
             return valorTotal;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_conta));
         } finally {
+            if (cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
 
     public double getSaldoAtual(int anoMes, boolean somenteExibeSoma) {
 
-        return getSaldoAtual(0, anoMes,somenteExibeSoma);
+        return getSaldoAtual(0, anoMes, somenteExibeSoma);
 
     }
 
@@ -161,7 +163,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         sql.append(" <=  ");
         sql.append(anoMes);
 
-        if(idConta != 0) {
+        if (idConta != 0) {
             sql.append(" AND ");
             sql.append(Conta.ID);
             sql.append(" = ");
@@ -170,16 +172,16 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
 
         sql.append(" AND " + Conta.FL_ATIVO + " = 1");
 
-        if(somenteExibeSoma)
+        if (somenteExibeSoma)
             sql.append(" AND " + Conta.FL_EXIBIR_SOMA + " = 1");
 
         double valorTotal = 0;
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
+            cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -192,26 +194,34 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
             return valorTotal;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_conta));
         } finally {
+
+            if (cursor != null)
+                cursor.close();
             super.closeConnection();
         }
     }
 
 
-    public ArrayList<Conta> buscaTodos() {
+    public ArrayList<Conta> getAll() {
+
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectAll(Conta.NO_ORDEM_EXIBICAO + " , " + Conta.NM_CONTA);
+            cursor = super.selectAll(Conta.NO_ORDEM_EXIBICAO + " , " + Conta.NM_CONTA);
 
             return this.preencheObjeto(cursor);
 
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_conta));
         } finally {
+            if (cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
@@ -222,57 +232,60 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         return getSaldoContaAnoMes(0, anoMes);
     }
 
-    public ArrayList<Conta> getSaldoContaAnoMes(long idConta,int anoMes) {
+    public ArrayList<Conta> getSaldoContaAnoMes(long idConta, int anoMes) {
 
         StringBuilder sql = new StringBuilder();
 
         sql.append("SELECT ");
-        sql.append(" C._id," );
-        sql.append(" C.NM_CONTA," );
-        sql.append(" C.FL_ATIVO," );
-        sql.append(" C.DT_INCLUSAO," );
-        sql.append(" C.DT_ALTERACAO," );
-        sql.append(" C.FL_EXIBIR," );
-        sql.append(" C.FL_EXIBIR_SOMA," );
-        sql.append(" C.CD_TIPO_CONTA," );
-        sql.append(" C.NO_AM_CONTA, " );
-        sql.append(" C.NO_ORDEM_EXIBICAO," );
-        sql.append(" C.NO_COR," );
-        sql.append(" C.NO_COR_ICONE," );
-        sql.append(" C.VL_SALDO, " );
+        sql.append(" C._id,");
+        sql.append(" C.NM_CONTA,");
+        sql.append(" C.FL_ATIVO,");
+        sql.append(" C.DT_INCLUSAO,");
+        sql.append(" C.DT_ALTERACAO,");
+        sql.append(" C.FL_EXIBIR,");
+        sql.append(" C.FL_EXIBIR_SOMA,");
+        sql.append(" C.CD_TIPO_CONTA,");
+        sql.append(" C.NO_AM_CONTA, ");
+        sql.append(" C.NO_ORDEM_EXIBICAO,");
+        sql.append(" C.NO_COR,");
+        sql.append(" C.NO_COR_ICONE,");
+        sql.append(" C.VL_SALDO, ");
         sql.append(" (SELECT SUM(R.VL_RECEITA) AS VL_RECEITA FROM ");
         sql.append(Receita.TABELA_NOME);
         sql.append("  as R where R.NO_AM_RECEITA <= ");
         sql.append(anoMes);
         sql.append(" AND R.FL_RECEITA_PAGA=0 AND C._id=R.ID_CONTA)AS ");
-        sql.append(Conta.RECEITAS_PREVISTAS );
+        sql.append(Conta.RECEITAS_PREVISTAS);
         sql.append(" , ");
         sql.append(" (SELECT SUM(D.VL_DESPESA) AS VL_DESPESA FROM ");
         sql.append(Despesa.TABELA_NOME);
         sql.append(" as D where D.NO_AM_DESPESA <= ");
         sql.append(anoMes);
-        sql.append(" AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS " );
+        sql.append(" AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS ");
         sql.append(Conta.DESPESAS_PREVISTAS);
         sql.append(" FROM ");
         sql.append(Conta.TABELA_NOME);
         sql.append(" C ");
 
-        if(idConta != 0)
+        if (idConta != 0)
             sql.append(" WHERE  C._id = " + idConta);
 
         sql.append(" ORDER BY C.NO_ORDEM_EXIBICAO, C.NM_CONTA");
 
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), null);
+            cursor = super.selectCustomQuery(sql.toString(), null);
 
             return this.preencheObjeto(cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_conta));
         } finally {
+            if (cursor != null)
+                cursor.close();
             super.closeConnection();
         }
     }
@@ -285,7 +298,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
             return super.update(preencheContentValues(item), item.getId());
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_conta));
         } finally {
             super.closeConnection();
         }
@@ -302,9 +315,10 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         String where = Conta.ID + "=" + id;
 
         Conta conta = new Conta();
+        Cursor cursor = null;
 
         try {
-            Cursor cursor = super.select(transaction, where);
+            cursor = super.select(transaction, where);
 
             ArrayList<Conta> arrayList = this.preencheObjeto(cursor);
 
@@ -315,6 +329,11 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
 
         } catch (SQLException ex) {
             throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_conta));
+        } finally {
+
+            if (cursor != null)
+                cursor.close();
+
         }
 
 
@@ -322,7 +341,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
 
     public void setValorEntradaConta(SQLiteDatabase transaction, long idConta, double valorEntrada) {
 
-        if(valorEntrada> 0) {
+        if (valorEntrada > 0) {
             Conta contaSaldo = this.get(transaction, idConta);
 
             contaSaldo.setDataAlteracao(DateUtils.getCurrentDatetime());
@@ -339,7 +358,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
 
     public void setValorSaidaConta(SQLiteDatabase transaction, long idConta, double valorSaida) {
 
-        if(valorSaida>0) {
+        if (valorSaida > 0) {
             Conta contaSaldo = this.get(transaction, idConta);
 
             contaSaldo.setDataAlteracao(DateUtils.getCurrentDatetime());
@@ -378,7 +397,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
             super.setTransactionSuccessful();
             return 1;
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_conta));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -393,7 +412,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
             return super.insert(preencheContentValues(item));
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_conta));
         } finally {
             super.closeConnection();
         }
@@ -411,7 +430,7 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
             super.setTransactionSuccessful();
             return 1;
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_conta));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -424,12 +443,12 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
         String where = Conta.ID + "=" + id;
 
         Conta conta = null;
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.select(where);
+            cursor = super.select(where);
 
             ArrayList<Conta> arrayList = this.preencheObjeto(cursor);
 
@@ -439,8 +458,10 @@ public class RepositorioConta extends RepositorioBase implements IRepositorio<Co
             return conta;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_conta));
         } finally {
+            if (cursor != null)
+                cursor.close();
             super.closeConnection();
         }
     }

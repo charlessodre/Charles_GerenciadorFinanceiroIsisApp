@@ -164,7 +164,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             return linhas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_despesa));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -248,7 +248,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             return id;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_despesa));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -267,7 +267,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
             RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
 
-            if(item.isPaga())
+            if (item.isPaga())
                 repositorioConta.setValorEntradaConta(super.getTransaction(), item.getConta().getId(), item.getValor());
 
             super.delete(super.getTransaction(), item.getId());
@@ -277,7 +277,7 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             return 1;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -290,12 +290,12 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         String where = Despesa.ID + "=" + id;
 
         Despesa despesa = new Despesa();
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.select(where);
+            cursor = super.select(where);
 
             ArrayList<Despesa> arrayList = this.preencheObjeto(super.getTransaction(), cursor);
 
@@ -305,26 +305,34 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             return despesa;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_receita));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
         } finally {
+            if (cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
 
     //Consultas
 
-    public ArrayList<Despesa> buscaTodos() {
+    public ArrayList<Despesa> getAll() {
+
+        Cursor cursor = null;
         try {
 
             super.openConnectionWrite();
 
-            Cursor cursor = super.selectAll(Despesa.DT_DESPESA + "," + Despesa.ID);
+            cursor = super.selectAll(Despesa.DT_DESPESA + "," + Despesa.ID);
 
             return this.preencheObjeto(super.getTransaction(), cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
         } finally {
+            if (cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
@@ -332,18 +340,21 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
     public ArrayList<Despesa> buscaPorAnoMes(int anoMes) {
 
         String where = Despesa.NO_AM_DESPESA + " =  " + anoMes;
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.select(where, Despesa.DT_DESPESA + "," + Despesa.ID);
+            cursor = super.select(where, Despesa.DT_DESPESA + "," + Despesa.ID);
 
             return this.preencheObjeto(super.getTransaction(), cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
         } finally {
+            if (cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
@@ -358,17 +369,23 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         where.append(Despesa.NO_AM_DESPESA);
         where.append(" =  " + anoMes);
 
+        Cursor cursor = null;
+
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.select(where.toString(), Despesa.DT_DESPESA + "," + Despesa.ID);
+            cursor = super.select(where.toString(), Despesa.DT_DESPESA + "," + Despesa.ID);
 
             return this.preencheObjeto(super.getTransaction(), cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
         } finally {
+            if (cursor != null)
+                cursor.close();
+
+
             super.closeConnection();
         }
     }
@@ -391,9 +408,22 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             where.append(" OR " + Despesa.ID + " = " + idPai + " )");
         }
 
-        Cursor cursor = super.select(where.toString(), Despesa.ID);
+        Cursor cursor = null;
+        ArrayList<Despesa> listaDespesas = null;
 
-        return this.preencheObjeto(transaction, cursor);
+        try {
+
+            cursor = super.select(where.toString(), Despesa.ID);
+
+            listaDespesas = this.preencheObjeto(transaction, cursor);
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+
+        return listaDespesas;
 
     }
 
@@ -403,9 +433,21 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
         where.append(Despesa.ID_CATEGORIA_DESPESA + " = " + idCategoriaDespesa);
 
-        Cursor cursor = super.select(transaction, where.toString(), Despesa.DT_DESPESA + "," + Despesa.ID);
+        Cursor cursor = null;
+        ArrayList<Despesa> listaDespesas = null;
 
-        return this.preencheObjeto(transaction, cursor);
+        try {
+
+            cursor = super.select(transaction, where.toString(), Despesa.DT_DESPESA + "," + Despesa.ID);
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+
+        return listaDespesas;
     }
 
     public ArrayList<Despesa> buscaDespesasSubCategoria(SQLiteDatabase transaction, long idSubCategoriaDespesa) {
@@ -414,20 +456,34 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
         where.append(Despesa.ID_SUB_CATEGORIA_DESPESA + " = " + idSubCategoriaDespesa);
 
-        Cursor cursor = super.select(transaction, where.toString(), Despesa.DT_DESPESA + "," + Despesa.ID);
+        Cursor cursor = null;
+        ArrayList<Despesa> listaDespesas = null;
 
-        return this.preencheObjeto(transaction, cursor);
+        try {
+
+            cursor = super.select(transaction, where.toString(), Despesa.DT_DESPESA + "," + Despesa.ID);
+
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
+        } finally {
+            if (cursor != null)
+                cursor.close();
+        }
+
+        return listaDespesas;
+
     }
 
     public Despesa get(SQLiteDatabase transaction, Long id) {
         String where = Despesa.ID + "=" + id;
 
         Despesa despesa = new Despesa();
-
+        Cursor cursor = null;
         try {
 
 
-            Cursor cursor = super.select(transaction, where);
+            cursor = super.select(transaction, where);
 
             ArrayList<Despesa> arrayList = this.preencheObjeto(transaction, cursor);
 
@@ -438,6 +494,11 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
 
         } catch (SQLException ex) {
             throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
+        } finally {
+
+            if (cursor != null)
+                cursor.close();
+
         }
     }
 
@@ -461,12 +522,12 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             sql.append(Despesa.FL_DESPESA_PAGA + " = 1");
         }
         double valorTotal = 0;
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
+            cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -479,8 +540,12 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             return valorTotal;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
         } finally {
+
+            if (cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
@@ -505,12 +570,12 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             sql.append(Despesa.FL_DESPESA_PAGA + " = 1");
         }
         double valorTotal = 0;
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
+            cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -523,8 +588,13 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             return valorTotal;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
         } finally {
+
+            if (cursor != null)
+                cursor.close();
+
+
             super.closeConnection();
         }
     }
@@ -542,12 +612,12 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         sql.append(" WHERE " + Despesa.ID_CONTA);
         sql.append(" = ?");
 
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -562,8 +632,12 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             return qtdDespesas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
         } finally {
+
+            if(cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
 
@@ -590,11 +664,13 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             sql.append(Despesa.FL_DESPESA_PAGA + " = 1");
         }
 
+        Cursor cursor = null;
+
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -609,8 +685,13 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             return qtdDespesas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
         } finally {
+
+
+            if(cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
 
@@ -628,12 +709,12 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         sql.append(Despesa.TABELA_NOME);
         sql.append(" WHERE " + Despesa.ID_CATEGORIA_DESPESA);
         sql.append(" = ?");
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -647,8 +728,12 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             return qtdDespesas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
         } finally {
+
+            if(cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
 
@@ -666,12 +751,13 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
         sql.append(Despesa.TABELA_NOME);
         sql.append(" WHERE " + Despesa.ID_SUB_CATEGORIA_DESPESA);
         sql.append(" = ?");
+        Cursor cursor = null;
 
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -685,8 +771,10 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             return qtdDespesas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
         } finally {
+            if(cursor != null)
+                cursor.close();
             super.closeConnection();
         }
 
@@ -939,7 +1027,6 @@ public class RepositorioDespesa extends RepositorioBase implements IRepositorio<
             throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa));
         }
     }
-
 
 
 }

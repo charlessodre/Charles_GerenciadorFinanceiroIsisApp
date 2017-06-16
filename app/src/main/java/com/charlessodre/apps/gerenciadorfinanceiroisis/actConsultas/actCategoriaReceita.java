@@ -15,7 +15,6 @@ import android.widget.ListView;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadCategoriaReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterCategoriaReceita;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.ImageHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CategoriaReceita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCategoriaReceita;
 
@@ -115,7 +114,7 @@ public class actCategoriaReceita extends actBaseListas  implements AdapterView.O
 
         this.adpCategoriaReceita = new AdapterCategoriaReceita(this, R.layout.item_categoria);
 
-        adpCategoriaReceita.addAll(repositorioCategoriaReceita.buscaTodos());
+        adpCategoriaReceita.addAll(repositorioCategoriaReceita.getAll());
 
         this.lstCategorias.setAdapter(this.adpCategoriaReceita);
 

@@ -33,7 +33,7 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
             super.openConnectionWrite();
             return super.update(preencheContentValues(item), item.getId());
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_regra_impor));
         } finally {
             super.closeConnection();
         }
@@ -46,7 +46,7 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
             super.openConnectionWrite();
             return super.insert(preencheContentValues(item));
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_regra_impor));
         } finally {
             super.closeConnection();
         }
@@ -58,7 +58,7 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
             super.openConnectionWrite();
             return super.delete(item.getId());
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_regra_impor));
         } finally {
             super.closeConnection();
         }
@@ -152,18 +152,24 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
 
     }
 
-    public ArrayList<RegraImportacaoSMS> buscaTodos() {
+    public ArrayList<RegraImportacaoSMS> getAll() {
+
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectAll(RegraImportacaoSMS.NO_TELEFONE + " , " + RegraImportacaoSMS.NM_REGRA_IMPORTACAO);
+            cursor = super.selectAll(RegraImportacaoSMS.NO_TELEFONE + " , " + RegraImportacaoSMS.NM_REGRA_IMPORTACAO);
 
             return this.preencheObjeto(super.getTransaction(),cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_regra_impor));
         } finally {
+
+            if(cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
@@ -172,11 +178,11 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
         String where = RegraImportacaoSMS.ID + "=" + id;
 
         RegraImportacaoSMS regraImportacaoSMS = new RegraImportacaoSMS();
-
+        Cursor cursor = null;
         try {
 
 
-            Cursor cursor = super.select(transaction, where);
+            cursor = super.select(transaction, where);
 
             ArrayList<RegraImportacaoSMS> arrayList = this.preencheObjeto(transaction, cursor);
 
@@ -186,7 +192,12 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
             return regraImportacaoSMS;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_regra_impor));
+        }finally {
+
+            if(cursor != null)
+                cursor.close();
+
         }
     }
 

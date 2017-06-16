@@ -134,7 +134,7 @@ public class actRegraImportacaoSMS extends actBaseListas implements AdapterView.
     private void atualizaListView() {
 
         this.adpRegraImpSMS.clear();
-        this.adpRegraImpSMS.addAll(this.repositorioRegraImpSMS.buscaTodos());
+        this.adpRegraImpSMS.addAll(this.repositorioRegraImpSMS.getAll());
 
         this.lstRegraImpSMS.setAdapter(this.adpRegraImpSMS);
 

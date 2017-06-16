@@ -165,6 +165,14 @@ public class DateUtils {
 
     }
 
+    public static int getDay(Date date) {
+
+        SimpleDateFormat day = new SimpleDateFormat("dd");
+
+        return Integer.parseInt(day.format(date.getTime()));
+
+    }
+
     public static String getWeekNameAndDay(Date date) {
 
         SimpleDateFormat yearMonth = new SimpleDateFormat("EEEE, dd");

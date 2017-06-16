@@ -143,8 +143,8 @@ public class actCadTransferencia extends actBaseCadastros implements frgConfirma
         this.adapterContaOrigem = new AdapterConta(this, R.layout.item_conta_simples);
         this.adapterContaDestino = new AdapterConta(this, R.layout.item_conta_simples);
 
-        this.adapterContaOrigem.addAll(repositorioConta.buscaTodos());
-        this.adapterContaDestino.addAll(repositorioConta.buscaTodos());
+        this.adapterContaOrigem.addAll(repositorioConta.getAll());
+        this.adapterContaDestino.addAll(repositorioConta.getAll());
 
         this.spnContaOrigem.setAdapter(this.adapterContaOrigem);
         this.spnContaDestino.setAdapter(this.adapterContaDestino);

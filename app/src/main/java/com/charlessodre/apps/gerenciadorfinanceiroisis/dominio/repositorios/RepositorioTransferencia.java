@@ -38,7 +38,7 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
             super.openConnectionWrite();
             return super.update(preencheContentValues(item), item.getId());
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_transferencia));
         } finally {
             super.closeConnection();
         }
@@ -64,7 +64,7 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
 
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_transferencia));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -90,7 +90,7 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
             return linhas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_tranferencia));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -157,16 +157,20 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
     }
 
     //Consultas
-    public ArrayList<Transferencia> buscaTodos() {
+    public ArrayList<Transferencia> getAll() {
+        Cursor cursor = null;
         try {
 
-            Cursor cursor = super.selectAll(Transferencia.DT_TRANSFERENCIA + "," + Transferencia.NO_ORDEM_EXIBICAO);
+            cursor = super.selectAll(Transferencia.DT_TRANSFERENCIA + "," + Transferencia.NO_ORDEM_EXIBICAO);
 
             return this.preencheObjeto(super.getTransaction(), cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_transferencia));
         } finally {
+            if(cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
@@ -176,33 +180,43 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
         StringBuilder where = new StringBuilder();
 
         where.append(Transferencia.ID_CONTA_ORIGEM + " = " + idConta);
-
+        Cursor cursor = null;
         try {
 
-            Cursor cursor = super.select(transaction, where.toString());
+             cursor = super.select(transaction, where.toString());
 
             return this.preencheObjeto(transaction, cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_transferencia));
+        }
+        finally {
+
+            if(cursor != null)
+                cursor.close();
+
         }
     }
 
     public ArrayList<Transferencia> buscaPorAnoMes(int anoMes) {
 
         String where = Transferencia.NO_AM_TRANSFERENCIA + " =  " + anoMes;
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.select(where, Transferencia.DT_TRANSFERENCIA);
+             cursor = super.select(where, Transferencia.DT_TRANSFERENCIA);
 
             return this.preencheObjeto(super.getTransaction(), cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_transferencia));
+        }
+        finally {
+            if(cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
@@ -222,18 +236,22 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
         where.append(Transferencia.NO_AM_TRANSFERENCIA);
         where.append(" =  " + anoMes);
 
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.select(where.toString(), Transferencia.DT_TRANSFERENCIA);
+            cursor = super.select(where.toString(), Transferencia.DT_TRANSFERENCIA);
 
             return this.preencheObjeto(super.getTransaction(), cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_transferencia));
         } finally {
+
+            if(cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
@@ -253,12 +271,12 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
         sql.append(" = ? OR  ");
         sql.append(Transferencia.ID_CONTA_DESTINO);
         sql.append(" = ?");
-
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -273,8 +291,13 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
             return qtdTransferencias;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_transferencia));
         } finally {
+
+            if(cursor != null)
+                cursor.close();
+
+
             super.closeConnection();
         }
 
@@ -296,11 +319,12 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
         sql.append(Transferencia.NO_AM_TRANSFERENCIA);
         sql.append(" = ?");
 
+        Cursor cursor = null;
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -315,8 +339,12 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
             return qtdTransferencias;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_transferencia));
         } finally {
+
+            if(cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
 
@@ -338,11 +366,13 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
         sql.append(Transferencia.NO_AM_TRANSFERENCIA);
         sql.append(" = ?");
 
+        Cursor cursor = null;
+
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -357,8 +387,12 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
             return qtdTransferencias;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_transferencia));
         } finally {
+
+            if(cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
 
@@ -382,11 +416,13 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
         sql.append(Transferencia.NO_AM_TRANSFERENCIA);
         sql.append(" = ?");
 
+        Cursor cursor = null;
+
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -401,8 +437,14 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
             return valorTotal;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_transferencia));
         } finally {
+
+
+            if(cursor != null)
+                cursor.close();
+
+
             super.closeConnection();
         }
 
@@ -426,11 +468,13 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
         sql.append(Transferencia.NO_AM_TRANSFERENCIA);
         sql.append(" = ?");
 
+        Cursor cursor = null;
+
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -445,8 +489,11 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
             return valorTotal;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_transferencia));
         } finally {
+            if(cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
 
@@ -471,7 +518,7 @@ public class RepositorioTransferencia extends RepositorioBase implements IReposi
             return 1;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_tranferencia));
         }
     }
 

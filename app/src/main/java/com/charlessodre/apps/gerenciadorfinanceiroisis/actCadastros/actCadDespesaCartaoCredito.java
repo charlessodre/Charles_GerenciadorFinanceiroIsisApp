@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -32,7 +31,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.Repo
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCategoriaDespesa;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioDespesaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioSubCategoriaDespesa;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioaFaturaCartaoCredito;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioFaturaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgConfirmacaoDialog;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgLancamentosDialog;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ActionBarHelper;
@@ -69,7 +68,7 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
     //Atributos
     private DespesaCartaoCredito despesaCartaoCredito;
     private RepositorioDespesaCartaoCredito repositorioDespesaCartaoCredito;
-    private RepositorioaFaturaCartaoCredito repositorioaFaturaCartaoCredito;
+    private RepositorioFaturaCartaoCredito repositorioFaturaCartaoCredito;
     private RepositorioSubCategoriaDespesa repositorioSubCategoriaDespesa;
     private DateListenerShow dataDespesaListenerShow;
     private AdapterCartaoCredito adapterCartaoCredito;
@@ -292,7 +291,7 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
     private void carregaSpinnerCartaoCredito() {
 
         RepositorioCartaoCredito repositorioCartaoCredito = new RepositorioCartaoCredito(this);
-        ArrayList<CartaoCredito> cartoes = repositorioCartaoCredito.buscaTodos();
+        ArrayList<CartaoCredito> cartoes = repositorioCartaoCredito.getAll();
 
         this.adapterCartaoCredito = new AdapterCartaoCredito(this, R.layout.item_cartao_credito_simples);
 
@@ -307,14 +306,14 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
 
     private void carregaSpinnerFatura(Long idCartaoCredito) {
 
-        if (this.repositorioaFaturaCartaoCredito == null)
-            this.repositorioaFaturaCartaoCredito = new RepositorioaFaturaCartaoCredito(this);
+        if (this.repositorioFaturaCartaoCredito == null)
+            this.repositorioFaturaCartaoCredito = new RepositorioFaturaCartaoCredito(this);
 
         this.adapterFaturaCartaoCredito = new AdapterFaturaCartaoCredito(this, R.layout.item_fatura_simples);
 
         int anoMes = DateUtils.getCurrentYearAndMonthAddMonth(-1);
 
-        this.adapterFaturaCartaoCredito.addAll(repositorioaFaturaCartaoCredito.getProximasFaturasCartaoCredito(idCartaoCredito, anoMes));
+        this.adapterFaturaCartaoCredito.addAll(repositorioFaturaCartaoCredito.getProximasFaturasCartaoCredito(idCartaoCredito, anoMes));
 
         this.spnFaturaCartaoCredito.setAdapter(this.adapterFaturaCartaoCredito);
     }
@@ -326,7 +325,7 @@ public class actCadDespesaCartaoCredito extends actBaseCadastros implements Comp
 
         this.adapterCategoriaDespesa = new AdapterCategoriaDespesa(this, R.layout.item_categoria);
 
-        this.adapterCategoriaDespesa.addAll(repositorioCategoriaDespesa.buscaTodos());
+        this.adapterCategoriaDespesa.addAll(repositorioCategoriaDespesa.getAll());
 
         this.spnCategoriaDespesa.setAdapter(this.adapterCategoriaDespesa);
     }

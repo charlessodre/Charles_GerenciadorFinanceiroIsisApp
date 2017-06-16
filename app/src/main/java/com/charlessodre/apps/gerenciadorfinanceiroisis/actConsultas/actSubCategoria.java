@@ -114,7 +114,7 @@ public class actSubCategoria extends actBaseListas implements AdapterView.OnItem
 
         this.adpSubCategoriaDespesa = new AdapterSubCategoriaDespesa(this, R.layout.item_image_view);
 
-        this.adpSubCategoriaDespesa.addAll(repositorioSubCategoriaDespesa.buscaTodos());
+        this.adpSubCategoriaDespesa.addAll(repositorioSubCategoriaDespesa.getAll());
 
         this.lstSubCategorias.setAdapter(this.adpSubCategoriaDespesa);
 

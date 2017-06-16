@@ -10,12 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadCartaoCredito;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCartaoCredito;
@@ -143,7 +141,7 @@ public class actCartaoCredito extends actBaseListas implements AdapterView.OnIte
 
 
         this.adapterCartaoCredito.clear();
-        this.adapterCartaoCredito.addAll(this.repositorioCartaoCredito.buscaTodos());
+        this.adapterCartaoCredito.addAll(this.repositorioCartaoCredito.getAll());
 
         this.lstCartao.setAdapter(this.adapterCartaoCredito);
 

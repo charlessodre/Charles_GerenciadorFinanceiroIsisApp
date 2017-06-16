@@ -11,7 +11,6 @@ import android.widget.Spinner;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterConta;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.ColorHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
@@ -19,7 +18,6 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.Repo
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioConta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgConfirmaExclusaoDialog;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.fragmentos.frgConfirmacaoDialog;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ActionBarHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.ArrayAdapterHelper;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.MessageBoxHelper;
@@ -271,6 +269,11 @@ public class actCadCartaoCredito extends actBaseCadastros implements frgConfirma
 
             retorno = false;
         }
+        if (this.textWatcher.getValueWithoutMask() <= 0) {
+            this.edtValorLimiteCartaoCredito.setError(this.getString(R.string.msg_valor_maior_zero));
+
+            retorno = false;
+        }
 
         if(this.spnContaAssociada.getCount() < 1)
         {
@@ -301,7 +304,7 @@ public class actCadCartaoCredito extends actBaseCadastros implements frgConfirma
         RepositorioConta repositorioConta = new RepositorioConta(this);
 
         this.adapterConta = new AdapterConta(this, R.layout.item_conta_simples);
-        this.adapterConta.addAll(repositorioConta.buscaTodos());
+        this.adapterConta.addAll(repositorioConta.getAll());
         this.spnContaAssociada.setAdapter(this.adapterConta);
 
     }

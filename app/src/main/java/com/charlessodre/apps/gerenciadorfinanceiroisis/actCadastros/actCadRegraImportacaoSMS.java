@@ -1,6 +1,5 @@
 package com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -303,7 +302,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
         this.adapterCategoriaDespesa = new AdapterCategoriaDespesa(this, R.layout.item_categoria);
 
-        this.adapterCategoriaDespesa.addAll(repositorioCategoriaDespesa.buscaTodos());
+        this.adapterCategoriaDespesa.addAll(repositorioCategoriaDespesa.getAll());
 
         this.spnCategoriaDespesa.setAdapter(this.adapterCategoriaDespesa);
     }
@@ -326,7 +325,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
         this.adapterCategoriaReceita = new AdapterCategoriaReceita(this, R.layout.item_categoria);
 
-        this.adapterCategoriaReceita.addAll(repositorioCategoriaReceita.buscaTodos());
+        this.adapterCategoriaReceita.addAll(repositorioCategoriaReceita.getAll());
 
         this.spnCategoriaReceita.setAdapter(this.adapterCategoriaReceita);
     }
@@ -337,7 +336,7 @@ public class actCadRegraImportacaoSMS extends actBaseCadastros implements Compou
 
         this.adapterConta = new AdapterConta(this, R.layout.item_conta_simples);
 
-        this.adapterConta.addAll(repositorioConta.buscaTodos());
+        this.adapterConta.addAll(repositorioConta.getAll());
 
         this.spnContaOrigem.setAdapter(this.adapterConta);
 

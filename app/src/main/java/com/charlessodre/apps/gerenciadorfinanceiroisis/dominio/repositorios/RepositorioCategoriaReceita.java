@@ -30,7 +30,7 @@ public class RepositorioCategoriaReceita extends RepositorioBase implements IRep
             super.openConnectionWrite();
             return super.update(preencheContentValues(item), item.getId());
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_categoria_receita));
         } finally {
             super.closeConnection();
         }
@@ -42,7 +42,7 @@ public class RepositorioCategoriaReceita extends RepositorioBase implements IRep
             super.openConnectionWrite();
             return super.insert(preencheContentValues(item));
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_categoria_receita));
         } finally {
             super.closeConnection();
         }
@@ -54,7 +54,7 @@ public class RepositorioCategoriaReceita extends RepositorioBase implements IRep
             super.openConnectionWrite();
             return super.delete(item.getId());
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_categoria_receita));
         } finally {
             super.closeConnection();
         }
@@ -66,10 +66,11 @@ public class RepositorioCategoriaReceita extends RepositorioBase implements IRep
         String where = CategoriaReceita.ID + "=" + id;
 
         CategoriaReceita categoriaReceita = new CategoriaReceita();
+        Cursor cursor = null;
 
         try {
             super.openConnectionWrite();
-            Cursor cursor = super.select(where);
+            cursor = super.select(where);
 
             ArrayList<CategoriaReceita> arrayList = this.preencheObjeto(cursor);
 
@@ -80,8 +81,10 @@ public class RepositorioCategoriaReceita extends RepositorioBase implements IRep
 
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_categoria_receita));
         } finally {
+            if (cursor != null)
+                cursor.close();
             super.closeConnection();
         }
     }
@@ -139,19 +142,25 @@ public class RepositorioCategoriaReceita extends RepositorioBase implements IRep
     }
 
 
-    public ArrayList<CategoriaReceita> buscaTodos() {
+    public ArrayList<CategoriaReceita> getAll() {
+
+        Cursor cursor = null;
         try {
 
             super.openConnectionWrite();
 
-            Cursor cursor = super.selectAll(CategoriaReceita.NO_ORDEM_EXIBICAO + " , " + CategoriaReceita.NM_CATEGORIA);
+            cursor = super.selectAll(CategoriaReceita.NO_ORDEM_EXIBICAO + " , " + CategoriaReceita.NM_CATEGORIA);
 
             return this.preencheObjeto(cursor);
 
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_categoria_receita));
         } finally {
+
+            if (cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
@@ -164,14 +173,14 @@ public class RepositorioCategoriaReceita extends RepositorioBase implements IRep
 
             RepositorioReceita repositorioReceita = new RepositorioReceita(super.getContext());
 
-            repositorioReceita.excluiReceitasCategoria(super.getTransaction(),item.getId());
+            repositorioReceita.excluiReceitasCategoria(super.getTransaction(), item.getId());
 
-            super.delete(super.getTransaction(),item.getId());
+            super.delete(super.getTransaction(), item.getId());
 
             super.setTransactionSuccessful();
             return 1;
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_categoria_receita));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -183,10 +192,11 @@ public class RepositorioCategoriaReceita extends RepositorioBase implements IRep
         String where = CategoriaReceita.ID + "=" + id;
 
         CategoriaReceita categoriaReceita = new CategoriaReceita();
+        Cursor cursor = null;
 
         try {
 
-            Cursor cursor = super.select(transaction,where);
+            cursor = super.select(transaction, where);
 
             ArrayList<CategoriaReceita> arrayList = this.preencheObjeto(cursor);
 
@@ -198,7 +208,11 @@ public class RepositorioCategoriaReceita extends RepositorioBase implements IRep
 
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_subcateogira_receita));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_categoria_receita));
+        } finally {
+
+            if (cursor != null)
+                cursor.close();
         }
     }
 

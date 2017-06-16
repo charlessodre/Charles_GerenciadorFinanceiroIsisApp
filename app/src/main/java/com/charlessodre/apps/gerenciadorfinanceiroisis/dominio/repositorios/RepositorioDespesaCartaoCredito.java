@@ -84,7 +84,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
         RepositorioCategoriaDespesa repCategoriaDespesaCartaoCredito = new RepositorioCategoriaDespesa(super.getContext());
         RepositorioSubCategoriaDespesa repSubCategoriaDespesaCartaoCredito = new RepositorioSubCategoriaDespesa(super.getContext());
         RepositorioCartaoCredito repCartao = new RepositorioCartaoCredito(super.getContext());
-        RepositorioaFaturaCartaoCredito repFatura = new RepositorioaFaturaCartaoCredito(super.getContext());
+        RepositorioFaturaCartaoCredito repFatura = new RepositorioFaturaCartaoCredito(super.getContext());
 
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
@@ -171,7 +171,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             return linhas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_despesa_cartao));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -182,6 +182,13 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
     public long insere(DespesaCartaoCredito item) {
         try {
 
+            RepositorioFaturaCartaoCredito repFatura = null;
+            FaturaCartaoCredito faturaCartaoCredito = null;
+            ArrayList<FaturaCartaoCredito> faturas = null;
+
+            Date data = item.getDataDespesa(); //Diaria
+            int anoMesDespesa = 0;
+            int tipoRepeticao = item.getIdTipoRepeticao();
             int qtdRepeticao = item.getTotalRepeticao();
             double valorParcela = 0;
 
@@ -194,12 +201,17 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
 
             //Insere a DespesaCartaoCredito "Pai".
             long id = super.insert(super.getTransaction(), this.preencheContentValues(item));
+            item.setId(id);
 
             //Insere as Despesas filhas
-            if (qtdRepeticao > 0) {
+            if (qtdRepeticao > 0 || item.isFixa()) {
 
-                Date data = item.getDataDespesa(); //Diaria
-                int tipoRepeticao = item.getIdTipoRepeticao();
+                if (qtdRepeticao < 1) {
+                    qtdRepeticao = Constantes.TOTAL_MESES_REPETICAO; //20 anos.
+                    tipoRepeticao = TipoRepeticao.MENSAL;
+                }
+
+                repFatura = new RepositorioFaturaCartaoCredito(super.getContext());
 
                 for (int i = 2; i <= qtdRepeticao; i++) {
 
@@ -216,52 +228,33 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
                     if (tipoRepeticao != TipoRepeticao.DIARIA)
                         data = TipoRepeticao.getDataRepeticao(tipoRepeticao, data);
 
-                    nova.setDataDespesa(data);
-                    nova.setAnoMesDespesa(DateUtils.getYearAndMonth(data));
-
-                    super.insert(super.getTransaction(), preencheContentValues(nova));
-
-                }
-            } else if (item.isFixa()) {
-
-                int total = Constantes.TOTAL_MESES_REPETICAO; //20 anos.
-
-                Date data = item.getDataDespesa(); //Diaria
-
-                for (int i = 2; i <= total; i++) {
-
-                    DespesaCartaoCredito nova = item.clone();
-
-                    nova.setIdPai(item.getId());
-                    nova.setId(0);
-                    nova.setPaga(false);
-                    nova.setEstornaPagamento(false);
-                    nova.setAnoMesPagamento(null);
-                    nova.setDataPagamento(null);
-
-                    data = TipoRepeticao.getDataRepeticao(TipoRepeticao.MENSAL, data);
+                    anoMesDespesa = DateUtils.getYearAndMonth(data);
 
                     nova.setDataDespesa(data);
-                    nova.setAnoMesDespesa(DateUtils.getYearAndMonth(data));
+                    nova.setAnoMesDespesa(anoMesDespesa);
+
+                    faturaCartaoCredito = repFatura.get(super.getTransaction(), nova.getCartaoCredito(), anoMesDespesa);
+
+                    nova.setFaturaCartaoCredito(faturaCartaoCredito);
 
                     super.insert(super.getTransaction(), preencheContentValues(nova));
 
                 }
             }
 
-
             super.setTransactionSuccessful();
 
             return id;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_despesa_cartao));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
         }
 
     }
+
 
     @Override
     public int exclui(DespesaCartaoCredito item) {
@@ -283,7 +276,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             return 1;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa_cartao));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -295,13 +288,14 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
     public DespesaCartaoCredito get(Long id) {
         String where = DespesaCartaoCredito.ID + "=" + id;
 
+        Cursor cursor = null;
         DespesaCartaoCredito despesa = new DespesaCartaoCredito();
 
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.select(where);
+            cursor = super.select(where);
 
             ArrayList<DespesaCartaoCredito> arrayList = this.preencheObjeto(super.getTransaction(), cursor);
 
@@ -311,74 +305,44 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             return despesa;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_receita));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa_cartao_credito));
         } finally {
             super.closeConnection();
+
+            if (cursor != null)
+                cursor.close();
         }
     }
 
-    //Consultas
-    public ArrayList<DespesaCartaoCredito> buscaTodos() {
-        try {
+    public DespesaCartaoCredito get(SQLiteDatabase transaction, Long id) {
+        String where = DespesaCartaoCredito.ID + "=" + id;
 
-            super.openConnectionWrite();
-
-            Cursor cursor = super.selectAll(DespesaCartaoCredito.DT_DESPESA + "," + DespesaCartaoCredito.ID);
-
-            return this.preencheObjeto(super.getTransaction(), cursor);
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.closeConnection();
-        }
-    }
-
-    public ArrayList<DespesaCartaoCredito> buscaPorAnoMes(int anoMes) {
-
-        String where = DespesaCartaoCredito.NO_AM_DESPESA + " =  " + anoMes;
+        DespesaCartaoCredito despesa = new DespesaCartaoCredito();
+        Cursor cursor = null;
 
         try {
 
-            super.openConnectionRead();
 
-            Cursor cursor = super.select(where, DespesaCartaoCredito.DT_DESPESA + "," + DespesaCartaoCredito.ID);
+            cursor = super.select(transaction, where);
 
-            return this.preencheObjeto(super.getTransaction(), cursor);
+            ArrayList<DespesaCartaoCredito> arrayList = this.preencheObjeto(transaction, cursor);
+
+            if (arrayList.size() > 0)
+                despesa = arrayList.get(0);
+
+            return despesa;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa_cartao_credito));
         } finally {
-            super.closeConnection();
+
+            if (cursor != null)
+                cursor.close();
+
         }
     }
 
-    public ArrayList<DespesaCartaoCredito> buscaPorAnoMes(long idCartaoCredito, int anoMes) {
-
-        StringBuilder where = new StringBuilder();
-
-        where.append(DespesaCartaoCredito.ID_CARTAO_CREDITO);
-        where.append(" = " + idCartaoCredito);
-        where.append(" AND ");
-        where.append(DespesaCartaoCredito.NO_AM_DESPESA);
-        where.append(" =  " + anoMes);
-
-        try {
-
-            super.openConnectionRead();
-
-            Cursor cursor = super.select(where.toString(), DespesaCartaoCredito.DT_DESPESA + "," + DespesaCartaoCredito.ID);
-
-            return this.preencheObjeto(super.getTransaction(), cursor);
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.closeConnection();
-        }
-    }
-
-    public ArrayList<DespesaCartaoCredito> buscaDespesaCartaoCreditosDependentes(SQLiteDatabase transaction, long idPai, long id, boolean proximas, boolean somentePendentes) {
+    public ArrayList<DespesaCartaoCredito> get(SQLiteDatabase transaction, long idPai, long id, boolean proximas, boolean somentePendentes) {
 
         StringBuilder where = new StringBuilder();
 
@@ -396,57 +360,28 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             where.append(" OR " + DespesaCartaoCredito.ID + " = " + idPai + " )");
         }
 
-        Cursor cursor = super.select(where.toString(), DespesaCartaoCredito.ID);
-
-        return this.preencheObjeto(transaction, cursor);
-
-    }
-
-    public ArrayList<DespesaCartaoCredito> buscaDespesaCartaoCreditosCategoria(SQLiteDatabase transaction, long idCategoriaDespesaCartaoCredito) {
-
-        StringBuilder where = new StringBuilder();
-
-        where.append(DespesaCartaoCredito.ID_CATEGORIA_DESPESA + " = " + idCategoriaDespesaCartaoCredito);
-
-        Cursor cursor = super.select(transaction, where.toString(), DespesaCartaoCredito.DT_DESPESA + "," + DespesaCartaoCredito.ID);
-
-        return this.preencheObjeto(transaction, cursor);
-    }
-
-    public ArrayList<DespesaCartaoCredito> buscaDespesaCartaoCreditosSubCategoria(SQLiteDatabase transaction, long idSubCategoriaDespesaCartaoCredito) {
-
-        StringBuilder where = new StringBuilder();
-
-        where.append(DespesaCartaoCredito.ID_SUB_CATEGORIA_DESPESA + " = " + idSubCategoriaDespesaCartaoCredito);
-
-        Cursor cursor = super.select(transaction, where.toString(), DespesaCartaoCredito.DT_DESPESA + "," + DespesaCartaoCredito.ID);
-
-        return this.preencheObjeto(transaction, cursor);
-    }
-
-    public DespesaCartaoCredito get(SQLiteDatabase transaction, Long id) {
-        String where = DespesaCartaoCredito.ID + "=" + id;
-
-        DespesaCartaoCredito despesa = new DespesaCartaoCredito();
-
+        Cursor cursor = null;
+        ArrayList<DespesaCartaoCredito> listaDespesasCartao = null;
         try {
 
 
-            Cursor cursor = super.select(transaction, where);
+            cursor = super.select(where.toString(), DespesaCartaoCredito.ID);
 
-            ArrayList<DespesaCartaoCredito> arrayList = this.preencheObjeto(transaction, cursor);
-
-            if (arrayList.size() > 0)
-                despesa = arrayList.get(0);
-
-            return despesa;
+            listaDespesasCartao = this.preencheObjeto(transaction, cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa_cartao_credito));
+        } finally {
+
+            if (cursor != null)
+                cursor.close();
+
         }
+
+        return listaDespesasCartao;
     }
 
-    public ArrayList<DespesaCartaoCredito> getDespesas(long idCartaoCredito, int anoMes, boolean somenteExibeSoma) {
+    public ArrayList<DespesaCartaoCredito> get(long idCartaoCredito, int anoMes, boolean somenteExibeSoma) {
 
         StringBuilder sql = new StringBuilder();
 
@@ -541,20 +476,98 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
         sql.append(",");
         sql.append(DespesaCartaoCredito.TABELA_NOME + "." + DespesaCartaoCredito.DT_DESPESA);
 
+        Cursor cursor = null;
+        ArrayList<DespesaCartaoCredito> listaDespesasCartao = null;
+
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
+            cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
 
-            return this.preencheObjeto(super.getTransaction(), cursor);
+            listaDespesasCartao = this.preencheObjeto(super.getTransaction(), cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa_cartao_credito));
+        } finally {
+
+            if (cursor != null)
+                cursor.close();
+
+
+            super.closeConnection();
+        }
+        return listaDespesasCartao;
+    }
+
+    //Consultas
+    public ArrayList<DespesaCartaoCredito> getAll() {
+        Cursor cursor = null;
+        ArrayList<DespesaCartaoCredito> listaDespesasCartao = null;
+
+        try {
+
+            super.openConnectionWrite();
+
+            cursor = super.selectAll(DespesaCartaoCredito.DT_DESPESA + "," + DespesaCartaoCredito.ID);
+
+            listaDespesasCartao = this.preencheObjeto(super.getTransaction(), cursor);
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa_cartao_credito));
         } finally {
             super.closeConnection();
         }
+
+        return listaDespesasCartao;
     }
+
+    public ArrayList<DespesaCartaoCredito> getCategoria(SQLiteDatabase transaction, long idCategoriaDespesaCartaoCredito) {
+
+
+        StringBuilder where = new StringBuilder();
+
+        where.append(DespesaCartaoCredito.ID_CATEGORIA_DESPESA + " = " + idCategoriaDespesaCartaoCredito);
+        Cursor cursor = null;
+        ArrayList<DespesaCartaoCredito> listaDespesasCartao = null;
+        try {
+
+            cursor = super.select(transaction, where.toString(), DespesaCartaoCredito.DT_DESPESA + "," + DespesaCartaoCredito.ID);
+
+            listaDespesasCartao = this.preencheObjeto(transaction, cursor);
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa_cartao_credito));
+        } finally {
+            super.closeConnection();
+        }
+
+        return listaDespesasCartao;
+    }
+
+    public ArrayList<DespesaCartaoCredito> getSubCategoria(SQLiteDatabase transaction, long idSubCategoriaDespesaCartaoCredito) {
+
+        StringBuilder where = new StringBuilder();
+
+        where.append(DespesaCartaoCredito.ID_SUB_CATEGORIA_DESPESA + " = " + idSubCategoriaDespesaCartaoCredito);
+
+        Cursor cursor = null;
+        ArrayList<DespesaCartaoCredito> listaDespesasCartao = null;
+        try {
+
+            cursor = super.select(transaction, where.toString(), DespesaCartaoCredito.DT_DESPESA + "," + DespesaCartaoCredito.ID);
+
+            listaDespesasCartao = this.preencheObjeto(transaction, cursor);
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa_cartao_credito));
+        } finally {
+            super.closeConnection();
+        }
+
+        return listaDespesasCartao;
+    }
+
 
     //Totalizadores
     public double getValorTotalDespesa(int anoMes, boolean somenteExibeSoma) {
@@ -615,12 +628,13 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
 
 
         double valorTotal = 0;
+        Cursor cursor = null;
 
         try {
 
             super.openConnectionRead();
 
-            Cursor cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
+            cursor = super.selectCustomQuery(super.getTransaction(), sql.toString(), null);
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -633,173 +647,14 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             return valorTotal;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa_cartao_credito));
         } finally {
+            if (cursor != null)
+                cursor.close();
+
+
             super.closeConnection();
         }
-    }
-
-    public int getQtdDespesaCartaoCreditoConta(long idCartaoCredito) {
-        int qtdDespesaCartaoCreditos = 0;
-
-        String[] parametros = {String.valueOf(idCartaoCredito)};
-
-        StringBuilder sql = new StringBuilder();
-
-
-        sql.append("SELECT COUNT (_id) AS QTDE FROM ");
-        sql.append(DespesaCartaoCredito.TABELA_NOME);
-        sql.append(" WHERE " + DespesaCartaoCredito.ID_CARTAO_CREDITO);
-        sql.append(" = ?");
-
-
-        try {
-
-            super.openConnectionRead();
-
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
-
-            if (cursor.getCount() > 0) {
-                cursor.moveToFirst();
-
-                do {
-                    qtdDespesaCartaoCreditos = cursor.getInt(cursor.getColumnIndex("QTDE"));
-
-                } while (cursor.moveToNext());
-            }
-
-
-            return qtdDespesaCartaoCreditos;
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.closeConnection();
-        }
-
-    }
-
-    public int getQtdDespesaCartaoCreditoContaMes(long idCartaoCredito, int anoMes, boolean somentePagas) {
-
-        int qtdDespesaCartaoCreditos = 0;
-
-        String[] parametros = {String.valueOf(idCartaoCredito), String.valueOf(anoMes)};
-
-        StringBuilder sql = new StringBuilder();
-
-
-        sql.append("SELECT COUNT (_id) AS QTDE FROM ");
-        sql.append(DespesaCartaoCredito.TABELA_NOME);
-        sql.append(" WHERE " + DespesaCartaoCredito.ID_CARTAO_CREDITO);
-        sql.append(" = ? AND ");
-        sql.append(DespesaCartaoCredito.NO_AM_DESPESA);
-        sql.append(" = ? ");
-
-        if (somentePagas) {
-            sql.append(" AND ");
-            sql.append(DespesaCartaoCredito.FL_DESPESA_PAGA + " = 1");
-        }
-
-        try {
-
-            super.openConnectionRead();
-
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
-
-            if (cursor.getCount() > 0) {
-                cursor.moveToFirst();
-
-                do {
-                    qtdDespesaCartaoCreditos = cursor.getInt(cursor.getColumnIndex("QTDE"));
-
-                } while (cursor.moveToNext());
-            }
-
-
-            return qtdDespesaCartaoCreditos;
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.closeConnection();
-        }
-
-    }
-
-    public int getQtdDespesaCartaoCreditoCategoria(long idCategoriaDespesaCartaoCredito) {
-
-        int qtdDespesaCartaoCreditos = 0;
-
-        String[] parametros = {String.valueOf(idCategoriaDespesaCartaoCredito)};
-
-        StringBuilder sql = new StringBuilder();
-
-        sql.append("SELECT COUNT (_id) AS QTDE FROM ");
-        sql.append(DespesaCartaoCredito.TABELA_NOME);
-        sql.append(" WHERE " + DespesaCartaoCredito.ID_CATEGORIA_DESPESA);
-        sql.append(" = ?");
-
-        try {
-
-            super.openConnectionRead();
-
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
-
-            if (cursor.getCount() > 0) {
-                cursor.moveToFirst();
-
-                do {
-                    qtdDespesaCartaoCreditos = cursor.getInt(cursor.getColumnIndex("QTDE"));
-
-                } while (cursor.moveToNext());
-            }
-
-            return qtdDespesaCartaoCreditos;
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.closeConnection();
-        }
-
-    }
-
-    public int getQtdDespesaCartaoCreditoSubCategoria(long idSubCategoriaDespesaCartaoCredito) {
-
-        int qtdDespesaCartaoCreditos = 0;
-
-        String[] parametros = {String.valueOf(idSubCategoriaDespesaCartaoCredito)};
-
-        StringBuilder sql = new StringBuilder();
-
-        sql.append("SELECT COUNT (_id) AS QTDE FROM ");
-        sql.append(DespesaCartaoCredito.TABELA_NOME);
-        sql.append(" WHERE " + DespesaCartaoCredito.ID_SUB_CATEGORIA_DESPESA);
-        sql.append(" = ?");
-
-        try {
-
-            super.openConnectionRead();
-
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
-
-            if (cursor.getCount() > 0) {
-                cursor.moveToFirst();
-
-                do {
-                    qtdDespesaCartaoCreditos = cursor.getInt(cursor.getColumnIndex("QTDE"));
-
-                } while (cursor.moveToNext());
-            }
-
-            return qtdDespesaCartaoCreditos;
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
-        } finally {
-            super.closeConnection();
-        }
-
     }
 
 
@@ -812,7 +667,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             super.setBeginTransaction();
 
             //Busca as despesas que serão alteradas.
-            ArrayList<DespesaCartaoCredito> proximasOcorrenciasDespesaCartaoCreditos = this.buscaDespesaCartaoCreditosDependentes(super.getTransaction(), despesaAlterada.getIdPai(), despesaAlterada.getId(), true, false);
+            ArrayList<DespesaCartaoCredito> proximasOcorrenciasDespesaCartaoCreditos = this.get(super.getTransaction(), despesaAlterada.getIdPai(), despesaAlterada.getId(), true, false);
 
             this.atualizaOcorrenciasDespesaCartaoCreditos(super.getTransaction(), despesaAlterada, proximasOcorrenciasDespesaCartaoCreditos);
 
@@ -821,7 +676,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             return proximasOcorrenciasDespesaCartaoCreditos.size();
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_despesa));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_despesa_cartao));
         } finally
 
         {
@@ -839,7 +694,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             super.setBeginTransaction();
 
             //Busca as despesas que serão alteradas.
-            ArrayList<DespesaCartaoCredito> todasOcorrenciasDespesaCartaoCreditos = this.buscaDespesaCartaoCreditosDependentes(super.getTransaction(), despesaAlterada.getIdPai(), despesaAlterada.getId(), false, false);
+            ArrayList<DespesaCartaoCredito> todasOcorrenciasDespesaCartaoCreditos = this.get(super.getTransaction(), despesaAlterada.getIdPai(), despesaAlterada.getId(), false, false);
 
             this.atualizaOcorrenciasDespesaCartaoCreditos(super.getTransaction(), despesaAlterada, todasOcorrenciasDespesaCartaoCreditos);
 
@@ -848,7 +703,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             return todasOcorrenciasDespesaCartaoCreditos.size();
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_despesa));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_despesa_cartao));
         } finally
 
         {
@@ -912,7 +767,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
 
             //Busca as despesas que serão excluidas.
-            ArrayList<DespesaCartaoCredito> todasOcorrenciasDespesaCartaoCreditos = this.buscaDespesaCartaoCreditosDependentes(super.getTransaction(), item.getIdPai(), item.getId(), true, false);
+            ArrayList<DespesaCartaoCredito> todasOcorrenciasDespesaCartaoCreditos = this.get(super.getTransaction(), item.getIdPai(), item.getId(), true, false);
 
             for (DespesaCartaoCredito ocorrencia : todasOcorrenciasDespesaCartaoCreditos) {
 
@@ -931,7 +786,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             return linhas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa_cartao));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -948,7 +803,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
 
             //Busca as despesas que serão excluidas.
-            ArrayList<DespesaCartaoCredito> todasOcorrenciasDespesaCartaoCreditos = this.buscaDespesaCartaoCreditosDependentes(super.getTransaction(), item.getIdPai(), item.getId(), false, false);
+            ArrayList<DespesaCartaoCredito> todasOcorrenciasDespesaCartaoCreditos = this.get(super.getTransaction(), item.getIdPai(), item.getId(), false, false);
 
             for (DespesaCartaoCredito ocorrencia : todasOcorrenciasDespesaCartaoCreditos) {
 
@@ -966,7 +821,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             return linhas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa_cartao));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -980,7 +835,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
             int linhas = 0;
             //Busca as despesas da categoria que serão excluidas.
-            ArrayList<DespesaCartaoCredito> todasOcorrenciasDespesaCartaoCreditos = this.buscaDespesaCartaoCreditosCategoria(transaction, idCategoriaDespesaCartaoCredito);
+            ArrayList<DespesaCartaoCredito> todasOcorrenciasDespesaCartaoCreditos = this.getCategoria(transaction, idCategoriaDespesaCartaoCredito);
 
             for (DespesaCartaoCredito ocorrencia : todasOcorrenciasDespesaCartaoCreditos) {
 
@@ -997,7 +852,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             return linhas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa_cartao));
         }
     }
 
@@ -1007,7 +862,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
             int linhas = 0;
             //Busca as despesas da categoria que serão excluidas.
-            ArrayList<DespesaCartaoCredito> todasOcorrenciasDespesaCartaoCreditos = this.buscaDespesaCartaoCreditosSubCategoria(transaction, idSubCategoriaDespesaCartaoCredito);
+            ArrayList<DespesaCartaoCredito> todasOcorrenciasDespesaCartaoCreditos = this.getSubCategoria(transaction, idSubCategoriaDespesaCartaoCredito);
 
             for (DespesaCartaoCredito ocorrencia : todasOcorrenciasDespesaCartaoCreditos) {
 
@@ -1024,20 +879,20 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             return linhas;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa_cartao));
         }
     }
 
-    public int excluiTodasSemEstorno(SQLiteDatabase transaction, long idCartaoCredito) {
+    public int exclui(SQLiteDatabase transaction, long idFaturaCartaoCredito) {
 
-        String[] parametros = new String[]{String.valueOf(idCartaoCredito)};
+        String[] parametros = new String[]{String.valueOf(idFaturaCartaoCredito)};
 
         StringBuilder sql = new StringBuilder();
 
         sql.append(" DELETE FROM ");
         sql.append(DespesaCartaoCredito.TABELA_NOME);
         sql.append(" WHERE ");
-        sql.append(DespesaCartaoCredito.ID_CARTAO_CREDITO + " = ?");
+        sql.append(DespesaCartaoCredito.ID_FATURA_CARTAO_CREDITO + " = ?");
 
         try {
 
@@ -1046,7 +901,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             return 1;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_despesa_cartao));
         }
     }
 

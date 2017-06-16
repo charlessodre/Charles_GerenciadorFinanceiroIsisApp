@@ -21,7 +21,6 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespes
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterDespesaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.DespesaCartaoCredito;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioDespesaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
@@ -89,7 +88,7 @@ public class actDespesaCartaoCredito extends actBaseListas implements AdapterVie
                 break;
             case R.id.btnAdicionarDespesaCartaoCredito:
 
-                Intent it = new Intent(this, actCadDespesa.class);
+                Intent it = new Intent(this, actCadDespesaCartaoCredito.class);
                 startActivityForResult(it, 0);
                 break;
 
@@ -196,7 +195,7 @@ public class actDespesaCartaoCredito extends actBaseListas implements AdapterVie
 
         int anoMes = DateUtils.getYearAndMonth(super.getCalendar().getTime());
 
-        this.listaDespesasCartaoCredito = this.repositorioDespesa.getDespesas(this.cartaoCredito.getId(),anoMes,true);
+        this.listaDespesasCartaoCredito = this.repositorioDespesa.get(this.cartaoCredito.getId(),anoMes,true);
         this.adpDespesaCartao.clear();
         this.adpDespesaCartao.addAll(this.listaDespesasCartaoCredito);
 
