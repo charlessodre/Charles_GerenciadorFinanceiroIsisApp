@@ -33,7 +33,7 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
             super.openConnectionWrite();
             return super.update(preencheContentValues(item), item.getId());
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_categoria_despesa));
         } finally {
             super.closeConnection();
         }
@@ -46,7 +46,7 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
             super.openConnectionWrite();
             return super.insert(preencheContentValues(item));
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_categoria_despesa));
         } finally {
             super.closeConnection();
         }
@@ -58,7 +58,7 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
             super.openConnectionWrite();
             return super.delete(item.getId());
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_categoria_despesa));
         } finally {
             super.closeConnection();
         }
@@ -119,18 +119,23 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
 
     }
 
-    public ArrayList<CategoriaDespesa> buscaTodos() {
+    public ArrayList<CategoriaDespesa> getAll() {
+
+        Cursor cursor = null;
         try {
 
             super.openConnectionWrite();
 
-            Cursor cursor = super.selectAll(CategoriaDespesa.NO_ORDEM_EXIBICAO + " , " + CategoriaDespesa.NM_CATEGORIA);
+            cursor = super.selectAll(CategoriaDespesa.NO_ORDEM_EXIBICAO + " , " + CategoriaDespesa.NM_CATEGORIA);
 
             return this.preencheObjeto(super.getTransaction(),cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_categoria_despesa));
         } finally {
+            if (cursor != null)
+                cursor.close();
+
             super.closeConnection();
         }
     }
@@ -153,7 +158,7 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
             return 1;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_excluir_erro_categoria_despesa));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -164,11 +169,12 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
         String where = CategoriaDespesa.ID + "=" + id;
 
         CategoriaDespesa categoriaDespesa = new CategoriaDespesa();
+        Cursor cursor = null;
 
         try {
 
 
-            Cursor cursor = super.select(transaction, where);
+            cursor = super.select(transaction, where);
 
             ArrayList<CategoriaDespesa> arrayList = this.preencheObjeto(transaction, cursor);
 
@@ -178,7 +184,11 @@ public class RepositorioCategoriaDespesa extends RepositorioBase implements IRep
             return categoriaDespesa;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_categoria_despesa));
+        } finally {
+            if (cursor != null)
+                cursor.close();
+
         }
     }
 

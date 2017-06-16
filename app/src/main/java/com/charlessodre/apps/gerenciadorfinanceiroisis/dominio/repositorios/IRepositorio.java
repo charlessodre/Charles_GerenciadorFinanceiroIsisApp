@@ -11,5 +11,5 @@ public interface IRepositorio<T,ID> {
     long insere(T item);
     int exclui(T item);
     T get(ID id);
-    ArrayList<T> buscaTodos();
+    ArrayList<T> getAll();
 }

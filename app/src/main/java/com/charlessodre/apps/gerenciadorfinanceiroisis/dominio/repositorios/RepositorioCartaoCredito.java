@@ -7,17 +7,13 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Despesa;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.DespesaCartaoCredito;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.FaturaCartaoCredito;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Receita;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.BooleanUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by charl on 01/05/2017.
@@ -112,7 +108,7 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
             return super.update(preencheContentValues(item), item.getId());
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_cartao));
         } finally {
             super.closeConnection();
         }
@@ -125,20 +121,20 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
             super.openConnectionWrite();
             super.setBeginTransaction();
 
-            RepositorioaFaturaCartaoCredito repositorioaFaturaCartaoCredito = new RepositorioaFaturaCartaoCredito(this.getContext());
+            RepositorioFaturaCartaoCredito repositorioFaturaCartaoCredito = new RepositorioFaturaCartaoCredito(this.getContext());
 
             long idCartao = super.insert(preencheContentValues(item));
 
             item.setId(idCartao);
 
-            repositorioaFaturaCartaoCredito.insere(super.getTransaction(), item);
+            repositorioFaturaCartaoCredito.insere(super.getTransaction(), item,DateUtils.getCurrentYearAndMonth(), Constantes.TOTAL_FATURA_CRIADAS);
 
             super.setTransactionSuccessful();
 
             return 0;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_cartao));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -157,7 +153,7 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
             super.setTransactionSuccessful();
             return 1;
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_cartao));
         } finally {
             super.setEndTransaction();
             super.closeConnection();
@@ -170,13 +166,14 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
         String where = CartaoCredito.ID + "=" + id;
 
         CartaoCredito conta = new CartaoCredito();
+        Cursor cursor = null;
 
         try {
 
             super.openConnectionRead();
             super.setBeginTransaction();
 
-            Cursor cursor = super.select(where);
+            cursor = super.select(where);
 
             ArrayList<CartaoCredito> arrayList = this.preencheObjeto(super.getTransaction(), cursor);
 
@@ -187,20 +184,27 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
             return conta;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_cartao_credito));
         } finally {
+
+            if(cursor != null)
+                cursor.close();
+
             super.setEndTransaction();
             super.closeConnection();
         }
     }
 
-    public ArrayList<CartaoCredito> buscaTodos() {
+    public ArrayList<CartaoCredito> getAll() {
+
+        Cursor cursor = null;
+
         try {
 
             super.openConnectionRead();
             super.setBeginTransaction();
 
-            Cursor cursor = super.selectAll(CartaoCredito.NO_ORDEM_EXIBICAO + " , " + CartaoCredito.NM_CARTAO);
+            cursor = super.selectAll(CartaoCredito.NO_ORDEM_EXIBICAO + " , " + CartaoCredito.NM_CARTAO);
 
             super.setTransactionSuccessful();
 
@@ -208,15 +212,20 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
 
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_cartao_credito));
         } finally {
+            if (cursor != null)
+                cursor.close();
             super.setEndTransaction();
             super.closeConnection();
+
 
         }
     }
 
     public ArrayList<CartaoCredito> getSaldoCartaoAnoMes(long idCartao, int anoMes, boolean somenteExibeSoma) {
+
+        Cursor cursor = null;
 
         String[] parametros = {String.valueOf(anoMes), String.valueOf(idCartao)};
 
@@ -265,15 +274,18 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
             super.openConnectionRead();
             super.setBeginTransaction();
 
-            Cursor cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(), parametros);
 
             super.setTransactionSuccessful();
 
             return this.preencheObjeto(super.getTransaction(), cursor);
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_cartao_credito));
         } finally {
+            if (cursor != null)
+                cursor.close();
+
             super.setEndTransaction();
             super.closeConnection();
         }
@@ -287,12 +299,15 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
 
     public CartaoCredito get(SQLiteDatabase transaction, Long id) {
 
+        Cursor cursor = null;
+
         String where = CartaoCredito.ID + "=" + id;
 
         CartaoCredito conta = new CartaoCredito();
 
         try {
-            Cursor cursor = super.select(transaction, where);
+
+            cursor = super.select(transaction, where);
 
             ArrayList<CartaoCredito> arrayList = this.preencheObjeto(transaction, cursor);
 
@@ -302,8 +317,10 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
             return conta;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_conta));
-        }
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_cartao_credito));
+        }finally {
+            if (cursor != null)
+                cursor.close();}
 
 
     }
@@ -344,25 +361,17 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
             super.openConnectionWrite();
             super.setBeginTransaction();
 
-            RepositorioReceita repositorioReceita = new RepositorioReceita(super.getContext());
-            RepositorioTransferencia repositorioTransferencia = new RepositorioTransferencia(super.getContext());
-            RepositorioDespesa repositorioDespesa = new RepositorioDespesa(super.getContext());
+            RepositorioFaturaCartaoCredito repositorioFaturaCartaoCredito = new RepositorioFaturaCartaoCredito(super.getContext());
 
-            //Exclui todas as receitas da conta.
-            repositorioReceita.excluiTodasSemEstorno(super.getTransaction(), item.getId());
-
-            //Exclui todas as despesas da conta.
-            //repositorioDespesa.excluiTodasSemEstorno(super.getTransaction(), item.getId());
-
-            //Exclui todas as transferencias da conta de origem.
-            // repositorioTransferencia.excluiTransferenciasCartaoOrigem(super.getTransaction(), this, item.getId());
+            //Exclui todas as faturas
+            repositorioFaturaCartaoCredito.exclui(super.getTransaction(), item.getId());
 
             super.delete(super.getTransaction(), item.getId());
 
             super.setTransactionSuccessful();
             return 1;
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_cartao));
         } finally {
             super.setEndTransaction();
             super.closeConnection();

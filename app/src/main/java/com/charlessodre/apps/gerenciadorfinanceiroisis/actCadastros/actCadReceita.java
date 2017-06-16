@@ -221,7 +221,7 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
 
         this.adapterConta = new AdapterConta(this, R.layout.item_conta_simples);
 
-        this.adapterConta.addAll(repositorioConta.buscaTodos());
+        this.adapterConta.addAll(repositorioConta.getAll());
 
         this.spnContaReceita.setAdapter(this.adapterConta);
     }
@@ -231,7 +231,7 @@ public class actCadReceita extends actBaseCadastros implements CompoundButton.On
 
         this.adapterCategoriaReceita = new AdapterCategoriaReceita(this, R.layout.item_categoria);
 
-        this.adapterCategoriaReceita.addAll(repositorioCategoriaReceita.buscaTodos());
+        this.adapterCategoriaReceita.addAll(repositorioCategoriaReceita.getAll());
 
         this.spnCategoriaReceita.setAdapter(this.adapterCategoriaReceita);
     }

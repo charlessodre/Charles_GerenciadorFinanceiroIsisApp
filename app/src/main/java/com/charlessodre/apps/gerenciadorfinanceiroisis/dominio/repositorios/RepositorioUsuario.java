@@ -48,13 +48,15 @@ public class RepositorioUsuario extends RepositorioBase implements IRepositorio<
     }
 
 
-    public ArrayList<Usuario> buscaTodos() {
+    public ArrayList<Usuario> getAll() {
+        Cursor cursor = null;
+
         try {
 
             ArrayList<Usuario> arrayList = new ArrayList<Usuario>();
 
             super.openConnectionWrite();
-            Cursor cursor = super.selectAll();
+             cursor = super.selectAll();
 
             if (cursor.getCount() > 0) {
                 cursor.moveToFirst();
@@ -85,8 +87,13 @@ public class RepositorioUsuario extends RepositorioBase implements IRepositorio<
             return arrayList;
 
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_usuario));
         } finally {
+
+            if(cursor != null)
+                cursor.close();
+
+
             super.closeConnection();
         }
     }
@@ -98,7 +105,7 @@ public class RepositorioUsuario extends RepositorioBase implements IRepositorio<
             super.openConnectionWrite();
             return super.update(preencheContentValues(item), item.getId());
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_usuario));
         } finally {
             super.closeConnection();
         }
@@ -110,7 +117,7 @@ public class RepositorioUsuario extends RepositorioBase implements IRepositorio<
             super.openConnectionWrite();
             return super.insert(preencheContentValues(item));
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_usuario));
         } finally {
             super.closeConnection();
         }
@@ -122,7 +129,7 @@ public class RepositorioUsuario extends RepositorioBase implements IRepositorio<
             super.openConnectionWrite();
             return super.delete(item.getId());
         } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro));
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_usuario));
         } finally {
             super.closeConnection();
         }

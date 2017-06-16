@@ -266,7 +266,7 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
 
         this.adapterConta = new AdapterConta(this, R.layout.item_conta_simples);
 
-        this.adapterConta.addAll(repositorioConta.buscaTodos());
+        this.adapterConta.addAll(repositorioConta.getAll());
 
         this.spnContaDespesa.setAdapter(this.adapterConta);
     }
@@ -276,7 +276,7 @@ public class actCadDespesa extends actBaseCadastros implements CompoundButton.On
 
         this.adapterCategoriaDespesa = new AdapterCategoriaDespesa(this, R.layout.item_categoria);
 
-        this.adapterCategoriaDespesa.addAll(repositorioCategoriaDespesa.buscaTodos());
+        this.adapterCategoriaDespesa.addAll(repositorioCategoriaDespesa.getAll());
 
         this.spnCategoriaDespesa.setAdapter(this.adapterCategoriaDespesa);
     }
