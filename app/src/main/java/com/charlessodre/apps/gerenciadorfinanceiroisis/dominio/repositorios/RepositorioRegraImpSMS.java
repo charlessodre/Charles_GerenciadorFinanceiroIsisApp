@@ -66,7 +66,7 @@ public class RepositorioRegraImpSMS extends RepositorioBase implements IReposito
 
     @Override
     public RegraImportacaoSMS get(Long id) {
-        return null;
+        throw new UnsupportedOperationException("Sem implementação");
     }
 
     private ContentValues preencheContentValues(RegraImportacaoSMS regraImportacaoSMS) {

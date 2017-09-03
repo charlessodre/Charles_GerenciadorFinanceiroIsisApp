@@ -167,7 +167,7 @@ public class actDespesaCartaoCredito extends actBaseListas implements AdapterVie
 
         this.repositorioDespesa = new RepositorioDespesaCartaoCredito(this);
 
-        this.adpDespesaCartao = new AdapterDespesaCartaoCredito(this, R.layout.item_despesa);
+        this.adpDespesaCartao = new AdapterDespesaCartaoCredito(this, R.layout.item_despesa_cartao_credito);
 
         this.fabAdd.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.corTelaDespesasCartaoCredito)));
 

@@ -121,7 +121,6 @@
     <string name="lblDiaVencimento">Dia de Vencimento</string>
     <string name="lblContaAssociada">Conta Associada</string>
     <string name="lblLimiteCartao">Valor do Limite</string>
-
     <string name="lblFatura">Fatura</string>
     <string name="lblFaturaAberta">Fatura Aberta</string>
     <string name="lblFaturaFechada">Fatura Fechada</string>

@@ -319,9 +319,12 @@ public class actCadCartaoCredito extends actBaseCadastros implements frgConfirma
             this.edtNome.setText(this.cartaoCredito.getNome());
 
             this.edtValorLimiteCartaoCredito.setText(NumberUtis.getFormartCurrency(this.cartaoCredito.getValorLimite()));
-
             this.spnBandeiraCartaoCredito.setSelection(this.cartaoCredito.getNoBandeiraCartao());
+            this.spnDiaFechamentoFaturaCartao.setSelection(this.cartaoCredito.getNoDiaFechamentoFatura());
+            this.spnDiaVencimentoCartao.setSelection(this.cartaoCredito.getNoDiaVencimentoFatura());
+            this.spnContaAssociada.setSelection(this.adapterConta.getIndexFromElement(this.cartaoCredito.getContaAssociada().getId()));
             this.cbxExibirSomaResumo.setChecked(this.cartaoCredito.isExibiSomaResumo());
+
 
         } else
             this.cartaoCredito = new CartaoCredito();

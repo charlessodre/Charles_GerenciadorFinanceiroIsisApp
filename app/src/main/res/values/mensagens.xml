@@ -61,7 +61,6 @@
     <string name="msg_excluir_erro_tranferencia">Falha ao excluir a Transferência!</string>
     <string name="msg_excluir_erro_usuario">Falha ao excluir o Usuário!</string>
 
-
     <string name="msg_excluir_digite_sim">Digite "Sim" para confirmar a exclusão.</string>
     <string name="msg_excluir_digite_text">Digite "Sim" para concluir a ação.</string>
     <string name="msg_excluir_atual">Excluir somente esta.</string>
@@ -72,9 +71,6 @@
     <string name="msg_alterar_atual">Alterar somente esta.</string>
     <string name="msg_alterar_atual_proximas">Alterar esta e as próximas.</string>
     <string name="msg_alterar_todas">Alterar todas(inclusive efetivas).</string>
-
-
-
 
 
 </resources>

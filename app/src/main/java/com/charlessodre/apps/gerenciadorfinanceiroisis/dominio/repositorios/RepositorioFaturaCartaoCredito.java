@@ -9,6 +9,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.database.ConnectionFactory;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.database.DataBase;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Conta;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.FaturaCartaoCredito;
@@ -108,33 +110,7 @@ public class RepositorioFaturaCartaoCredito extends RepositorioBase implements I
 
     @Override
     public long insere(FaturaCartaoCredito item) {
-        try {
-
-            super.openConnectionWrite();
-            super.setBeginTransaction();
-
-            long id = super.insert(super.getTransaction(), this.preencheContentValues(item));
-
-            if (item.isPaga()) {
-
-                RepositorioConta repositorioConta = new RepositorioConta(super.getContext());
-
-                Conta contaAssociada = item.getCartaoCredito().getContaAssociada();
-
-                repositorioConta.setValorSaidaConta(super.getTransaction(), contaAssociada.getId(), item.getValor());
-            }
-
-            super.setTransactionSuccessful();
-
-            return id;
-
-        } catch (SQLException ex) {
-            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_fatura_cartao));
-        } finally {
-            super.setEndTransaction();
-            super.closeConnection();
-        }
-
+        throw new UnsupportedOperationException("Sem implementação");
     }
 
     /*public void insere(SQLiteDatabase transaction, CartaoCredito cartaoCredito) {
@@ -189,8 +165,6 @@ public class RepositorioFaturaCartaoCredito extends RepositorioBase implements I
 
             for (int i = 0; i < qtdFaturas; i++) {
 
-                FaturaCartaoCredito faturaCartaoCredito = new FaturaCartaoCredito();
-
                 if (cartaoCredito.getNoDiaVencimentoFatura() > dia) {
 
                     if (mes > 11) {
@@ -201,13 +175,7 @@ public class RepositorioFaturaCartaoCredito extends RepositorioBase implements I
 
                 data = DateUtils.getDate(ano, mes, cartaoCredito.getNoDiaVencimentoFatura());
 
-                faturaCartaoCredito.setCartaoCredito(cartaoCredito);
-                faturaCartaoCredito.setAlertar(cartaoCredito.isAltertaVencimento());
-                faturaCartaoCredito.setDataInclusao(DateUtils.getCurrentDatetime());
-                faturaCartaoCredito.setAnoMesFatura(DateUtils.getYearAndMonth(data));
-                faturaCartaoCredito.setDataFatura(data);
-
-                long id = super.insert(transaction, this.preencheContentValues(faturaCartaoCredito));
+                this.insere(transaction,cartaoCredito,data);
 
                 mes = mes + 1;
 
@@ -217,6 +185,60 @@ public class RepositorioFaturaCartaoCredito extends RepositorioBase implements I
             throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_fatura_cartao));
         }
 
+    }
+
+    public FaturaCartaoCredito insere(SQLiteDatabase transaction, CartaoCredito cartaoCredito, int anoMes) {
+
+        int ano = Integer.parseInt(String.valueOf(anoMes).substring(0, 4));
+        int mes = Integer.parseInt(String.valueOf(anoMes).substring(4, 6));
+        int dia = DateUtils.getCurrentDay();
+        Date data = null;
+        long id = -1;
+
+        try {
+            FaturaCartaoCredito faturaCartaoCredito = new FaturaCartaoCredito();
+
+            if (cartaoCredito.getNoDiaVencimentoFatura() > dia) {
+
+                if (mes > 11) {
+                    ano = ano + 1;
+                    mes = 1;
+                }
+            }
+
+            data = DateUtils.getDate(ano, mes, cartaoCredito.getNoDiaVencimentoFatura());
+
+
+            return this.insere(transaction,cartaoCredito,data);
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_fatura_cartao));
+        }
+
+    }
+
+    private FaturaCartaoCredito insere(SQLiteDatabase transaction, CartaoCredito cartaoCredito, Date data) {
+
+        FaturaCartaoCredito faturaCartaoCredito = new FaturaCartaoCredito();
+
+        long id = -1;
+
+        try {
+            faturaCartaoCredito.setCartaoCredito(cartaoCredito);
+            faturaCartaoCredito.setAlertar(cartaoCredito.isAltertaVencimento());
+            faturaCartaoCredito.setDataInclusao(DateUtils.getCurrentDatetime());
+            faturaCartaoCredito.setAnoMesFatura(DateUtils.getYearAndMonth(data));
+            faturaCartaoCredito.setDataFatura(data);
+
+            id = super.insert(transaction,this.preencheContentValues(faturaCartaoCredito));
+
+            faturaCartaoCredito.setId(id);
+
+            return faturaCartaoCredito;
+
+        } catch (SQLException ex) {
+            throw new SQLException(super.getContext().getString(R.string.msg_salvar_erro_fatura_cartao));
+        }
     }
 
     @Override
@@ -335,7 +357,6 @@ public class RepositorioFaturaCartaoCredito extends RepositorioBase implements I
 
     public FaturaCartaoCredito get(SQLiteDatabase transaction, CartaoCredito cartaoCredito, int anoMesFatura) {
 
-
         StringBuilder where = new StringBuilder();
 
         where.append(FaturaCartaoCredito.ID_CARTAO_CREDITO);
@@ -355,11 +376,12 @@ public class RepositorioFaturaCartaoCredito extends RepositorioBase implements I
             ArrayList<FaturaCartaoCredito> arrayList = this.preencheObjeto(transaction, cursor);
 
             if (arrayList.size() > 0) {
-                faturaCartaoCredito = arrayList.get(0);
-            } else {
-                this.insere(transaction, cartaoCredito, anoMesFatura, Constantes.TOTAL_FATURA_CRIADAS);
 
-                return this.get(transaction, cartaoCredito, anoMesFatura);
+                faturaCartaoCredito = arrayList.get(0);
+
+            } else {
+
+                faturaCartaoCredito = this.insere(transaction,cartaoCredito,anoMesFatura);
 
             }
             return faturaCartaoCredito;

@@ -24,8 +24,7 @@ public abstract class RepositorioBase {
     }
 
     //Métodos Configuração
-    public SQLiteDatabase getTransaction()
-    {
+    public SQLiteDatabase getTransaction() {
         return this.database;
     }
 
@@ -44,12 +43,17 @@ public abstract class RepositorioBase {
     }
 
     public void openConnectionRead() {
-            this.database = new ConnectionFactory(this.context).getConnectionRead();
+        this.database = new ConnectionFactory(this.context).getConnectionRead();
     }
 
     public void setBeginTransaction() {
         this.database.beginTransaction();
     }
+
+    public void setBeginTransactionNonExclusive() {
+        this.database.beginTransactionNonExclusive();
+    }
+
 
     public void setEndTransaction() {
         this.database.endTransaction();
@@ -58,6 +62,8 @@ public abstract class RepositorioBase {
     public void setTransactionSuccessful() {
         this.database.setTransactionSuccessful();
     }
+
+
 
 
     //Métodos de Execução
@@ -131,7 +137,7 @@ public abstract class RepositorioBase {
     }
 
     protected Cursor selectAll(SQLiteDatabase transaction) {
-        return this.selectAll(transaction,null);
+        return this.selectAll(transaction, null);
     }
 
     protected Cursor selectAll(SQLiteDatabase transaction, String orderByColumnName) {
@@ -139,7 +145,7 @@ public abstract class RepositorioBase {
         return transaction.query(this.tableName, null, null, null, null, null, orderByColumnName);
     }
 
-    protected Cursor selectCustomQuery(SQLiteDatabase transaction,String sql, String[] arguments) {
+    protected Cursor selectCustomQuery(SQLiteDatabase transaction, String sql, String[] arguments) {
 
         return transaction.rawQuery(sql, arguments);
 
@@ -147,10 +153,11 @@ public abstract class RepositorioBase {
 
 
     protected Cursor select(SQLiteDatabase transaction, String where) {
-        return this.select(transaction,where, null);
+        return this.select(transaction, where, null);
     }
 
     protected Cursor select(SQLiteDatabase transaction, String where, String orderByColumnName) {
         return transaction.query(this.tableName, null, where, null, null, null, orderByColumnName);
     }
+
 }

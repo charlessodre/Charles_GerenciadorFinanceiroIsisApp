@@ -193,7 +193,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             double valorParcela = 0;
 
             super.openConnectionWrite();
-            super.setBeginTransaction();
+            super.setBeginTransactionNonExclusive();
 
             if (qtdRepeticao > 0) {
                 item.setValor(item.getValor() / qtdRepeticao);
@@ -516,7 +516,13 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
         } catch (SQLException ex) {
             throw new SQLException(super.getContext().getString(R.string.msg_consultar_erro_despesa_cartao_credito));
         } finally {
+
+            if (cursor != null)
+                cursor.close();
+
             super.closeConnection();
+
+
         }
 
         return listaDespesasCartao;

@@ -66,14 +66,12 @@ public class AdapterDespesaCartaoCredito extends ArrayAdapter<DespesaCartaoCredi
 
             viewHolder = new ViewHolder();
 
-            viewHolder.imgDespesa = (ImageView) view.findViewById(R.id.imgDespesaItem);
-            viewHolder.txtNomeDespesa = (TextView) view.findViewById(R.id.txtNomeDespesaItem);
-            viewHolder.txtTipoDespesa = (TextView) view.findViewById(R.id.txtTipoDespesaItem);
-            viewHolder.txtStatusDespesa = (TextView) view.findViewById(R.id.txtStatusDespesaItem);
-            viewHolder.txtValorDespesa = (TextView) view.findViewById(R.id.txtValorDespesaItem);
-            viewHolder.txtDataDespesa = (TextView) view.findViewById(R.id.txtDataDespesaItem);
-            viewHolder.imgCirculo = (ImageView) view.findViewById(R.id.imgDespesaItemCir);
-            viewHolder.txtContaDespesaItem = (TextView) view.findViewById(R.id.txtContaDespesaItem);
+            viewHolder.imgDespesa = (ImageView) view.findViewById(R.id.imgDespesaCartaoCreditoItem);
+            viewHolder.txtNomeDespesa = (TextView) view.findViewById(R.id.txtNomeDespesaCartaoCreditoItem);
+            viewHolder.txtTipoDespesa = (TextView) view.findViewById(R.id.txtTipoDespesaCartaoCreditoItem);
+            viewHolder.txtValorDespesa = (TextView) view.findViewById(R.id.txtValorDespesaCartaoCreditoItem);
+            viewHolder.txtDataDespesa = (TextView) view.findViewById(R.id.txtDataDespesaCartaoCreditoItem);
+            viewHolder.imgCirculo = (ImageView) view.findViewById(R.id.imgDespesaCartaoCreditoItemCir);
 
             view.setTag(viewHolder);
 
@@ -98,12 +96,10 @@ public class AdapterDespesaCartaoCredito extends ArrayAdapter<DespesaCartaoCredi
        // viewHolder.txtContaDespesaItem.setText(despesa.getConta().getNome());
 
         if (despesa.isPaga()) {
-            viewHolder.txtStatusDespesa.setText(this.textoRecebido);
-            viewHolder.txtStatusDespesa.setTextColor(this.corRecebida);
+
             viewHolder.txtValorDespesa.setTextColor(this.corRecebida);
         } else {
-            viewHolder.txtStatusDespesa.setText(this.textoPendente);
-            viewHolder.txtStatusDespesa.setTextColor(this.corPendente);
+
             viewHolder.txtValorDespesa.setTextColor(this.corPendente);
         }
 
@@ -133,10 +129,8 @@ public class AdapterDespesaCartaoCredito extends ArrayAdapter<DespesaCartaoCredi
         ImageView imgDespesa;
         TextView txtNomeDespesa;
         TextView txtTipoDespesa;
-        TextView txtStatusDespesa;
         TextView txtValorDespesa;
         TextView txtDataDespesa;
-        TextView txtContaDespesaItem;
 
     }
 
