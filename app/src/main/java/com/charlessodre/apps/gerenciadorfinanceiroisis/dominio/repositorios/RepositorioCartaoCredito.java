@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.R;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.Constantes;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
-import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.Despesa;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.DespesaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.BooleanUtils;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 
@@ -85,10 +85,10 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
 
                 if (cursor.getColumnIndex(CartaoCredito.RECEITAS_PREVISTAS) != -1)
                     cartaoCredito.setReceitasPrevistas(cursor.getDouble(cursor.getColumnIndex(CartaoCredito.RECEITAS_PREVISTAS)));
-
+/*
                 if (cursor.getColumnIndex(CartaoCredito.DESPESAS_PREVISTAS) != -1)
                     cartaoCredito.setDespesasPrevistas(cursor.getDouble(cursor.getColumnIndex(CartaoCredito.DESPESAS_PREVISTAS)));
-
+*/
                 arrayList.add(cartaoCredito);
 
             } while (cursor.moveToNext());
@@ -223,39 +223,53 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
         }
     }
 
-    public ArrayList<CartaoCredito> getSaldoCartaoAnoMes(long idCartao, int anoMes, boolean somenteExibeSoma) {
+
+    public ArrayList<CartaoCredito> getSaldoCartao(int anoMes, boolean somenteExibeSoma) {
+        return this.getSaldoCartao(0,anoMes,somenteExibeSoma);
+    }
+
+
+    public ArrayList<CartaoCredito> getSaldoCartao(long idCartao, int anoMes, boolean somenteExibeSoma) {
 
         Cursor cursor = null;
 
-        String[] parametros = {String.valueOf(anoMes), String.valueOf(idCartao)};
-
         StringBuilder sql = new StringBuilder();
 
+
         sql.append("SELECT ");
-        sql.append(" C._id,");
-        sql.append(" C.NM_CONTA,");
-        sql.append(" C.FL_ATIVO,");
-        sql.append(" C.DT_INCLUSAO,");
-        sql.append(" C.DT_ALTERACAO,");
-        sql.append(" C.FL_EXIBIR,");
-        sql.append(" C.FL_EXIBIR_SOMA,");
-        sql.append(" C.CD_TIPO_CONTA,");
-        sql.append(" C.NO_AM_CONTA, ");
-        sql.append(" C.NO_ORDEM_EXIBICAO,");
-        sql.append(" C.NO_COR,");
-        sql.append(" C.NO_COR_ICONE,");
-        sql.append(" C.VL_SALDO, ");
-        sql.append(" (SELECT SUM(D.VL_DESPESA) AS VL_DESPESA FROM ");
-        sql.append(Despesa.TABELA_NOME);
-        sql.append(" as D where D.NO_AM_DESPESA <= ");
+        sql.append(" C."+CartaoCredito.ID+", ");
+        sql.append(" C."+CartaoCredito.NM_CARTAO + ", ");
+        sql.append(" C." +CartaoCredito.FL_ATIVO + ", ");
+        sql.append(" C." +CartaoCredito.DT_INCLUSAO +", ");
+        sql.append(" C." +CartaoCredito.DT_ALTERACAO +", ");
+        sql.append(" C." +CartaoCredito.FL_EXIBIR+ ",");
+        sql.append(" C." +CartaoCredito.FL_EXIBIR_SOMA+ ",");
+        sql.append(" C." +CartaoCredito.ID_CONTA_ASSOCIADA+ ",");
+        sql.append(" C." +CartaoCredito.NO_DIA_FECHAMENTO_FATURA+ ",");
+        sql.append(" C." +CartaoCredito.NO_DIA_VENCIMENTO_FATURA+ ",");
+        sql.append(" C." +CartaoCredito.NO_BANDEIRA_CARTAO+ ",");
+        sql.append(" C." +CartaoCredito.NO_COR+ ",");
+        sql.append(" C." +CartaoCredito.NO_ORDEM_EXIBICAO+ ",");
+        sql.append(" C." +CartaoCredito.FL_ALERTA_VENCIMENTO+ ",");
+        sql.append(" C." +CartaoCredito.FL_AGRUPAR_DESPESAS+ ",");
+        sql.append(" C." +CartaoCredito.VL_LIMITE+ ",");
+        sql.append(" C." +CartaoCredito.VL_TAXA_JUROS_FINANCIAMENTO+ ",");
+        sql.append(" C." +CartaoCredito.VL_TAXA_JUROS_ROTATIVO+ ",");
+
+        //sql.append(" C." +CartaoCredito.VL_TOTAL_DESPESA_LG+ ",");
+
+        sql.append(" ( SELECT SUM(D." +DespesaCartaoCredito.VL_DESPESA +") AS VL_DESPESA FROM ");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + " as D");
+        sql.append(" where D."+DespesaCartaoCredito.NO_AM_DESPESA+" <= ");
         sql.append(anoMes);
-        sql.append(" AND D.FL_DESPESA_PAGA=0 AND C._id=D.ID_CONTA ) AS ");
-        sql.append(CartaoCredito.DESPESAS_PREVISTAS);
+        sql.append(" AND D."+DespesaCartaoCredito.FL_DESPESA_PAGA+"=0 ");
+        sql.append(" AND C."+CartaoCredito.ID +"= D."+DespesaCartaoCredito.ID_CARTAO_CREDITO + " ) ");
+        sql.append(" AS " +CartaoCredito.DESPESAS_PREVISTAS);
         sql.append(" FROM ");
         sql.append(CartaoCredito.TABELA_NOME);
-        sql.append(" C ");
+        sql.append(" as C ");
         sql.append(" WHERE ");
-        sql.append(CartaoCredito.FL_ATIVO);
+        sql.append("C."+CartaoCredito.FL_ATIVO);
         sql.append(" = 1");
 
         if (somenteExibeSoma) {
@@ -263,18 +277,19 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
             sql.append(CartaoCredito.FL_EXIBIR_SOMA + " = 1");
         }
 
-
         if (idCartao != 0)
-            sql.append(" C._id = ?");
+            sql.append(" C._id = " + idCartao);
 
-        sql.append(" ORDER BY C.NO_ORDEM_EXIBICAO, C.NM_CONTA");
+        sql.append(" ORDER BY ");
+        sql.append(" C." + CartaoCredito.NO_ORDEM_EXIBICAO);
+        sql.append(", C." + CartaoCredito.NM_CARTAO);
 
         try {
 
             super.openConnectionRead();
             super.setBeginTransaction();
 
-            cursor = super.selectCustomQuery(sql.toString(), parametros);
+            cursor = super.selectCustomQuery(sql.toString(),null);
 
             super.setTransactionSuccessful();
 

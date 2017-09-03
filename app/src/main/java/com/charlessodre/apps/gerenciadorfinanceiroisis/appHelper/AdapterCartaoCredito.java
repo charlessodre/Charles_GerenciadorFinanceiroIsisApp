@@ -16,6 +16,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadCartao
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadDespesaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.actConsultas.actDespesaCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.NumberUtis;
 
 import java.text.NumberFormat;
 import java.util.Date;
@@ -183,7 +184,7 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
 
         viewHolder.imgCartao.setImageResource(CartaoCredito.getImagemBandeiraCartao(cartaoCredito.getNoBandeiraCartao()));
         viewHolder.txtNomeCartao.setText(cartaoCredito.getNome());
-        // viewHolder.txtSaldoAtual.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getValorSaldo()));
+        viewHolder.txtValorFaturaFechada.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getDespesasPrevistas()));
         //  viewHolder.txtSaldoPrevistoData.setText(texto);
         // viewHolder.txtSaldoPrevistoValor.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getSaldoPrevisto()));
 

@@ -17,6 +17,7 @@ import com.charlessodre.apps.gerenciadorfinanceiroisis.actCadastros.actCadCartao
 import com.charlessodre.apps.gerenciadorfinanceiroisis.appHelper.AdapterCartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.entidades.CartaoCredito;
 import com.charlessodre.apps.gerenciadorfinanceiroisis.dominio.repositorios.RepositorioCartaoCredito;
+import com.charlessodre.apps.gerenciadorfinanceiroisis.util.DateUtils;
 
 public class actCartaoCredito extends actBaseListas implements AdapterView.OnItemClickListener, View.OnClickListener {
 
@@ -139,11 +140,13 @@ public class actCartaoCredito extends actBaseListas implements AdapterView.OnIte
 
     private void atualizaListView() {
 
-
+        int anoMes = DateUtils.getYearAndMonth(super.getCalendar().getTime());
+        this.adapterCartaoCredito.setData(super.getCalendar().getTime());
         this.adapterCartaoCredito.clear();
-        this.adapterCartaoCredito.addAll(this.repositorioCartaoCredito.getAll());
+        this.adapterCartaoCredito.addAll(this.repositorioCartaoCredito.getSaldoCartao(anoMes,false));
 
         this.lstCartao.setAdapter(this.adapterCartaoCredito);
+
 
     }
     private void getParametrosRecebidos()
