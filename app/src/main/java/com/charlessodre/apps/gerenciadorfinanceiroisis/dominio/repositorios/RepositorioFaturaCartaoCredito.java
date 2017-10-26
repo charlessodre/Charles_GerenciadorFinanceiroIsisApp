@@ -37,6 +37,7 @@ public class RepositorioFaturaCartaoCredito extends RepositorioBase implements I
 
         ContentValues values = new ContentValues();
 
+        values.put(FaturaCartaoCredito.NM_FATURA, faturaCartaoCredito.getNome());
         values.put(FaturaCartaoCredito.VL_FATURA, faturaCartaoCredito.getValor());
         values.put(FaturaCartaoCredito.VL_PAGAMENTO, faturaCartaoCredito.getValorPagamento());
         values.put(FaturaCartaoCredito.DT_FATURA, faturaCartaoCredito.getDataFatura().getTime());
@@ -78,6 +79,7 @@ public class RepositorioFaturaCartaoCredito extends RepositorioBase implements I
 
                 FaturaCartaoCredito faturaCartaoCredito = new FaturaCartaoCredito();
 
+                faturaCartaoCredito.setNome(cursor.getString(cursor.getColumnIndex(FaturaCartaoCredito.NM_FATURA)));
                 faturaCartaoCredito.setId(cursor.getLong(cursor.getColumnIndex(FaturaCartaoCredito.ID)));
                 faturaCartaoCredito.setExibir(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(FaturaCartaoCredito.FL_EXIBIR))));
                 faturaCartaoCredito.setAtivo(BooleanUtils.parseIntToBoolean(cursor.getInt(cursor.getColumnIndex(FaturaCartaoCredito.FL_ATIVO))));
@@ -229,6 +231,7 @@ public class RepositorioFaturaCartaoCredito extends RepositorioBase implements I
             faturaCartaoCredito.setDataInclusao(DateUtils.getCurrentDatetime());
             faturaCartaoCredito.setAnoMesFatura(DateUtils.getYearAndMonth(data));
             faturaCartaoCredito.setDataFatura(data);
+            faturaCartaoCredito.setNome(String.valueOf(faturaCartaoCredito.getAnoMesFatura()));
 
             id = super.insert(transaction,this.preencheContentValues(faturaCartaoCredito));
 

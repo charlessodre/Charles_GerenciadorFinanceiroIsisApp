@@ -85,10 +85,13 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
 
                 if (cursor.getColumnIndex(CartaoCredito.RECEITAS_PREVISTAS) != -1)
                     cartaoCredito.setReceitasPrevistas(cursor.getDouble(cursor.getColumnIndex(CartaoCredito.RECEITAS_PREVISTAS)));
-/*
+
                 if (cursor.getColumnIndex(CartaoCredito.DESPESAS_PREVISTAS) != -1)
                     cartaoCredito.setDespesasPrevistas(cursor.getDouble(cursor.getColumnIndex(CartaoCredito.DESPESAS_PREVISTAS)));
-*/
+
+                if (cursor.getColumnIndex(CartaoCredito.DESPESAS_TOTAL_PREVISTAS) != -1)
+                    cartaoCredito.setDespesasTotalPrevistas(cursor.getDouble(cursor.getColumnIndex(CartaoCredito.DESPESAS_TOTAL_PREVISTAS)));
+
                 arrayList.add(cartaoCredito);
 
             } while (cursor.moveToNext());
@@ -258,6 +261,7 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
 
         //sql.append(" C." +CartaoCredito.VL_TOTAL_DESPESA_LG+ ",");
 
+        //Despesa Prevista Mes Atual
         sql.append(" ( SELECT SUM(D." +DespesaCartaoCredito.VL_DESPESA +") AS VL_DESPESA FROM ");
         sql.append(DespesaCartaoCredito.TABELA_NOME + " as D");
         sql.append(" where D."+DespesaCartaoCredito.NO_AM_DESPESA+" <= ");
@@ -265,12 +269,22 @@ public class RepositorioCartaoCredito extends RepositorioBase implements IReposi
         sql.append(" AND D."+DespesaCartaoCredito.FL_DESPESA_PAGA+"=0 ");
         sql.append(" AND C."+CartaoCredito.ID +"= D."+DespesaCartaoCredito.ID_CARTAO_CREDITO + " ) ");
         sql.append(" AS " +CartaoCredito.DESPESAS_PREVISTAS);
+
+
+        //Total despesas não pagas
+        sql.append(", ( SELECT SUM(D." +DespesaCartaoCredito.VL_DESPESA +") AS VL_DESPESA FROM ");
+        sql.append(DespesaCartaoCredito.TABELA_NOME + " as D");
+        sql.append(" where D."+DespesaCartaoCredito.FL_DESPESA_PAGA+"=0 ");
+        sql.append(" AND C."+CartaoCredito.ID +"= D."+DespesaCartaoCredito.ID_CARTAO_CREDITO + " ) ");
+        sql.append(" AS " +CartaoCredito.DESPESAS_TOTAL_PREVISTAS);
+
+
         sql.append(" FROM ");
         sql.append(CartaoCredito.TABELA_NOME);
         sql.append(" as C ");
         sql.append(" WHERE ");
         sql.append("C."+CartaoCredito.FL_ATIVO);
-        sql.append(" = 1");
+        sql.append(" = 1  ");
 
         if (somenteExibeSoma) {
             sql.append(" AND ");

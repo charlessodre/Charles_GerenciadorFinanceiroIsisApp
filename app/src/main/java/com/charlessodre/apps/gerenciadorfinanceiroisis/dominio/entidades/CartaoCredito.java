@@ -27,12 +27,13 @@ public class CartaoCredito extends EntidadeBase {
     public static String FL_AGRUPAR_DESPESAS = "FL_AGRUPAR_DESPESAS";
     public static String RECEITAS_PREVISTAS = "RECEITAS_PREVISTAS";
     public static String DESPESAS_PREVISTAS = "DESPESAS_PREVISTAS";
+
     public static String VL_TAXA_JUROS_ROTATIVO = "VL_TAXA_JUROS_ROTATIVO";
     public static String VL_TAXA_JUROS_FINANCIAMENTO = "VL_TAXA_JUROS_FINANCIAMENTO";
 
     //Colunas lógicas
     public static final String VL_TOTAL_DESPESA_LG      = "VL_TOTAL_DESPESA";
-
+    public static final String DESPESAS_TOTAL_PREVISTAS = "DESPESAS_TOTAL_PREVISTAS";
 
 
     //Atributos
@@ -47,12 +48,21 @@ public class CartaoCredito extends EntidadeBase {
     private boolean agruparDespesas;
     private double receitasPrevistas;
     private double despesasPrevistas;
-    private Double valorSaldo;
+    private double despesasTotalPrevistas = 0;
 
     private Double valorTaxaJurosFinaciamento;
     private Double valorTaxaJurosRotativo;
 
     //Propriedades
+
+    public double getDespesasTotalPrevistas() {
+        return despesasTotalPrevistas;
+    }
+
+    public void setDespesasTotalPrevistas(double despesasTotalPrevistas) {
+        this.despesasTotalPrevistas = despesasTotalPrevistas;
+    }
+
     public Double getValorTaxaJurosFinaciamento() {
         return valorTaxaJurosFinaciamento;
     }
@@ -86,10 +96,9 @@ public class CartaoCredito extends EntidadeBase {
         this.despesasPrevistas = despesasPrevistas;
     }
 
-    public double getSaldoPrevisto() {
+    public double getLimiteDisponivel() {
 
-        return(this.valorSaldo +  this.receitasPrevistas) - this.despesasPrevistas ;
-
+      return    (this.valorLimite +  this.receitasPrevistas) - this.despesasTotalPrevistas ;
     }
     public boolean isAgruparDespesas() {
         return agruparDespesas;

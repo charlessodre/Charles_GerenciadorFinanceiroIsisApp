@@ -1,18 +1,39 @@
 -- Merging decision tree log ---
 manifest
 ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-105:12
+INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-105:12
+INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-105:12
+INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-105:12
+MERGED from [com.android.support:design:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\2a7ae035d59cee475478f34522ba7d16\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\bb1766b75675e7e440e360bcdb187ef5\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-v4:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-v4-24.2.1.aar\2d35989365f0412f1acfc57fd7bcc279\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\dec30e40d9c84d3793cc92382c7414d5\AndroidManifest.xml:2:1-11:12
+MERGED from [com.github.lecho:hellocharts-library:1.5.8] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\hellocharts-library-1.5.8.aar\835bb84fa2502c2573dc691d8a765964\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-24.2.1.aar\b7254488f33b6e0c1af8860cfffee8f1\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-24.2.1.aar\bdafaf8750f8ad85271ba189ae25fc32\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:support-fragment:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-fragment-24.2.1.aar\6d7fc5194f947839fb37d1a5e9e76079\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-media-compat:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-media-compat-24.2.1.aar\240744b953a70d0fca41cc3ffdb96feb\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-core-utils:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-core-utils-24.2.1.aar\92e5b5fd8f5cc6edba179988de5e2d9a\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:recyclerview-v7:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-24.2.1.aar\0ed6450fb3a246390665fb9829a8ce0b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-core-ui-24.2.1.aar\90ac501542be5e0f2e76f26c35f28fae\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:support-compat:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-compat-24.2.1.aar\23947ce4151129b99ea93aebc1b6468d\AndroidManifest.xml:17:1-27:12
+INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-105:12
+INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-105:12
+INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-105:12
 	package
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:3:5-62
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
+		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-105:12
+		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
+		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:1-105:12
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:2:11-69
-	android:versionCode
-		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
-		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
 uses-permission#android.permission.RECEIVE_SMS
 ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:5:5-70
 	android:name
@@ -31,25 +52,36 @@ ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\And
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:8:22-78
 application
 ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:10:5-103:19
-MERGED from [com.android.support:design:24.2.1] C:\Users\charl\.android\build-cache\faa278becd56839cd4966f8bf768682ed81c26f6\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charl\.android\build-cache\8539ae108f168d412db27ecb2651ae5b7bcbc416\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-v4:24.2.1] C:\Users\charl\.android\build-cache\cf4bea35601ee0f9e411631dfdeaad200a943951\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-fragment:24.2.1] C:\Users\charl\.android\build-cache\6a40ad02b09ff193597c50326204429ca1123b2e\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-media-compat:24.2.1] C:\Users\charl\.android\build-cache\627dbb5214470f3eeb25b00366329108821234fb\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-utils:24.2.1] C:\Users\charl\.android\build-cache\21a8cef34e8cdd02d4f8d52cfbe6e47d47ec36e5\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\charl\.android\build-cache\bd5c8031116416198589c455c630ef46894fbe64\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\charl\.android\build-cache\3787880f5ea7cb647b43ea1f5b556c92cd8c4b83\output\AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:support-core-ui:24.2.1] C:\Users\charl\.android\build-cache\136ea392d368cee18d4c38c1569a4468a71f8ede\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-compat:24.2.1] C:\Users\charl\.android\build-cache\c1dcf0b1a26bb1220105771bef9c00e36c5da780\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\charl\.android\build-cache\36d7f50d21235e726227df90ac3b8d6a123fb581\output\AndroidManifest.xml:9:5-20
-	android:label
-		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:13:9-41
+MERGED from [com.android.support:design:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\2a7ae035d59cee475478f34522ba7d16\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\2a7ae035d59cee475478f34522ba7d16\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\bb1766b75675e7e440e360bcdb187ef5\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\bb1766b75675e7e440e360bcdb187ef5\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-v4-24.2.1.aar\2d35989365f0412f1acfc57fd7bcc279\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-v4:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-v4-24.2.1.aar\2d35989365f0412f1acfc57fd7bcc279\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\dec30e40d9c84d3793cc92382c7414d5\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\dec30e40d9c84d3793cc92382c7414d5\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-24.2.1.aar\b7254488f33b6e0c1af8860cfffee8f1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-24.2.1.aar\b7254488f33b6e0c1af8860cfffee8f1\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-24.2.1.aar\bdafaf8750f8ad85271ba189ae25fc32\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-24.2.1.aar\bdafaf8750f8ad85271ba189ae25fc32\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:support-fragment:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-fragment-24.2.1.aar\6d7fc5194f947839fb37d1a5e9e76079\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-fragment-24.2.1.aar\6d7fc5194f947839fb37d1a5e9e76079\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-media-compat-24.2.1.aar\240744b953a70d0fca41cc3ffdb96feb\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-media-compat-24.2.1.aar\240744b953a70d0fca41cc3ffdb96feb\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-core-utils-24.2.1.aar\92e5b5fd8f5cc6edba179988de5e2d9a\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-core-utils-24.2.1.aar\92e5b5fd8f5cc6edba179988de5e2d9a\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-core-ui-24.2.1.aar\90ac501542be5e0f2e76f26c35f28fae\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-core-ui-24.2.1.aar\90ac501542be5e0f2e76f26c35f28fae\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-compat-24.2.1.aar\23947ce4151129b99ea93aebc1b6468d\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-compat-24.2.1.aar\23947ce4151129b99ea93aebc1b6468d\AndroidManifest.xml:25:5-20
 	android:supportsRtl
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:14:9-35
-	android:allowBackup
-		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:11:9-35
+	android:label
+		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:13:9-41
 	android:icon
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:12:9-43
+	android:allowBackup
+		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:11:9-35
 	android:theme
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:15:9-40
 receiver#com.charlessodre.apps.gerenciadorfinanceiroisis.util.RecebeSMS
@@ -224,24 +256,43 @@ ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\And
 		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml:99:13-65
 uses-sdk
 INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:design:24.2.1] C:\Users\charl\.android\build-cache\faa278becd56839cd4966f8bf768682ed81c26f6\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charl\.android\build-cache\8539ae108f168d412db27ecb2651ae5b7bcbc416\output\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:support-v4:24.2.1] C:\Users\charl\.android\build-cache\cf4bea35601ee0f9e411631dfdeaad200a943951\output\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:24.2.1] C:\Users\charl\.android\build-cache\6a40ad02b09ff193597c50326204429ca1123b2e\output\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:24.2.1] C:\Users\charl\.android\build-cache\627dbb5214470f3eeb25b00366329108821234fb\output\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-utils:24.2.1] C:\Users\charl\.android\build-cache\21a8cef34e8cdd02d4f8d52cfbe6e47d47ec36e5\output\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\charl\.android\build-cache\bd5c8031116416198589c455c630ef46894fbe64\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\charl\.android\build-cache\3787880f5ea7cb647b43ea1f5b556c92cd8c4b83\output\AndroidManifest.xml:21:5-43
-MERGED from [com.android.support:recyclerview-v7:24.2.1] C:\Users\charl\.android\build-cache\5c0d005af6c95cae2523a8cd4d9b225b98cfaadb\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:support-core-ui:24.2.1] C:\Users\charl\.android\build-cache\136ea392d368cee18d4c38c1569a4468a71f8ede\output\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-compat:24.2.1] C:\Users\charl\.android\build-cache\c1dcf0b1a26bb1220105771bef9c00e36c5da780\output\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\charl\.android\build-cache\36d7f50d21235e726227df90ac3b8d6a123fb581\output\AndroidManifest.xml:5:5-7:41
-MERGED from [com.github.lecho:hellocharts-library:1.5.8] C:\Users\charl\.android\build-cache\794e0a0614f6fc8b432c5fb1cb9de2d374357eb2\output\AndroidManifest.xml:7:5-9:41
+INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
+INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:design:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\2a7ae035d59cee475478f34522ba7d16\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:design:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\design-24.2.1.aar\2a7ae035d59cee475478f34522ba7d16\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\bb1766b75675e7e440e360bcdb187ef5\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\bb1766b75675e7e440e360bcdb187ef5\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:support-v4:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-v4-24.2.1.aar\2d35989365f0412f1acfc57fd7bcc279\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-v4-24.2.1.aar\2d35989365f0412f1acfc57fd7bcc279\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\dec30e40d9c84d3793cc92382c7414d5\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.0.2.aar\dec30e40d9c84d3793cc92382c7414d5\AndroidManifest.xml:5:5-7:41
+MERGED from [com.github.lecho:hellocharts-library:1.5.8] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\hellocharts-library-1.5.8.aar\835bb84fa2502c2573dc691d8a765964\AndroidManifest.xml:7:5-9:41
+MERGED from [com.github.lecho:hellocharts-library:1.5.8] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\hellocharts-library-1.5.8.aar\835bb84fa2502c2573dc691d8a765964\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-24.2.1.aar\b7254488f33b6e0c1af8860cfffee8f1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-24.2.1.aar\b7254488f33b6e0c1af8860cfffee8f1\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-24.2.1.aar\bdafaf8750f8ad85271ba189ae25fc32\AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:support-vector-drawable:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-24.2.1.aar\bdafaf8750f8ad85271ba189ae25fc32\AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:support-fragment:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-fragment-24.2.1.aar\6d7fc5194f947839fb37d1a5e9e76079\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-fragment-24.2.1.aar\6d7fc5194f947839fb37d1a5e9e76079\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-media-compat-24.2.1.aar\240744b953a70d0fca41cc3ffdb96feb\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-media-compat-24.2.1.aar\240744b953a70d0fca41cc3ffdb96feb\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-utils:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-core-utils-24.2.1.aar\92e5b5fd8f5cc6edba179988de5e2d9a\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-core-utils-24.2.1.aar\92e5b5fd8f5cc6edba179988de5e2d9a\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:recyclerview-v7:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-24.2.1.aar\0ed6450fb3a246390665fb9829a8ce0b\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:recyclerview-v7:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-24.2.1.aar\0ed6450fb3a246390665fb9829a8ce0b\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-core-ui:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-core-ui-24.2.1.aar\90ac501542be5e0f2e76f26c35f28fae\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-core-ui-24.2.1.aar\90ac501542be5e0f2e76f26c35f28fae\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-compat-24.2.1.aar\23947ce4151129b99ea93aebc1b6468d\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\support-compat-24.2.1.aar\23947ce4151129b99ea93aebc1b6468d\AndroidManifest.xml:21:5-23:58
+INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
+INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
 	tools:overrideLibrary
-		ADDED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charl\.android\build-cache\8539ae108f168d412db27ecb2651ae5b7bcbc416\output\AndroidManifest.xml:23:9-75
+		ADDED from [com.android.support:appcompat-v7:24.2.1] C:\Users\charlessodre\.gradle\caches\transforms-1\files-1.1\appcompat-v7-24.2.1.aar\bb1766b75675e7e440e360bcdb187ef5\AndroidManifest.xml:23:9-75
 	android:targetSdkVersion
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
+		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
+		ADDED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml
 		INJECTED from C:\DESENVOLVIMENTO\Android\GerenciadorFinanceiroIsis\app\src\main\AndroidManifest.xml

@@ -131,7 +131,7 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
             viewHolder.txtNomeCartao = (TextView) view.findViewById(R.id.txtNomeCartaoItem);
             viewHolder.txtValorFaturaFechada = (TextView) view.findViewById(R.id.txtValorFaturaFechada);
             viewHolder.txtValorFaturaAberta = (TextView) view.findViewById(R.id.txtValorFaturaAberta);
-            viewHolder.txtSaldoPrevistoData = (TextView) view.findViewById(R.id.txtSaldoPrevistoDataItem);
+            viewHolder.txtValorLimiteDisponivel = (TextView) view.findViewById(R.id.txtValorLimiteDisponivel);
             viewHolder.imgCirculo = (ImageView) view.findViewById(R.id.imgCartaoItemCir);
 
 
@@ -184,7 +184,8 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
 
         viewHolder.imgCartao.setImageResource(CartaoCredito.getImagemBandeiraCartao(cartaoCredito.getNoBandeiraCartao()));
         viewHolder.txtNomeCartao.setText(cartaoCredito.getNome());
-        viewHolder.txtValorFaturaFechada.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getDespesasPrevistas()));
+        viewHolder.txtValorFaturaAberta.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getDespesasPrevistas()));
+        viewHolder.txtValorLimiteDisponivel.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getLimiteDisponivel()));
         //  viewHolder.txtSaldoPrevistoData.setText(texto);
         // viewHolder.txtSaldoPrevistoValor.setText(this.symbol + " " + NumberUtis.getFormartCurrency(cartaoCredito.getSaldoPrevisto()));
 
@@ -213,7 +214,7 @@ public class AdapterCartaoCredito extends ArrayAdapter<CartaoCredito> {
         ImageView imgCartao;
         TextView txtNomeCartao;
         TextView txtValorFaturaFechada;
-        TextView txtSaldoPrevistoData;
+        TextView txtValorLimiteDisponivel;
         TextView txtValorFaturaAberta;
 
         ImageView imgBtnAddDespesas;

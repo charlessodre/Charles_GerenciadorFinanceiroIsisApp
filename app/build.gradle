@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion '25.0.0'
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
         applicationId "com.charlessodre.apps.gerenciadorfinanceiroisis"
@@ -26,5 +26,5 @@ dependencies {
     compile 'com.android.support:design:24.2.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
-    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
 }

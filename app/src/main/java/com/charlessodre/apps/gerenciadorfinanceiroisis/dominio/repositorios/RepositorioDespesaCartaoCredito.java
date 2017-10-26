@@ -585,7 +585,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
         StringBuilder sql = new StringBuilder();
 
         sql.append("SELECT ");
-        sql.append(FaturaCartaoCredito.NO_AM_FATURA);
+        sql.append(DespesaCartaoCredito.NO_AM_DESPESA);
         sql.append(",");
         sql.append(" SUM( ");
         sql.append(DespesaCartaoCredito.VL_DESPESA);
@@ -594,17 +594,11 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
         sql.append(" FROM ");
         sql.append(CartaoCredito.TABELA_NOME);
         sql.append(" INNER JOIN ");
-        sql.append(FaturaCartaoCredito.TABELA_NOME);
-        sql.append(" ON ");
-        sql.append(FaturaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.ID_CARTAO_CREDITO);
-        sql.append(" = ");
-        sql.append(CartaoCredito.TABELA_NOME + "." + CartaoCredito.ID);
-        sql.append(" INNER JOIN ");
         sql.append(DespesaCartaoCredito.TABELA_NOME);
         sql.append(" ON ");
-        sql.append(DespesaCartaoCredito.ID_FATURA_CARTAO_CREDITO);
+        sql.append(DespesaCartaoCredito.ID_CARTAO_CREDITO);
         sql.append(" = ");
-        sql.append(FaturaCartaoCredito.TABELA_NOME + "." + FaturaCartaoCredito.ID);
+        sql.append(CartaoCredito.TABELA_NOME + "." + CartaoCredito.ID);
         sql.append(" WHERE ");
         sql.append(CartaoCredito.TABELA_NOME + "." + CartaoCredito.FL_ATIVO);
         sql.append(" = 1");
@@ -618,19 +612,19 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
 
         if (anoMes > 0) {
             sql.append(" AND ");
-            sql.append(FaturaCartaoCredito.NO_AM_FATURA);
-            sql.append(" =  ");
+            sql.append(DespesaCartaoCredito.NO_AM_DESPESA);
+            sql.append(" <=  ");
             sql.append(anoMes);
         }
 
         if (somenteExibeSoma)
-            sql.append(" AND " + CartaoCredito.FL_EXIBIR_SOMA + " = 1");
+            sql.append(" AND " + CartaoCredito.TABELA_NOME + "." + CartaoCredito.FL_EXIBIR_SOMA + " = 1");
 
         sql.append(" GROUP BY ");
-        sql.append(FaturaCartaoCredito.NO_AM_FATURA);
+        sql.append(DespesaCartaoCredito.NO_AM_DESPESA);
 
         sql.append(" ORDER BY ");
-        sql.append(FaturaCartaoCredito.NO_AM_FATURA);
+        sql.append(DespesaCartaoCredito.NO_AM_DESPESA);
 
 
         double valorTotal = 0;

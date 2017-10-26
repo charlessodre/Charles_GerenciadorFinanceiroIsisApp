@@ -12,6 +12,7 @@ public class FaturaCartaoCredito extends EntidadeBase  {
     //Constantes
     public static String  TABELA_NOME 			  = "TB_GF_FATURA_CARTAO_CREDITO";
 
+    public static final String NM_FATURA                = "NM_FATURA";
     public static final String DT_FATURA                = "DT_FATURA";
     public static final String VL_FATURA                = "VL_FATURA";
     public static final String DT_PAGAMENTO             = "DT_PAGAMENTO";
