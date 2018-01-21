@@ -186,7 +186,7 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
             FaturaCartaoCredito faturaCartaoCredito = null;
             ArrayList<FaturaCartaoCredito> faturas = null;
 
-            Date data = item.getDataDespesa(); //Diaria
+            Date data = item.getFaturaCartaoCredito().getDataFatura();//.getDataDespesa(); //Diaria
             int anoMesDespesa = 0;
             int tipoRepeticao = item.getIdTipoRepeticao();
             int qtdRepeticao = item.getTotalRepeticao();
@@ -230,8 +230,8 @@ public class RepositorioDespesaCartaoCredito extends RepositorioBase implements 
 
                     anoMesDespesa = DateUtils.getYearAndMonth(data);
 
-                    nova.setDataDespesa(data);
-                    nova.setAnoMesDespesa(anoMesDespesa);
+                 //   nova.setDataDespesa(data);
+                 //   nova.setAnoMesDespesa(anoMesDespesa);
 
                     faturaCartaoCredito = repFatura.get(super.getTransaction(), nova.getCartaoCredito(), anoMesDespesa);
 
